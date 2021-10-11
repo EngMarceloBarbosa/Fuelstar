@@ -1,0 +1,7 @@
+{
+  "name": "Fuelstar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
