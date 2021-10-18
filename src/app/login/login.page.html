@@ -1,0 +1,111 @@
+<ion-toolbar>
+  <ion-title class="title"> Log in </ion-title>
+</ion-toolbar>
+
+<ion-content>
+  <ion-card-content>
+    <ion-item class="box-1">
+      <div class="row">
+        <div>
+          <ion-icon name="person"></ion-icon>
+          <!-- <img src="../assets/person.svg" alt="img"/> -->
+        </div>
+        <div>
+          <ion-label position="stacked">Username or Email</ion-label>
+          <ion-input
+            placeholder="Username"
+            (keypress)="mail($event)"
+          ></ion-input>
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item class="box-2">
+      <div class="row">
+        <div>
+          <ion-icon name="lock-closed"></ion-icon>
+        </div>
+        <div>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input
+            placeholder="Username"
+            type="password"
+            (keypress)="password($event)"
+          ></ion-input>
+        </div>
+        <div>
+          <ion-icon name="eye" class="img-eye"></ion-icon>
+        </div>
+      </div>
+    </ion-item>
+  </ion-card-content>
+  <div class="row">
+    <div>
+      <div>
+        <ion-label class="text-shift">Open shift</ion-label>
+      </div>
+      <div>
+        <ion-label class="text-shift-plus">IF you work with shifts</ion-label>
+      </div>
+    </div>
+    <div>
+      <ion-toggle
+        slot="start"
+        name="kiwi"
+        color="success"
+        class="switch"
+        checked
+      ></ion-toggle>
+    </div>
+  </div>
+  <div class="but1">
+    <ion-button class="but11" color="green" (click)="logInMe()"
+      >Login</ion-button
+    >
+  </div>
+</ion-content>
+
+<!-- <div class="input-username">
+  <img src="" alt="" />
+  <div class="input1">
+    <div class="row">
+      <label for="">Username or email</label>
+    </div>
+    <input type="text" />
+  </div>
+</div> -->
+
+<!-- <div class="container">
+  <div class="header">
+    <p>Log in</p>
+  </div>
+  <div class="inputs">
+    <div class="input-1">
+      <div class="row">
+        <div class="col-2-xs">
+        <ion-icon name="person"></ion-icon>
+      </div>
+      <div class="col-10-xs">
+        <ion-label position="stacked">Username or email</ion-label>
+        <ion-input></ion-input>
+      </div>
+    </div>
+    </div>
+    <div class="input-2">
+      <ion-item>
+        <ion-icon name="lock-closed" ></ion-icon>
+        <ion-label position="stacked" >Username or email</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+    </div>
+  </div>
+  <div class="row">
+    <p>Open shift</p>
+    <ion-label>Label</ion-label>
+    <img src="" alt="">
+  </div>
+  <div class="footer">
+    <ion-button color="primary">Login</ion-button>
+    <ion-label>Label</ion-label>
+  </div>
+</div> -->

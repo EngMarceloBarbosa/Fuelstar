@@ -1,0 +1,17 @@
+.boxes{
+  display: flex;
+  justify-content: space-between;
+  background-image: none;
+}
+
+.box-green{
+  width: 153px;
+  height: 81px;
+  background-color: green;
+}
+
+.box-orange{
+  width: 153px;
+  height: 81px;
+  background-color: orange;
+}

@@ -1,0 +1,45 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+})
+export class LoginPage implements OnInit {
+
+  values: string;
+  chave1: any[];
+  alunos = [];
+
+
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+  }
+
+  logInMe(){
+this.router.navigate(['/recover-password']);
+
+  }
+
+  mail(event: any){
+   this.values  = event.target.value;
+   console.log(this.values);
+  }
+
+  password(event: any){
+   this.values  = event.target.value;
+   console.log(this.values);
+  }
+
+
+  //  array = [
+  //   {chave1: "valor1", "valor2"},
+  //   {chave2: "valor2", "valor3"}
+  // ]
+
+//  public alunos = ['Wesley', 'Marina', 'Bruno', 'Paula'];
+
+
+}
