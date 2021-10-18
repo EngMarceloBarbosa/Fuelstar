@@ -23,7 +23,7 @@ export class RecoverPasswordPage implements OnInit {
 
   sendMe(){
   //  this.loc.back();
-    this.router.navigate(['/menu-page']);
+    this.router.navigate(['tabs/tab1']);
   }
 
 }

@@ -1,0 +1,23 @@
+.boxes {
+  display: flex;
+  justify-content: space-between;
+  background-image: none;
+  margin-top: 30%;
+}
+
+.box-green {
+  width: 158px;
+  height: 85px;
+  box-shadow: 0px 5px 10px #4551541a;
+  opacity: 1;
+  background-color: green;
+}
+
+.box-orange {
+  width: 158px;
+  height: 85px;
+  box-shadow: 0px 5px 10px #4551541a;
+  border: 1px solid #00000000;
+  opacity: 1;
+  background-color: orange;
+}

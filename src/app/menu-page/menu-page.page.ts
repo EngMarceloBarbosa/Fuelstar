@@ -12,4 +12,20 @@ export class MenuPagePage implements OnInit {
   ngOnInit() {
   }
 
+
+
+
+  //  frutos [
+  //   {
+  //     cor: blue;
+  //     nome: banana;
+
+  //   }
+  //   {
+  //     cor: red;
+  //     nome: maça;
+
+  //   },
+  // ]
 }
+
