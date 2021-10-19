@@ -1,34 +1,23 @@
-<ion-header [translucent]="true">
+<ion-content>
   <ion-header>
     <div class="header-menu">
       <ion-title> Welcome back</ion-title>
-      <ion-icon></ion-icon>
+      <ion-icon name="cart-outline" class="cart"></ion-icon>
+    </div>
+    <div class="label-operators">
+      <ion-label class="label-name">Jimmy Smyth</ion-label>
+      <ion-label class="label-operator">JOperador</ion-label>
     </div>
     <div class="boxes">
       <div class="box-green"></div>
       <div class="box-orange"></div>
     </div>
     <div>
-      <label for=""></label>
-    </div>
-    <div>
-      <ion-label></ion-label>
+      <label class="label-box"> Type of tasks for today</label>
     </div>
   </ion-header>
-
-  <ion-content></ion-content>
-
-
-
-
-
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <div class="body">
+    <div class="box-tasks"></div>
+    <div class="box-supllier"></div>
+  </div>
 </ion-content>

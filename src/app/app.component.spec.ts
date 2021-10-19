@@ -19,5 +19,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
   // TODO: add more tests!
-
 });

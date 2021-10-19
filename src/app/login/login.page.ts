@@ -19,8 +19,12 @@ export class LoginPage implements OnInit {
   }
 
   logInMe(){
-this.router.navigate(['/recover-password']);
+this.router.navigate(['/tabs/tab1']);
 
+  }
+
+  recoverME(){
+    this.router.navigate(['/recover-password']);
   }
 
   mail(event: any){
