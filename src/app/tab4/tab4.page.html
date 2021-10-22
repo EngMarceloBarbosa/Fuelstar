@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title> Profile </ion-title>
   </ion-toolbar>
@@ -10,4 +10,93 @@
       <ion-title size="large">Profile</ion-title>
     </ion-toolbar>
   </ion-header>
-</ion-content>
+</ion-content> -->
+
+<div class="container">
+  <div class="header-profile">
+    <div class="profile">
+      <div>
+        <img class="img-profile" src="assets/icon/user (1).svg" alt="" />
+      </div>
+      <div class="text-profile">
+        <ion-label class="label-profile" for="">Jimmy Smyth</ion-label>
+        <div>
+          <ion-label class="label-operator">Operator</ion-label>
+        </div>
+      </div>
+    </div>
+    <div class="button-change" (click)="change()">
+      <ion-icon name="refresh" class="icon-change"></ion-icon>
+      <ion-text class="change-text">Change user</ion-text>
+    </div>
+  </div>
+
+  <div class="body-profile">
+    <div>
+      <ion-label class="label-body">GENERAL</ion-label>
+    </div>
+    <div class="settings">
+      <div class="text-settings">
+        <ion-label class="settings-1">Shift</ion-label>
+        <ion-label class="settings-2">Open shitf with employer associeted with the user.</ion-label>
+      </div>
+      <div class="toggle">
+        <ion-toggle
+          slot="start"
+          name="kiwi"
+          color="success"
+          class="switch"
+          checked
+        ></ion-toggle>
+      </div>
+    </div>
+    <div class="settings">
+      <div class="text-settings">
+        <ion-label class="settings-1">Timeline</ion-label>
+        <ion-label class="settings-2"
+          >View your action on Fuelstar "seller"</ion-label
+        >
+      </div>
+      <div class="icon-arrow">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </div>
+    </div>
+    <div class="settings">
+      <div class="text-settings">
+        <ion-label class="settings-1">Language</ion-label>
+        <ion-label class="settings-2">Change your app Language </ion-label>
+      </div>
+      <div class="icon-arrow">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </div>
+    </div>
+
+    <div class="logout">
+      <ion-icon name="log-out"></ion-icon>
+      <ion-text>Logout</ion-text>
+    </div>
+  </div>
+  <div class="notification"></div>
+  <div class="notifications">
+    <ion-label class="label-noti">Notifications</ion-label>
+  </div>
+  <div class="settings">
+    <div class="text-settings">
+      <ion-label class="settings-1">Notification</ion-label>
+      <ion-label class="settings-2">Manage</ion-label>
+    </div>
+    <div class="icon-arrow">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </div>
+  </div>
+  <div class="settings">
+    <div class="text-settings">
+      <ion-label class="settings-1">Don´t disturb</ion-label>
+      <ion-label class="settings-2"> </ion-label>
+    </div>
+    <div class="icon-arrow">
+      <ion-label class="label-on">On</ion-label>
+      <ion-icon name="arrow-forward"></ion-icon>
+    </div>
+  </div>
+</div>

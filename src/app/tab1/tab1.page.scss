@@ -1,12 +1,21 @@
-.header-menu {
-  display: flex;
+.container {
+  margin: 5%;
+
 }
 
+.header-menu {
+  display: flex;
+  margin-top: 7%
+}
+
+.title{
+  width: 80%;
+}
 .boxes {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background-image: none;
-  margin-top: 30%;
+  margin-top: 12%;
 }
 
 .box-green {
@@ -24,6 +33,12 @@
   border: 1px solid #00000000;
   opacity: 1;
   background-color: orange;
+}
+
+.icon-cart{
+  width: 15%;
+  justify-content: flex-end;
+  display: flex;
 }
 
 .cart {
@@ -56,7 +71,7 @@
 }
 
 .label-box {
-  margin-top: 15px;
+  margin-top: 3%;
 }
 
 .body{
@@ -72,7 +87,7 @@
   height: 158px;
   opacity: 1;
   background-color: black;
-  margin-top: 30px;
+  margin-top: 5%;
   margin-bottom: 30px;
 }
 

@@ -1,23 +1,26 @@
-<ion-content>
-  <ion-header>
-    <div class="header-menu">
-      <ion-title> Welcome back</ion-title>
-      <ion-icon name="cart-outline" class="cart"></ion-icon>
+<div class="container">
+  <div class="header-menu">
+    <ion-label class="title"> Welcome back</ion-label>
+    <div class="icon-cart">
+      <ion-icon name="cart-outline" class="cart" (click)="back()"></ion-icon>
     </div>
-    <div class="label-operators">
-      <ion-label class="label-name">Jimmy Smyth</ion-label>
-      <ion-label class="label-operator">JOperador</ion-label>
-    </div>
-    <div class="boxes">
-      <div class="box-green"></div>
-      <div class="box-orange"></div>
-    </div>
-    <div>
-      <label class="label-box"> Type of tasks for today</label>
-    </div>
-  </ion-header>
+  </div>
+  <div class="label-operators">
+    <ion-label class="label-name">Jimmy Smyth</ion-label>
+    <ion-label class="label-operator">JOperador</ion-label>
+  </div>
+  <div class="boxes">
+    <div class="box-green"></div>
+    <div class="box-orange"></div>
+  </div>
+  <div class="label-box">
+    <label> Type of tasks for today</label>
+  </div>
   <div class="body">
     <div class="box-tasks"></div>
     <div class="box-supllier"></div>
   </div>
-</ion-content>
+</div>
+
+
+
