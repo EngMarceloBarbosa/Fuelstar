@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Boxes } from './tab2';
+
 
 @Component({
   selector: 'app-tab2',
@@ -8,5 +10,13 @@ import { Component } from '@angular/core';
 export class Tab2Page {
 
   constructor() {}
+
+
+// let  Boxes = [{
+//   name: "Pen",
+//   price: 1.43,
+//   description: "Userful for writing"
+// }
+// ]
 
 }

@@ -12,30 +12,39 @@ export class LoginPage implements OnInit {
   chave1: any[];
   alunos = [];
 
-
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  logInMe(){
-this.router.navigate(['/tabs/tab1']);
 
+  logInMe(){
+    this.router.navigate(['/tabs/tab1']);
   }
+
 
   recoverME(){
     this.router.navigate(['/recover-password']);
   }
 
   mail(event: any){
-   this.values  = event.target.value;
-   console.log(this.values);
+    this.values  = event.target.value;
+    console.log(this.values);
   }
 
+
   password(event: any){
-   this.values  = event.target.value;
-   console.log(this.values);
+    this.values  = event.target.value;
+    console.log(this.values);
   }
+
+  //  array = [
+  //   {chave1: "valor1", "valor2"},
+  //   {chave2: "valor2", "valor3"}
+  // ]
+
+
+
 
 
   //  array = [
@@ -44,9 +53,5 @@ this.router.navigate(['/tabs/tab1']);
   // ]
 
 //  public alunos = ['Wesley', 'Marina', 'Bruno', 'Paula'];
-
-
-
-
 
 }

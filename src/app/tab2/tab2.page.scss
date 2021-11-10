@@ -1,0 +1,61 @@
+
+.main-header {
+  margin-top: 7%;
+
+}
+
+.header {
+  display: flex;
+}
+
+.title{
+  width: 60%;
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 2%;
+  text-indent: 20px;
+}
+
+.icon-return {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icon-cart{
+  width: 20%;
+  justify-content: center;
+  display: flex;
+}
+
+.main-process{
+  display: flex;
+  justify-content: space-between;
+  padding: 5%;
+}
+
+.process-1{
+  margin-top: 5%;
+  display: flex;
+  justify-content: flex-start;
+}
+.process-2{
+  margin-top: 5%;
+  display: flex;
+}
+.process-3{
+  margin-top: 5%;
+  display: flex;
+}
+.icon-ball{
+color: orange;
+}
+
+.icon-ball-2{
+  color: green;
+  }
+
+  .icon-ball-3{
+    color: red;
+    }
+
