@@ -15,13 +15,13 @@ export class LoginPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+
   }
 
 
   logInMe(){
     this.router.navigate(['/tabs/tab1']);
-  }
-
+    }
 
   recoverME(){
     this.router.navigate(['/recover-password']);
@@ -33,18 +33,17 @@ export class LoginPage implements OnInit {
   }
 
 
+
   password(event: any){
     this.values  = event.target.value;
     console.log(this.values);
   }
 
+
   //  array = [
   //   {chave1: "valor1", "valor2"},
   //   {chave2: "valor2", "valor3"}
   // ]
-
-
-
 
 
   //  array = [

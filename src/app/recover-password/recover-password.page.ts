@@ -14,6 +14,7 @@ export class RecoverPasswordPage implements OnInit {
   constructor(private router: Router,private nav: NavController, private loc: Location ) { }
 
   ngOnInit() {
+
   }
 
   close(){
@@ -22,7 +23,8 @@ export class RecoverPasswordPage implements OnInit {
   }
 
   sendMe(){
-  //  this.loc.back();
+
+  //this.loc.back();
     this.router.navigate(['tabs/tab1']);
   }
 
