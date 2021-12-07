@@ -14,7 +14,8 @@ export class Tab1Page {
   constructor(private router: Router,private nav: NavController, private loc: Location) {}
 
   back(){
-   this.loc.back();
+  //  this.loc.back();
+   this.router.navigate(['/']);
   }
 }
 

@@ -1,16 +1,17 @@
 <ion-toolbar>
-  <ion-title class="title"> Log in </ion-title>
+  <div class="img"><img src="assets/img/gas-pump-g385a4edc0_640.jpg" /></div>
 </ion-toolbar>
 
 <ion-content>
-  <ion-card-content>
-    <ion-item class="box-1">
-      <div class="row">
-        <div>
+  <div class="login-box">
+    <ion-title class="title"> Log in </ion-title>
+    <div class="inputs-login">
+      <div class="box-1">
+        <div class="icon">
           <ion-icon name="person"></ion-icon>
           <!-- <img src="../assets/person.svg" alt="img"/> -->
         </div>
-        <div>
+        <div class="input-label">
           <ion-label position="stacked">Username or Email</ion-label>
           <ion-input
             placeholder="Username"
@@ -18,13 +19,11 @@
           ></ion-input>
         </div>
       </div>
-    </ion-item>
-    <ion-item class="box-2">
-      <div class="row">
-        <div>
+      <div class="box-1">
+        <div class="icon">
           <ion-icon name="lock-closed"></ion-icon>
         </div>
-        <div>
+        <div class= "input-label">
           <ion-label position="stacked">Password</ion-label>
           <ion-input
             placeholder="Username"
@@ -32,38 +31,51 @@
             (keypress)="password($event)"
           ></ion-input>
         </div>
-        <div>
-          <ion-icon name="eye" class="img-eye"></ion-icon>
+        <div class="icon">
+          <ion-icon name="eye"  ></ion-icon>
         </div>
       </div>
-    </ion-item>
-  </ion-card-content>
-  <div class="row">
-    <div>
+    </div>
+    <div class="row">
       <div>
-        <ion-label class="text-shift">Open shift</ion-label>
+        <div>
+          <ion-label class="text-shift">Open shift</ion-label>
+        </div>
+        <div>
+          <ion-label class="text-shift-plus">IF you work with shifts</ion-label>
+        </div>
       </div>
       <div>
-        <ion-label class="text-shift-plus">IF you work with shifts</ion-label>
+        <ion-toggle
+          slot="start"
+          name="kiwi"
+          color="success"
+          class="switch"
+          checked
+        ></ion-toggle>
       </div>
-    </div>
-    <div>
-      <ion-toggle
-        slot="start"
-        name="kiwi"
-        color="success"
-        class="switch"
-        checked
-      ></ion-toggle>
-    </div>
+        </div>
+
+<div class="footer">
+  <button class="footer__button"  (click)="logInMe()"  >Login
+  </button>
+  <div class="footer__text">
+    <span class="footer__info">cant get in blah </span>
+    <a class="footer__link" routerLink="/first-component" routerLinkActive="active">Forget Password?</a>
   </div>
-  <div class="but1">
-    <ion-button class="but11" color="green" (click)="logInMe()"
-      >Login</ion-button
-    >
-  </div>
-  <div class="forget-password" (click)="recoverME()">
-    <ion-label class="text-recover">Can´t get into the app </ion-label>
-    <ion-label class="text-recover1">Forget your password ?</ion-label>
+</div>
+
+    <!-- <div class="but1">
+      <ion-button class="but11 " color="primary" (click)="logInMe()"
+        >Login</ion-button
+      >
+    </div>
+    <div class="forget-password" (click)="recoverME()">
+      <ion-label class="text-recover">Can´t get into the app </ion-label>
+      <ion-label class="text-recover1">Forget your password ?</ion-label>
+    </div> -->
   </div>
 </ion-content>
+
+
+

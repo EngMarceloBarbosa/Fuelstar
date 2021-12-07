@@ -23,6 +23,7 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/tabs/tab1']);
     }
 
+
   recoverME(){
     this.router.navigate(['/recover-password']);
   }
@@ -37,6 +38,7 @@ export class LoginPage implements OnInit {
   password(event: any){
     this.values  = event.target.value;
     console.log(this.values);
+
   }
 
 

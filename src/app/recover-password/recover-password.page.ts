@@ -22,6 +22,7 @@ export class RecoverPasswordPage implements OnInit {
     this.loc.back();
   }
 
+
   sendMe(){
 
   //this.loc.back();
