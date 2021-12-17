@@ -1,7 +1,6 @@
 <ion-toolbar>
   <div class="img"><img src="assets/img/gas-pump-g385a4edc0_640.jpg" /></div>
 </ion-toolbar>
-
 <ion-content>
   <div class="login-box">
     <ion-title class="title"> Log in </ion-title>
@@ -23,7 +22,7 @@
         <div class="icon">
           <ion-icon name="lock-closed"></ion-icon>
         </div>
-        <div class= "input-label">
+        <div class="input-label">
           <ion-label position="stacked">Password</ion-label>
           <ion-input
             placeholder="Username"
@@ -32,7 +31,7 @@
           ></ion-input>
         </div>
         <div class="icon">
-          <ion-icon name="eye"  ></ion-icon>
+          <ion-icon name="eye"></ion-icon>
         </div>
       </div>
     </div>
@@ -54,16 +53,19 @@
           checked
         ></ion-toggle>
       </div>
-        </div>
-
-<div class="footer">
-  <button class="footer__button"  (click)="logInMe()"  >Login
-  </button>
-  <div class="footer__text">
-    <span class="footer__info">cant get in blah </span>
-    <a class="footer__link" routerLink="/first-component" routerLinkActive="active">Forget Password?</a>
-  </div>
-</div>
+    </div>
+    <div class="footer">
+      <button class="footer__button" (click)="logInMe()">Login</button>
+      <div class="footer__text">
+        <span class="footer__info">Can´t get into the app </span>
+        <a
+          class="footer__link"
+          routerLink="/recover-password"
+          routerLinkActive="active"
+          >Forget Password?</a
+        >
+      </div>
+    </div>
 
     <!-- <div class="but1">
       <ion-button class="but11 " color="primary" (click)="logInMe()"
@@ -76,6 +78,3 @@
     </div> -->
   </div>
 </ion-content>
-
-
-

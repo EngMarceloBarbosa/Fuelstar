@@ -1,14 +1,12 @@
-
 .main-header {
   margin-top: 7%;
-
 }
 
 .header {
   display: flex;
 }
 
-.title{
+.title {
   width: 60%;
   display: flex;
   justify-content: flex-start;
@@ -22,40 +20,104 @@
   justify-content: flex-end;
 }
 
-.icon-cart{
+.icon-cart {
   width: 20%;
   justify-content: center;
   display: flex;
 }
 
-.main-process{
+
+
+.main-process {
   display: flex;
   justify-content: space-between;
   padding: 5%;
 }
 
-.process-1{
+.process-1 {
   margin-top: 5%;
   display: flex;
   justify-content: flex-start;
 }
-.process-2{
+.process-2 {
   margin-top: 5%;
   display: flex;
 }
-.process-3{
+.process-3 {
   margin-top: 5%;
   display: flex;
 }
-.icon-ball{
-color: orange;
+.icon-ball {
+  color: orange;
 }
 
-.icon-ball-2{
+.icon-ball-2 {
   color: green;
-  }
+}
 
-  .icon-ball-3{
-    color: red;
-    }
+.icon-ball-3 {
+  color: red;
+}
 
+.boxes-task {
+  width: 100%;
+}
+
+.box {
+  height: 50px;
+  margin: 3% 5%;
+  border: 1px solid green;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+}
+
+.green-spot {
+  width: 6%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2% 2%;
+}
+
+.light-green {
+  width: 60%;
+  height: 93%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 21%;
+  background-color: green;
+}
+
+.name {
+  width: 100%;
+  display: flex;
+}
+
+.id {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.col {
+  width: 36%;
+  display: flex;
+  flex-direction: column;
+}
+
+.label-box {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding: 2% 2%;
+
+}
+
+.price {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}

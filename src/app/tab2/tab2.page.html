@@ -1,4 +1,5 @@
 <div class="main-header">
+  <div class="header-main">
   <div class="header">
     <div class="icon-return">
       <ion-icon name="chevron-back-outline"></ion-icon>
@@ -29,10 +30,23 @@
     </div>
   </div>
 </div>
-<div class="boxes-task">
-  <div *ngFor="let pen of pens " class="box">
-    <div >{{pen.name}}</div>
+  <div class="boxes-task">
+    <div *ngFor="let test of tests ">
+      <div class="box">
+        <div class="green-spot">
+          <div class="light-green"></div>
+        </div>
+        <div class="col">
+          <div class="name">{{test.name}}</div>
+          <ion-label >Return</ion-label>
+          </div>
+          <div class="label-box">
+            <div class="id">{{test.id}}</div>
+            <div class="price">{{test.price}}</div>
+        </div>
 
-    <div class="label-main"></div>
+      </div>
+
+    </div>
   </div>
 </div>

@@ -29,4 +29,5 @@ export class RecoverPasswordPage implements OnInit {
     this.router.navigate(['tabs/tab1']);
   }
 
+
 }

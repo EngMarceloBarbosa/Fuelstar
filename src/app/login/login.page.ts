@@ -34,11 +34,9 @@ export class LoginPage implements OnInit {
   }
 
 
-
   password(event: any){
     this.values  = event.target.value;
     console.log(this.values);
-
   }
 
 

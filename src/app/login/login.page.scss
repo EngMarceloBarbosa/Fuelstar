@@ -27,22 +27,22 @@
 
 }
 
-.but1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+// .but1 {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
 
-  .but11 {
-    width: 328px;
-    height: 39px;
-    width: 220px;
-    color: var(--c-scale-1_txt);
-    background: var(--primary_bg);
-    border-radius: 4px;
-    opacity: 1;
-    margin-top: 80%;
-  }
-}
+//   .but11 {
+//     width: 328px;
+//     height: 39px;
+//     width: 220px;
+//     color: var(--c-scale-1_txt);
+//     background: var(--primary_bg);
+//     border-radius: 4px;
+//     opacity: 1;
+//     margin-top: 80%;
+//   }
+// }
 
 .row {
   display: flex;
@@ -69,7 +69,7 @@
   text-align: left;
   font-family: sans-serif;
   letter-spacing: 0px;
-  color: #181818;
+  color: var(--color_scale_12);
   opacity: 1;
 }
 
@@ -85,26 +85,26 @@
   padding-left: 200px;
 }
 
-.text-recover {
-  color: #B8B8B8;
-  text-align: right;
-  font: normal normal normal 12px/16px Source Sans Pro;
-  letter-spacing: 0px;
-  opacity: 1;
+// .text-recover {
+//   color: #B8B8B8;
+//   text-align: right;
+//   font: normal normal normal 12px/16px Source Sans Pro;
+//   letter-spacing: 0px;
+//   opacity: 1;
 
-}
+// }
 
 .forget-password{
   justify-content: center;
 }
 
-.text-recover1 {
-  color: #232323;
-  text-align: right;
-  font: normal normal normal 12px/16px Source Sans Pro;
-  letter-spacing: 0px;
-  color: #232323;
-}
+// .text-recover1 {
+//   color: #232323;
+//   text-align: right;
+//   font: normal normal normal 12px/16px Source Sans Pro;
+//   letter-spacing: 0px;
+//   color: #232323;
+// }
 
 .login-box{
   width: 100%;
