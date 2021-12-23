@@ -1,35 +1,35 @@
 <div class="main-header">
   <div class="header-main">
-  <div class="header">
-    <div class="icon-return">
-      <ion-icon name="chevron-back-outline"></ion-icon>
+    <div class="header">
+      <div class="icon-return">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </div>
+      <ion-label class="title"> tasks</ion-label>
+      <div class="icon-cart">
+        <ion-icon name="cart-outline" class="cart"></ion-icon>
+      </div>
     </div>
-    <ion-label class="title"> tasks</ion-label>
-    <div class="icon-cart">
-      <ion-icon name="cart-outline" class="cart"></ion-icon>
+    <div class="main-process">
+      <div class="process-1">
+        <div class="icon-ball">
+          <ion-icon name="radio-button-off-outline"></ion-icon>
+        </div>
+        <ion-label class="text-process">Processing</ion-label>
+      </div>
+      <div class="process-2">
+        <div class="icon-ball-2">
+          <ion-icon name="radio-button-off-outline"></ion-icon>
+        </div>
+        <ion-label class="text-process">Done</ion-label>
+      </div>
+      <div class="process-3">
+        <div class="icon-ball-3">
+          <ion-icon name="radio-button-off-outline"></ion-icon>
+        </div>
+        <ion-label class="text-process">Cancelled</ion-label>
+      </div>
     </div>
   </div>
-  <div class="main-process">
-    <div class="process-1">
-      <div class="icon-ball">
-        <ion-icon name="radio-button-off-outline"></ion-icon>
-      </div>
-      <ion-label class="text-process">Processing</ion-label>
-    </div>
-    <div class="process-2">
-      <div class="icon-ball-2">
-        <ion-icon name="radio-button-off-outline"></ion-icon>
-      </div>
-      <ion-label class="text-process">Done</ion-label>
-    </div>
-    <div class="process-3">
-      <div class="icon-ball-3">
-        <ion-icon name="radio-button-off-outline"></ion-icon>
-      </div>
-      <ion-label class="text-process">Cancelled</ion-label>
-    </div>
-  </div>
-</div>
   <div class="boxes-task">
     <div *ngFor="let test of tests ">
       <div class="box">
@@ -38,15 +38,13 @@
         </div>
         <div class="col">
           <div class="name">{{test.name}}</div>
-          <ion-label >Return</ion-label>
-          </div>
-          <div class="label-box">
-            <div class="id">{{test.id}}</div>
-            <div class="price">{{test.price}}</div>
+          <ion-label>Return</ion-label>
         </div>
-
+        <div class="label-box">
+          <div class="id">{{test.id}}</div>
+          <div class="price">{{test.price}}</div>
+        </div>
       </div>
-
     </div>
   </div>
 </div>

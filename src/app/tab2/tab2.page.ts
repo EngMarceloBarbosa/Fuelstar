@@ -55,8 +55,15 @@ export class Tab2Page {
   name: 'Sapo',
   price: 16.3,
   description: 'Userful for writing'
+},
+{
+  id: 8,
+  name: 'Benfica',
+  price: 19,
+  description: 'Userful for writing'
 }
 ];
+
 
 constructor() {
 }

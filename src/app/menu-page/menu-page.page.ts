@@ -15,17 +15,6 @@ export class MenuPagePage implements OnInit {
 
 
 
-  //  frutos [
-  //   {
-  //     cor: blue;
-  //     nome: banana;
 
-  //   }
-  //   {
-  //     cor: red;
-  //     nome: maça;
-
-  //   },
-  // ]
 }
 
