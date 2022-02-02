@@ -6,8 +6,8 @@ export interface Boxes {
   idCod: number;
   nationality: string;
   relation: string;
-}
 
+}
 
 
 

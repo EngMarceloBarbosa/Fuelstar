@@ -20,12 +20,12 @@
   justify-content: flex-end;
 }
 
+
 .icon-cart {
   width: 20%;
   justify-content: center;
   display: flex;
 }
-
 
 
 .main-process {
@@ -39,10 +39,12 @@
   display: flex;
   justify-content: flex-start;
 }
+
 .process-2 {
   margin-top: 5%;
   display: flex;
 }
+
 .process-3 {
   margin-top: 5%;
   display: flex;
@@ -103,10 +105,11 @@
 }
 
 .col {
-  width: 36%;
+  width: 44%;
   display: flex;
   flex-direction: column;
 }
+
 
 .label-box {
   width: 60%;
@@ -120,4 +123,9 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+
+.is_on_color{
+  color : red
 }

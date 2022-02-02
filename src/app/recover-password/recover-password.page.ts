@@ -18,7 +18,6 @@ export class RecoverPasswordPage implements OnInit {
   }
 
   close(){
-
     this.loc.back();
   }
 
@@ -28,6 +27,4 @@ export class RecoverPasswordPage implements OnInit {
   //this.loc.back();
     this.router.navigate(['tabs/tab1']);
   }
-
-
 }

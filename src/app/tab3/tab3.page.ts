@@ -7,6 +7,21 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+
+  products: any[]  = [{
+  family: 'bebidas',
+  subfamily: 'vinhos',
+  image: 'assets/img/2050435-frente.jpg'
+  },
+  {
+  family: 'Comidas',
+  subfamily: 'Bolachas',
+  image: 'assets/img/617_bolachas.jpg'
+  }
+];
+
+
+
+constructor() {}
 
 }

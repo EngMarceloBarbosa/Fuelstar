@@ -1,16 +1,53 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Products
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content [fullscreen]="true">
+
+<div class="main-header">
+  <div class="header-main">
+    <div class="header">
+      <div class="icon-return">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </div>
+      <ion-label class="title">Products</ion-label>
+    </div>
+  </div>
+ <div class="sub-header">
+   <div class="product">
+   <ion-label >Product </ion-label>
+  </div>
+    <div class="service">
+   <ion-label >Service </ion-label>
+   </div>
+ </div>
+ <div class="main-product">
+   <div *ngFor="let product of products" >
+  <ion-card >
+    <ion-card-header>
+      <div class="img">
+      <img src ={{product.image}} width="30%">
+    </div>
+      <ion-card-subtitle>{{product.family}}</ion-card-subtitle>
+      <ion-card-title>{{product.subfamily}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
+ </div>
+</div>
+</div>
+
+
+<!-- <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Products</ion-title>
     </ion-toolbar>
-  </ion-header>
-
-</ion-content>
+  </ion-header>S
+</ion-content> -->

@@ -1,0 +1,46 @@
+.main-header {
+  margin-top: 7%;
+}
+
+.header {
+  display: flex;
+}
+
+.title {
+  width: 60%;
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 2%;
+  text-indent: 20px;
+}
+
+.icon-return {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icon-cart {
+  width: 20%;
+  justify-content: center;
+  display: flex;
+}
+
+.sub-header {
+
+    outline-style: groove;
+    display: flex;
+    padding: 5%;
+    text-indent: 20px;
+    margin: 5%;
+    width: 110%;
+    margin-left: -5%;
+    outline-color: lightgray;
+    padding-bottom: 2.5%;
+}
+
+.img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

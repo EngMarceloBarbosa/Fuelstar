@@ -9,6 +9,7 @@ import { MenuPagePageRoutingModule } from './menu-page-routing.module';
 import { MenuPagePage } from './menu-page.page';
 import { TabsPageModule } from '../tabs/tabs.module';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,4 +20,8 @@ import { TabsPageModule } from '../tabs/tabs.module';
   ],
   declarations: [MenuPagePage]
 })
-export class MenuPagePageModule {}
+export class MenuPagePageModule {
+
+}
+
+

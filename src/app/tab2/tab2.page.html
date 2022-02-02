@@ -10,35 +10,44 @@
       </div>
     </div>
     <div class="main-process">
-      <div class="process-1">
+      <div class="process-1" [class.is_on_color]="isOnColor">
         <div class="icon-ball">
           <ion-icon name="radio-button-off-outline"></ion-icon>
         </div>
-        <ion-label class="text-process">Processing</ion-label>
+        <a class="text-process" routerLink="/" routerLinkActive=""
+          >Processing</a
+        >
+        <!-- <ion-label class="text-process">Processing</ion-label> -->
       </div>
       <div class="process-2">
         <div class="icon-ball-2">
           <ion-icon name="radio-button-off-outline"></ion-icon>
         </div>
-        <ion-label class="text-process">Done</ion-label>
+        <a class="text-process" routerLink="/" routerLinkActive="active"
+          >Done</a
+        >
+        <!-- <ion-label class="text-process">Done</ion-label> -->
       </div>
       <div class="process-3">
         <div class="icon-ball-3">
           <ion-icon name="radio-button-off-outline"></ion-icon>
         </div>
-        <ion-label class="text-process">Cancelled</ion-label>
+        <a class="text-process" routerLink="/" routerLinkActive="active"
+          >Canceled</a
+        >
+        <!-- <ion-label class="text-process">Cancelled</ion-label> -->
       </div>
     </div>
   </div>
   <div class="boxes-task">
     <div *ngFor="let test of tests ">
-      <div class="box">
+      <div class="box" routerLink="/" routerLinkActive="inactive">
         <div class="green-spot">
           <div class="light-green"></div>
         </div>
         <div class="col">
           <div class="name">{{test.name}}</div>
-          <ion-label>Return</ion-label>
+          <ion-label>{{test.description}}</ion-label>
         </div>
         <div class="label-box">
           <div class="id">{{test.id}}</div>

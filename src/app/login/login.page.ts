@@ -12,6 +12,7 @@ export class LoginPage implements OnInit {
   chave1: any[];
   alunos = [];
 
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -34,14 +35,16 @@ export class LoginPage implements OnInit {
   }
 
 
+  // PersonME(age: int )
+
   password(event: any){
     this.values  = event.target.value;
     console.log(this.values);
-  }
+}
 
 
   //  array = [
-  //   {chave1: "valor1", "valor2"},
+ //   {chave1: "valor1", "valor2"},
   //   {chave2: "valor2", "valor3"}
   // ]
 
