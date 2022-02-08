@@ -6,6 +6,13 @@
   display: flex;
 }
 
+// .header-main-principal{
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+
 .title {
   width: 60%;
   display: flex;
@@ -27,20 +34,33 @@
 }
 
 .sub-header {
-
-    outline-style: groove;
-    display: flex;
-    padding: 5%;
-    text-indent: 20px;
-    margin: 5%;
-    width: 110%;
-    margin-left: -5%;
-    outline-color: lightgray;
-    padding-bottom: 2.5%;
+  outline-style: groove;
+  display: flex;
+  padding: 5%;
+  text-indent: 20px;
+  margin: 5%;
+  width: 110%;
+  margin-left: -5%;
+  outline-color: lightgray;
+  padding-bottom: 2.5%;
 }
 
-.img{
+.product:hover
+
+
+.main-product{
+  // width: 200px;
+  width: 100%;
+
+}
+
+.product-menu{
+width: 100%;
+}
+
+.img {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+

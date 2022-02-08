@@ -17,7 +17,6 @@ export class Tab2Page {
   }];
 
 
-
   tests: any[] = [{
   id: 1,
   name: 'Joao',
