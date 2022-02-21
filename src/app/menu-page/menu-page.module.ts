@@ -17,6 +17,7 @@ import { TabsPageModule } from '../tabs/tabs.module';
   ],
   declarations: [MenuPagePage]
 })
+
 export class MenuPagePageModule {
 
 }

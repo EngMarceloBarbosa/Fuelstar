@@ -45,7 +45,20 @@
   padding-bottom: 2.5%;
 }
 
-.product:hover
+
+// .product:hover{
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   margin: 20px;
+
+// }
+
+// .product:active{
+//   display: block;
+//   align-items: center;
+//   padding-top: 20px;
+// }
 
 
 .main-product{
@@ -57,6 +70,7 @@
 .product-menu{
 width: 100%;
 }
+
 
 .img {
   display: flex;

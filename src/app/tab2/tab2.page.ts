@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Boxes } from './tab2';
 
 
@@ -10,11 +11,11 @@ import { Boxes } from './tab2';
 export class Tab2Page {
 
 
-
   isOnColor = true;
   listBoxes: Boxes[] = [];
   listBoxes1: any[] = [{
   }];
+
 
 
   tests: any[] = [{
@@ -48,7 +49,6 @@ export class Tab2Page {
   price: 1.33,
   description: 'just do it'
 },
-
 {
   id: 6,
   name: 'Berto',
@@ -70,8 +70,13 @@ export class Tab2Page {
 ];
 
 
-constructor() {
+constructor(private router: Router) {
 }
+
+filter(){
+  this.router.navigate(['/search']);
+}
+
 
 }
 

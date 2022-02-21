@@ -13,8 +13,5 @@ export class MenuPagePage implements OnInit {
   }
 
 
-
-
-
 }
 
