@@ -29,6 +29,7 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/recover-password']);
   }
 
+
   mail(event: any){
     this.values  = event.target.value;
     console.log(this.values);

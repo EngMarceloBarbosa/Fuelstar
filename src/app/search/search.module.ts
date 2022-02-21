@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { SharedModule } from '../shared/shared.module';
 import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
 
@@ -12,7 +13,8 @@ import { SearchComponent } from './search.component';
     IonicModule,
     CommonModule,
     FormsModule,
-    SearchRoutingModule
+    SearchRoutingModule,
+    SharedModule,
   ],
   declarations: [SearchComponent]
 })

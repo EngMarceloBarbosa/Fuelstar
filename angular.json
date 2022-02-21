@@ -32,7 +32,19 @@
               }
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": [],
+            "scripts": [{
+              "input": "node_modules/niup-mobile-components-test/js/Helpers/tbu.js",
+              "bundleName": "tbu"
+            },
+
+            {
+              "input": "node_modules/niup-mobile-components-test/js/borderRadiusSet.js",
+              "bundleName": "borderRadiusSet"
+            },
+            {
+              "input": "node_modules/niup-mobile-components-test/js/Helpers/borderRadiusHelper.js",
+              "bundleName": "borderRadiusHelper"
+            }],
             "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,
