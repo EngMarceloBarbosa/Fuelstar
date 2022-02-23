@@ -1,59 +1,135 @@
-<div class="main-header">
-  <div class="header-main">
-    <div class="header">
-      <div class="icon-return">
-        <ion-icon name="chevron-back-outline"></ion-icon>
-      </div>
-      <ion-label class="title"> tasks</ion-label>
-      <div class="icon-search">
-        <ion-icon name="search" (click)="filter()"></ion-icon>
-      </div>
-    </div>
-    <div class="main-process">
-      <div class="process-1" [class.is_on_color]="isOnColor">
-        <div class="icon-ball">
-          <ion-icon name="radio-button-off-outline"></ion-icon>
+<ion-content>
+  <div class="main-header">
+    <div class="header-main">
+      <div class="header">
+        <div class="icon-return">
+          <ion-icon name="chevron-back-outline"></ion-icon>
         </div>
-        <a class="text-process" routerLink="/" routerLinkActive=""
-          >Processing</a
-        >
-        <!-- <ion-label class="text-process">Processing</ion-label> -->
+        <ion-label class="title"> tasks</ion-label>
+        <div class="icon-search">
+          <ion-icon name="search" (click)="filter()"></ion-icon>
+        </div>
       </div>
-      <div class="process-2">
-        <div class="icon-ball-2">
-          <ion-icon name="radio-button-off-outline"></ion-icon>
+      <div class="main-process">
+        <div class="process-1" [class.is_on_color]="isOnColor">
+          <div class="icon-ball">
+            <ion-icon name="radio-button-off-outline"></ion-icon>
+          </div>
+          <a class="text-process" routerLink="/" routerLinkActive=""
+            >Processing</a
+          >
+          <!-- <ion-label class="text-process">Processing</ion-label> -->
         </div>
-        <a class="text-process" routerLink="/" routerLinkActive="active"
-          >Done</a
-        >
-        <!-- <ion-label class="text-process">Done</ion-label> -->
-      </div>
-      <div class="process-3">
-        <div class="icon-ball-3">
-          <ion-icon name="radio-button-off-outline"></ion-icon>
+        <div class="process-2">
+          <div class="icon-ball-2">
+            <ion-icon name="radio-button-off-outline"></ion-icon>
+          </div>
+          <a class="text-process" routerLink="/" routerLinkActive="active"
+            >Done</a
+          >
+          <!-- <ion-label class="text-process">Done</ion-label> -->
         </div>
-        <a class="text-process" routerLink="/" routerLinkActive="active"
-          >Canceled</a
-        >
-        <!-- <ion-label class="text-process">Cancelled</ion-label> -->
-      </div>
-    </div>
-  </div>
-  <div class="boxes-task">
-    <div *ngFor="let test of tests ">
-      <div class="box" routerLink="/" routerLinkActive="inactive">
-        <div class="green-spot">
-          <div class="light-green"></div>
-        </div>
-        <div class="col">
-          <div class="name">{{test.name}}</div>
-          <ion-label>{{test.description}}</ion-label>
-        </div>
-        <div class="label-box">
-          <div class="id">{{test.id}}</div>
-          <div class="price">{{test.price}}</div>
+        <div class="process-3">
+          <div class="icon-ball-3">
+            <ion-icon name="radio-button-off-outline"></ion-icon>
+          </div>
+          <a class="text-process" routerLink="/" routerLinkActive="active"
+            >Canceled</a
+          >
+          <!-- <ion-label class="text-process">Cancelled</ion-label> -->
         </div>
       </div>
     </div>
-  </div>
+    <div class="boxes-task">
+      <div *ngFor="let test of tests ">
+        <div class="box" (click)="detailsTasks()">
+          <div class="green-spot">
+            <div class="light-green"></div>
+          </div>
+          <div class="col">
+            <div class="name">{{test.name}}</div>
+            <ion-label>{{test.description}}</ion-label>
+          </div>
+          <div class="label-box">
+            <div class="id">{{test.id}}</div>
+            <div class="price">{{test.price}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nc-action-sheet [typeASheet]="1" [showFooter]="true">
+      <div class="action-sheet-body">
+        <div class="main-principal">
+          <div class="type-order">
+            <!-- <div class="text-label">Order by</div> -->
+            <div class="inputs-order"></div>
+            <ion-list class="radio-group">
+              <ion-radio-group>
+                <ion-list-header class="text-label-header">
+                  <ion-label> Order by </ion-label>
+                </ion-list-header>
+                <div class="radio1">
+                  <ion-radio value="cord"></ion-radio>
+                  <ion-label class="text-order"
+                    >Order number (small to big)</ion-label
+                  >
+                </div>
+                <div class="radio1">
+                  <ion-radio value="duesenberg"></ion-radio>
+                  <ion-label class="text-order"
+                    >Order number (big to small)
+                  </ion-label>
+                </div>
+                <div class="radio1">
+                  <ion-radio value="hudson"></ion-radio>
+                  <ion-label class="text-order">Value(low first)</ion-label>
+                </div>
+                <div class="radio1">
+                  <ion-radio value="packard"></ion-radio>
+                  <ion-label class="text-order">Value (high first)</ion-label>
+                </div>
+              </ion-radio-group>
+            </ion-list>
+            <div class="text-label">Short by</div>
+          </div>
+          <div class="delivers">
+            <div class="header-delivery">
+              <div class="text-label">Delivery date</div>
+              <div class="inputs-delivery">
+                <!-- <div class="choose-dates">
+
+                  date 1
+
+<div class="from-until-date">
+<span class="label-from-until">{{"Global.fromDate" | translate}}</span>
+<nc-list [className]="'date-picker-list'">
+<nc-list-item [attr.tester]="'date-from'" [class.disabled]="!disabledChooseDate" [disabled]="!disabledChooseDate" ncDatePicker [mode]="'date'" [(ngModel)]="value1" (onOk)="FromDate($event)" [extra]="currentDateFormat(value1)">
+</nc-list-item>
+</nc-list>
 </div>
+
+
+
+  date 2
+
+
+<div class="from-until-date">
+<span class="label-from-until">{{"Global.untilDate" | translate}}</span>
+<nc-list [className]="'date-picker-list'">
+<nc-list-item [attr.tester]="'date-until'" [class.disabled]="!disabledChooseDate" [disabled]="!disabledChooseDate" ncDatePicker [mode]="'date'" [(ngModel)]="value2" (onOk)="UntilDate($event)" [extra]="currentDateFormat(value2)">
+</nc-list-item>
+</nc-list>
+</div> -->
+
+                <!-- </div> -->
+              </div>
+            </div>
+            <div class="value">
+              <div class="text-label">Value</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nc-action-sheet>
+  </div>
+</ion-content>

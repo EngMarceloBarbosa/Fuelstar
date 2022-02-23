@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActionSheetModel, ActionSheetService } from 'niup-mobile-components-test';
 
 @Component({
   selector: 'app-search',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private actionSheetService : ActionSheetService ) { }
 
 
   public form = [
@@ -16,6 +18,11 @@ export class SearchComponent implements OnInit {
     { val: 'Mushroom', isChecked: false }
   ];
 
+
+
   ngOnInit() {}
+
+
+
 
 }

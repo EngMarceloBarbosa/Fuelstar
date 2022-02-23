@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActionSheetModel, ModalMessageModel } from 'niup-mobile-components-test';
+import { ActionSheetService } from 'niup-mobile-components-test';
 import { Boxes } from './tab2';
 
 
@@ -70,15 +72,106 @@ export class Tab2Page {
 ];
 
 
-constructor(private router: Router) {
+constructor(private router: Router, private actionSheetService : ActionSheetService) {
 }
 
 filter(){
-  this.router.navigate(['/search']);
+
+    const temp: ActionSheetModel = {
+    title: 'Filters',
+    titleTextSize: 'large',
+    rightButtonShow: true,
+    middleButtonShow: false,
+    leftButtonShow: true,
+    closeButtonShow: true
+    };
+    this.actionSheetService.open(temp);
+    }
+
+detailsTasks(){
+// this.router.navigate(["/"]);
 }
+
+// currentDateFormat(date: any, format: string = "yyyy-mmmm-dd"): any {
+//   const pad = (n: number): string => (n < 10 ? `0${n}` : n.toString());
+//   return format
+//     .replace("yyyy", date.getFullYear())
+//     .replace("mmmm", pad(date.getMonth() + 1))
+//     .replace("dd", pad(date.getDate()));
+// }
+
+// formatIt(date: Date, form: string) {
+//   const pad = (n: number) => (n < 10 ? `0${n}` : n);
+//   const dateStr = `${pad(date.getDate())}-${pad(date.getMonth() + 1)}-${pad(date.getFullYear())}`;
+
+//   if (form === "yyyy-mmmm-dd") {
+//     return dateStr;
+//   }
+//   return `${dateStr}`;
+// }
+
+// async FromDate(fromDate) {
+//   if (fromDate > this.value2) {
+//     const temp: ModalMessageModel = {
+//       showTip: false,
+//       title: "Ups!!",
+//       description: "End date cannot be less than the start date.",
+//       state: "warning",
+
+//       leftButtonSize: "small",
+//       leftButtonType: "text",
+//       leftButtonText: "",
+//       showMiddleButton: false,
+//       rightButtonSize: "small",
+//       rightButtonColor: "c-scale-12",
+//       rightButtonType: "text",
+//       rightButtonText: "Ok",
+//       rightButtonTesterProperty: "click-from-ok",
+//     };
+
+//     this.alertService.open(temp);
+//   } else {
+//     this.value1 = fromDate;
+//     this.apllyFilterButtonDisabled = this.selectedDocModel.length == 0 && this.newSelectedTags.length == 0 && !this.disabledChooseDate;
+//     this.currentAccountService.startDate = this.value1;
+//     this.dataChanged = true;
+//   }
+// }
+
+// async UntilDate(untilDate) {
+//   if (
+//     untilDate.setHours(0, 0, 0, 0) < this.value1.setHours(0, 0, 0, 0) &&
+//     this.value1.setHours(0, 0, 0, 0) > untilDate.setHours(0, 0, 0, 0)
+//   ) {
+//     const temp: ModalMessageModel = {
+//       showTip: false,
+//       title: "Ups!!",
+//       description: "End date can't be less than the start date.",
+//       state: "warning",
+
+//       leftButtonSize: "small",
+//       leftButtonType: "text",
+//       leftButtonText: "",
+//       showMiddleButton:false,
+//       rightButtonSize: "small",
+//       rightButtonType: "text",
+//       rightButtonText: "Ok",
+//       rightButtonTesterProperty: "click-until-ok",
+//       rightButtonColor: "c-scale-12",
+//     };
+
+//     this.alertService.open(temp);
+//   } else {
+//     this.value2 = untilDate;
+//     this.apllyFilterButtonDisabled = this.selectedDocModel.length == 0 && this.newSelectedTags.length == 0 && !this.disabledChooseDate;
+//     this.currentAccountService.endDate = this.value2;
+//     this.dataChanged = true;
+//   }
+// }
 
 
 }
+
 
 
 
