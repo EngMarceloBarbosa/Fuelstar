@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetModel, ActionSheetService } from 'niup-mobile-components-test';
+import { ActionSheetService } from '@nc-angular/library-mobile';
+
 
 @Component({
   selector: 'app-search',

@@ -98,7 +98,7 @@
 
 .id {
   width: 100%;
-  display: flex;
+    display: flex;
   align-items: center;
   justify-content: flex-end;
 }
@@ -177,6 +177,7 @@
 
 .text-label{
   color: #252525;
+  padding-bottom: 3%;
 }
 
 // .space-between {
@@ -270,19 +271,25 @@
 //   margin-right: tbu(px(10));
 // }
 
-// .choose-dates {
-//   display: flex;
-//   flex-direction: column;
-// }
+.choose-dates {
+  display: flex;
+  flex-direction: column;
+}
 
-// .from-until-date {
-//   background-color: var(--c-scale-3_bg);
-//   padding: tbu(px(12)) tbu(px(24))tbu(px(8))tbu(px(12));
-//   min-height: tbu(px(40));
-//   margin-bottom: tbu(px(8));
-//   @extend .flex-center;
-//   margin: tbu(px(5))tbu(px(10));
-// }
+.from-until-date {
+  background-color: var(--c-scale-3_bg);
+  padding: tbu(px(12)) tbu(px(24))tbu(px(8))tbu(px(12));
+  min-height: tbu(px(40));
+  margin-bottom: tbu(px(8));
+  // @extend .flex-center;
+  margin: tbu(px(5))tbu(px(10));
+  margin-bottom: 5%;
+  display: flex;
+  align-items: center;
+  text-indent: 10px;
+}
+
+
 
 // .label-from-until {
 //   @include setFontSize(px($font_size_3));
@@ -291,12 +298,16 @@
 //   margin-left: tbu(px(10));
 // }
 
-// .date-picker-list .am-list-item .am-list-line .am-list-extra {
-//   @include setFontSize(px($font_size_4));
-//   flex-basis: initial;
-//   background-color: transparent;
-//   color: var(--c-scale-12_txt);
-// }
+.date-picker-list .am-list-item .am-list-line .am-list-extra {
+  // @include setFontSize(px($font_size_4));
+  flex-basis: initial;
+  background-color: transparent;
+  color: var(--c-scale-12_txt);
+}
+
+.icon-calendar{
+  margin-left: 3%;
+}
 
 // ion-toggle {
 //   width: tbu(px(40));
@@ -325,3 +336,34 @@
 //   flex-direction: column;
 //   justify-content: center;
 // }
+
+.text-state{
+  color: #252525;
+  padding-bottom: 3%;
+}
+
+.boxes-state{
+   display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+}
+
+
+.box-state{
+  margin: 3% 5%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  /* display: flex; */
+  width: 100%;
+  /* align-items: center; */
+  /* flex-direction: row; */
+  padding: 3%;
+  align-items: center;
+
+}
+
+.is-on-action-Buttons {
+  background: #62CB62;
+}

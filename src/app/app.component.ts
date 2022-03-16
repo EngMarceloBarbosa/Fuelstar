@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Globals } from '@nc-angular/library-mobile';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+
+
+
+  constructor(private globals: Globals) {
+
+
+    this.globals.defaultImagePath = `./assets/images/`;
+    this.globals.imagePath = `./assets/images/`;
+  }
+
+
+
 }

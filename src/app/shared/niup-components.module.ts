@@ -19,7 +19,7 @@ import {
   StepperModule,
   ActionSheetModule,
   HeadingModule,
-} from 'niup-mobile-components-test';
+} from '@nc-angular/library-mobile';
 
 import { PipesModule } from '@nc-angular/devkit';
 

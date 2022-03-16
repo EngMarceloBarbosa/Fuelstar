@@ -93,40 +93,76 @@
             <div class="text-label">Short by</div>
           </div>
           <div class="delivers">
-            <div class="header-delivery">
-              <div class="text-label">Delivery date</div>
-              <div class="inputs-delivery">
-                <!-- <div class="choose-dates">
+            <div class="text-label">Delivery date</div>
+            <div class="choose-dates">
+              <div class="from-until-date">
+                <nc-icon
+                  class="icon-calendar"
+                  [size]="14"
+                  color="c-scale-12"
+                  hoverColor="c-scale-12"
+                  >icon_calendar</nc-icon
+                >
+                <!-- <span class="label-from-until"
+                      >{{"Global.fromDate" | translate }}</span > -->
+                <nc-list [className]="'date-picker-list'">
+                  <nc-list-item
+                    [attr.tester]="'date-from'"
+                    [class.disabled]="!disabledChooseDate"
+                    ncDatePicker
+                    [mode]="'date'"
+                    [(ngModel)]="value1"
+                    (onOk)="FromDate($event)"
+                    [extra]="currentDateFormat(value1)"
+                  >
+                  </nc-list-item>
+                </nc-list>
+              </div>
+              <div class="from-until-date">
+                <nc-icon
+                  class="icon-calendar"
+                  [size]="14"
+                  color="c-scale-12"
+                  hoverColor="c-scale-12"
+                  >icon_calendar</nc-icon
+                >
+                <!-- <span class="label-from-until"
+                      >{{"Global.fromDate" | translate }}</span > -->
+                <nc-list [className]="'date-picker-list'">
+                  <nc-list-item
+                    [attr.tester]="'date-from'"
+                    [class.disabled]="!disabledChooseDate"
+                    ncDatePicker
+                    [mode]="'date'"
+                    [(ngModel)]="value2"
+                    (onOk)="FromDate($event)"
+                    [extra]="currentDateFormat(value2)"
+                  >
+                  </nc-list-item>
+                </nc-list>
+              </div>
 
-                  date 1
+              <!-- date 2 -->
 
-<div class="from-until-date">
-<span class="label-from-until">{{"Global.fromDate" | translate}}</span>
-<nc-list [className]="'date-picker-list'">
-<nc-list-item [attr.tester]="'date-from'" [class.disabled]="!disabledChooseDate" [disabled]="!disabledChooseDate" ncDatePicker [mode]="'date'" [(ngModel)]="value1" (onOk)="FromDate($event)" [extra]="currentDateFormat(value1)">
-</nc-list-item>
-</nc-list>
-</div>
-
-
-
-  date 2
-
-
-<div class="from-until-date">
+              <!-- <div class="from-until-date">
 <span class="label-from-until">{{"Global.untilDate" | translate}}</span>
 <nc-list [className]="'date-picker-list'">
 <nc-list-item [attr.tester]="'date-until'" [class.disabled]="!disabledChooseDate" [disabled]="!disabledChooseDate" ncDatePicker [mode]="'date'" [(ngModel)]="value2" (onOk)="UntilDate($event)" [extra]="currentDateFormat(value2)">
 </nc-list-item>
 </nc-list>
-</div> -->
-
-                <!-- </div> -->
-              </div>
+</div>  -->
             </div>
             <div class="value">
               <div class="text-label">Value</div>
             </div>
+          </div>
+        </div>
+        <div class="state-delivery" >
+          <div class="text-state" >Type of order</div>
+          <div class="boxes-state" >
+            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons"  (click)="isOnAction()" >Client</div>
+            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons"  (click)="isOnAction()" >Supllier</div>
+            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons"  (click)="isOnAction()" >Return</div>
           </div>
         </div>
       </div>
