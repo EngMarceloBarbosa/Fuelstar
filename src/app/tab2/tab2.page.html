@@ -1,63 +1,75 @@
 <ion-content>
+  <div class="header-task">
+    <div class="filter-header">
+      <div class="input-task">
+        <nc-searchBar #searchFocus placeholder="Pesquisar..."></nc-searchBar>
+      </div>
+      <div class="icons-header">
+        <div class="icon-task" (click)="searchClick()">
+          <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+            >icon_search</nc-icon
+          >
+        </div>
+        <div class="icon-task" (click)="filterClick()">
+          <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+            >icon_filter</nc-icon
+          >
+        </div>
+      </div>
+    </div>
+    <div class="states-header">
+      <div class="state-task">
+        <div class="icon-state processing"></div>
+        <div class="txt-state">
+          <span>Processo</span>
+        </div>
+      </div>
+
+      <div class="state-task">
+        <div class="icon-state done"></div>
+        <div class="txt-state">
+          <span>terminado</span>
+        </div>
+      </div>
+
+      <div class="state-task">
+        <div class="icon-state cancel"></div>
+        <div class="txt-state">
+          <span>cancelado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="main-header">
     <div class="header-main">
-      <div class="header">
-        <div class="icon-return">
-          <ion-icon name="chevron-back-outline"></ion-icon>
-        </div>
-        <ion-label class="title"> tasks</ion-label>
-        <div class="icon-search">
-          <ion-icon name="search" (click)="filter()"></ion-icon>
-        </div>
-      </div>
-      <div class="main-process">
-        <div class="process-1" [class.is_on_color]="isOnColor">
-          <div class="icon-ball">
-            <ion-icon name="radio-button-off-outline"></ion-icon>
-          </div>
-          <a class="text-process" routerLink="/" routerLinkActive=""
-            >Processing</a
-          >
-          <!-- <ion-label class="text-process">Processing</ion-label> -->
-        </div>
-        <div class="process-2">
-          <div class="icon-ball-2">
-            <ion-icon name="radio-button-off-outline"></ion-icon>
-          </div>
-          <a class="text-process" routerLink="/" routerLinkActive="active"
-            >Done</a
-          >
-          <!-- <ion-label class="text-process">Done</ion-label> -->
-        </div>
-        <div class="process-3">
-          <div class="icon-ball-3">
-            <ion-icon name="radio-button-off-outline"></ion-icon>
-          </div>
-          <a class="text-process" routerLink="/" routerLinkActive="active"
-            >Canceled</a
-          >
-          <!-- <ion-label class="text-process">Cancelled</ion-label> -->
-        </div>
-      </div>
+      <div class="header"></div>
     </div>
-    <div class="boxes-task">
-      <div *ngFor="let test of tests ">
-        <div class="box" (click)="detailsTasks()">
-          <div class="green-spot">
-            <div class="light-green"></div>
-          </div>
-          <div class="col">
-            <div class="name">{{test.name}}</div>
-            <ion-label>{{test.description}}</ion-label>
-          </div>
-          <div class="label-box">
-            <div class="id">{{test.id}}</div>
-            <div class="price">{{test.price}}</div>
+    <nc-virtual-scroller #scroll [items]="tests">
+      <div class="boxes-task">
+        <div *ngFor="let test  of scroll.viewPortItems">
+          <div class="box" (click)="detailsTasks()">
+            <div class="green-spot">
+              <div class="light-green"></div>
+            </div>
+            <div class="col">
+              <div class="name">{{test.name}}</div>
+              <ion-label>{{test.description}}</ion-label>
+            </div>
+            <div class="label-box">
+              <div class="id">{{test.id}}</div>
+              <div class="price">{{test.price}}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </nc-virtual-scroller>
     <nc-action-sheet [typeASheet]="1" [showFooter]="true">
+      <div class="action-sheet--header">
+        <nc-icon [size]="20" color="c-scale-12" hoverColor="c-scale-12"
+          >icon_user</nc-icon
+        >
+      </div>
       <div class="action-sheet-body">
         <div class="main-principal">
           <div class="type-order">
@@ -132,10 +144,11 @@
                   <nc-list-item
                     [attr.tester]="'date-from'"
                     [class.disabled]="!disabledChooseDate"
+                    [disabled]="!disabledChooseDate"
                     ncDatePicker
                     [mode]="'date'"
                     [(ngModel)]="value2"
-                    (onOk)="FromDate($event)"
+                    (onOk)="UntilDate($event)"
                     [extra]="currentDateFormat(value2)"
                   >
                   </nc-list-item>
@@ -157,12 +170,22 @@
             </div>
           </div>
         </div>
-        <div class="state-delivery" >
-          <div class="text-state" >Type of order</div>
-          <div class="boxes-state" >
-            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons"  (click)="isOnAction()" >Client</div>
-            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons"  (click)="isOnAction()" >Supllier</div>
-            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons"  (click)="isOnAction()" >Return</div>
+        <div class="state-delivery">
+          <div class="text-state">Type of order</div>
+          <div class="boxes-state">
+            <nc-tag color="c-scale-12">
+              <nc-text [size]="14" color="--c-scale-12">Cliente </nc-text>
+            </nc-tag>
+            <nc-tag color="c-scale-12">
+              <nc-text [size]="14" color="--c-scale-12">Supplier </nc-text>
+            </nc-tag>
+            <nc-tag color="c-scale-12">
+              <nc-text [size]="14" color="--c-scale-12">Return </nc-text>
+            </nc-tag>
+            <!--
+            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons1"  (click)="selectedTypeFilter(0)" >Client</div>
+            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons2"  (click)="selectedTypeFilter(1)" >Supllier</div>
+            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons3"  (click)="selectedTypeFilter(2)" >Return</div> -->
           </div>
         </div>
       </div>

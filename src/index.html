@@ -21,6 +21,19 @@
 
 <body>
   <app-root></app-root>
+
+
+ <script>
+  const height = window.innerHeight;
+  document.documentElement.style.setProperty("--sh", height + "px");
+
+  window.addEventListener("resize", () => {
+      const height = window.innerHeight;
+      document.documentElement.style.setProperty("--sh", height + "px");
+  });
+</script>
+
+
 </body>
 
 </html>

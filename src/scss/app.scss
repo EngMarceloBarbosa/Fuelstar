@@ -1,0 +1,28 @@
+/**
+*Import CSS from primeNg
+*/
+
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+
+/**
+*Import CSS from niup-angular-components_desktop
+*/
+
+// @import "~niup-angular-components_desktop/scss/index";
+@import "~@nc-angular/library-mobile/scss/index";
+
+/**
+*Import fonts
+*/
+
+@import "~niup-angular-components_desktop/fonts/Source_Sans_Pro/font.css";
+
+/**
+*Import all CSS files
+*/
+
+@import "./utilities";
+@import "./componets/components";
+@import "./layout";
+@import "./variables";
+@import "./base";

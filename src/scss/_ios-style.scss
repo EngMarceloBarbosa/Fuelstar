@@ -1,0 +1,93 @@
+.ios{
+    
+   /*  Carousel Style */
+   
+   .carousel-child{
+       margin-top: tbu((40));
+    }
+    /*  END Carousel Style */
+    
+    
+    /* Login Style */
+    
+    .div-back-image{ 
+        padding-top: tbu(px(50));
+            height: tbu(px(180));
+    }
+    .login-box {
+        height: calc(100vh - #{tbu(px(176))});
+    }
+    .div-height{
+        height: tbu(px(125));
+        padding-top: tbu((40));
+    }
+  
+    /*  END Login Style */
+
+
+    /*  Tab1 - Dashboard Style */
+
+    .header-wrapper{
+        padding-top: tbu(px(40));
+    }
+
+    /*  END Tab1 - Dashboard Style */
+
+
+
+    /*  Tab2 - Entities List Style */
+        
+        .div-search-entities {
+            padding-top: tbu(px(40));
+        }
+        
+    /*  END Tab2 - Entities List Style */
+        
+    
+    
+    /* Tab3 - Current Account Style */
+
+        .search-bar-filters{
+            padding-top: tbu(px(40));
+        }
+        
+        .show-allfilters-choosen{
+            margin: tbu(px(10)) tbu(px(5)) 
+        }
+
+        /* popover OrderBy */
+        ::ng-deep {
+            .nc-popover-inner { 
+                top: tbu(px(89));
+                right: tbu(px(48));
+            }
+        }
+        
+            
+    /* END Tab3 - Current Account Style */
+       
+    
+    /* Tab4 - Options Style */
+       
+        .div-height-options{
+            height: tbu(px(125));
+        }
+        
+        .login-box-options{  
+            min-height: calc(100vh - #{tbu(px(137))});
+        }
+    
+    /* END Tab4 - Options Style */
+
+    
+    /* Back button doc/rec details Style */
+    
+    .top-buttons {
+        margin-top: tbu(px(40));
+    }
+    
+    /* END Back button doc/rec details Style */
+
+
+}
+

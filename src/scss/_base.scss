@@ -1,0 +1,34 @@
+* {
+  // color: var(--white);
+  font-family: var(--font_primary);
+  box-sizing: border-box;
+  // font-size: 12px;
+  user-select: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--white_bg);
+  overflow: hidden;
+}
+
+input {
+  color: grey;
+}
+
+ul {
+  padding-left: 0;
+  li {
+    list-style: none;
+  }
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}

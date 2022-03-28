@@ -6,7 +6,10 @@
       "title3": "Selecione a conta corrente que pretende consultar.",
       "description3": "Poderá aceder por você mesmo, em representação de alguém ou empresa.",
       "title4": "Situação em tempo real da sua conta corrente",
-      "description4": "Uma visão geral das receitas e despesas com as entidades relacionadas consigo."
+      "description4": "Uma visão geral das receitas e despesas com as entidades relacionadas consigo.",
+      "processing": "Em processo",
+      "cancel": "Cancelado",
+      "done": "Terminado"
   }
 
 }

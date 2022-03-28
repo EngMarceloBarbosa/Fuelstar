@@ -1,0 +1,80 @@
+@import "~@nc-angular/library-mobile/scss/index";
+@import '~@nc-angular/library-mobile/scss/utilities/utilities.scss';
+@import './variables';
+
+
+
+/* #region UTILS*/
+
+  .space-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .space-around {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .justify-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .just-center{
+    display: flex;
+    justify-content: center;
+  }
+
+  .justify-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .flex-start{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .align-center{
+    display: flex;
+    align-items: center;
+  }
+
+  .end {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+  }
+  
+  .center-all {
+    display: flex;
+    padding: tbu(px(10));
+    gap: tbu(px(20));
+    &.center-all:active {
+      color: var(--c-scale-12_txt);
+    }
+  }
+  
+  .line {
+    width: auto;
+    background-color: var(--c-scale-4_bg);
+  }
+
+
+  .block {
+    display: block;
+    align-items: center;
+    justify-content: space-between;
+  }
+  /*#endregion UTILS */
