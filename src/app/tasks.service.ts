@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { tasksTest } from './utils/models/tasks';
 
 
 
@@ -13,5 +15,9 @@ export class TasksService {
     //     return this.http
     //         .get<Tasks[]>(environment.ApiUrl + '/tasks/' + id);
     // }
+
+  //  public testTask$ = new Subject<tasksTest>();
+  testTask$ = new BehaviorSubject<tasksTest[]>([]);
+
 }
 

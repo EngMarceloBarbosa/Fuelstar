@@ -9,6 +9,7 @@
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
             >icon_search</nc-icon
           >
+
         </div>
         <div class="icon-task" (click)="filterClick()">
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
@@ -24,7 +25,6 @@
           <span>Processo</span>
         </div>
       </div>
-
       <div class="state-task">
         <div class="icon-state done"></div>
         <div class="txt-state">
@@ -48,7 +48,7 @@
     <nc-virtual-scroller #scroll [items]="tests">
       <div class="boxes-task">
         <div *ngFor="let test  of scroll.viewPortItems">
-          <div class="box" (click)="detailsTasks()">
+          <div class="box" (click)="detailsTasks(test)">
             <div class="green-spot">
               <div class="light-green"></div>
             </div>

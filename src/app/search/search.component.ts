@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetService } from '@nc-angular/library-mobile';
+import { TasksService } from '../tasks.service';
 
 
 @Component({
@@ -9,8 +10,10 @@ import { ActionSheetService } from '@nc-angular/library-mobile';
 })
 export class SearchComponent implements OnInit {
 
+  testTask: any ;
 
-  constructor(private actionSheetService : ActionSheetService ) { }
+
+  constructor(private actionSheetService : ActionSheetService, private tasksService: TasksService) { }
 
 
   public form = [
@@ -21,7 +24,12 @@ export class SearchComponent implements OnInit {
 
 
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.tasksService.testTask$.subscribe(values => {
+      this.testTask = values;
+    });
+  }
 
 
 

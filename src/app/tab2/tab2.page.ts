@@ -2,8 +2,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile';
 import { FilterServiceService } from '../shared/filter-service.service';
-import { Boxes } from './tab2';
-
+import { TasksService } from "../tasks.service";
+import { Tasks } from '../utils/models/tab2';
+import {  tasksTest } from '../utils/models/tasks';
 
 @Component({
   selector: 'app-tab2',
@@ -16,7 +17,7 @@ export class Tab2Page implements OnInit{
 
   isOnColor = true;
   // listBoxes: Boxes[] = [];
-  listBoxes: Boxes[] = [];
+  listTasks: Tasks[] = [];
   isShown = false;
   value1 = new Date();
   value2 = new Date();
@@ -33,61 +34,83 @@ export class Tab2Page implements OnInit{
   }];
 
 
-  tests: any[] = [{
+  tests: tasksTest[] = [
+
+{
+  title:'boas',
+  date: '23-23-1982',
   id: 1,
   name: 'Joao',
   price: 1.4,
   description: 'Work hard '
 },
 {
+  title:'boas',
+  date: '23-23-1982',
   id: 2,
   name: 'Gustavo',
   price: 1.43,
   description: 'No one is like you'
 },
 {
+  title:'boas',
+  date: '23-23-1982',
   id: 3,
   name: 'Antonio',
   price: 1.43,
   description: 'Always you'
 },
 {
+  title:'boas',
+  date: '23-23-1982',
   id: 4,
   name: 'Leo',
   price: 1.43,
   description: 'Nothing really matters'
 },
 {
+  title:'boas',
+  date: '23-23-1982',
   id: 5,
   name: 'Joao',
   price: 1.33,
   description: 'just do it'
 },
 {
+  title:'boas',
+  date: '23-23-1982',
   id: 6,
   name: 'Berto',
   price: 1.633,
   description: 'Be smart'
 },
 {
+  title:'boas',
+  date: '23-23-1982',
   id: 7,
   name: 'Sapo',
   price: 16.3,
   description: 'Nothing new'
 },
 {
+  title:'boas',
+  date: '23-23-1982',
   id: 8,
   name: 'Benfica',
   price: 19,
   description: 'Be powerful'
 },
 {
+  title:'boas',
+  date: '23-23-1982',
   id: 9,
   name: 'Micolli',
   price: 21,
   description: 'be wonderful'
 },
 {
+  title:'boas',
+  date: '23-23-1982',
   id: 10,
   name: 'Boas',
   price: 21,
@@ -96,7 +119,7 @@ export class Tab2Page implements OnInit{
 ];
 
 
-constructor(private router: Router, private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService ) {
+constructor(private router: Router, private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService , private tasksService: TasksService ) {
 }
 
 
@@ -130,9 +153,20 @@ ngOnInit() {
     this.actionSheetService.open(temp);
     }
 
-
     searchClick(){
         this.searchFocus.nativeElement.focus();
+    }
+
+    detailsTasks(test: any){
+      if(test.id){
+      this.tasksService.testTask$.next(test);
+      console.log(test);
+      console.log("1 entrou");
+      }
+      if(test.id == 2) {
+        console.log("2 entrou");
+      }
+      this.router.navigate(['/search'])
     }
 
 
