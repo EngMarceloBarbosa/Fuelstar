@@ -1,41 +1,101 @@
-@import './../../global.scss';
+@import "./../../global.scss";
 
-ion-content{
-padding: tbu(px(10));
+ion-content {
+  padding: tbu(px(10));
 }
 
-.header-login{
+.header-login {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 35%;
 
-
-.logo-header{
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  img{
-    width: 30%;
-    height: 10%;
+  .logo-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
-}
-.text-header{
-   width: 100%;
-   height: auto;
-   display: flex;
-   align-items: center;
-   flex-direction: column;
-   justify-content: flex-start;
+.text-header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
 
   //  .title{
   //    ;
   //  }
+}
 
+.body-login {
+  display: flex;
+  padding: 0 5%;
+  height: 65%;
+  flex-direction: column;
+}
+
+.title-body {
+  margin-bottom: tbu(px(30));
+}
+
+.footer-login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50%;
+  width: 100%;
+  gap: tbu(px(10));
+  .signIn {
+    width: 100%;
+    @extend .flex-center;
   }
+  .recover {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    @extend .justify-end;
+  }
+}
+
+nc-button {
+  ::ng-deep {
+    .button primary {
+      background-color: var(--primary);
+      border: tbu(px(2)) solid var(--primary_border);
+      max-height: tbu(px(40));
+    }
+    .button white {
+      border: tbu(px(2)) solid var(--primary_border);
+      color: var(--primary);
+      max-height: tbu(px(40));
+    }
+    .button large {
+      &:not(.text) {
+        min-width: 80vw;
+      }
+    }
+  }
+}
+
+.login-switch {
+  margin-top: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.icon-switch {
+  @extend .justify-end;
+}
 
 // #container {
 //   text-align: center;
@@ -85,7 +145,6 @@ padding: tbu(px(10));
 //   padding : 12px ;
 //   gap:10px;
 // }
-
 
 // .text-shift {
 //   text-align: left;
@@ -163,7 +222,6 @@ padding: tbu(px(10));
 //   justify-self: center;
 // }
 
-
 // .footer{
 //   &__button{
 //     color: var(--c-scale-1_txt);
@@ -172,7 +230,6 @@ padding: tbu(px(10));
 //     height: 70%;
 //     margin-top: 25px;
 // ;
-
 
 //     &.active{
 //       color: var(--error_txt);
@@ -187,5 +244,3 @@ padding: tbu(px(10));
 //     }
 //   }
 // }
-
-

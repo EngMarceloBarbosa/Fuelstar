@@ -6,6 +6,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertService, ModalMessageModel } from '@nc-angular/library-mobile';
+import { environment } from 'src/environments/environment';
 // import { TranslateService } from '@ngx-translate/core';
 import { LoginApiService } from '../shared/http/login-api.service';
 
@@ -48,16 +49,16 @@ export class LoginPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$|^[0-9]{16}$|^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}/[A-Za-zA-Z0-9]+$|^[0-9]{16}/[a-zA-Z0-9]+$')
+          // Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$|^[0-9]{16}$|^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}/[A-Za-zA-Z0-9]+$|^[0-9]{16}/[a-zA-Z0-9]+$')
         ]
       ],
-      password: [[Validators.required, Validators.minLength(8)]]
+      password: [
+        '',
+        [
+        Validators.required,
+        // Validators.minLength(8)
+      ]]
     });
-  }
-
-
-  logInMe() {
-    this.router.navigate(['/tabs/tab1']);
   }
 
 
@@ -66,19 +67,6 @@ export class LoginPage implements OnInit {
   }
 
 
-  mail(event: any) {
-    this.values = event.target.value;
-    console.log(this.values);
-  }
-
-
-
-
-
-  //   // password(event: any){
-  //   //   this.values  = event.target.value;
-  //   //   console.log(this.values);
-  // }
 
   get email() {
     return this.form.get('email');
@@ -91,12 +79,6 @@ export class LoginPage implements OnInit {
   /*
        * "Form" Login credentials
        */
-
-
-
-
-
-
 
 
   /**
@@ -120,11 +102,9 @@ export class LoginPage implements OnInit {
     };
 
     this.loginApiService.getLogin(authentication).then(res => {
-      if (res.hasOwnProperty('loginResult')) {
-        //GOTOHOME
-        // this.loading = 'success';
-        ;
-      }
+
+      environment.token = res.accessToken;
+      this.router.navigate(["/tabs/tab1"]);
     })
       .catch((error: HttpErrorResponse) => {
 
@@ -182,6 +162,9 @@ export class LoginPage implements OnInit {
         }
       });
   }
+
+
+
 
 }
 

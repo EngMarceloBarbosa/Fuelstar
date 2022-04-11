@@ -12,7 +12,7 @@ export class LoginApiService {
     {
       // this.loadingService.loader();
       return this.http
-        .post<any>(`${environment.api}/Thebox/Login/Local`, authentication)
+        .post<any>(`${environment.api}/Login/Local`, authentication)
         .pipe()
         .toPromise();
     }

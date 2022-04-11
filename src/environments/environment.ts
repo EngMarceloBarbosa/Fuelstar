@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api:'http://localhost:9002/api'
+  api:'http://localhost:9002/api/Thebox',
+  token: ''
 };
 
 /*
