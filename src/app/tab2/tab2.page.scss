@@ -17,7 +17,6 @@ flex-direction: column;
 .filter-header, .states-header{
   @extend .space-between;
   width: 100%;
-
   padding: tbu(px(12));
 }
 
@@ -216,16 +215,15 @@ flex-direction: column;
 
 .from-until-date {
   background-color: var(--c-scale-3_bg);
-  padding: tbu(px(12)) tbu(px(24))tbu(px(8))tbu(px(12));
-  min-height: tbu(px(40));
-  margin-bottom: tbu(px(8));
-  // @extend .flex-center;
-  margin: tbu(px(5))tbu(px(10));
-  margin-bottom: 5%;
-  display: flex;
-  align-items: center;
-  text-indent: 10px;
-
+  padding:tbu(px(12)),tbu(px(24)),tbu(px(8)),tbu(px(12));
+  min-height:tbu(px(40));
+  margin-bottom:tbu(px(8));
+    // @extend .flex-center;
+  margin:tbu(px(5)),tbu(px(10));
+  margin-bottom:5%;
+  display:flex;
+  align-items:center;
+  text-indent:10px;
 }
 
 
@@ -249,7 +247,7 @@ flex-direction: column;
 }
 
 .boxes-state{
-   display: flex;
+    display: flex;
     width: 100%;
     height:tbu(px(50));
     justify-content: flex-start;

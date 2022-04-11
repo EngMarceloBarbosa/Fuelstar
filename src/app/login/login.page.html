@@ -1,14 +1,13 @@
-<ion-toolbar>
+<!-- <ion-toolbar>
   <div class="img"><img src="assets/img/gas-pump-g385a4edc0_640.jpg" /></div>
-</ion-toolbar>
-<ion-content>
+</ion-toolbar> -->
+<!-- <ion-content>
   <div class="login-box">
     <ion-title class="title"> Log in </ion-title>
     <div class="inputs-login">
       <div class="box-1">
         <div class="icon">
           <ion-icon name="person"></ion-icon>
-          <!-- <img src="../assets/person.svg" alt="img"/> -->
         </div>
         <div class="input-label">
           <ion-label position="stacked">Username or Email</ion-label>
@@ -66,15 +65,103 @@
         >
       </div>
     </div>
+  </div>
+</ion-content> -->
 
-    <!-- <div class="but1">
-      <ion-button class="but11 " color="primary" (click)="logInMe()"
-        >Login</ion-button
-      >
+<ion-content>
+  <div class="header-login">
+    <div class="logo-header">
+      <img src="assets/img/gas-pump-g385a4edc0_640.jpg" />
     </div>
-    <div class="forget-password" (click)="recoverME()">
-      <ion-label class="text-recover">Can´t get into the app </ion-label>
-      <ion-label class="text-recover1">Forget your password ?</ion-label>
-    </div> -->
+    <div class="text-header">
+      <div class="title">
+        <nc-text size="h4" color="c-scale-1" weight="bold" font="primary">value</nc-text>
+      </div>
+      <div class="description">
+        <nc-text size="h7" color="c-scale-1" weight="100" font="primary">value</nc-text>
+      </div>
+    </div>
+  </div>
+  <div class="body-login">
+    <div class="title-body"></div>
+    <div class="credentials-login">
+      <form [formGroup]="form" (ngSubmit)="signInClick()" class="login-form">
+        <div class="inputs">
+          <nc-form-field
+            name="email"
+            class="login--body__username"
+            label="Email or NiupCode"
+            src="icon_user"
+            large
+            hoverColor="c-scale-12"
+            [className]="{ success: (email.valid && email.touched)  , error: email.value && email.dirty && email.touched && !email.valid }"
+          >
+            <input
+              [attr.tester]="'input-email'"
+              required
+              autocomplete="false"
+              name="identification"
+              type="email"
+              placeholder="from niup.me account"
+              formControlName="email"
+              id="inputEmail"
+            />
+          </nc-form-field>
+          <span
+            class="form-error"
+            *ngIf="email.value && email.dirty && email.touched && !email.valid
+        "
+            >oBRIGAT´ROTRIO</span
+          >
+          <br />
+          <nc-form-field
+            name="password"
+            class="login--body__username"
+            label="Password"
+            src="icon_lock"
+            large
+            hoverColor="c-scale-12"
+            [className]=" {success: password.valid && password.touched, error: password.value && password.touched && !password.valid }"
+          >
+            <input
+              [attr.tester]="'input-password'"
+              required
+              autocomplete="false"
+              name="identification"
+              type="password"
+              placeholder="from account"
+              formControlName="password"
+            />
+          </nc-form-field>
+        </div>
+        <div class="div-footer-login">
+          <div class="footer-buttons">
+            <nc-button
+              [attr.tester]="'click-button-forgot-pass'"
+              (onClick)="forgotPasswordClick()"
+              [color]="'primary'"
+              [text]="true"
+              medium
+            >
+            </nc-button>
+          </div>
+          <div class="footer-buttons">
+            <nc-button
+              [attr.tester]="'click-button-signIn'"
+              (keyup.enter)="signInClick()"
+              [color]="'primary'"
+              type="submite"
+              [reverse]="true"
+              medium
+              success="success"
+              [disabled]="(form.invalid)"
+            >
+              <nc-icon class="rotation-icon">icon_big_arrow</nc-icon>
+              <!-- {{"Login.buttonSignIn" | translate}} -->
+            </nc-button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </ion-content>

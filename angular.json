@@ -47,7 +47,8 @@
             {
               "input": "node_modules/@nc-angular/library-mobile/js/Helpers/variablesToRGB.js",
               "bundleName": "variablesToRGB"
-            }],
+            }
+          ],
             "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,
