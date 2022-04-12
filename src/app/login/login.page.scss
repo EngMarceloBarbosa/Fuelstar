@@ -5,52 +5,56 @@ ion-content {
 }
 
 .header-login {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
-  height: 35%;
+  height: 41%;
+  background-image: url("/assets/img/Mobilebackgroundimage.svg");
+  background-size: cover;
+  padding: tbu(px(25)) tbu(px(25)) 0;
 
   .logo-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+   @extend .justify-start;
+   margin-bottom: 20%;
     img {
-      width: 100%;
-      height: 100%;
+      width: tbu(px(120));
+      height: tbu(px(80));
     }
   }
 }
 
 .text-header {
-  width: 100%;
+
+  width: 90%;
   height: auto;
   display: flex;
-  align-items: center;
   flex-direction: column;
   justify-content: flex-start;
 
-  //  .title{
-  //    ;
-  //  }
+
+  .title {
+    padding-bottom: tbu(px(10));
+  }
 }
 
 .body-login {
   display: flex;
   padding: 0 5%;
-  height: 65%;
+  height: 59%;
   flex-direction: column;
 }
 
 .title-body {
   margin-bottom: tbu(px(30));
+  margin-top: tbu(px(10));
 }
 
 .footer-login {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 50%;
+  margin-top: 35%;
   width: 100%;
   gap: tbu(px(10));
   .signIn {

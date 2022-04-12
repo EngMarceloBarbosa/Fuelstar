@@ -71,18 +71,18 @@
 <ion-content>
   <div class="header-login">
     <div class="logo-header">
-      <img src="assets/img/gas-pump-g385a4edc0_640.jpg" />
+      <img  src="/assets/img/logo-appsellers.svg" >
     </div>
     <div class="text-header">
       <div class="title">
-        <nc-text size="h4" color="c-scale-1" weight="bold" font="primary"
-          >value</nc-text
+        <nc-text size="h4" color="c-scale-1" weight="bold" font="primary">
+          Welcome to Fuelstar</nc-text
         >
       </div>
       <div class="description">
         <nc-text size="h7" color="c-scale-1" weight="100" font="primary"
-          >value</nc-text
-        >
+          >Bem vindo a aplicação que vai facilitar a sua vida
+        </nc-text>
       </div>
     </div>
   </div>
@@ -171,7 +171,7 @@
             large
             [disabled]="(form.invalid)"
           >
-            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
               >Sign in</nc-text
             >
           </nc-button>
@@ -186,7 +186,12 @@
               >
             </div>
             <div class="recover-text">
-              <nc-text  size="h7" color="c-scale-10" weight="300" font="primary"
+              <nc-text
+                size="h7"
+                color="c-scale-10"
+                weight="300"
+                font="primary"
+                routerLink="/recover-password"
                 >Forgot Password</nc-text
               >
             </div>

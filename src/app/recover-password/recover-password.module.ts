@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 import { IonicModule } from '@ionic/angular';
 
 import { RecoverPasswordPageRoutingModule } from './recover-password-routing.module';
@@ -13,7 +13,9 @@ import { RecoverPasswordPage } from './recover-password.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    RecoverPasswordPageRoutingModule
+    ReactiveFormsModule,
+    RecoverPasswordPageRoutingModule,
+    SharedModule
   ],
   declarations: [RecoverPasswordPage]
 })

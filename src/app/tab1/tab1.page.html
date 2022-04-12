@@ -1,17 +1,74 @@
-<div class="container">
+<ion-content>
   <div class="header-menu">
-    <ion-label class="title"> Welcome back</ion-label>
-    <div class="icon-cart">
-      <ion-icon name="cart-outline" class="cart" (click)="back()"></ion-icon>
+    <div class="title-menu">
+      <div class="title-main-menu">
+        <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+          >Welcome back</nc-text
+        >
+      </div>
+      <div class="icon-cart">
+        <nc-icon
+          [size]="18"
+          color="c-scale-1"
+          hoverColor="c-scale-1"
+          (click)="definitions()"
+          >icon_configurations</nc-icon
+        >
+      </div>
     </div>
-  </div>
-  <div class="label-operators">
-    <ion-label class="label-name">Jimmy Smyth</ion-label>
-    <ion-label class="label-operator">JOperador</ion-label>
-  </div>
-  <div class="boxes">
-    <div class="box-green"></div>
-    <div class="box-orange"></div>
+    <div class="operation-details">
+      <div class="operator-name">
+        <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+          >{{name}}</nc-text
+        >
+      </div>
+      <div class="operator-position">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >operator</nc-text
+        >
+      </div>
+    </div>
+    <div class="information-shift">
+      <div class="date">
+        <div class="icon-calendar">
+          <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+            >icon_calendar</nc-icon
+          >
+        </div>
+        <div class="info-date">
+          <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+            >11/August/2021</nc-text
+          >
+        </div>
+      </div>
+      <div class="details-shift">
+        <div class="number-shift">
+          <nc-text size="h8" color="c-scale-1" weight="500" font="primary"
+            >Shift 2</nc-text
+          >
+        </div>
+        <div class="hour-shift">
+          <nc-text size="h8" color="c-scale-1" weight="500" font="primary"
+            >14H-22H00</nc-text
+          >
+        </div>
+      </div>
+    </div>
+    <div class="boxes">
+      <div class="visits-done">
+        <div class="number-task">
+          <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+            >1</nc-text
+          >
+        </div>
+        <div class="text-visits-done">
+          <nc-text size="h6" color="c-scale-10" weight="500" font="primary"
+            >Visits Done</nc-text
+          >
+        </div>
+      </div>
+      <div class="visits-to-do"></div>
+    </div>
   </div>
   <div class="label-box">
     <label> Type of tasks for today</label>
@@ -20,6 +77,4 @@
     <div class="box-tasks"></div>
     <div class="box-supllier"></div>
   </div>
-</div>
-
-
+</ion-content>

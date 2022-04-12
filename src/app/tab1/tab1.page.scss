@@ -1,22 +1,74 @@
-.container {
-  margin: 5%;
+@import "./../../global.scss";
 
+
+ion-content {
+  padding: tbu(px(10));
 }
 
-.header-menu {
+.header-menu{
+
+  background-color:var(--secondary_dark);
+}
+
+.title-menu {
   display: flex;
-  margin-top: 7%
+  width: 100%;
+  padding-top:tbu(px(48)) ;
+  padding-left: tbu(px(24));
+  padding-right: tbu(px(24));
 }
 
-.title{
+.title-main-menu{
+  display: flex;
   width: 80%;
+}
+
+.icon-cart{
+  width:20% ;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.information-shift{
+  display: flex;
+  align-items: center;
+  padding-top:tbu(px(32)) ;
+  padding-left: tbu(px(24));
+  padding-right: tbu(px(24));
+
+  .date{
+    display: flex;
+    width: 60%;
+    align-items: flex-start;
+    flex-direction: row;
+
+    .icon-calendar{
+      margin-right: tbu(px(17.5));
+    }
+
+  }
+  .details-shift{
+    display: flex;
+    width: 40%;
+    align-items: flex-end;
+    flex-direction: column;
+    padding-bottom: 3%
+  }
+}
+
+.visits-done{
+  width: 100%;
+  background-image: url("assets/img/tasks_done_image.svg");
 }
 
 .boxes {
   display: flex;
   justify-content: space-evenly;
   background-image: none;
-  margin-top: 12%;
+  padding-left: tbu(px(24));
+  padding-right: tbu(px(24));
+
 }
 
 .box-green {
@@ -36,11 +88,6 @@
   background-color: orange;
 }
 
-.icon-cart{
-  width: 15%;
-  justify-content: flex-end;
-  display: flex;
-}
 
 .cart {
   width: 20px;
@@ -48,6 +95,16 @@
   background: #fcfcfc 0% 0% no-repeat padding-box;
   opacity: 1;
 }
+
+.operation-details{
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: tbu(px(12)) ;
+  padding-left: tbu(px(24));
+}
+
 
 .label-name {
   text-align: left;
