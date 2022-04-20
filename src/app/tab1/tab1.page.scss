@@ -1,93 +1,194 @@
 @import "./../../global.scss";
 
 
+nc-virtual-scroller{
+  height: calc(100vh - #{tbu(px(450))})
+}
+
 ion-content {
   padding: tbu(px(10));
 }
 
-.header-menu{
-
-  background-color:var(--secondary_dark);
+.header-menu {
+  background-color: var(--secondary_dark);
+  width: 100%;
+  height: 40%;
 }
 
 .title-menu {
   display: flex;
   width: 100%;
-  padding-top:tbu(px(48)) ;
+  padding-top: tbu(px(48));
   padding-left: tbu(px(24));
   padding-right: tbu(px(24));
 }
 
-.title-main-menu{
+.title-main-menu {
   display: flex;
   width: 80%;
 }
 
-.icon-cart{
-  width:20% ;
+.icon-cart {
+  width: 20%;
   display: flex;
   justify-content: flex-end;
 }
 
-
-.information-shift{
+.information-shift {
   display: flex;
   align-items: center;
-  padding-top:tbu(px(32)) ;
+  padding-top: tbu(px(32));
   padding-left: tbu(px(24));
   padding-right: tbu(px(24));
 
-  .date{
+  .date {
     display: flex;
     width: 60%;
     align-items: flex-start;
     flex-direction: row;
 
-    .icon-calendar{
+    .icon-calendar {
       margin-right: tbu(px(17.5));
     }
-
   }
-  .details-shift{
+  .details-shift {
     display: flex;
     width: 40%;
     align-items: flex-end;
     flex-direction: column;
-    padding-bottom: 3%
+    padding-bottom: 3%;
   }
 }
 
-.visits-done{
+.body-content {
+  position: relative;
+  padding: 0 tbu(px(24));
+}
+
+.box-visits {
+  @extend .space-between;
+  align-self: center;
+  position: absolute;
+  top: tbu(px(-50));
+  box-sizing: content-box;
+  padding-right: 24px;
+}
+
+.box {
+  @extend .space-between;
+  width: 48%;
+  height: tbu(px(80));
+  border-radius: tbu(px(5));
+  &.done {
+    background-color: var(--primary);
+  }
+  &.to-do {
+    background-color: var(--warning);
+  }
+}
+
+.box-info {
+  width: 75%;
+  flex-direction: column;
+  padding: tbu(px(10)) tbu(px(5));
+}
+
+.box-image {
+  width: 55%;
+  padding: tbu(px(10)) tbu(px(5));
+  img {
+    width: 100%;
+    height: 75%;
+  }
+}
+
+.title-tasks {
+  padding-top: tbu(px(50));
+  padding-bottom: tbu(px(12));
+}
+
+.type-car {
+  width: 40%;
+  @extend .space-between;
+  padding-bottom: tbu(px(17));
+}
+
+
+
+.card-tasks {
   width: 100%;
-  background-image: url("assets/img/tasks_done_image.svg");
-}
-
-.boxes {
+  height: tbu(px(60));
+  padding-top: tbu(px(13));
+  padding-bottom: tbu(px(11));
+  background-color: var(--c-scale-3);
   display: flex;
-  justify-content: space-evenly;
-  background-image: none;
-  padding-left: tbu(px(24));
-  padding-right: tbu(px(24));
+  align-items: center;
+  margin-bottom: tbu(px(12));
+  border-radius: tbu(px(12));
+}
+
+.box-task {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 tbu(px(12));
 
 }
 
-.box-green {
-  width: 158px;
-  height: 85px;
-  box-shadow: 0px 5px 10px #4551541a;
-  opacity: 1;
-  background-color: green;
+.icon-name-user {
+  width: 20%;
+}
+.description-task {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
 }
 
-.box-orange {
-  width: 158px;
-  height: 85px;
-  box-shadow: 0px 5px 10px #4551541a;
-  border: 1px solid #00000000;
-  opacity: 1;
-  background-color: orange;
+.bar-task {
+  width: 20%;
+  height: tbu(px(40));
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-end;
+
 }
 
+.light-bar {
+  width: 11%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 21%;
+  background-color: var(--c-scale-5);
+}
+
+#icon-user{
+  margin-left: 24%;
+}
+
+.icon-name-user{
+  display: flex;
+  align-items: center;
+  height: 35px;
+  border-radius: 90%;
+  background-color: red;
+  width: 11%;
+  background-color: var(--c-scale-1);
+}
+
+
+// .light-bar {
+//   width: 60%;
+//   height: 93%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 21%;
+//   background-color: green;
+// }
 
 .cart {
   width: 20px;
@@ -96,15 +197,14 @@ ion-content {
   opacity: 1;
 }
 
-.operation-details{
+.operation-details {
   display: flex;
   width: 100%;
   align-items: flex-start;
   flex-direction: column;
-  margin-top: tbu(px(12)) ;
+  margin-top: tbu(px(12));
   padding-left: tbu(px(24));
 }
-
 
 .label-name {
   text-align: left;
@@ -132,12 +232,10 @@ ion-content {
   margin-top: 3%;
 }
 
-.body{
-
+.body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .box-tasks {
@@ -156,9 +254,6 @@ ion-content {
   background-color: black;
 }
 
-
-
 // #header{
 //  position: none;
 // }
-

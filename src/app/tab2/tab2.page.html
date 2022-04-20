@@ -8,7 +8,7 @@
         <div class="icon-task" (click)="searchClick()">
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
             >icon_search</nc-icon
-            >
+          >
         </div>
         <div class="icon-task" (click)="filterClick()">
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
@@ -43,26 +43,28 @@
   <div class="main-header">
     <div class="header-main">
       <div class="header"></div>
-    </div>
-    <nc-virtual-scroller #scroll [items]="tests">
-      <div class="boxes-task">
-        <div *ngFor="let test  of scroll.viewPortItems">
-          <div class="box" (click)="detailsTasks(test)">
-            <div class="green-spot">
-              <div class="light-green"></div>
-            </div>
-            <div class="col">
-              <div class="name">{{test.name}}</div>
-              <ion-label>{{test.description}}</ion-label>
-            </div>
-            <div class="label-box">
-              <div class="id">{{test.id}}</div>
-              <div class="price">{{test.price}}</div>
+
+      <nc-virtual-scroller #scroll [items]="tests">
+        <div class="boxes-task">
+          <div *ngFor="let test  of scroll.viewPortItems">
+            <div class="box" (click)="detailsTasks(test)">
+              <div class="green-spot">
+                <div class="light-green"></div>
+              </div>
+              <div class="col">
+                <div class="name">{{test.name}}</div>
+                <ion-label>{{test.description}}</ion-label>
+              </div>
+              <div class="label-box">
+                <div class="id">{{test.id}}</div>
+                <div class="price">{{test.price}}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </nc-virtual-scroller>
+      </nc-virtual-scroller>
+    </div>
+
     <nc-action-sheet [typeASheet]="1" [showFooter]="true">
       <div class="action-sheet--header">
         <nc-icon [size]="20" color="c-scale-12" hoverColor="c-scale-12"

@@ -15,8 +15,8 @@ ion-content {
   padding: tbu(px(25)) tbu(px(25)) 0;
 
   .logo-header {
-   @extend .justify-start;
-   margin-bottom: 20%;
+    @extend .justify-start;
+    margin-bottom: 20%;
     img {
       width: tbu(px(120));
       height: tbu(px(80));
@@ -25,13 +25,11 @@ ion-content {
 }
 
 .text-header {
-
   width: 90%;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
 
   .title {
     padding-bottom: tbu(px(10));
