@@ -99,7 +99,7 @@ export class Tab1Page {
   }
 
   definitions(){
-  this.router.navigate(['tabs/tab4']);
+  this.router.navigate(['/settings']);
   }
 }
 

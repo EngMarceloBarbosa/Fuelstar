@@ -6,24 +6,249 @@
   </ion-toolbar>
 </ion-header> -->
 
-<div class="main-header">
+
+
+<ion-content>
+  <div class="header-task">
+    <div class="filter-header">
+      <div class="input-task">
+        <nc-searchBar #searchFocus placeholder="Pesquisar..."></nc-searchBar>
+      </div>
+      <div class="icons-header">
+        <div class="icon-task" (click)="searchClick()">
+          <!-- <nc-input
+          [attr.tester]="'search-bar-current'"
+          [placeholder]="'Global.searchHere'|translate"
+          [bgInputColor]="'c-scale-12'"
+          [icon]="'icon_search'"
+          [iconPosition]="'left'"
+          [clear]="true"
+          [type]="'text'"
+          [size]="'medium'"
+          [(value)]="searchValue"
+          (valueChange)="searchDocument($event)"
+          (onClear)="cancelSearchDoc($event)"
+          > </nc-input> -->
+
+          >
+        </div>
+        <div class="icon-task" (click)="filterClick()">
+          <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+            >icon_filter</nc-icon
+          >
+        </div>
+      </div>
+    </div>
+    <div class="states-header">
+      <div class="state-task">
+        <div class="icon-state processing"></div>
+        <div class="txt-state">
+          <span>Processo</span>
+        </div>
+      </div>
+      <div class="state-task">
+        <div class="icon-state done"></div>
+        <div class="txt-state">
+          <span>terminado</span>
+        </div>
+      </div>
+
+      <div class="state-task">
+        <div class="icon-state cancel"></div>
+        <div class="txt-state">
+          <span>cancelado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-header">
+    <div class="header-main">
+      <div class="header"></div>
+
+      <nc-virtual-scroller #scroll [items]="tests">
+        <div class="boxes-task">
+          <div *ngFor="let test  of scroll.viewPortItems">
+            <div class="box" (click)="detailsTasks(test)">
+              <div class="green-spot">
+                <div class="light-green"></div>
+              </div>
+              <div class="col">
+                <div class="name">{{test.name}}</div>
+                <ion-label>{{test.description}}</ion-label>
+              </div>
+              <div class="label-box">
+                <div class="id">{{test.id}}</div>
+                <div class="price">{{test.price}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nc-virtual-scroller>
+    </div>
+
+    <nc-action-sheet [typeASheet]="1" [showFooter]="true">
+      <div class="action-sheet--header">
+        <nc-icon [size]="20" color="c-scale-12" hoverColor="c-scale-12"
+          >icon_user</nc-icon
+        >
+      </div>
+      <div class="action-sheet-body">
+        <div class="main-principal">
+          <div class="type-order">
+            <!-- <div class="text-label">Order by</div> -->
+            <div class="inputs-order"></div>
+            <ion-list class="radio-group">
+              <ion-radio-group>
+                <ion-list-header class="text-label-header">
+                  <ion-label> Order by </ion-label>
+                </ion-list-header>
+                <div class="radio1">
+                  <ion-radio value="cord"></ion-radio>
+                  <ion-label class="text-order"
+                    >Order number (small to big)</ion-label
+                  >
+                </div>
+                <div class="radio1">
+                  <ion-radio value="duesenberg"></ion-radio>
+                  <ion-label class="text-order"
+                    >Order number (big to small)
+                  </ion-label>
+                </div>
+                <div class="radio1">
+                  <ion-radio value="hudson"></ion-radio>
+                  <ion-label class="text-order">Value(low first)</ion-label>
+                </div>
+                <div class="radio1">
+                  <ion-radio value="packard"></ion-radio>
+                  <ion-label class="text-order">Value (high first)</ion-label>
+                </div>
+              </ion-radio-group>
+            </ion-list>
+            <div class="text-label">Short by</div>
+          </div>
+          <div class="delivers">
+            <div class="text-label">Delivery date</div>
+            <div class="choose-dates">
+              <div class="from-until-date">
+                <nc-icon
+                  class="icon-calendar"
+                  [size]="14"
+                  color="c-scale-12"
+                  hoverColor="c-scale-12"
+                  >icon_calendar</nc-icon
+                >
+                <!-- <span class="label-from-until"
+                      >{{"Global.fromDate" | translate }}</span > -->
+                <nc-list [className]="'date-picker-list'">
+                  <nc-list-item
+                    [attr.tester]="'date-from'"
+                    [class.disabled]="!disabledChooseDate"
+                    ncDatePicker
+                    [mode]="'date'"
+                    [(ngModel)]="value1"
+                    (onOk)="FromDate($event)"
+                    [extra]="currentDateFormat(value1)"
+                  >
+                  </nc-list-item>
+                </nc-list>
+              </div>
+              <div class="from-until-date">
+                <nc-icon
+                  class="icon-calendar"
+                  [size]="14"
+                  color="c-scale-12"
+                  hoverColor="c-scale-12"
+                  >icon_calendar</nc-icon
+                >
+                <!-- <span class="label-from-until"
+                      >{{"Global.fromDate" | translate }}</span > -->
+                <nc-list [className]="'date-picker-list'">
+                  <nc-list-item
+                    [attr.tester]="'date-from'"
+                    [class.disabled]="!disabledChooseDate"
+                    [disabled]="!disabledChooseDate"
+                    ncDatePicker
+                    [mode]="'date'"
+                    [(ngModel)]="value2"
+                    (onOk)="UntilDate($event)"
+                    [extra]="currentDateFormat(value2)"
+                  >
+                  </nc-list-item>
+                </nc-list>
+              </div>
+
+              <!-- date 2 -->
+
+              <!-- <div class="from-until-date">
+<span class="label-from-until">{{"Global.untilDate" | translate}}</span>
+<nc-list [className]="'date-picker-list'">
+<nc-list-item [attr.tester]="'date-until'" [class.disabled]="!disabledChooseDate" [disabled]="!disabledChooseDate" ncDatePicker [mode]="'date'" [(ngModel)]="value2" (onOk)="UntilDate($event)" [extra]="currentDateFormat(value2)">
+</nc-list-item>
+</nc-list>
+</div>  -->
+            </div>
+            <div class="value">
+              <div class="text-label">Value</div>
+            </div>
+          </div>
+        </div>
+        <div class="state-delivery">
+          <div class="text-state">Type of order</div>
+          <div class="boxes-state">
+            <nc-tag color="c-scale-12">
+              <nc-text [size]="14" color="--c-scale-12">Cliente </nc-text>
+            </nc-tag>
+            <nc-tag color="c-scale-12">
+              <nc-text [size]="14" color="--c-scale-12">Supplier </nc-text>
+            </nc-tag>
+            <nc-tag color="c-scale-12">
+              <nc-text [size]="14" color="--c-scale-12">Return </nc-text>
+            </nc-tag>
+            <!--
+            </nc-tag
+            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons1"  (click)="selectedTypeFilter(0)" >Client</div>
+            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons2"  (click)="selectedTypeFilter(1)" >Supllier</div>
+            <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons3"  (click)="selectedTypeFilter(2)" >Return</div> -->
+          </div>
+        </div>
+      </div>
+    </nc-action-sheet>
+  </div>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="main-header"> -->
   <!-- <div class="header-main-principal"> -->
-  <div class="header-main">
+  <!-- <div class="header-main">
     <div class="header">
       <div class="icon-return">
         <ion-icon name="chevron-back-outline"></ion-icon>
       </div>
       <ion-label class="title">Products</ion-label>
     </div>
-  </div>
+  </div> -->
   <!-- </div> -->
-  <div class="sub-header">
-  </div>
+  <!-- <div class="sub-header">
+  </div> -->
   <!-- Ver isto  -->
   <!-- <cdk-virtual-scroll-viewport class="example-viewport" itemSize="60">
     <dl class="example-dl"> -->
   <!-- <ion-scroll scrollY="true"> -->
-  <div class="main-product">
+  <!-- <div class="main-product">
     <div *ngFor="let product of products">
       <ion-card>
         <ion-card-header>
@@ -46,11 +271,11 @@
         <ion-card-content> </ion-card-content>
       </ion-card>
     </div>
-  </div>
+  </div> -->
   <!-- </ion-scroll> -->
   <!-- </dl>
 </cdk-virtual-scroll-viewport> -->
-</div>
+<!-- </div> -->
 
 <!-- <ion-content [fullscreen]="true">
   <ion-header collapse="condense">

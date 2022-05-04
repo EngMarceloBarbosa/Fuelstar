@@ -15,10 +15,19 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'search',
-    loadChildren: () => import('./search/search.module').then( m => m.SearchComponentModule)
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'orders',
+    loadChildren: () => import('./orders/orders.module').then( m => m.OrdersPageModule)
   },
 
+  {
+    path: '*',
+    redirectTo:'/login'
+
+  }
 
 ];
 @NgModule({

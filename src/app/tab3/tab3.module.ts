@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab3Page } from './tab3.page';
+import { SharedModule } from '../shared/shared.module';
 
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
@@ -15,6 +16,7 @@ import { Tab3PageRoutingModule } from './tab3-routing.module';
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
     Tab3PageRoutingModule,
+    SharedModule
   ],
   declarations: [Tab3Page]
 })

@@ -1,0 +1,68 @@
+@import "./../../global.scss";
+
+
+ion-content {
+  padding: tbu(px(10));
+
+}
+
+
+.header-menu {
+  background-color: var(--c-scale-12);
+  background-size: cover;
+  width: 100%;
+  height: 11%;
+}
+
+.title-menu {
+  display: flex;
+  width: 100%;
+  padding-top: tbu(px(48));
+  padding-left: tbu(px(24));
+  padding-right: tbu(px(24));
+}
+
+.order-details {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.icon-close {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.body-content{
+  position: relative;
+  padding: tbu(px(24)) tbu(px(24));
+}
+
+.steps{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.step-details{
+  display: flex;
+  flex-direction: column;
+  height: tbu(px(15));
+  background-color: var(--c-scale-6);
+  border-radius: 50%;
+  width: 5%
+
+}
+
+.step-space{
+  display: flex;
+  height: tbu(px(15));
+  background-color: var(--c-scale-6);
+  border-radius: 50%;
+  width: 5%
+}
+.step-space:hover{
+  background-color: var(--primary);
+}
+
