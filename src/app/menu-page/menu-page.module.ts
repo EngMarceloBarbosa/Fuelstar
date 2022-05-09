@@ -7,6 +7,7 @@ import { MenuPagePage } from './menu-page.page';
 import { TabsPageModule } from '../tabs/tabs.module';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
