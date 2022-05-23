@@ -57,12 +57,12 @@
     <div class="body-content-child">
       <div class="body-products" *ngIf="continue">
         <div class="buttons-client">
-          <div class="client" (click)="clientButton()">
+          <div class="client" (click)="clientButton()"   [class.is-on-action-Buttons]="isOnActionButtons">
             <nc-text size="h6" color="c-scale-12" weight="bolder" font="primary"
               >Clients</nc-text
             >
           </div>
-          <div class="client" (click)="newClientButton()">
+          <div class="client" (click)="newClientButton()" [class.is-on-action-Buttons]="!isOnActionButtons">
             <nc-text size="h7" color="c-scale-12" weight="bolder" font="primary"
               >New client</nc-text
             >
@@ -199,7 +199,7 @@
     </div>
     <div class="buttons-footer1" >
       <div class="buttons-client">
-        <div class="client" (click)="back()">
+        <div class="client" (click)="back()" >
           <nc-text
             size="h6"
             color="c-scale-12"

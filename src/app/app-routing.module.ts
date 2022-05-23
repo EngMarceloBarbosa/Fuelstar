@@ -27,6 +27,18 @@ const routes: Routes = [
     path: '*',
     redirectTo:'/login'
 
+  },
+  {
+    path: 'products',
+    loadChildren: () => import('./products/products.module').then( m => m.ProductsPageModule)
+  },
+  {
+    path: 'products-family',
+    loadChildren: () => import('./products-family/products-family.module').then( m => m.ProductsFamilyPageModule)
+  },
+  {
+    path: 'products-details',
+    loadChildren: () => import('./products-details/products-details.module').then( m => m.ProductsDetailsPageModule)
   }
 
 ];

@@ -1,0 +1,52 @@
+<ion-content>
+  <div class="header-container">
+    <div class="header">
+      <div class="icon-back">
+        <nc-icon
+          [size]="18"
+          color="c-scale-12"
+          hoverColor="c-scale-1"
+          (click)="back()"
+          >icon_arrow</nc-icon
+        >
+      </div>
+      <div class="title-header">
+        <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+          >Sub family</nc-text
+        >
+      </div>
+      <div class="icon-cart">
+        <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1"
+          >icon_shopping-cart</nc-icon
+        >
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="product-details">
+      <div class="title-product">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >ITEM XPTO</nc-text
+        >
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >0,50€</nc-text
+        >
+      </div>
+      <div class="icon-definitions">
+        <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1"
+          >icon_arrow</nc-icon
+        >
+      </div>
+    </div>
+    <div class="add-product">
+      <div class="quantity-products">
+        <nc-stepper [showNumber]="true" [value]="1" [min]="0"></nc-stepper>
+      </div>
+      <div class="button-add">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary" (click)="presentToastWithOptions()"
+          >Add to cart
+        </nc-text>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -12,16 +12,17 @@ import {
   InputModule,
   TabsModule,
   ModalAlertModule,
-  // SearchBarModule,
   CarouselModule,
   PopoverModule,
   PopoverItemModule,
   StepperModule,
   ActionSheetModule,
   HeadingModule,
-} from '@nc-angular/library-mobile';
+  AccordionModule
+} from '@nc-angular/library-mobile.stg';
 
 import { PipesModule } from '@nc-angular/devkit';
+import { IonSearchbar } from '@ionic/angular';
 
 const devkitModules = [PipesModule];
 
@@ -38,13 +39,13 @@ const components = [
   InputModule,
   TabsModule,
   ModalAlertModule,
-  // SearchBarModule,
   CarouselModule,
   PopoverModule,
   PopoverItemModule,
   StepperModule,
   ActionSheetModule,
-  HeadingModule
+  HeadingModule,
+  AccordionModule
 ];
 
 @NgModule({

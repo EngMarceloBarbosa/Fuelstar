@@ -1,16 +1,12 @@
 @import "./../../global.scss";
 
-
 ion-content {
   padding: tbu(px(10));
-
 }
 
-nc-virtual-scroller{
-  height: calc(100vh - #{tbu(px(365))})
+nc-virtual-scroller {
+  height: calc(100vh - #{tbu(px(365))});
 }
-
-
 
 .header-menu {
   background-color: var(--c-scale-12);
@@ -39,28 +35,27 @@ nc-virtual-scroller{
   justify-content: flex-end;
 }
 
-.body-content{
+.body-content {
   height: 77%;
   padding: tbu(px(24)) tbu(px(24));
 }
 
-.steps{
+.steps {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-.step-details{
+.step-details {
   display: flex;
   flex-direction: column;
   height: tbu(px(15));
   background-color: var(--c-scale-6);
   border-radius: 50%;
-  width: 5%
-
+  width: 5%;
 }
 
-.step-space{
+.step-space {
   display: flex;
   height: tbu(px(15));
   background-color: var(--c-scale-6);
@@ -68,11 +63,11 @@ nc-virtual-scroller{
   width: 45%;
   margin-left: tbu(px(10));
 }
-.step-space:hover{
+.step-space:hover {
   background-color: var(--primary);
 }
 
-.buttons-client{
+.buttons-client {
   display: flex;
   flex-direction: row;
   padding-top: tbu(px(16));
@@ -80,8 +75,7 @@ nc-virtual-scroller{
   justify-content: space-between;
   width: 100%;
 
-
-  .client{
+  .client {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,7 +84,7 @@ nc-virtual-scroller{
     border-radius: tbu(px(4));
     height: tbu(px(50));
   }
-  .client-1{
+  .client-1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,28 +96,25 @@ nc-virtual-scroller{
   }
 }
 
-
-
-.search-client{
-display: flex;
-flex-direction: row;
-width: 100%;
-
+.search-client {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .inputs {
   display: flex;
-flex-direction: column;
-width: 100%;
-padding-bottom: tbu(px(8)) ;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: tbu(px(8));
 }
 
-.input-search{
+.input-search {
   width: 100%;
   border: none;
 }
 
-.cards-clients{
+.cards-clients {
   width: 100%;
   height: tbu(px(60));
   padding-top: tbu(px(13));
@@ -134,10 +125,9 @@ padding-bottom: tbu(px(8)) ;
   border-radius: tbu(px(12));
   margin-top: tbu(px(15));
   &.active {
-    background-color:#37B26A1A;
-    border:tbu(px(1)) solid var(--primary_border);
+    background-color: #37b26a1a;
+    border: tbu(px(1)) solid var(--primary_border);
   }
-
 }
 
 .icon-name-user {
@@ -187,61 +177,60 @@ padding-bottom: tbu(px(8)) ;
   margin-left: 10px;
 }
 
-
-  nc-input{
-    width: 100%;
-    padding-bottom: 8px;
-  ::ng-deep{
-              input{
-                  background-color: var(--c-scale-1_bg) !important ;
-                  border: tbu(px(1)) solid  var(--c-scale-3_border);
-              }
-          }
+nc-input {
+  width: 100%;
+  padding-bottom: 8px;
+  ::ng-deep {
+    input {
+      background-color: var(--c-scale-1_bg) !important ;
+      border: tbu(px(1)) solid var(--c-scale-3_border);
+    }
   }
-
-  .buttons-footer1{
-    background-color: var(--c-scale-1_bg);
-    height: 11%;
-    padding-top: 40%;
-    width: 100%;
-  }
-
-  .buttons-footer{
-    background-color: var(--c-scale-1_bg);
-    height: 11%;
-    padding: tbu(px(0)) tbu(px(24));
-    width: 100%;
-  }
-
-  .add-products{
-
-    padding-top: tbu(px(48));
-    padding-left: tbu(px(24));
-    padding-right: tbu(px(24));
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
 }
 
+.buttons-footer1 {
+  background-color: var(--c-scale-1_bg);
+  height: 11%;
+  padding-top: 40%;
+  width: 100%;
+}
 
+.buttons-footer {
+  background-color: var(--c-scale-1_bg);
+  height: 11%;
+  padding: tbu(px(0)) tbu(px(24));
+  width: 100%;
+}
 
-  .button-add-products{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: tbu(px(146));
-    height: tbu(px(46));
-    border: 2px solid var(--c-scale-12);
-    border-radius: tbu(px(4));
-    margin-top: tbu(px(14));
+.add-products {
+  padding-top: tbu(px(48));
+  padding-left: tbu(px(24));
+  padding-right: tbu(px(24));
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-add-products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: tbu(px(146));
+  height: tbu(px(46));
+  border: 2px solid var(--c-scale-12);
+  border-radius: tbu(px(4));
+  margin-top: tbu(px(14));
+}
+
+.products-image {
+  img {
+    width: tbu(px(183));
+    height: tbu(px(219));
   }
+}
 
-  .products-image {
-    img {
-      width: tbu(px(183));
-      height: tbu(px(219));
-    }
-
-
-  }
+.is-on-action-Buttons{
+  border: tbu(px(1)) solid var(--c-scale-1);
+  color: var(--c-scale-1);
+}

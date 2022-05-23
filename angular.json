@@ -33,19 +33,19 @@
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
             "scripts": [  {
-              "input": "node_modules/@nc-angular/library-mobile/js/Helpers/tbu.js",
+              "input": "node_modules/@nc-angular/library-mobile.stg/js/Helpers/tbu.js",
               "bundleName": "tbu"
             },
             {
-              "input": "node_modules/@nc-angular/library-mobile/js/borderRadiusSet.js",
+              "input": "node_modules/@nc-angular/library-mobile.stg/js/borderRadiusSet.js",
               "bundleName": "borderRadiusSet"
             },
             {
-              "input": "node_modules/@nc-angular/library-mobile/js/Helpers/borderRadiusHelper.js",
+              "input": "node_modules/@nc-angular/library-mobile.stg/js/Helpers/borderRadiusHelper.js",
               "bundleName": "borderRadiusHelper"
             },
             {
-              "input": "node_modules/@nc-angular/library-mobile/js/Helpers/variablesToRGB.js",
+              "input": "node_modules/@nc-angular/library-mobile.stg/js/Helpers/variablesToRGB.js",
               "bundleName": "variablesToRGB"
             }
           ],

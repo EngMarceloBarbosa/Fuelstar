@@ -17,6 +17,7 @@ export class OrdersPage implements OnInit {
   active: boolean = true;
   continue: boolean = true;
   iconCheck: boolean = false;
+  isOnActionButtons: boolean = true;
 
   selectedItem: any;
   listClient = [
@@ -71,6 +72,7 @@ export class OrdersPage implements OnInit {
   constructor(private nav: NavController, private loc: Location, public formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
+
   }
 
   selectedItemList(item: any) {
@@ -139,6 +141,8 @@ export class OrdersPage implements OnInit {
   clientButton() {
     console.log("Entrou client");
     this.active = true;
+    // this.isOnActionButtons = false;
+    console.log(this.isOnActionButtons);
   }
   newClientButton() {
     this.active = false;
@@ -162,11 +166,11 @@ export class OrdersPage implements OnInit {
   }
 
   addProducts(){
-    this.router.navigate(['/tabs/tab3']);
+    this.router.navigate(['/products']);
   }
 
   back(){
-    // this.loc.back();
-    this.router.navigate(['/orders']);
+
+  this.continue = true;
   }
 }

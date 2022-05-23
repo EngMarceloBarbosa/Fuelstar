@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Globals } from '@nc-angular/library-mobile';
+import { Globals } from '@nc-angular/library-mobile.stg';
 
 
 @Component({

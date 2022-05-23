@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertService, ModalMessageModel } from '@nc-angular/library-mobile';
+import { AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { environment } from 'src/environments/environment';
 // import { TranslateService } from '@ngx-translate/core';
 import { LoginApiService } from '../shared/http/login-api.service';
