@@ -7,7 +7,7 @@ ion-content {
 .header-container {
   position: relative;
   display: flex;
-  background-image: url("/assets/img/winw.jpg");
+  // background-image: url("/assets/img/winw.jpg");
   width: 100%;
   height: 67%;
   background-size: cover;
@@ -97,3 +97,65 @@ input {
   align-items: center;
   display: flex;
 }
+
+.toast-scheme
+{
+ background:red;
+}
+
+.products-availables{
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-stats{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: tbu(px(20));
+}
+
+.details-availables{
+  display: flex;
+  flex-direction: column;
+}
+
+.content-options{
+  margin: 10%;
+}
+
+.container-options{
+  display: flex;
+  flex-direction: column;
+}
+
+.details-options{
+  display: flex;
+  flex-direction: row;
+}
+
+.type-actions{
+  display: flex;
+  flex-direction: column;
+  margin-top: tbu(px(28));
+}
+
+.price{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: tbu(px(20));
+}
+
+.icon-price{
+margin-right: tbu(px(10));
+}
+
+.icon-stock{
+  margin-right: tbu(px(10));
+  }
+
+.stock-option{
+  display: flex;
+  flex-direction: row;
+}
+

@@ -1,5 +1,6 @@
 <ion-content>
   <div class="header-container">
+    <img src="{{listProducts.image}}" alt="" />
     <div class="header">
       <div class="icon-back">
         <nc-icon
@@ -22,30 +23,113 @@
       </div>
     </div>
   </div>
-  <div class="body">
-    <div class="product-details">
-      <div class="title-product">
-        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-          >ITEM XPTO</nc-text
-        >
-        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-          >0,50€</nc-text
+  <div class="options" *ngIf="!active">
+    <div class="content-options">
+      <div class="container-options">
+        <div class="details-options">
+          <div class="icon-options">
+            <nc-icon
+              [size]="18"
+              color="c-scale-12"
+              hoverColor="c-scale-12"
+              (click)="options()"
+              >icon_options</nc-icon
+            >
+          </div>
+          <div class="title-options">
+            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+              >Opções</nc-text
+            >
+          </div>
+        </div>
+        <div class="description-options">
+          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            >AÇÕES DISPONIVEIS SOBRE O PRODUTO</nc-text
+          >
+        </div>
+      </div>
+      <div class="type-actions">
+        <div class="price">
+          <div class="icon-price">
+          <nc-icon
+          [size]="18"
+          color="c-scale-12"
+          hoverColor="c-scale-12"
+          (click)="options()"
+          >icon_options</nc-icon
         >
       </div>
-      <div class="icon-definitions">
-        <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1"
-          >icon_arrow</nc-icon
-        >
+      <div class="title-price">
+        <nc-text size="h7" color="c-scale-10" weight="bold" font="primary">Change price</nc-text>
+      </div>
+        </div>
+        <div class="stock-option">
+          <div class="icon-stock">
+            <nc-icon
+            [size]="18"
+            color="c-scale-12"
+            hoverColor="c-scale-12"
+            (click)="options()"
+            >icon_cross</nc-icon
+          >
+        </div>
+        <div class="title-stock">
+          <nc-text size="h7" color="c-scale-10" weight="bold" font="primary">Sem stock</nc-text>
+        </div>
+        </div>
       </div>
     </div>
-    <div class="add-product">
-      <div class="quantity-products">
-        <nc-stepper [showNumber]="true" [value]="1" [min]="0"></nc-stepper>
+  </div>
+  <div class="container-body" *ngIf="active">
+    <div class="body">
+      <div class="product-details">
+        <div class="title-product">
+          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            >ITEM XPTO</nc-text
+          >
+          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            >0,50€</nc-text
+          >
+        </div>
+        <div class="icon-definitions">
+          <nc-icon
+            [size]="18"
+            color="c-scale-12"
+            hoverColor="c-scale-12"
+            (click)="options()"
+            >icon_options</nc-icon
+          >
+        </div>
       </div>
-      <div class="button-add">
-        <nc-text size="h7" color="c-scale-10" weight="500" font="primary" (click)="presentToastWithOptions()"
-          >Add to cart
-        </nc-text>
+      <div class="add-product">
+        <div class="quantity-products">
+          <nc-stepper [showNumber]="true" [value]="1" [min]="0"></nc-stepper>
+        </div>
+        <div class="button-add">
+          <nc-text
+            size="h7"
+            color="c-scale-10"
+            weight="500"
+            font="primary"
+            (click)="presentToastWithOptions()"
+            >Add to cart
+          </nc-text>
+        </div>
+      </div>
+      <div class="products-availables">
+        <div class="icon-stats">
+          <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+            >icon_truck_orders</nc-icon
+          >
+        </div>
+        <div class="details-availables">
+          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            >Available stock
+          </nc-text>
+          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            >value</nc-text
+          >
+        </div>
       </div>
     </div>
   </div>

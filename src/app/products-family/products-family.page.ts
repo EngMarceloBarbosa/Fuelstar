@@ -10,6 +10,7 @@ import { TasksService } from '../tasks.service';
 export class ProductsFamilyPage implements OnInit {
 
   options: any;
+  listProducts : any;
 
  @Input() products2: any[] = [
 
@@ -48,6 +49,8 @@ export class ProductsFamilyPage implements OnInit {
   constructor( private router: Router, private tasksService: TasksService) { }
 
   ngOnInit() {
+
+
   }
 
   close(){

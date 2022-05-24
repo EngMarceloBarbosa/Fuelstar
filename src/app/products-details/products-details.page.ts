@@ -1,6 +1,8 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-products-details',
@@ -8,13 +10,19 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./products-details.page.scss'],
 })
 export class ProductsDetailsPage implements OnInit {
-
+  listProducts: any;
   @Input() products2: any[]
+  active:boolean = true;
 
-  constructor( private router: Router, public toastController: ToastController) { }
+  constructor( private router: Router, public toastController: ToastController, private tasksService: TasksService) { }
 
 
   ngOnInit() {
+    this.tasksService.testTask1$
+.subscribe(testTask1 => {
+  this.listProducts = testTask1;
+})
+
   }
 
 async presentToast() {
@@ -27,22 +35,17 @@ async presentToast() {
 
   async presentToastWithOptions() {
     const toast = await this.toastController.create({
-      header: 'Toast header',
-      message: 'Click to Close',
+      header: 'You add new product to cart "item xpto',
+      message: 'Back to Articles list cart',
       position: 'top',
+      color: 'light',
+      duration: 2000,
       buttons: [
         {
           side: 'start',
-          icon: 'star',
-          text: 'Favorite',
+          icon: 'cart',
           handler: () => {
-            console.log('Favorite clicked');
-          }
-        }, {
-          text: 'Done',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
+            console.log('Cart Button Clicked');
           }
         }
       ]
@@ -60,5 +63,10 @@ async presentToast() {
 
   add(){
 
+  }
+
+
+  options(){
+ this.active = false;
   }
 }
