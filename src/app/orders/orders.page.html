@@ -57,12 +57,20 @@
     <div class="body-content-child">
       <div class="body-products" *ngIf="continue">
         <div class="buttons-client">
-          <div class="client" (click)="clientButton()"   [class.is-on-action-Buttons]="isOnActionButtons">
+          <div
+            class="client"
+            (click)="clientButton()"
+            [class.is-on-action-Buttons]="isOnActionButtons"
+          >
             <nc-text size="h6" color="c-scale-12" weight="bolder" font="primary"
               >Clients</nc-text
             >
           </div>
-          <div class="client" (click)="newClientButton()" [class.is-on-action-Buttons]="!isOnActionButtons">
+          <div
+            class="client"
+            (click)="newClientButton()"
+            [class.is-on-action-Buttons]="!isOnActionButtons"
+          >
             <nc-text size="h7" color="c-scale-12" weight="bolder" font="primary"
               >New client</nc-text
             >
@@ -177,49 +185,49 @@
     </div>
     <div class="add-products1" *ngIf="!continue">
       <div class="add-products">
-      <div class="products-image">
-        <img src="/assets/img/billing and transport guides.svg" />
-      </div>
-      <div class="title-add-products">
-        <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-          >Adicionar produtos</nc-text
-        >
-      </div>
-      <div class="description-add-products" >
-        <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-          >Pesquise através da sua família ou sub famlia e adicione os produtos
-          que pretende.</nc-text
-        >
-      </div>
-      <div class="button-add-products" (click)="addProducts()">
-        <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-          >+ Add products</nc-text
-        >
-      </div>
-    </div>
-    <div class="buttons-footer1" >
-      <div class="buttons-client">
-        <div class="client" (click)="back()" >
-          <nc-text
-            size="h6"
-            color="c-scale-12"
-            weight="bolder"
-            font="primary"
-            hoverColor="c-scale-12"
-            >Back</nc-text
+        <div class="products-image">
+          <img src="/assets/img/billing and transport guides.svg" />
+        </div>
+        <div class="title-add-products">
+          <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+            >Adicionar produtos</nc-text
           >
         </div>
-        <div class="client-1" (click)="continueProcess()">
-          <nc-text
-            size="h7"
-            color="c-scale-1"
-            weight="bolder"
-            font="primary"
-            hoverColor="c-scale-1"
-            >Continue</nc-text
+        <div class="description-add-products">
+          <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+            >Pesquise através da sua família ou sub famlia e adicione os
+            produtos que pretende.</nc-text
+          >
+        </div>
+        <div class="button-add-products" (click)="addProducts()">
+          <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+            >+ Add products</nc-text
           >
         </div>
       </div>
+      <div class="buttons-footer1">
+        <div class="buttons-client">
+          <div class="client" (click)="back()">
+            <nc-text
+              size="h6"
+              color="c-scale-12"
+              weight="bolder"
+              font="primary"
+              hoverColor="c-scale-12"
+              >Back</nc-text
+            >
+          </div>
+          <div class="client-1" (click)="continueProcess()">
+            <nc-text
+              size="h7"
+              color="c-scale-1"
+              weight="bolder"
+              font="primary"
+              hoverColor="c-scale-1"
+              >Continue</nc-text
+            >
+          </div>
+        </div>
       </div>
     </div>
   </div>

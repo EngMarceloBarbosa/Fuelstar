@@ -121,10 +121,11 @@ input {
 }
 
 .content-options{
-  margin: 10%;
+  margin-top: 5%;
 }
 
 .container-options{
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -157,5 +158,13 @@ margin-right: tbu(px(10));
 .stock-option{
   display: flex;
   flex-direction: row;
+}
+
+nc-action-sheet {
+  ::ng-deep {
+  .action-sheet.animation{
+    height: 30%;
+  }
+  }
 }
 

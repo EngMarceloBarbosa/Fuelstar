@@ -13,6 +13,7 @@ background-color: var(--c-scale-12);
 flex-direction: column;
 
 }
+
 .filter-header, .states-header{
   @extend .space-between;
   width: 100%;
@@ -42,7 +43,7 @@ flex-direction: column;
 
   .icon-state{
     height: tbu(px(15));
-    width: tbu(px(15));
+    width: taction-sheet--headerbu(px(15));
     border-radius: 50%;
     &.processing {
       background-color: var(--warning);

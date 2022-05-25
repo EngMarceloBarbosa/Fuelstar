@@ -59,7 +59,7 @@ export class ProductsPage implements OnInit {
 
 
   close() {
-
+this.router.navigate(['orders'])
   }
 
   products() {

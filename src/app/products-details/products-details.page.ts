@@ -1,7 +1,8 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
 import { TasksService } from '../tasks.service';
 
 @Component({
@@ -12,20 +13,20 @@ import { TasksService } from '../tasks.service';
 export class ProductsDetailsPage implements OnInit {
   listProducts: any;
   @Input() products2: any[]
-  active:boolean = true;
+  active: boolean = true;
 
-  constructor( private router: Router, public toastController: ToastController, private tasksService: TasksService) { }
+  constructor(private router: Router, public toastController: ToastController, private tasksService: TasksService, private actionSheetService : ActionSheetService) { }
 
 
   ngOnInit() {
     this.tasksService.testTask1$
-.subscribe(testTask1 => {
-  this.listProducts = testTask1;
-})
+      .subscribe(testTask1 => {
+        this.listProducts = testTask1;
+      })
 
   }
 
-async presentToast() {
+  async presentToast() {
     const toast = await this.toastController.create({
       message: 'Your settings have been saved.',
       duration: 2000
@@ -57,16 +58,41 @@ async presentToast() {
   }
 
 
-  back(){
+  back() {
     this.router.navigate(['products-family']);
   }
 
-  add(){
+  add() {
 
   }
 
 
-  options(){
- this.active = false;
+  options() {
+    const temp: ActionSheetModel = {
+      titleText: 'Options',
+      titleTextColor: 'c-scale-12',
+      titleTextSize: 'large',
+      iconHeader: 'icon_options',
+      iconHeaderSize: 16,
+      iconHeaderColor: 'c-scale-12',
+      rightButtonShow: true,
+      rightButtonText: 'Aplicar filtros',
+      rightButtonColor: 'primary',
+      rightButtonCallback : ()=> {
+        this.handleApplyFilter();
+      },
+      middleButtonShow: false,
+      leftButtonShow: true,
+      leftButtonText: 'Apagar',
+      leftButtonColor: 'c-scale-12',
+      closeButtonShow: true,
+      closeButtonColor: 'c-scale-12'
+      };
+
+      this.actionSheetService.open(temp);
   }
+
+  handleApplyFilter(){
+    this.router.navigate(['/tabs/tab4'])
+    }
 }
