@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
@@ -14,6 +14,8 @@ export class ProductsDetailsPage implements OnInit {
   listProducts: any;
   @Input() products2: any[]
   active: boolean = true;
+  badge: number = 0;
+  controlBadge: boolean = true;
 
   constructor(private router: Router, public toastController: ToastController, private tasksService: TasksService, private actionSheetService : ActionSheetService) { }
 
@@ -23,6 +25,7 @@ export class ProductsDetailsPage implements OnInit {
       .subscribe(testTask1 => {
         this.listProducts = testTask1;
       })
+
 
   }
 
@@ -35,6 +38,8 @@ export class ProductsDetailsPage implements OnInit {
   }
 
   async presentToastWithOptions() {
+   this.badge = ++this.badge;
+   this.controlBadge = false;
     const toast = await this.toastController.create({
       header: 'You add new product to cart "item xpto',
       message: 'Back to Articles list cart',
@@ -60,6 +65,7 @@ export class ProductsDetailsPage implements OnInit {
 
   back() {
     this.router.navigate(['products-family']);
+
   }
 
   add() {
@@ -95,4 +101,18 @@ export class ProductsDetailsPage implements OnInit {
   handleApplyFilter(){
     this.router.navigate(['/tabs/tab4'])
     }
+
+  quantity(){
+    this.router.navigate(['/tabs/tab4'])
+  }
+
+  showCart(badge:any){
+    if(this.controlBadge == true) {
+
+    } else {
+    this.router.navigate(['/orders-details']);
+    this.tasksService.badge$.next(badge);
+    this.controlBadge = false;
+    }
+  }
 }

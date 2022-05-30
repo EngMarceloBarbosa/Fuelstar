@@ -13,13 +13,20 @@ ion-content {
   background-size: cover;
 }
 
+.img-header{
+  position: relative;
+
+}
+
 .header {
-  padding-top: tbu(px(10));
+  padding-top: tbu(px(50));
   width: 100%;
   height: tbu(px(20));
   justify-content: space-around;
   display: flex;
   flex-direction: row;
+  position: absolute;
+  align-items: center;
 }
 
 .body {
@@ -96,11 +103,22 @@ input {
   justify-content: center;
   align-items: center;
   display: flex;
+  ion-badge {
+		position: absolute;
+		top: -0.2rem;
+		right: -0.2rem;
+		opacity: 0.9;
+
+		& ~ ion-icon {
+			margin-right: 1.2rem;
+		}
+	}
+
 }
 
 .toast-scheme
 {
- background:red;
+  background:red;
 }
 
 .products-availables{
@@ -141,30 +159,52 @@ input {
   margin-top: tbu(px(28));
 }
 
-.price{
+.option{
   display: flex;
   flex-direction: row;
   margin-bottom: tbu(px(20));
+  align-items: center;
 }
 
 .icon-price{
 margin-right: tbu(px(10));
 }
 
-.icon-stock{
-  margin-right: tbu(px(10));
-  }
+
 
 .stock-option{
   display: flex;
   flex-direction: row;
+
 }
 
 nc-action-sheet {
   ::ng-deep {
   .action-sheet.animation{
-    height: 30%;
+    height: 35%;
   }
   }
+}
+
+
+.badge{
+  margin-bottom: tbu(px(30));
+}
+
+#notifications-badge {
+  background-color: green;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  border-radius: 100%;
+
+}
+
+#notification-button {
+  position: relative;
+  width: 42px;
+  top:1px;
+  right: 1px;
+  overflow: visible!important;
 }
 

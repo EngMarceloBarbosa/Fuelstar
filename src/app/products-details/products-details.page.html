@@ -1,6 +1,8 @@
 <ion-content>
   <div class="header-container">
+    <div class="img-header">
     <img src="{{listProducts.image}}" alt="" />
+  </div>
     <div class="header">
       <div class="icon-back">
         <nc-icon
@@ -16,12 +18,18 @@
           >Sub family</nc-text
         >
       </div>
-      <div class="icon-cart">
-        <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1"
+      <div class="button-cart" id="notification-button">
+      <div class="icon-app cart" >
+
+        <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1" (click)="showCart(badge)"
           >icon_shopping-cart</nc-icon
         >
+        <ion-badge color="primary" id="notifications-badge" *ngIf="!controlBadge" >{{badge}}</ion-badge>
       </div>
-    </div>
+
+
+  </div>
+  </div>
   </div>
 
 
@@ -60,7 +68,7 @@
         <div class="quantity-products">
           <nc-stepper [showNumber]="true" [value]="1" [min]="0"></nc-stepper>
         </div>
-        <div class="button-add">
+        <div class="button-add" >
           <nc-text
             size="h7"
             color="c-scale-10"
@@ -88,8 +96,8 @@
       </div>
     </div>
   </div>
-  <nc-action-sheet [typeASheet]="1" [showFooter]="false">
-    <div class="action-sheet-body">
+  <nc-action-sheet [typeASheet]="1" [showFooter]="false" >
+    <div class="action-sheet-body" >
     <div class="content-options">
       <div class="container-options">
         <!-- <div class="details-options">
@@ -115,8 +123,8 @@
         </div>
       </div>
       <div class="type-actions">
-        <div class="price">
-          <div class="icon-price">
+        <div class="option">
+          <div class="icon-app">
             <nc-icon
               [size]="18"
               color="c-scale-12"
@@ -131,8 +139,8 @@
             >
           </div>
         </div>
-        <div class="stock-option">
-          <div class="icon-stock">
+        <div class="option">
+          <div class="icon-app">
             <nc-icon
               [size]="18"
               color="c-scale-12"
