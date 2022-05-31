@@ -17,7 +17,7 @@ export class ProductsDetailsPage implements OnInit {
   badge: number = 0;
   controlBadge: boolean = true;
 
-  constructor(private router: Router, public toastController: ToastController, private tasksService: TasksService, private actionSheetService : ActionSheetService) { }
+  constructor(private router: Router, public toastController: ToastController, private tasksService: TasksService, private actionSheetService: ActionSheetService) { }
 
 
   ngOnInit() {
@@ -25,21 +25,19 @@ export class ProductsDetailsPage implements OnInit {
       .subscribe(testTask1 => {
         this.listProducts = testTask1;
       })
-
-
   }
 
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Your settings have been saved.',
-      duration: 2000
+      duration: 500
     });
     toast.present();
   }
 
   async presentToastWithOptions() {
-   this.badge = ++this.badge;
-   this.controlBadge = false;
+    this.badge = ++this.badge;
+    this.controlBadge = false;
     const toast = await this.toastController.create({
       header: 'You add new product to cart "item xpto',
       message: 'Back to Articles list cart',
@@ -84,7 +82,7 @@ export class ProductsDetailsPage implements OnInit {
       rightButtonShow: true,
       rightButtonText: 'Aplicar filtros',
       rightButtonColor: 'primary',
-      rightButtonCallback : ()=> {
+      rightButtonCallback: () => {
         this.handleApplyFilter();
       },
       middleButtonShow: false,
@@ -93,26 +91,27 @@ export class ProductsDetailsPage implements OnInit {
       leftButtonColor: 'c-scale-12',
       closeButtonShow: true,
       closeButtonColor: 'c-scale-12'
-      };
+    };
 
-      this.actionSheetService.open(temp);
+    this.actionSheetService.open(temp);
   }
 
-  handleApplyFilter(){
-    this.router.navigate(['/tabs/tab4'])
-    }
-
-  quantity(){
+  handleApplyFilter() {
     this.router.navigate(['/tabs/tab4'])
   }
 
-  showCart(badge:any){
-    if(this.controlBadge == true) {
+  quantity() {
+    this.router.navigate(['/tabs/tab4'])
+  }
+
+  showCart(badge: any) {
+    if (this.controlBadge == true) {
 
     } else {
-    this.router.navigate(['/orders-details']);
-    this.tasksService.badge$.next(badge);
-    this.controlBadge = false;
+      console.log("BOAS")
+      this.router.navigate(['/orders-details']);
+      this.tasksService.badge$.next(badge);
+      this.controlBadge = false;
     }
   }
 }

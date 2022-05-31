@@ -40,7 +40,7 @@ ion-content {
   flex-direction: row;
 }
 
-.list-content{
+.list-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +48,6 @@ ion-content {
   height: 100%;
   margin-top: tbu(px(20));
   margin-left: 8%;
-
 }
 
 img {
@@ -60,9 +59,7 @@ img {
   width: 50;
 }
 
-
 .card-list {
-
   width: 100%;
   height: 89%;
   padding: tbu(px(10));
@@ -82,10 +79,7 @@ img {
   }
 }
 
-.card{
+.card {
   width: 100%;
   height: tbu(px(200));
 }
-
-
-

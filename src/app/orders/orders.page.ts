@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
-import { element } from 'protractor';
 import { Router } from '@angular/router';
 
 @Component({

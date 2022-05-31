@@ -26,7 +26,6 @@ nc-virtual-scroller {
 .order-details {
   display: flex;
   width: 100%;
-
 }
 
 .icon-close {
@@ -36,14 +35,19 @@ nc-virtual-scroller {
 }
 
 .body-content {
-  height: 77%;
-  padding: tbu(px(24)) tbu(px(24));
+  height: 69%;
+  padding-left: 24px;
+  padding-right: 24px;
+
 }
 
 .steps {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 24px;
 }
 
 .step-details {
@@ -85,10 +89,9 @@ nc-virtual-scroller {
   align-items: center;
   justify-content: center;
   height: 100%;
-
 }
 
-.title-menu{
+.title-menu {
   display: flex;
   justify-content: space-between;
 }
@@ -99,4 +102,224 @@ nc-virtual-scroller {
   display: flex;
   gap: tbu(px(10));
   width: 100%;
+}
+
+.info-client {
+  display: flex;
+  width: 100%;
+  height: tbu(px(20));
+  margin-top: tbu(px(26));
+
+  .icon-user {
+    width: 10%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .name-user {
+    width: 90%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.container-articles {
+  display: flex;
+  margin-top: tbu(px(19));
+}
+
+.article {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.img-article {
+}
+
+.type-article {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+
+.reference-article {
+  display: flex;
+  width: 40%;
+  flex-direction: column;
+}
+
+.add-products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: tbu(px(300));
+}
+
+.final-sum {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.price-shop {
+  display: flex;
+  flex-direction: row;
+  .shipping-price {
+    width: 80%;
+  }
+  .value {
+    display: flex;
+    width: 20%;
+    justify-content: flex-end;
+  }
+}
+
+.discont-value {
+  display: flex;
+  flex-direction: row;
+  .discount {
+    width: 80%;
+  }
+  .value {
+    display: flex;
+    width: 20%;
+    justify-content: flex-end;
+  }
+}
+
+.total-product {
+  display: flex;
+  flex-direction: row;
+  .total {
+    width: 80%;
+  }
+  .value {
+    display: flex;
+    width: 20%;
+    justify-content: flex-end;
+  }
+}
+
+.buttons-client {
+  display: flex;
+  flex-direction: row;
+  padding-top: tbu(px(30));
+  padding-bottom: tbu(px(16));
+  padding-left: tbu(px(24));
+  padding-right: tbu(px(24));
+  justify-content: space-between;
+  width: 100%;
+
+  .client {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48%;
+    border: tbu(px(2)) solid var(--secondary_dark);
+    border-radius: tbu(px(4));
+    height: tbu(px(50));
+  }
+  .client-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48%;
+    border: tbu(px(1)) solid var(--secondary_dark);
+    border-radius: tbu(px(4));
+    height: tbu(px(50));
+    background-color: var(--c-scale-12_bg);
+  }
+}
+
+
+.choose-dates {
+  display: flex;
+  flex-direction: column;
+}
+
+.from-until-date {
+  background-color: var(--c-scale-3_bg);
+  padding:tbu(px(12)),tbu(px(24)),tbu(px(8)),tbu(px(12));
+  min-height:tbu(px(40));
+  margin-bottom:tbu(px(8));
+    // @extend .flex-center;
+  margin:tbu(px(5)),tbu(px(10));
+  margin-bottom:5%;
+  display:flex;
+  align-items:center;
+  text-indent:10px;
+}
+
+.container-adress{
+  height: 65%;
+}
+
+.delivery-date{
+  height: 70%;
+  padding-top: tbu(px(24));
+  padding-bottom: tbu(px(24));
+  padding-left: tbu(px(24));
+  padding-right: tbu(px(24))
+
+}
+
+.title-data{
+  padding-bottom: tbu(px(12));
+}
+
+.radio1{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: tbu(px(24)) ;
+}
+
+.main-client{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.text-client{
+width: 80%;
+}
+
+.text-client1{
+  width: 60%;
+  }
+
+.icon-radio{
+  display: flex;
+  justify-content: flex-end;
+  width: 20%;
+}
+
+.icon-edit{
+  display: flex;
+  justify-content: flex-end;
+  width: 40%;
+  align-items: center;
+}
+
+.shipping-adress{
+  display: flex;
+  width: 100%;
+}
+
+.add-adress{
+  display: flex;
+}
+
+.descrip-adress{
+  width: 80%;
+}
+
+.icon-arrow{
+  display: flex;
+  justify-content: flex-end;
+  width: 20%;
 }

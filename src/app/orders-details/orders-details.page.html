@@ -1,15 +1,14 @@
-
 <ion-content>
   <div class="header-menu">
     <div class="title-menu">
       <div class="order-details">
-        <div class="operator-name" >
+        <div class="operator-name">
           <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
             >Order Nº 1923</nc-text
           >
-        <ion-badge color="primary" id="notifications-badge" >{{badges}}</ion-badge>
-
-
+          <ion-badge color="primary" id="notifications-badge"
+            >{{badges}}</ion-badge
+          >
         </div>
       </div>
       <div class="icon-close">
@@ -23,41 +22,288 @@
       </div>
     </div>
   </div>
-  <div class="body-content">
-    <div class="steps">
-      <div class="steps-details">
-        <div class="step-space"></div>
-        <div class="step-info">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Client</nc-text
+
+  <div class="steps">
+    <div class="steps-details">
+      <div class="step-space"></div>
+      <div class="step-info">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >Client</nc-text
+        >
+      </div>
+    </div>
+    <div class="steps-details">
+      <div class="step-space"></div>
+      <div class="step-info">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >Client</nc-text
+        >
+      </div>
+    </div>
+    <div class="steps-details">
+      <div class="step-space"></div>
+      <div class="step-info">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >Client</nc-text
+        >
+      </div>
+    </div>
+    <div class="steps-details">
+      <div class="step-space"></div>
+      <div class="step-info">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >Client</nc-text
+        >
+      </div>
+    </div>
+  </div>
+  <div class="container-article" *ngIf="onAdress">
+    <div class="body-content">
+      <div class="info-client">
+        <div class="icon-user">
+          <nc-icon [size]="14" color="c-scale-12" hoverColor="c-scale-12"
+            >icon_user</nc-icon
+          >
+        </div>
+        <div class="name-user">
+          <nc-text size="h8" color="primary" weight="500" font="primary_dark"
+            >Jimmy Smyth</nc-text
           >
         </div>
       </div>
-      <div class="steps-details">
-        <div class="step-space"></div>
-        <div class="step-info">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Client</nc-text
-          >
+      <div class="container-articles">
+        <div class="article">
+          <div class="img-article">
+            <img src="/assets/img/logo-appsellers.svg" alt="" />
+          </div>
+          <div class="type-article">
+            <div class="description">
+              <nc-text
+                size="h8"
+                color="primary_dark"
+                weight="500"
+                font="primary"
+                >{{listProducts.tittle}}</nc-text
+              >
+            </div>
+            <div class="price">
+              <nc-text
+                size="h8"
+                color="primary_dark"
+                weight="500"
+                font="primary"
+                >2* 50,00€</nc-text
+              >
+            </div>
+          </div>
+          <div class="reference-article">
+            <div class="reference">
+              <nc-text
+                size="h8"
+                color="primary_dark"
+                weight="500"
+                font="primary"
+                >{{listProducts.reference}}</nc-text
+              >
+            </div>
+            <div class="total-price">
+              <nc-text
+                size="h8"
+                color="primary_dark"
+                weight="Bold"
+                font="primary"
+                >100,00€</nc-text
+              >
+            </div>
+          </div>
         </div>
       </div>
-      <div class="steps-details">
-        <div class="step-space"></div>
-        <div class="step-info">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Client</nc-text
-          >
+
+      <div class="add-products">
+        <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+          >+ Add products</nc-text
+        >
+      </div>
+      <hr
+        style="
+          height: 1px;
+          border-width: 0;
+          color: rgb(179, 175, 175);
+          background-color: gray;
+        "
+      />
+
+      <div class="final-sum">
+        <div class="price-final">
+          <div class="price-shop">
+            <div class="shipping-price">
+              <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+                >Shipping price</nc-text
+              >
+            </div>
+
+            <div class="value">
+              <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+                >0,00€</nc-text
+              >
+            </div>
+          </div>
+          <div class="discont-value">
+            <div class="discount">
+              <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+                >Discount</nc-text
+              >
+            </div>
+            <div class="value">
+              <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+                >0,00€</nc-text
+              >
+            </div>
+          </div>
+          <div class="total-product">
+            <div class="total">
+              <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
+                >TOTAL</nc-text
+              >
+            </div>
+            <div class="value">
+              <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+                >100,00€</nc-text
+              >
+            </div>
+          </div>
         </div>
       </div>
-      <div class="steps-details">
-        <div class="step-space"></div>
-        <div class="step-info">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Client</nc-text
+    </div>
+  </div>
+  <div class="container-adress" *ngIf="!onAdress">
+    <div class="delivery-date">
+      <div class="title-data">
+        <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+          >Preferential delivery date</nc-text
+        >
+      </div>
+      <div class="choose-dates">
+        <div class="from-until-date">
+          <nc-icon
+            class="icon-calendar"
+            [size]="14"
+            color="c-scale-12"
+            hoverColor="c-scale-12"
+            >icon_calendar</nc-icon
+          >
+          <!-- <span class="label-from-until"
+                >{{"Global.fromDate" | translate }}</span > -->
+          <nc-list [className]="'date-picker-list'">
+            <nc-list-item
+              [attr.tester]="'date-from'"
+              [class.disabled]="!disabledChooseDate"
+              ncDatePicker
+              [mode]="'date'"
+              [(ngModel)]="value1"
+              (onOk)="FromDate($event)"
+              [extra]="currentDateFormat(value1)"
+            >
+            </nc-list-item>
+          </nc-list>
+        </div>
+        <ion-list class="radio-group">
+          <ion-radio-group>
+            <div class="radio1">
+              <div class="main-client">
+                <div class="text-client">
+                  <nc-text
+                    class="text-order"
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >Jimmy smyth</nc-text
+                  >
+                </div>
+                <div class="icon-radio">
+                  <ion-radio value="cord"></ion-radio>
+                </div>
+              </div>
+              <div class="main-client">
+                <div class="text-client1">
+                  <nc-text
+                    class="text-order"
+                    size="h8"
+                    color="c-scale-12"
+                    weight="500"
+                    font="primary"
+                    >Street urban xpto Nº 177 7465-321, Guimarães, Braga
+                    Portugal</nc-text
+                  >
+                </div>
+                <div class="icon-edit">
+                  <nc-icon
+                    [size]="18"
+                    color="c-scale-12"
+                    hoverColor="c-scale-12"
+                    (click)="close()"
+                    >icon_close</nc-icon
+                  >
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="500"
+                    font="primary"
+                    >edit</nc-text
+                  >
+                </div>
+              </div>
+            </div>
+          </ion-radio-group>
+        </ion-list>
+        <div class="shipping-adress">
+          <div class="descrip-adress">
+            <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+              >Shipping adress</nc-text
+            >
+          </div>
+          <div class="icon-arrow">
+            <nc-icon
+              [size]="18"
+              color="c-scale-12"
+              hoverColor="c-scale-12"
+              (click)="close()"
+              >icon_close</nc-icon
+            >
+          </div>
+        </div>
+        <div class="add-adress">
+          <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+            >Add new Shipping adress</nc-text
           >
         </div>
       </div>
     </div>
+  </div>
 
+  <div class="buttons-footer">
+    <div class="buttons-client">
+      <div class="client">
+        <nc-text
+          size="h6"
+          color="c-scale-12"
+          weight="bolder"
+          font="primary"
+          hoverColor="c-scale-12"
+          >Clean</nc-text
+        >
+      </div>
+      <div class="client-1" (click)="continueButton()">
+        <nc-text
+          size="h7"
+          color="c-scale-1"
+          weight="bolder"
+          font="primary"
+          hoverColor="c-scale-1"
+          >Continue</nc-text
+        >
+      </div>
+    </div>
   </div>
 </ion-content>

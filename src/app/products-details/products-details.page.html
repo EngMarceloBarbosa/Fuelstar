@@ -1,8 +1,8 @@
 <ion-content>
   <div class="header-container">
     <div class="img-header">
-    <img src="{{listProducts.image}}" alt="" />
-  </div>
+      <img src="{{listProducts.image}}" alt="" />
+    </div>
     <div class="header">
       <div class="icon-back">
         <nc-icon
@@ -19,29 +19,30 @@
         >
       </div>
       <div class="button-cart" id="notification-button">
-      <div class="icon-app cart" >
-
-        <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1" (click)="showCart(badge)"
-          >icon_shopping-cart</nc-icon
-        >
-        <ion-badge color="primary" id="notifications-badge" *ngIf="!controlBadge" >{{badge}}</ion-badge>
+        <div class="icon-app cart">
+          <nc-icon
+            [size]="18"
+            color="c-scale-1"
+            hoverColor="c-scale-1"
+            (click)="showCart(badge)"
+            >icon_shopping-cart</nc-icon
+          >
+          <ion-badge
+            color="primary"
+            id="notifications-badge"
+            *ngIf="!controlBadge"
+            >{{badge}}</ion-badge
+          >
+        </div>
       </div>
-
-
+    </div>
   </div>
-  </div>
-  </div>
-
-
-
 
   <!-- <div class="options" *ngIf="!active">
 
   </div>
 
  -->
-
-
 
   <div class="container-body" *ngIf="active">
     <div class="body">
@@ -68,7 +69,7 @@
         <div class="quantity-products">
           <nc-stepper [showNumber]="true" [value]="1" [min]="0"></nc-stepper>
         </div>
-        <div class="button-add" >
+        <div class="button-add">
           <nc-text
             size="h7"
             color="c-scale-10"
@@ -96,11 +97,11 @@
       </div>
     </div>
   </div>
-  <nc-action-sheet [typeASheet]="1" [showFooter]="false" >
-    <div class="action-sheet-body" >
-    <div class="content-options">
-      <div class="container-options">
-        <!-- <div class="details-options">
+  <nc-action-sheet [typeASheet]="1" [showFooter]="false">
+    <div class="action-sheet-body">
+      <div class="content-options">
+        <div class="container-options">
+          <!-- <div class="details-options">
           <div class="icon-options">
             <nc-icon
               [size]="18"
@@ -116,47 +117,47 @@
             >
           </div>
         </div> -->
-        <div class="description-options">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >AÇÕES DISPONIVEIS SOBRE O PRODUTO</nc-text
-          >
-        </div>
-      </div>
-      <div class="type-actions">
-        <div class="option">
-          <div class="icon-app">
-            <nc-icon
-              [size]="18"
-              color="c-scale-12"
-              hoverColor="c-scale-12"
-              (click)="options()"
-              >icon_options</nc-icon
-            >
-          </div>
-          <div class="title-price">
-            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
-              >Change price</nc-text
+          <div class="description-options">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >AÇÕES DISPONIVEIS SOBRE O PRODUTO</nc-text
             >
           </div>
         </div>
-        <div class="option">
-          <div class="icon-app">
-            <nc-icon
-              [size]="18"
-              color="c-scale-12"
-              hoverColor="c-scale-12"
-              (click)="options()"
-              >icon_cross</nc-icon
-            >
+        <div class="type-actions">
+          <div class="option">
+            <div class="icon-app">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+                (click)="options()"
+                >icon_options</nc-icon
+              >
+            </div>
+            <div class="title-price">
+              <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+                >Change price</nc-text
+              >
+            </div>
           </div>
-          <div class="title-stock">
-            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
-              >Sem stock</nc-text
-            >
+          <div class="option">
+            <div class="icon-app">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+                (click)="options()"
+                >icon_cross</nc-icon
+              >
+            </div>
+            <div class="title-stock">
+              <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+                >Sem stock</nc-text
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
-</div>
   </nc-action-sheet>
 </ion-content>
