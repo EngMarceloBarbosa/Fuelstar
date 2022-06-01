@@ -161,43 +161,43 @@
             >
           </div>
         </div>
-        <div class="footer-login">
-          <nc-button
-            [attr.tester]="'click-button-signIn'"
-            (keyup.enter)="signInClick()"
-            [color]="'primary'"
-            type="submite"
-            [reverse]="true"
-            large
-            [disabled]="(form.invalid)"
-          >
-            <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-              >Sign in</nc-text
-            >
-          </nc-button>
-          <div class="recover">
-            <div
-              class="recover-text"
-              [attr.tester]="'click-button-forgot-pass'"
-              (click)="forgotPasswordClick()"
-            >
-              <nc-text size="h7" color="c-scale-8" weight="300" font="primary"
-                >Can´t get into the app</nc-text
-              >
-            </div>
-            <div class="recover-text">
-              <nc-text
-                size="h7"
-                color="c-scale-10"
-                weight="300"
-                font="primary"
-                routerLink="/recover-password"
-                >Forgot Password</nc-text
-              >
-            </div>
-          </div>
-        </div>
       </form>
+    </div>
+  </div>
+  <div class="footer-login">
+    <nc-button
+      [attr.tester]="'click-button-signIn'"
+      (keyup.enter)="signInClick()"
+      [color]="'primary'"
+      type="submite"
+      [reverse]="true"
+      large
+      [disabled]="(form.invalid)"
+    >
+      <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+        >Sign in</nc-text
+      >
+    </nc-button>
+    <div class="recover">
+      <div
+        class="recover-text"
+        [attr.tester]="'click-button-forgot-pass'"
+        (click)="forgotPasswordClick()"
+      >
+        <nc-text size="h7" color="c-scale-8" weight="300" font="primary"
+          >Can´t get into the app</nc-text
+        >
+      </div>
+      <div class="recover-text">
+        <nc-text
+          size="h7"
+          color="c-scale-10"
+          weight="300"
+          font="primary"
+          routerLink="/recover-password"
+          >Forgot Password</nc-text
+        >
+      </div>
     </div>
   </div>
 </ion-content>

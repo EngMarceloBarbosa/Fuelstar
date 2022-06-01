@@ -3,6 +3,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
+import { ProductService } from '../product.service';
 import { TasksService } from '../tasks.service';
 
 @Component({
@@ -16,8 +17,10 @@ export class ProductsDetailsPage implements OnInit {
   active: boolean = true;
   badge: number = 0;
   controlBadge: boolean = true;
+  item: any;
 
-  constructor(private router: Router, public toastController: ToastController, private tasksService: TasksService, private actionSheetService: ActionSheetService) { }
+
+  constructor(private router: Router, public toastController: ToastController, private tasksService: TasksService, private actionSheetService: ActionSheetService, private productService: ProductService) { }
 
 
   ngOnInit() {
@@ -35,29 +38,22 @@ export class ProductsDetailsPage implements OnInit {
     toast.present();
   }
 
-  async presentToastWithOptions() {
+  async addProduct() {
     this.badge = ++this.badge;
     this.controlBadge = false;
     const toast = await this.toastController.create({
       header: 'You add new product to cart "item xpto',
-      message: 'Back to Articles list cart',
+      message: 'Back to Articles lis t cart',
       position: 'top',
       color: 'light',
       duration: 2000,
-      buttons: [
-        {
-          side: 'start',
-          icon: 'cart',
-          handler: () => {
-            console.log('Cart Button Clicked');
-          }
-        }
-      ]
     });
     await toast.present();
 
-    const { role } = await toast.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+this.productService.addValueProduct(this.item);
+console.log(this.item);
+this.productService.totalValueOrder()
+
   }
 
 

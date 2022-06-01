@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Products } from '../shared/models/product-list';
+
 import { TasksService } from '../tasks.service';
 
 @Component({
@@ -11,44 +13,14 @@ export class ProductsFamilyPage implements OnInit {
 
   options: any;
   listProducts : any;
+  // newProducts: {name: string; price:number}[]=[];
+  newProducts:any[]=[];
 
- @Input() products2: any[] = [
 
-    {
-    tittle: 'vinhos',
-    image: 'assets/img/winw.jpg',
-    price: '1,76 €',
-    reference: 'REF.ª 123456789',
-    id: 1
-  },
-  {
-    tittle: 'Comidas',
-    image: 'assets/img/wines-g681199829_640.jpg',
-    price: '2,60 €',
-    reference: 'REF.ª 123456789',
-    id: 2
-  },
-  {
-    tittle: 'Snacks',
-    image: 'assets/img/wines-g681199829_640.jpg',
-    price: '1,50 €',
-    reference: 'REF.ª 123456789',
-    id: 3
-  },
-  {
-    tittle: 'Snacks',
-    image: 'assets/img/wines-g681199829_640.jpg',
-    price: '1,50 €',
-    reference: 'REF.ª 123456789',
-    id: 4
-  },
-  {
-    tittle: 'Snacks',
-    image: 'assets/img/wines-g681199829_640.jpg',
-    price: '1,50 €',
-    reference: 'REF.ª 123456789',
-    id: 5
-  }
+
+  products2: Products[] = [
+
+
   ];
 
   constructor( private router: Router, private tasksService: TasksService) { }
@@ -69,9 +41,14 @@ export class ProductsFamilyPage implements OnInit {
   cardsClick(test){
   this.router.navigate(['products-details']);
   this.tasksService.testTask1$.next(test);
-  console.log(test);
-  }
 
 
 
+
+
+
+
+
+
+}
 }
