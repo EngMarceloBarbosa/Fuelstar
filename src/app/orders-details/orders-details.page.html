@@ -71,8 +71,9 @@
           >
         </div>
       </div>
-      <div class="container-articles">
-        <div class="article">
+      <nc-virtual-scroller class="card-list" #scrollList [items]="list">
+      <div class="container-articles" *ngFor="let test of scrollList.viewPortItems" (click)="edit(test.id)" >
+        <div class="article" >
           <div class="img-article">
             <img src="/assets/img/logo-appsellers.svg" alt="" />
           </div>
@@ -83,7 +84,7 @@
                 color="primary_dark"
                 weight="500"
                 font="primary"
-                >{{listProducts.tittle}}</nc-text
+                >{{test.tittle}}</nc-text
               >
             </div>
             <div class="price">
@@ -92,7 +93,7 @@
                 color="primary_dark"
                 weight="500"
                 font="primary"
-                >2* 50,00€</nc-text
+                >{{test.quantity}}</nc-text
               >
             </div>
           </div>
@@ -112,13 +113,13 @@
                 color="primary_dark"
                 weight="Bold"
                 font="primary"
-                >100,00€</nc-text
+                >{{test.totalValueItem}}€</nc-text
               >
             </div>
           </div>
         </div>
       </div>
-
+    </nc-virtual-scroller>
       <div class="add-products">
         <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
           >+ Add products</nc-text
@@ -168,7 +169,7 @@
             </div>
             <div class="value">
               <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-                >100,00€</nc-text
+                >{{listValue}}€</nc-text
               >
             </div>
           </div>
@@ -306,4 +307,51 @@
       </div>
     </div>
   </div>
+  <nc-action-sheet [typeASheet]="1" [showFooter]="false">
+    <div class="action-sheet-body">
+      <div class="content-options">
+        <div class="container-options">
+          <!-- <div class="details-options">
+          <div class="icon-options">
+            <nc-icon
+              [size]="18"
+              color="c-scale-12"
+              hoverColor="c-scale-12"
+              (click)="options()"
+              >icon_options</nc-icon
+            >
+          </div>
+          <div class="title-options">
+            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+              >Opções</nc-text
+            >
+          </div>
+        </div> -->
+          <div class="description-options">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >AÇÕES DISPONIVEIS SOBRE O PRODUTO</nc-text
+            >
+          </div>
+        </div>
+        <div class="quantity-products">
+          <nc-stepper [showNumber]="true" [value]="1" [min]="0"></nc-stepper>
+        </div>
+        <div class="delete-item">
+          <div class="icon-delete">
+            <nc-icon
+            [size]="18"
+            color="c-scale-12"
+            hoverColor="c-scale-12"
+            (click)="deleteProduct(productList)"
+            >icon_close</nc-icon>
+          </div>
+          <div class="title-delete">
+            <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
+            >Delete item</nc-text
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </nc-action-sheet>
 </ion-content>

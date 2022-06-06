@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
 import { ProductService } from '../product.service';
+import { product } from '../shared/models/product-list';
 import { TasksService } from '../tasks.service';
 
 @Component({
@@ -12,8 +13,8 @@ import { TasksService } from '../tasks.service';
   styleUrls: ['./products-details.page.scss'],
 })
 export class ProductsDetailsPage implements OnInit {
-  listProducts: any;
-  @Input() products2: any[]
+  listProducts1: any;
+  product2 = product
   active: boolean = true;
   badge: number = 0;
   controlBadge: boolean = true;
@@ -26,7 +27,7 @@ export class ProductsDetailsPage implements OnInit {
   ngOnInit() {
     this.tasksService.testTask1$
       .subscribe(testTask1 => {
-        this.listProducts = testTask1;
+        this.listProducts1 = testTask1;
       })
   }
 
@@ -50,8 +51,7 @@ export class ProductsDetailsPage implements OnInit {
     });
     await toast.present();
 
-this.productService.addValueProduct(this.item);
-console.log(this.item);
+this.productService.addValueProduct(this.listProducts1);
 this.productService.totalValueOrder()
 
   }

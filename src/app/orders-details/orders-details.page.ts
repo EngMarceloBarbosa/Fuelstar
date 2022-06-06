@@ -2,8 +2,9 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { TasksService } from '../tasks.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
+import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { FilterServiceService } from '../shared/filter-service.service';
+import { element } from 'protractor';
 
 
 @Component({
@@ -26,8 +27,9 @@ isOnActionButtons2: boolean = false;
 isOnActionButtons3: boolean = false;
 selectedFilter: number = 0;
 translateStrings:any;
-
-
+list:any;
+listValue: any;
+productList:any[]=[];
 
   constructor( private loc: Location,private router: Router, private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService , private tasksService: TasksService) { }
 
@@ -41,13 +43,22 @@ translateStrings:any;
       .subscribe(product => {
         this.listProducts = product;
 
+      }),
+      this.tasksService.testTask3$
+      .subscribe(testTask3 => {
+        this.list= testTask3;
+      }),
+      this.tasksService.testTask4$
+      .subscribe(testTask4 => {
+        this.listValue= testTask4;
+        console.log(this.listValue, "ENTROU")
       })
 
   }
 
 close()
 {
-
+  this.router.navigate(['products-details']);
 }
 
 continueButton(){
@@ -134,6 +145,56 @@ this.onAdress = false
 
   }
 
+
          /*    END DATE PICKER*/
+
+
+  edit(id){
+  if(id == 1){
+    const temp: ActionSheetModel = {
+      titleText: 'Options',
+      titleTextColor: 'c-scale-12',
+      titleTextSize: 'large',
+      iconHeader: 'icon_options',
+      iconHeaderSize: 16,
+      iconHeaderColor: 'c-scale-12',
+      rightButtonShow: true,
+      rightButtonText: 'Aplicar filtros',
+      rightButtonColor: 'primary',
+      rightButtonCallback: () => {
+        this.handleApplyFilter();
+      },
+      middleButtonShow: false,
+      leftButtonShow: true,
+      leftButtonText: 'Apagar',
+      leftButtonColor: 'c-scale-12',
+      closeButtonShow: true,
+      closeButtonColor: 'c-scale-12'
+    };
+
+    this.actionSheetService.open(temp);
+
+  }
+  }
+
+  options() {
+
+  }
+
+  handleApplyFilter() {
+    this.router.navigate(['/tabs/tab4'])
+  }
+
+
+  deleteProduct(item){
+    const newArray = [];
+    console.log(this.listProducts)
+    this.listProducts.map((element) => {
+      if(element.id !== this.listProducts[item].id){
+      newArray.push(element);
+      }
+    });
+    console.log(this.listProducts, "FIM");
+  }
 
 }

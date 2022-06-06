@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TasksService } from './tasks.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,12 @@ export class ProductService {
   productList:any[]=[];
   totalValueRequest: number;
 
-  constructor() { }
+  constructor(private tasksService: TasksService) { }
 
 
 
   addValueProduct(newElement){
+    console.log(newElement)
   const index= this.productList.findIndex(ele => ele.id === newElement.id);
   if(index >= 0){
     this.productList[index].quantity++;
@@ -27,12 +29,19 @@ export class ProductService {
       }
     ];
   }
+  this.tasksService.testTask3$.next(this.productList);
+  console.log(this.productList, "1")
   }
 
   totalValueOrder(){
+    console.log("Boas")
     this.totalValueRequest = 0;
     this.productList.map(elem => {
       this.totalValueRequest += elem.totalValueItem;
+
+      console.log(this.totalValueRequest)
     })
+    this.tasksService.testTask4$.next(this.totalValueRequest);
   }
+
 }

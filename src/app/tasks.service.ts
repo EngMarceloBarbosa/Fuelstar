@@ -19,6 +19,8 @@ export class TasksService {
   //  public testTask$ = new Subject<tasksTest>();
   testTask$ = new BehaviorSubject<tasksTest[]>([]);
   testTask1$ = new BehaviorSubject<tasksTest[]>([]);
+  testTask3$ = new BehaviorSubject<tasksTest[]>([]);
+  testTask4$ = new Subject<number>();
   // testTask2$ = new BehaviorSubject<tasksTest[]>([]);
   badge$ = new BehaviorSubject<tasksTest[]>([]);
 

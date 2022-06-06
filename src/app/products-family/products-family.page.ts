@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Products } from '../shared/models/product-list';
+import { product } from '../shared/models/product-list';
+
 
 import { TasksService } from '../tasks.service';
 
@@ -18,10 +19,7 @@ export class ProductsFamilyPage implements OnInit {
 
 
 
-  products2: Products[] = [
-
-
-  ];
+  products2 = product ;
 
   constructor( private router: Router, private tasksService: TasksService) { }
 

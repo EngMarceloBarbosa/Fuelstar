@@ -35,7 +35,7 @@ nc-virtual-scroller {
 }
 
 .body-content {
-  height: 69%;
+  height: 60%;
   padding-left: 24px;
   padding-right: 24px;
 
@@ -48,6 +48,7 @@ nc-virtual-scroller {
   padding-left: 24px;
   padding-right: 24px;
   padding-top: 24px;
+  height: 6%;
 }
 
 .step-details {
@@ -155,7 +156,7 @@ nc-virtual-scroller {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: tbu(px(300));
+
 }
 
 .final-sum {
@@ -208,7 +209,6 @@ nc-virtual-scroller {
 .buttons-client {
   display: flex;
   flex-direction: row;
-  padding-top: tbu(px(30));
   padding-bottom: tbu(px(16));
   padding-left: tbu(px(24));
   padding-right: tbu(px(24));
@@ -322,4 +322,39 @@ width: 80%;
   display: flex;
   justify-content: flex-end;
   width: 20%;
+}
+
+.buttons-footer{
+  height: 14%;
+  display: flex;
+  align-items: end
+}
+
+nc-action-sheet {
+  ::ng-deep {
+  .action-sheet.animation{
+    height: 35%;
+  }
+  }
+}
+
+.quantity-products{
+  padding-left: tbu(px(34));
+  width: 100%;
+  padding-right: tbu(px(30));
+  padding-top: tbu(px(34));
+
+}
+
+.delete-item{
+  display: flex;
+
+  width: 100%;
+  padding-right: tbu(px(30));
+  padding-top: tbu(px(34));
+  justify-content: flex-start;
+}
+
+.icon-delete{
+  margin-right: 5%;
 }
