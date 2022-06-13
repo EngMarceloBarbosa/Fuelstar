@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: 'orders-details',
     loadChildren: () => import('./orders-details/orders-details.module').then( m => m.OrdersDetailsPageModule)
+  },
+  {
+    path: 'delete-page',
+    loadChildren: () => import('./delete-page/delete-page.module').then( m => m.DeletePagePageModule)
   }
 
 ];

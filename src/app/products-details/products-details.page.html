@@ -1,7 +1,7 @@
 <ion-content>
   <div class="header-container">
     <div class="img-header">
-      <img src="{{listProducts1.image}}" alt="" />
+      <img src="{{itemProduct.image}}" alt="" />
     </div>
     <div class="header">
       <div class="icon-back">
@@ -75,7 +75,7 @@
             color="c-scale-10"
             weight="500"
             font="primary"
-            (click)="addProduct()"
+            (click)="addProduct(itemProduct)"
             >Add to cart
           </nc-text>
         </div>

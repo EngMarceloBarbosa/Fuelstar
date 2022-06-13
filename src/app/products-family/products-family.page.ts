@@ -40,13 +40,5 @@ export class ProductsFamilyPage implements OnInit {
   this.router.navigate(['products-details']);
   this.tasksService.testTask1$.next(test);
 
-
-
-
-
-
-
-
-
 }
 }

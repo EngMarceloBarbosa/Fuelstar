@@ -72,55 +72,91 @@
         </div>
       </div>
       <nc-virtual-scroller class="card-list" #scrollList [items]="list">
-      <div class="container-articles" *ngFor="let test of scrollList.viewPortItems" (click)="edit(test.id)" >
-        <div class="article" >
-          <div class="img-article">
-            <img src="/assets/img/logo-appsellers.svg" alt="" />
-          </div>
-          <div class="type-article">
-            <div class="description">
-              <nc-text
-                size="h8"
-                color="primary_dark"
-                weight="500"
-                font="primary"
-                >{{test.tittle}}</nc-text
-              >
-            </div>
-            <div class="price">
-              <nc-text
-                size="h8"
-                color="primary_dark"
-                weight="500"
-                font="primary"
-                >{{test.quantity}}</nc-text
-              >
-            </div>
-          </div>
-          <div class="reference-article">
-            <div class="reference">
-              <nc-text
-                size="h8"
-                color="primary_dark"
-                weight="500"
-                font="primary"
-                >{{listProducts.reference}}</nc-text
-              >
-            </div>
-            <div class="total-price">
-              <nc-text
-                size="h8"
-                color="primary_dark"
-                weight="Bold"
-                font="primary"
-                >{{test.totalValueItem}}€</nc-text
-              >
-            </div>
-          </div>
+        <div
+          class="container-articles"
+          *ngFor="let test of scrollList.viewPortItems"
+        >
+          <ion-item-sliding [attr.tester]="'swipeItemlist'">
+            <ion-item class="item">
+              <div class="article">
+                <ion-list
+                  class="radio-group"
+                  (ionChange)="carChangeEvent($event)"
+                >
+                  <ion-radio-group class="radio" *ngIf="!deleteState">
+                    <div>
+                      <ion-checkbox
+                        class="checkbox-icon"
+                        slot="start"
+                        checked="true"
+                        (ionChange)="onChange($event)"
+                        (click)="checked(test)"
+                        value="cord"
+                        color="success"
+                      ></ion-checkbox>
+                    </div>
+                  </ion-radio-group>
+                </ion-list>
+                <div class="container-product" (click)="edit(test.id)">
+                  <div class="img-article">
+                    <img src="/assets/img/logo-appsellers.svg" alt="" />
+                  </div>
+                  <div class="type-article">
+                    <div class="description">
+                      <nc-text
+                        size="h8"
+                        color="primary_dark"
+                        weight="500"
+                        font="primary"
+                        >{{test.tittle}}</nc-text
+                      >
+                    </div>
+                    <div class="price">
+                      <nc-text
+                        size="h8"
+                        color="primary_dark"
+                        weight="500"
+                        font="primary"
+                        >{{test.quantity}}</nc-text
+                      >
+                    </div>
+                  </div>
+                  <div class="reference-article">
+                    <div class="reference">
+                      <nc-text
+                        size="h8"
+                        color="primary_dark"
+                        weight="500"
+                        font="primary"
+                        >{{listProducts.reference}}</nc-text
+                      >
+                    </div>
+                    <div class="total-price">
+                      <nc-text
+                        size="h8"
+                        color="primary_dark"
+                        weight="Bold"
+                        font="primary"
+                        >{{test.totalValueItem}}€</nc-text
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ion-item>
+            <ion-item-options>
+              <ion-item-option color="c-scale-3_bg" (click)="deleteProduct(test.id)">
+                <div class="swipe">
+                  <nc-icon [size]="16" color="error" hoverColor="error"
+                    >icon_trash</nc-icon
+                  >
+                </div>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
         </div>
-      </div>
-    </nc-virtual-scroller>
-      <div class="add-products">
+      </nc-virtual-scroller>
+      <div class="add-products" *ngIf="deleteState">
         <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
           >+ Add products</nc-text
         >
@@ -134,7 +170,7 @@
         "
       />
 
-      <div class="final-sum">
+      <div class="final-sum" *ngIf="deleteState">
         <div class="price-final">
           <div class="price-shop">
             <div class="shipping-price">
@@ -283,7 +319,7 @@
     </div>
   </div>
 
-  <div class="buttons-footer">
+  <div class="buttons-footer" *ngIf="deleteState">
     <div class="buttons-client">
       <div class="client">
         <nc-text
@@ -307,26 +343,34 @@
       </div>
     </div>
   </div>
+  <div class="buttons-footer" *ngIf="!deleteState">
+    <div class="buttons-client">
+      <div class="client">
+        <nc-text
+          size="h6"
+          color="c-scale-12"
+          weight="bolder"
+          font="primary"
+          hoverColor="c-scale-12"
+          >Back</nc-text
+        >
+      </div>
+      <div class="client-2" (click)="clearAllButton()">
+        <nc-text
+          size="h7"
+          color="c-scale-1"
+          weight="bolder"
+          font="primary"
+          hoverColor="c-scale-1"
+          >Clear</nc-text
+        >
+      </div>
+    </div>
+  </div>
   <nc-action-sheet [typeASheet]="1" [showFooter]="false">
     <div class="action-sheet-body">
       <div class="content-options">
         <div class="container-options">
-          <!-- <div class="details-options">
-          <div class="icon-options">
-            <nc-icon
-              [size]="18"
-              color="c-scale-12"
-              hoverColor="c-scale-12"
-              (click)="options()"
-              >icon_options</nc-icon
-            >
-          </div>
-          <div class="title-options">
-            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
-              >Opções</nc-text
-            >
-          </div>
-        </div> -->
           <div class="description-options">
             <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
               >AÇÕES DISPONIVEIS SOBRE O PRODUTO</nc-text
@@ -339,16 +383,17 @@
         <div class="delete-item">
           <div class="icon-delete">
             <nc-icon
-            [size]="18"
-            color="c-scale-12"
-            hoverColor="c-scale-12"
-            (click)="deleteProduct(productList)"
-            >icon_close</nc-icon>
+              [size]="18"
+              color="c-scale-12"
+              hoverColor="c-scale-12"
+              (click)="deleteNavigation()"
+              >icon_close</nc-icon
+            >
           </div>
           <div class="title-delete">
             <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
-            >Delete item</nc-text
-          >
+              >Delete all</nc-text
+            >
           </div>
         </div>
       </div>

@@ -15,6 +15,15 @@ nc-virtual-scroller {
   height: 11%;
 }
 
+.container-product{
+  display: flex;
+  width: 100%;
+  align-items: centter;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .title-menu {
   display: flex;
   width: 100%;
@@ -129,6 +138,14 @@ nc-virtual-scroller {
   margin-top: tbu(px(19));
 }
 
+
+ion-checkbox{
+
+
+    --border-radius:50%
+
+    }
+
 .article {
   display: flex;
   width: 100%;
@@ -137,17 +154,18 @@ nc-virtual-scroller {
 }
 
 .img-article {
+  width: 28%;
 }
 
 .type-article {
   display: flex;
-  width: 50%;
+  width: 22%;
   flex-direction: column;
 }
 
 .reference-article {
   display: flex;
-  width: 40%;
+  width: 35%;
   flex-direction: column;
 }
 
@@ -234,6 +252,17 @@ nc-virtual-scroller {
     height: tbu(px(50));
     background-color: var(--c-scale-12_bg);
   }
+}
+
+.client-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48%;
+  border: tbu(px(1)) solid var(--secondary_dark);
+  border-radius: tbu(px(4));
+  height: tbu(px(50));
+  background-color: var(--error_bg);
 }
 
 

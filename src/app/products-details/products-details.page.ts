@@ -13,7 +13,7 @@ import { TasksService } from '../tasks.service';
   styleUrls: ['./products-details.page.scss'],
 })
 export class ProductsDetailsPage implements OnInit {
-  listProducts1: any;
+  itemProduct: any;
   product2 = product
   active: boolean = true;
   badge: number = 0;
@@ -27,7 +27,7 @@ export class ProductsDetailsPage implements OnInit {
   ngOnInit() {
     this.tasksService.testTask1$
       .subscribe(testTask1 => {
-        this.listProducts1 = testTask1;
+        this.itemProduct = testTask1;
       })
   }
 
@@ -39,7 +39,7 @@ export class ProductsDetailsPage implements OnInit {
     toast.present();
   }
 
-  async addProduct() {
+  async addProduct(product) {
     this.badge = ++this.badge;
     this.controlBadge = false;
     const toast = await this.toastController.create({
@@ -47,11 +47,11 @@ export class ProductsDetailsPage implements OnInit {
       message: 'Back to Articles lis t cart',
       position: 'top',
       color: 'light',
-      duration: 2000,
+      duration: 500,
     });
     await toast.present();
 
-this.productService.addValueProduct(this.listProducts1);
+this.productService.addValueProduct(product);
 this.productService.totalValueOrder()
 
   }

@@ -1,0 +1,91 @@
+
+<ion-content>
+  <div class="header-container">
+    <div class="header">
+      <div class="icon-back">
+        <nc-icon
+          [size]="18"
+          color="c-scale-12"
+          hoverColor="c-scale-1"
+          (click)="clear()"
+          >icon_trash</nc-icon
+        >
+      </div>
+      <div class="title-header">
+        <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+          >Delete mode</nc-text
+        >
+      </div>
+
+        <div class="icon-close">
+          <nc-icon
+            [size]="18"
+            color="c-scale-12"
+            hoverColor="c-scale-12"
+            (click)="close()"
+            >icon_close</nc-icon
+          >
+        </div>
+
+
+
+
+    </div>
+  </div>
+<div class="container">
+    <nc-virtual-scroller class="card-list" #scrollList [items]="listProducts">
+      <div class="container-articles" *ngFor="let test of scrollList.viewPortItems" >
+        <div class="article" >
+          <ion-radio-group  class="radio">
+          <div >
+          <ion-radio slot="start" value="cord"  color="success"></ion-radio>
+        </div>
+      </ion-radio-group>
+          <div class="img-article">
+            <img src="/assets/img/logo-appsellers.svg" alt="" />
+          </div>
+          <div class="type-article">
+            <div class="description">
+              <nc-text
+                size="h8"
+                color="primary_dark"
+                weight="500"
+                font="primary"
+                >{{test.tittle}}</nc-text
+              >
+            </div>
+            <div class="price">
+              <nc-text
+                size="h8"
+                color="primary_dark"
+                weight="500"
+                font="primary"
+                >{{test.quantity}}</nc-text
+              >
+            </div>
+          </div>
+          <div class="reference-article">
+            <div class="reference">
+              <nc-text
+                size="h8"
+                color="primary_dark"
+                weight="500"
+                font="primary"
+                >{{test.reference}}</nc-text
+              >
+            </div>
+            <div class="total-price">
+              <nc-text
+                size="h8"
+                color="primary_dark"
+                weight="Bold"
+                font="primary"
+                >{{test.totalValueItem}}€</nc-text
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nc-virtual-scroller>
+  </div>
+</ion-content>
