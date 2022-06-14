@@ -29,7 +29,7 @@ export class ProductService {
       }
     ];
   }
-  this.tasksService.testTask3$.next(this.productList);
+  this.tasksService.listProductsNew$.next(this.productList);
   console.log(this.productList, "1")
   }
 
@@ -41,7 +41,7 @@ export class ProductService {
 
       console.log(this.totalValueRequest)
     })
-    this.tasksService.testTask4$.next(this.totalValueRequest);
+    this.tasksService.valueTotal$.next(this.totalValueRequest);
   }
 
 }

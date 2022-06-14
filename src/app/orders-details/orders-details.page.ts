@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { FilterServiceService } from '../shared/filter-service.service';
 import { element } from 'protractor';
+import { RuleTester } from 'eslint';
 
 
 @Component({
@@ -25,15 +26,21 @@ export class OrdersDetailsPage implements OnInit {
   isOnActionButtons1: boolean = false;
   isOnActionButtons2: boolean = false;
   isOnActionButtons3: boolean = false;
-  deleteState:boolean = true;
+  deleteState: boolean = true;
+  deleteStateNext: boolean = false;
   selectedFilter: number = 0;
   translateStrings: any;
   list;
+  onPayment:boolean= false;
   listValue: any;
   productList: any[] = [];
   key: any;
+  continueState:boolean = true;
+  clearState:boolean = false;
+  finishstate:boolean = false;
+  onAdressNew:boolean = false;
 
-  selectedList :any[]= [];
+  selectedList: any[] = [];
   checkedProduct: any;
 
   constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService) { }
@@ -44,16 +51,16 @@ export class OrdersDetailsPage implements OnInit {
       .subscribe(res => {
         this.badges = res;
       }),
-      this.tasksService.testTask1$
+      this.tasksService.chooseProduct$
         .subscribe(product => {
           this.listProducts = product;
 
         }),
-      this.tasksService.testTask3$
+      this.tasksService.listProductsNew$
         .subscribe(testTask3 => {
           this.list = testTask3;
         }),
-      this.tasksService.testTask4$
+      this.tasksService.valueTotal$
         .subscribe(testTask4 => {
           this.listValue = testTask4;
           console.log(this.listValue, "ENTROU")
@@ -66,7 +73,17 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   continueButton() {
+    this.onAdressNew = true;
     this.onAdress = false
+    this.deleteStateNext = true;
+    this.deleteState = false;
+  }
+
+  continueButton1(){
+this.onPayment = true;
+this.finishstate = true;
+this.deleteStateNext = false;
+this.onAdressNew = false;
   }
 
   /* START DATE PICKER */
@@ -156,21 +173,21 @@ export class OrdersDetailsPage implements OnInit {
   edit(id) {
     console.log(id)
 
-      const temp: ActionSheetModel = {
-        titleText: 'Options',
-        titleTextColor: 'c-scale-12',
-        titleTextSize: 'large',
-        iconHeader: 'icon_options',
-        iconHeaderSize: 16,
-        iconHeaderColor: 'c-scale-12',
-        rightButtonShow: false,
-        middleButtonShow: false,
-        leftButtonShow: false,
-        closeButtonShow: true,
-        closeButtonColor: 'c-scale-12'
-      };
+    const temp: ActionSheetModel = {
+      titleText: 'Options',
+      titleTextColor: 'c-scale-12',
+      titleTextSize: 'large',
+      iconHeader: 'icon_options',
+      iconHeaderSize: 16,
+      iconHeaderColor: 'c-scale-12',
+      rightButtonShow: false,
+      middleButtonShow: false,
+      leftButtonShow: false,
+      closeButtonShow: true,
+      closeButtonColor: 'c-scale-12'
+    };
 
-      this.actionSheetService.open(temp);
+    this.actionSheetService.open(temp);
 
 
   }
@@ -179,15 +196,15 @@ export class OrdersDetailsPage implements OnInit {
 
   }
 
-  carChangeEvent (event) {
+  carChangeEvent(event) {
 
   }
 
 
   deleteNavigation() {
 
-    this.deleteState = false;
-
+    this.clearState = false
+    this.selectedList = [...this.list]
 
     // this.router.navigate(['delete-page']);
     // this.tasksService.testTask3$.next(this.list);
@@ -202,41 +219,67 @@ export class OrdersDetailsPage implements OnInit {
 
   }
 
-  checked(select){
-
-    const index = this.selectedList.findIndex(el =>select.id === el.id);
-    if(index > 0  ) {
-      this.selectedList.splice(index,1)
-    }else {
+  checked(select) {
+    // this.selectedList = this.list
+    const index = this.selectedList.findIndex(el => select.id === el.id);
+    if (index > -1) {
+      this.selectedList.splice(index, 1)
+    } else {
       this.selectedList = [...this.selectedList, select]
     }
     console.log(this.selectedList)
   }
 
 
-  clearAllButton(){
- this.list = [];
-  }
+  clearAllButton() {
+    console.log(this.selectedList)
+    // this.list = this.selectedList;
 
-  onChange($event){
-    console.log($event.target.checked);
-    this.checkedProduct = $event.target.checked;
-
-  }
-
-
-  deleteProduct(item){
+    this.selectedList.map(element => {
+      this.list = this.list.filter(item => item.id !== element.id)
+    })
+    this.selectedList = []
 
     console.log(this.list)
-    console.log(item)
-    const newArray = [];
-    this.list.map((element) =>{
-      console.log(element)
-      if(element.id !== this.list[item]){
-        this.list.slice(item, element);
-      }
-    })
+
+  }
+
+  onChange($event) {
+    console.log($event.target.checked);
+    this.checkedProduct = $event.target.checked;
+  }
+
+
+  deleteProduct(key: number) {
+    this.list.forEach((element, index) => {
+      if (element.id == key) this.list.splice(index, 1)
+    });
+
+    // console.log(this.list)
+    // // console.log(item)
+    // const newArray = [];
+    // this.list.map((element) =>{
+    //   console.log(element.id)
+    //   if(element.id !== item){
+    //     this.list.push(element);
+    //   }else {
+    //     this.list.slice(item,element);
+    //   }
+
+    // })
+
     console.log(this.list);
   }
 
+  finishButton(){
+    this.router.navigate(['/finish-order']);
+  }
+
+  choose(number){
+    if(number == 1){
+
+    }
+
+
+  }
 }

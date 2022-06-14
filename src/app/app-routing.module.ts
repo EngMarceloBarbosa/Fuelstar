@@ -45,8 +45,8 @@ const routes: Routes = [
     loadChildren: () => import('./orders-details/orders-details.module').then( m => m.OrdersDetailsPageModule)
   },
   {
-    path: 'delete-page',
-    loadChildren: () => import('./delete-page/delete-page.module').then( m => m.DeletePagePageModule)
+    path: 'finish-order',
+    loadChildren: () => import('./finish-order/finish-order.module').then( m => m.FinishOrderPageModule)
   }
 
 ];

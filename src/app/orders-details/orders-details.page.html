@@ -145,7 +145,10 @@
               </div>
             </ion-item>
             <ion-item-options>
-              <ion-item-option color="c-scale-3_bg" (click)="deleteProduct(test.id)">
+              <ion-item-option
+                color="c-scale-3_bg"
+                (click)="deleteProduct(test.id)"
+              >
                 <div class="swipe">
                   <nc-icon [size]="16" color="error" hoverColor="error"
                     >icon_trash</nc-icon
@@ -213,7 +216,7 @@
       </div>
     </div>
   </div>
-  <div class="container-adress" *ngIf="!onAdress">
+  <div class="container-adress" *ngIf="onAdressNew">
     <div class="delivery-date">
       <div class="title-data">
         <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
@@ -319,6 +322,104 @@
     </div>
   </div>
 
+  <div class="container-adress" *ngIf="onPayment">
+    <div class="delivery-date">
+      <div class="title-data">
+        <nc-text size="h7" color="c-scale-8" weight="500" font="primary"
+          >PAYMENT METHOD</nc-text
+        >
+      </div>
+      <div class="container-payment">
+        <ion-list class="radio-group">
+        <div class="container-method">
+          <div class="container-cash">
+            <div class="cash">
+              <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+                >Cash</nc-text
+              >
+            </div>
+            <ion-radio-group class="radio" *ngIf="!deleteState">
+              <div>
+                <ion-radio value="cord"></ion-radio>
+                <!-- <ion-checkbox
+                  class="checkbox-icon"
+                  slot="start"
+                  (ionChange)="onChange($event)"
+                  (click)="choose(1)"
+                  value="cord"
+                  color="success"
+                ></ion-checkbox> -->
+              </div>
+            </ion-radio-group>
+          </div>
+          <div class="description-cash">
+            <nc-text size="h8" color="c-scale-12" weight="500" font="primary"
+              >Pay with cash</nc-text
+            >
+          </div>
+        </div>
+        <div class="container-method">
+          <div class="container-cash">
+            <div class="cash">
+              <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+                >Credit card</nc-text
+              >
+            </div>
+            <ion-radio-group class="radio" *ngIf="!deleteState">
+              <ion-radio value="cord"></ion-radio>
+              <!-- <div>
+                <ion-checkbox
+                  class="checkbox-icon"
+                  slot="start"
+                  (ionChange)="onChange($event)"
+                  (click)="choose(2)"
+                  value="cord"
+                  color="success"
+                ></ion-checkbox>
+              </div> -->
+            </ion-radio-group>
+          </div>
+          <div class="description-cash">
+            <nc-text size="h8" color="c-scale-12" weight="500" font="primary"
+              >Pay with card</nc-text
+            >
+          </div>
+        </div>
+        <div class="container-method">
+          <div class="container-cash">
+            <div class="cash">
+              <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+                >Credit</nc-text
+              >
+            </div>
+            <ion-radio-group class="radio" *ngIf="!deleteState">
+              <ion-radio value="cord"></ion-radio>
+              <!-- <div>
+                <ion-checkbox
+                  class="checkbox-icon"
+                  slot="start"
+                  (ionChange)="onChange($event)"
+                  (click)="choose(3)"
+                  [disabled]="false"
+                  value="cord"
+                  color="success"
+                ></ion-checkbox>
+              </div> -->
+            </ion-radio-group>
+          </div>
+          <div class="description-cash">
+            <nc-text size="h8" color="c-scale-12" weight="500" font="primary"
+              >Pay later</nc-text
+            >
+          </div>
+        </div>
+              </ion-list>
+      </div>
+    </div>
+  </div>
+
+  <!-- INICIO 1 Order -->
+
   <div class="buttons-footer" *ngIf="deleteState">
     <div class="buttons-client">
       <div class="client">
@@ -328,7 +429,7 @@
           weight="bolder"
           font="primary"
           hoverColor="c-scale-12"
-          >Clean</nc-text
+          >Back</nc-text
         >
       </div>
       <div class="client-1" (click)="continueButton()">
@@ -343,7 +444,10 @@
       </div>
     </div>
   </div>
-  <div class="buttons-footer" *ngIf="!deleteState">
+
+  <!-- CLEAR BUTTONS -->
+
+  <div class="buttons-footer" *ngIf="clearState">
     <div class="buttons-client">
       <div class="client">
         <nc-text
@@ -367,6 +471,61 @@
       </div>
     </div>
   </div>
+
+  <!-- INICIO 2 -->
+
+  <div class="buttons-footer" *ngIf="deleteStateNext">
+    <div class="buttons-client">
+      <div class="client">
+        <nc-text
+          size="h6"
+          color="c-scale-12"
+          weight="bolder"
+          font="primary"
+          hoverColor="c-scale-12"
+          >Clean</nc-text
+        >
+      </div>
+      <div class="client-1" (click)="continueButton1()">
+        <nc-text
+          size="h7"
+          color="c-scale-1"
+          weight="bolder"
+          font="primary"
+          hoverColor="c-scale-1"
+          >Continue</nc-text
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- INICIO 3 -->
+
+  <div class="buttons-footer" *ngIf="finishstate">
+    <div class="buttons-client">
+      <div class="client">
+        <nc-text
+          size="h6"
+          color="c-scale-12"
+          weight="bolder"
+          font="primary"
+          hoverColor="c-scale-12"
+          >back</nc-text
+        >
+      </div>
+      <div class="client-1" (click)="finishButton()">
+        <nc-text
+          size="h7"
+          color="c-scale-1"
+          weight="bolder"
+          font="primary"
+          hoverColor="c-scale-1"
+          >finish</nc-text
+        >
+      </div>
+    </div>
+  </div>
+
   <nc-action-sheet [typeASheet]="1" [showFooter]="false">
     <div class="action-sheet-body">
       <div class="content-options">

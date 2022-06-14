@@ -38,7 +38,7 @@ export class ProductsFamilyPage implements OnInit {
 
   cardsClick(test){
   this.router.navigate(['products-details']);
-  this.tasksService.testTask1$.next(test);
+  this.tasksService.chooseProduct$.next(test);
 
 }
 }

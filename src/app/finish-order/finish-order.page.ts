@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../tasks.service';
 
 @Component({
-  selector: 'app-delete-page',
-  templateUrl: './delete-page.page.html',
-  styleUrls: ['./delete-page.page.scss'],
+  selector: 'app-finish-order',
+  templateUrl: './finish-order.page.html',
+  styleUrls: ['./finish-order.page.scss'],
 })
-export class DeletePagePage implements OnInit {
+export class FinishOrderPage implements OnInit {
 
   listProducts: any[] = [];
   listValue:any;
@@ -16,17 +16,17 @@ export class DeletePagePage implements OnInit {
 
   ngOnInit( ) {
 
-    this.tasksService.testTask1$
+    this.tasksService.chooseProduct$
     .subscribe(product => {
       this.listProducts1 = product;
 
     }),
-    this.tasksService.testTask3$
+    this.tasksService.listProductsNew$
 
         .subscribe(testTask3 => {
           this.listProducts = testTask3;
         }),
-        this.tasksService.testTask4$
+        this.tasksService.valueTotal$
         .subscribe(testTask4 => {
           this.listValue = testTask4;
           console.log(this.listValue, "ENTROU")

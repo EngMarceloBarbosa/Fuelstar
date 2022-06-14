@@ -19,15 +19,20 @@ export class ProductsDetailsPage implements OnInit {
   badge: number = 0;
   controlBadge: boolean = true;
   item: any;
-
+  listValue:any;
 
   constructor(private router: Router, public toastController: ToastController, private tasksService: TasksService, private actionSheetService: ActionSheetService, private productService: ProductService) { }
 
 
   ngOnInit() {
-    this.tasksService.testTask1$
+    this.tasksService.chooseProduct$
       .subscribe(testTask1 => {
         this.itemProduct = testTask1;
+      }),
+      this.tasksService.valueTotal$
+      .subscribe(testTask4 => {
+        this.listValue = testTask4;
+        console.log(this.listValue, "ENTROU")
       })
   }
 

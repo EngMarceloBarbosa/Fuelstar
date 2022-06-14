@@ -88,7 +88,7 @@ export class Tab1Page {
 
   detailsTasks(test: any){
     if(test.id){
-    this.tasksService.testTask$.next(test);
+    this.tasksService.listClient$.next(test);
     console.log(test);
     console.log("1 entrou");
     }

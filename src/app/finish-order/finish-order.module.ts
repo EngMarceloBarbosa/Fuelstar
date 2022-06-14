@@ -5,18 +5,18 @@ import { SharedModule } from '../shared/shared.module';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DeletePagePageRoutingModule } from './delete-page-routing.module';
+import { FinishOrderRoutingModule } from './finish-order.routing.module';
 
-import { DeletePagePage } from './delete-page.page';
+import { FinishOrderPage } from './finish-order.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DeletePagePageRoutingModule,
+    FinishOrderRoutingModule,
     SharedModule
   ],
-  declarations: [DeletePagePage]
+  declarations: [FinishOrderPage]
 })
-export class DeletePagePageModule {}
+export class FinishOrderPageModule {}

@@ -57,7 +57,6 @@ nc-virtual-scroller {
   padding-left: 24px;
   padding-right: 24px;
   padding-top: 24px;
-  height: 6%;
 }
 
 .step-details {
@@ -137,6 +136,7 @@ nc-virtual-scroller {
   display: flex;
   margin-top: tbu(px(19));
 }
+
 
 
 ion-checkbox{
@@ -265,6 +265,18 @@ ion-checkbox{
   background-color: var(--error_bg);
 }
 
+.client-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48%;
+  border: tbu(px(1)) solid var(--secondary_dark);
+  border-radius: tbu(px(4));
+  height: tbu(px(50));
+  background-color: var(--primary_bg);
+}
+
+
 
 .choose-dates {
   display: flex;
@@ -298,7 +310,7 @@ ion-checkbox{
 }
 
 .title-data{
-  padding-bottom: tbu(px(12));
+  padding-bottom: tbu(px(48));
 }
 
 .radio1{
@@ -386,4 +398,34 @@ nc-action-sheet {
 
 .icon-delete{
   margin-right: 5%;
+}
+
+
+.container-payment{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container-method{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: tbu(px(48));
+}
+.container-cash{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.cash{
+  display: flex;
+  width: 80%;
+  justify-content: flex-start;
+}
+
+.radio{
+  display: flex;
+  width: 20%;
+  justify-content: flex-end;
 }

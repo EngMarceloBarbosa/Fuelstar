@@ -17,12 +17,17 @@ export class TasksService {
   // }
 
   //  public testTask$ = new Subject<tasksTest>();
-  testTask$ = new BehaviorSubject<tasksTest[]>([]);
-  testTask1$ = new BehaviorSubject<tasksTest[]>([]);
-  testTask3$ = new BehaviorSubject<tasksTest[]>([]);
-  list: any []=[];
+  listClient$ = new BehaviorSubject<tasksTest[]>([]);
+  chooseProduct$ = new BehaviorSubject<tasksTest[]>([]);
+  listProductsNew$ = new BehaviorSubject<tasksTest[]>([]);
 
-  testTask4$ = new Subject<number>();
+
+  list: any []=[];
+  checkedList:any [] =[]
+  unCheckedList:any[]=[]
+
+
+  valueTotal$ = new Subject<number>();
   // testTask2$ = new BehaviorSubject<tasksTest[]>([]);
   badge$ = new BehaviorSubject<tasksTest[]>([]);
 
