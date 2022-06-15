@@ -9,7 +9,7 @@ import { TasksService } from '../tasks.service';
 export class FinishOrderPage implements OnInit {
 
   listProducts: any[] = [];
-  listValue:any;
+  listValue1:any;
   listProducts1:any;
 
   constructor(  private tasksService: TasksService) { }
@@ -27,10 +27,10 @@ export class FinishOrderPage implements OnInit {
           this.listProducts = testTask3;
         }),
         this.tasksService.valueTotal$
-        .subscribe(testTask4 => {
-          this.listValue = testTask4;
-          console.log(this.listValue, "ENTROU")
-        })
+        .subscribe(valueTotal => {
+          this.listValue1 = valueTotal;
+          console.log(this.listValue1, "ENTROU NO FINISH")
+        }),
         console.log(this.listProducts)
   }
 

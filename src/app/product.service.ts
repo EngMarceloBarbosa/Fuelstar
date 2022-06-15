@@ -8,6 +8,7 @@ export class ProductService {
 
   productList:any[]=[];
   totalValueRequest: number;
+  Total:number;
 
   constructor(private tasksService: TasksService) { }
 
@@ -26,6 +27,7 @@ export class ProductService {
         ...newElement,
         quantity:1,
         totalValueItem: newElement.price
+
       }
     ];
   }
@@ -38,10 +40,10 @@ export class ProductService {
     this.totalValueRequest = 0;
     this.productList.map(elem => {
       this.totalValueRequest += elem.totalValueItem;
-
-      console.log(this.totalValueRequest)
+      console.log( this.totalValueRequest.toFixed(2));
     })
-    this.tasksService.valueTotal$.next(this.totalValueRequest);
+    this.tasksService.valueTotal$.next(this.totalValueRequest.toFixed(2));
   }
+
 
 }

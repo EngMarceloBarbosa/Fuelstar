@@ -4,8 +4,6 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { FilterServiceService } from '../shared/filter-service.service';
-import { element } from 'protractor';
-import { RuleTester } from 'eslint';
 
 
 @Component({
@@ -202,8 +200,8 @@ this.onAdressNew = false;
 
 
   deleteNavigation() {
-
-    this.clearState = false
+    this.deleteState= false
+    this.clearState = true
     this.selectedList = [...this.list]
 
     // this.router.navigate(['delete-page']);
@@ -252,7 +250,8 @@ this.onAdressNew = false;
 
   deleteProduct(key: number) {
     this.list.forEach((element, index) => {
-      if (element.id == key) this.list.splice(index, 1)
+      if (element.id == key)
+      this.list.splice(index, 1)
     });
 
     // console.log(this.list)
@@ -273,6 +272,10 @@ this.onAdressNew = false;
 
   finishButton(){
     this.router.navigate(['/finish-order']);
+  }
+
+  addMoreProducts(){
+    this.router.navigate(['/products']);
   }
 
   choose(number){

@@ -83,19 +83,17 @@
                   class="radio-group"
                   (ionChange)="carChangeEvent($event)"
                 >
-                  <ion-radio-group class="radio" *ngIf="!deleteState">
-                    <div>
-                      <ion-checkbox
-                        class="checkbox-icon"
-                        slot="start"
-                        checked="true"
-                        (ionChange)="onChange($event)"
-                        (click)="checked(test)"
-                        value="cord"
-                        color="success"
-                      ></ion-checkbox>
-                    </div>
-                  </ion-radio-group>
+                  <div *ngIf="clearState">
+                    <ion-checkbox
+                      class="checkbox-icon"
+                      slot="start"
+                      checked="true"
+                      (ionChange)="onChange($event)"
+                      (click)="checked(test)"
+                      value="cord"
+                      color="success"
+                    ></ion-checkbox>
+                  </div>
                 </ion-list>
                 <div class="container-product" (click)="edit(test.id)">
                   <div class="img-article">
@@ -159,7 +157,7 @@
           </ion-item-sliding>
         </div>
       </nc-virtual-scroller>
-      <div class="add-products" *ngIf="deleteState">
+      <div class="add-products" *ngIf="deleteState" (click)="addMoreProducts()">
         <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
           >+ Add products</nc-text
         >
@@ -331,17 +329,22 @@
       </div>
       <div class="container-payment">
         <ion-list class="radio-group">
-        <div class="container-method">
-          <div class="container-cash">
-            <div class="cash">
-              <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-                >Cash</nc-text
-              >
-            </div>
-            <ion-radio-group class="radio" *ngIf="!deleteState">
-              <div>
-                <ion-radio value="cord"></ion-radio>
-                <!-- <ion-checkbox
+          <ion-radio-group>
+            <div class="container-method">
+              <div class="container-cash">
+                <div class="cash">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >Cash</nc-text
+                  >
+                </div>
+
+                <div class="radio">
+                  <ion-radio value="cord" checked></ion-radio>
+                  <!-- <ion-checkbox
                   class="checkbox-icon"
                   slot="start"
                   (ionChange)="onChange($event)"
@@ -349,25 +352,32 @@
                   value="cord"
                   color="success"
                 ></ion-checkbox> -->
+                </div>
               </div>
-            </ion-radio-group>
-          </div>
-          <div class="description-cash">
-            <nc-text size="h8" color="c-scale-12" weight="500" font="primary"
-              >Pay with cash</nc-text
-            >
-          </div>
-        </div>
-        <div class="container-method">
-          <div class="container-cash">
-            <div class="cash">
-              <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-                >Credit card</nc-text
-              >
+              <div class="description-cash">
+                <nc-text
+                  size="h8"
+                  color="c-scale-12"
+                  weight="500"
+                  font="primary"
+                  >Pay with cash</nc-text
+                >
+              </div>
             </div>
-            <ion-radio-group class="radio" *ngIf="!deleteState">
-              <ion-radio value="cord"></ion-radio>
-              <!-- <div>
+            <div class="container-method">
+              <div class="container-cash">
+                <div class="cash">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >Credit card</nc-text
+                  >
+                </div>
+                <div class="radio">
+                  <ion-radio value="cord2"></ion-radio>
+                  <!-- <div>
                 <ion-checkbox
                   class="checkbox-icon"
                   slot="start"
@@ -377,24 +387,32 @@
                   color="success"
                 ></ion-checkbox>
               </div> -->
-            </ion-radio-group>
-          </div>
-          <div class="description-cash">
-            <nc-text size="h8" color="c-scale-12" weight="500" font="primary"
-              >Pay with card</nc-text
-            >
-          </div>
-        </div>
-        <div class="container-method">
-          <div class="container-cash">
-            <div class="cash">
-              <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-                >Credit</nc-text
-              >
+                </div>
+              </div>
+              <div class="description-cash">
+                <nc-text
+                  size="h8"
+                  color="c-scale-12"
+                  weight="500"
+                  font="primary"
+                  >Pay with card</nc-text
+                >
+              </div>
             </div>
-            <ion-radio-group class="radio" *ngIf="!deleteState">
-              <ion-radio value="cord"></ion-radio>
-              <!-- <div>
+            <div class="container-method">
+              <div class="container-cash">
+                <div class="cash">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >Credit</nc-text
+                  >
+                </div>
+                <div class="radio">
+                  <ion-radio value="cord1"></ion-radio>
+                  <!-- <div>
                 <ion-checkbox
                   class="checkbox-icon"
                   slot="start"
@@ -405,15 +423,20 @@
                   color="success"
                 ></ion-checkbox>
               </div> -->
-            </ion-radio-group>
-          </div>
-          <div class="description-cash">
-            <nc-text size="h8" color="c-scale-12" weight="500" font="primary"
-              >Pay later</nc-text
-            >
-          </div>
-        </div>
-              </ion-list>
+                </div>
+              </div>
+              <div class="description-cash">
+                <nc-text
+                  size="h8"
+                  color="c-scale-12"
+                  weight="500"
+                  font="primary"
+                  >Pay later</nc-text
+                >
+              </div>
+            </div>
+          </ion-radio-group>
+        </ion-list>
       </div>
     </div>
   </div>

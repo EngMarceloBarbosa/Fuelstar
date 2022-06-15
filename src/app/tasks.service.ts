@@ -27,7 +27,7 @@ export class TasksService {
   unCheckedList:any[]=[]
 
 
-  valueTotal$ = new Subject<number>();
+  valueTotal$ = new BehaviorSubject<any>('');
   // testTask2$ = new BehaviorSubject<tasksTest[]>([]);
   badge$ = new BehaviorSubject<tasksTest[]>([]);
 
