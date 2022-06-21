@@ -64,7 +64,8 @@ height: 6%;
     display: flex;
     flex-direction: row;
     width: 100%;
-    @extend .justify-end;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -99,3 +100,4 @@ nc-button {
 .icon-switch {
   @extend .justify-end;
 }
+

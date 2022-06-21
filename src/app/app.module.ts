@@ -5,6 +5,13 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import { TranslateModule, TranslateLoader, } from "@ngx-translate/core";
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 
 
@@ -16,6 +23,14 @@ import { SharedModule } from './shared/shared.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     SharedModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    }),
+
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

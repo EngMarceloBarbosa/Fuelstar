@@ -30,6 +30,7 @@
     "@nc-angular/devkit": "^12.0.11",
     "@nc-angular/library-mobile.stg": "0.0.1-melo",
     "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "bootstrap": "^3.4.1",
     "perfect-scrollbar": "^1.5.5",
     "resize-observer-polyfill": "^1.5.1",

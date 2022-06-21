@@ -1,0 +1,104 @@
+{
+  "App": {
+    "Global": {
+      "fromDate": "De : ",
+      "title2": "Não se trata de dinheiro, mas de verificar as suas finanças.",
+      "description2": "Assuma o controlo da sua conta corrente com um único aplicativo.",
+      "title3": "Selecione a conta corrente que pretende consultar.",
+      "description3": "Poderá aceder por você mesmo, em representação de alguém ou empresa.",
+      "title4": "Situação em tempo real da sua conta corrente",
+      "description4": "Uma visão geral das receitas e despesas com as entidades relacionadas consigo.",
+      "processing": "Em processo",
+      "cancel": "Cancelado",
+      "done": "Terminado"
+    },
+
+    "Login": {
+      "titleLogin": "Bem vindo a FuelStar",
+      "descriptionLogin": "Bem vindo a FuelStar",
+      "labelInputUser": "Email ou Código Niup",
+      "placeholderUser": "da conta niup.me",
+      "labelInputPassword": "Palavra-passe",
+      "placeholderPassword": "da conta ",
+      "openShift": "Abrir Turno",
+      "descriptionOpenShift": "Se trabalha com turnos",
+      "titleForgetPassword": "Não consegue entrar na aplicação",
+      "forgetPassword": "Esqueceu-se da Palavra-passe",
+      "buttonFooter": "Iniciar sessão"
+    },
+
+    "RecoverPassword": {
+      "titleRecover": "Esqueceu a palavra-passe",
+      "descriptionRecover": "Insira a sua conta do email para voltar a inserir a sua palavra-passe",
+      "placeholderPassword": "da conta ",
+      "send": "Enviar"
+    },
+
+    "Tab1": {
+      "titleHeader": "Bem Vindo",
+      "operator": "operador",
+      "numberShift": "Shift 2",
+      "visitsDone": "Visitas Efetuadas",
+      "visitsTodo": "Visitas para fazer",
+      "visitsForToday": "Visitas para hoje",
+      "vehicle": "viatura"
+    },
+
+    "Tabs": {
+      "tab1": "Menu",
+      "tab2": "Operações",
+      "tab3": "Painel de contolo"
+    },
+
+    "Settings": {
+      "operator": "operador",
+      "changeUser": "Mudar utilizador",
+      "general": "GERAL",
+      "shift": "Turno",
+      "desciptionShift": "Turno aberto com o empregado associado com o utilizador",
+      "timeline": "Cronologia",
+      "desciptionTimeline": "Veja a sua acção sobre o 'vendedor' Fuelstar",
+      "language": "Linguagem",
+      "changeYourAppLanguage": "Mudar a linguagem da aplicação",
+      "logout": "Sair",
+      "notifications": "Notificações",
+      "notification": "Notificação",
+      "manage": "Gestão",
+      "disturb": "Não incomodar"
+    },
+
+    "Tab2": {
+      "operator": "operador",
+      "operations": "Operações",
+      "choiceOperation": "Escolha tipo de operação",
+      "freeSale": "Venda Livre",
+      "startNew": "Iniciar nova",
+      "orderFrom": "Encomenda",
+      "survey": "Levantamento",
+      "receiving": "Recebimento",
+      "return": "Devolução"
+    },
+
+    "Orders": {
+      "clients": "Clientes",
+      "newClient": "Novo cliente",
+      "search": "Pesquisa",
+      "clean": "Apagar",
+      "addProducts": "Adicionar produtos",
+      "description": "Pesquise através da sua família ou sub famlia e adicione os produtos que pretende.",
+      "addProductsMore": " + Adicionar produtos",
+      "back": "Voltar",
+      "continue": "Continuar"
+    },
+
+    "Products": {
+      "productFamily": "Família de produtos",
+      "home": "Menu",
+      "service": "Serviço"
+    },
+
+    "ProductDetails": {
+      "titleActionSheet": "Opções"
+    }
+  }
+}

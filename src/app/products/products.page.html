@@ -13,7 +13,7 @@
       <div class="order-details">
         <div class="operator-name">
           <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-            >Product family</nc-text
+            >{{'App.Products.productFamily' | translate}}</nc-text
           >
         </div>
       </div>
@@ -27,7 +27,7 @@
       [tabBarUnderlineStyle]="{borderColor: 'var(--c-scale-12)'}"
       [tabBarInactiveTextColor]="'var(--c-scale-8)'"
     >
-      <nc-tab-pane [attr.tester]="'click-tab'" [title]="'Home'">
+      <nc-tab-pane [attr.tester]="'click-tab'" title="{{'App.Products.home' | translate}}">
         <div>
           <div style="padding: 24px">
 
@@ -112,7 +112,7 @@
     </div>
     </div>
     </nc-tab-pane>
-    <nc-tab-pane [attr.tester]="'click-tab'" [title]="'Service'">
+    <nc-tab-pane [attr.tester]="'click-tab'" title="{{'App.Products.service' | translate}}">
       <div>
         <div style="padding: 24px">
       HOLLA

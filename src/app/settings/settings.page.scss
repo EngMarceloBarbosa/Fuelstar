@@ -1,6 +1,7 @@
 .container {
   margin-left: 5%;
   margin-top: 10%;
+  margin-right: 5%;
 }
 
 .header-profile {
@@ -105,7 +106,7 @@
   display: flex;
   align-items: center;
   width: 60px;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .logout {

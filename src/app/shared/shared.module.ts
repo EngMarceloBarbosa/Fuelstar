@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { TranslateModule} from '@ngx-translate/core';
 // LIBRARIES
 
 import { NiupComponents } from './niup-components.module';
@@ -23,6 +23,7 @@ const modules = [
   NiupComponents,
   PipesModule,
   DragDropModule,
+  TranslateModule
 ];
 
 @NgModule({

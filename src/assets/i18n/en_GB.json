@@ -1,0 +1,104 @@
+{
+  "App": {
+    "Global": {
+      "fromDate": "De : ",
+      "title2": "Não se trata de dinheiro, mas de verificar as suas finanças.",
+      "description2": "Assuma o controlo da sua conta corrente com um único aplicativo.",
+      "title3": "Selecione a conta corrente que pretende consultar.",
+      "description3": "Poderá aceder por você mesmo, em representação de alguém ou empresa.",
+      "title4": "Situação em tempo real da sua conta corrente",
+      "description4": "Uma visão geral das receitas e despesas com as entidades relacionadas consigo.",
+      "processing": "Em processo",
+      "cancel": "Cancel",
+      "done": "done"
+    },
+
+    "Login": {
+      "titleLogin": "Welcome to Fuelstar",
+      "descriptionLogin": "Welcome to Fuelstar",
+      "labelInputUser": "Email or Niup Code",
+      "placeholderUser ": "from niup.me account",
+      "labelInputPassword": "Password",
+      "placeholderPassword": "from account",
+      "openShift": "Open Shift",
+      "descriptionOpenShift": "If you work with shifts",
+      "titleForgetPassword": "Can´t get into the app",
+      "forgetPassword": "Forgot Password",
+      "buttonFooter": "Sign in "
+    },
+
+    "RecoverPassword": {
+      "titleRecover": "Forget your password",
+      "descriptionRecover": "Insert your email account for reseat your password",
+      "placeholderUser ": "from niup.me account",
+      "send": "Send"
+    },
+
+    "Tab1": {
+      "titleHeader": "Welcome Back",
+      "operator": "operator",
+      "numberShift": "Shift 2",
+      "visitsDone": "Visits Done",
+      "visitsTodo": "Visitas To do",
+      "visitsForToday": "Visits for today",
+      "vehicle": "vehicle"
+    },
+
+    "Tabs": {
+      "tab1": "Home",
+      "tab2": "Operations",
+      "tab3": "Dashboards"
+    },
+
+    "Settings": {
+      "operator": "operator",
+      "changeUser": "Change user",
+      "general": "GENERAL",
+      "shift": "Shift",
+      "desciptionShift": "Open shitf with employer associeted with the user",
+      "timeline": "Timeline",
+      "desciptionTimeline": "View your action on Fuelstar 'seller' ",
+      "language": "Language",
+      "changeYourAppLanguage": "Change your app Language ",
+      "logout": "Logout",
+      "notifications": "Notifications",
+      "notification": "Notification",
+      "manage": "manage",
+      "disturb": "Don´t disturb"
+    },
+
+    "Tab2": {
+      "operator": "operator",
+      "operations": "Operations",
+      "choiceOperation": "Choice operation type",
+      "freeSale": "Free Sale",
+      "startNew": "Start New",
+      "orderFrom": "Order From",
+      "survey": "Survey",
+      "receiving": "Receiving",
+      "return": "Return"
+    },
+
+    "Orders": {
+      "clients": "Clients",
+      "newClient": "New search",
+      "search": "Pesquisa",
+      "clean": "Clean",
+      "addProducts": "Add products",
+      "description": "Search through your family or sub-family and add the products you want.",
+      "addProductsMore": "+ Add products",
+      "back": "Back",
+      "continue": "Continue"
+    },
+
+    "Products": {
+      "productFamily": "Product family",
+      "home": "Home",
+      "service": "Service"
+    },
+
+    "ProductDetails": {
+      "titleActionSheet": "Options"
+    }
+  }
+}

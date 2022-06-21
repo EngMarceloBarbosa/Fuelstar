@@ -7,8 +7,11 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { environment } from 'src/environments/environment';
-// import { TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { LoginApiService } from '../shared/http/login-api.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+
 
 
 @Component({
@@ -24,24 +27,27 @@ export class LoginPage implements OnInit {
 
   alertMessagesTranslations: any;
   form: FormGroup;
-
-
-
-
   values: string;
   chave1: any[];
   alunos = [];
-
+  globalMessagesTranslations: any;
+  loginMessagesTranslations: any;
 
   constructor(private router: Router,
     private loginApiService: LoginApiService,
     private alertService: AlertService,
     public formBuilder: FormBuilder,
-    //  public translate: TranslateService,
+    public translate: TranslateService,
   ) {
   }
 
   ngOnInit() {
+
+    this.translate.get('App').subscribe(res => {
+      this.globalMessagesTranslations = res.Global;
+      this.loginMessagesTranslations = res.Login;
+
+    });
 
     // this.translate.get('AlertMessages').subscribe(res => (this.alertMessagesTranslations = res));
     this.form = this.formBuilder.group({
@@ -55,9 +61,9 @@ export class LoginPage implements OnInit {
       password: [
         '',
         [
-        Validators.required,
-        // Validators.minLength(8)
-      ]]
+          Validators.required,
+          // Validators.minLength(8)
+        ]]
     });
   }
 
@@ -86,7 +92,7 @@ export class LoginPage implements OnInit {
    */
 
   forgotPasswordClick() {
-    window.open('https://dev.niup.me', '_system', 'location=yes');
+   this.router.navigate(["/recoverPassword"])
   }
 
   /**

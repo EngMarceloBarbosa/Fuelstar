@@ -3,6 +3,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
+import { TranslateService } from '@ngx-translate/core';
 import { ProductService } from '../product.service';
 import { product } from '../shared/models/product-list';
 import { TasksService } from '../tasks.service';
@@ -20,11 +21,28 @@ export class ProductsDetailsPage implements OnInit {
   controlBadge: boolean = true;
   item: any;
   listValue:any;
+  globalMessagesTranslations:any;
+  loginMessagesTranslations:any;
+  productsMessagesTranslations:any;
 
-  constructor(private router: Router, public toastController: ToastController, private tasksService: TasksService, private actionSheetService: ActionSheetService, private productService: ProductService) { }
+  constructor(
+    private router: Router,
+    public toastController: ToastController,
+    private tasksService: TasksService,
+    private actionSheetService: ActionSheetService,
+    private productService: ProductService,
+    private translate: TranslateService) { }
 
 
   ngOnInit() {
+
+    this.translate.get('App').subscribe(res => {
+      this.globalMessagesTranslations = res.Global;
+      this.loginMessagesTranslations = res.Login;
+      this.productsMessagesTranslations = res.ProductDetails;
+
+    });
+
     this.tasksService.chooseProduct$
       .subscribe(testTask1 => {
         this.itemProduct = testTask1;
@@ -74,7 +92,7 @@ this.productService.totalValueOrder()
 
   options() {
     const temp: ActionSheetModel = {
-      titleText: 'Options',
+      titleText: this.productsMessagesTranslations.titleActionSheet,
       titleTextColor: 'c-scale-12',
       titleTextSize: 'large',
       iconHeader: 'icon_options',

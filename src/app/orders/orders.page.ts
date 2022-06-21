@@ -24,43 +24,43 @@ export class OrdersPage implements OnInit {
       icon: "icon_user",
       name: "Marcelo",
       id: 1,
-      iconCheck : false
+      iconCheck: false
     },
     {
       icon: "icon_user",
       name: "Berto panasca",
       id: 2,
-      iconCheck : false
+      iconCheck: false
     },
     {
       icon: "icon_user",
       name: "Rega",
       id: 3,
-      iconCheck : false
+      iconCheck: false
     },
     {
       icon: "icon_user",
       name: "Tone",
       id: 4,
-      iconCheck : false
+      iconCheck: false
     },
     {
       icon: "icon_user",
       name: "Dias",
       id: 5,
-      iconCheck : false
+      iconCheck: false
     },
     {
       icon: "icon_user",
       name: "Coito",
       id: 5,
-      iconCheck : false
+      iconCheck: false
     },
     {
       icon: "icon_user",
       name: "Carlos",
       id: 5,
-      iconCheck : false
+      iconCheck: false
     },
 
 
@@ -91,17 +91,17 @@ export class OrdersPage implements OnInit {
   // }
 
 
-//  selectedItemList(item) {
-//   this.(tua_lista).map((elem) => {
-//     elem.iconCheck = false;
-//     return elem;
-//   });
+  //  selectedItemList(item) {
+  //   this.(tua_lista).map((elem) => {
+  //     elem.iconCheck = false;
+  //     return elem;
+  //   });
 
-//   item.iconCheck = true;
-//   this.selectedItem = item;
-//   item.iconCheck = true;
-//   this.nextButtonDisabled = false;
-// }
+  //   item.iconCheck = true;
+  //   this.selectedItem = item;
+  //   item.iconCheck = true;
+  //   this.nextButtonDisabled = false;
+  // }
 
 
 
@@ -148,28 +148,28 @@ export class OrdersPage implements OnInit {
     console.log("Entrou new client");
   }
 
-  continueButton(){
+  continueButton() {
     console.log(this.selectedItem);
-    if(!this.selectedItem ) {
+    if (!this.selectedItem) {
       this.continue = true;
       console.log("entrou no Conitue")
-    }else {
+    } else {
       console.log("entrou no lol")
       this.continue = false;
     }
   }
 
 
-  continueProcess(){
+  continueProcess() {
     this.router.navigate(['/orders']);
   }
 
-  addProducts(){
+  addProducts() {
     this.router.navigate(['/products']);
   }
 
-  back(){
+  back() {
 
-  this.continue = true;
+    this.continue = true;
   }
 }
