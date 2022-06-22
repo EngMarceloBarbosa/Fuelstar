@@ -1,9 +1,10 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { TasksService } from '../tasks.service';
+import { TasksService } from '../shared/services/tasks.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { FilterServiceService } from '../shared/filter-service.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -37,13 +38,23 @@ export class OrdersDetailsPage implements OnInit {
   clearState:boolean = false;
   finishstate:boolean = false;
   onAdressNew:boolean = false;
-
+  globalMessagesTranslations:any;
+  deleteMessagesTranslations:any;
+  productsMessagesTranslations:any;
+  badgeOn: boolean = false;
   selectedList: any[] = [];
   checkedProduct: any;
 
-  constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService) { }
+  constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService,  private translate: TranslateService) { }
 
   ngOnInit() {
+
+    this.translate.get('App').subscribe(res => {
+      this.globalMessagesTranslations = res.Global;
+      this.deleteMessagesTranslations = res.Delete;
+      this.productsMessagesTranslations = res.ProductDetails;
+
+    });
 
     this.tasksService.badge$
       .subscribe(res => {
@@ -68,6 +79,7 @@ export class OrdersDetailsPage implements OnInit {
 
   close() {
     this.router.navigate(['products-details']);
+    this.badges = "" ;
   }
 
   continueButton() {
@@ -172,7 +184,7 @@ this.onAdressNew = false;
     console.log(id)
 
     const temp: ActionSheetModel = {
-      titleText: 'Options',
+      titleText: this.productsMessagesTranslations.titleActionSheet,
       titleTextColor: 'c-scale-12',
       titleTextSize: 'large',
       iconHeader: 'icon_options',
@@ -252,6 +264,7 @@ this.onAdressNew = false;
     this.list.forEach((element, index) => {
       if (element.id == key)
       this.list.splice(index, 1)
+
     });
 
     // console.log(this.list)
@@ -266,7 +279,8 @@ this.onAdressNew = false;
     //   }
 
     // })
-
+    this.badges = "" ;
+    this.badgeOn = true;
     console.log(this.list);
   }
 
@@ -283,6 +297,15 @@ this.onAdressNew = false;
 
     }
 
+
+
+  }
+
+
+  back(){
+    this.router.navigate(['products-details']);
+    this.badges = ""
+    this.tasksService.badgeEmpty$.next(this.badges);
 
   }
 }

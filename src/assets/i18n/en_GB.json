@@ -16,6 +16,7 @@
     "Login": {
       "titleLogin": "Welcome to Fuelstar",
       "descriptionLogin": "Welcome to Fuelstar",
+      "login" : "Login",
       "labelInputUser": "Email or Niup Code",
       "placeholderUser ": "from niup.me account",
       "labelInputPassword": "Password",
@@ -30,7 +31,7 @@
     "RecoverPassword": {
       "titleRecover": "Forget your password",
       "descriptionRecover": "Insert your email account for reseat your password",
-      "placeholderUser ": "from niup.me account",
+      "placeholderUser": "from niup.me account",
       "send": "Send"
     },
 
@@ -39,7 +40,7 @@
       "operator": "operator",
       "numberShift": "Shift 2",
       "visitsDone": "Visits Done",
-      "visitsTodo": "Visitas To do",
+      "visitsTodo": "Visits To do",
       "visitsForToday": "Visits for today",
       "vehicle": "vehicle"
     },
@@ -97,8 +98,59 @@
       "service": "Service"
     },
 
-    "ProductDetails": {
+    "ProductsFamily": {
+      "headerTitle": "Sub family"
+    },
+
+    "OrderDetails": {
+      "addProductsMore": "+ Add products",
+      "shippingPrice": "Shipping price",
+      "discount": "Discount",
+      "priceTotal": "Total",
+      "buttonOrderAdd": " Back",
+      "buttonOrderContinue": "Continue",
+      "preferentialDeliveryDate": "Preferential delivery date",
+      "edit": "edit",
+      "shippingAdress": "Shipping Adress",
+      "addNewAdress": "Add new Shipping adress",
+      "buttonOrderClear": "Clean",
+      "buttonOrderBack": "Back",
+      "buttonOrderFinish": "Finish",
+      "optionPay": "PAYMENT METHOD",
+      "optionCash": "Cash",
+      "optionCreditCard": "Credit card",
+      "optionCredit": "Credit",
+      "descriptionCash": "Pay with cash",
+      "descriptionCreditCard": "Pay with card",
+      "descriptionCredit": "Pay later",
+      "deleteAll": "Delete all",
       "titleActionSheet": "Options"
+
+
+    },
+
+
+    "FinishOrder": {
+      "optionCash": "Cash",
+      "descriptionCash": "Pay with cash",
+      "invoiceEmail": "Invoice to email",
+      "descriptionInvoice": "Send invoice to email of associeted client",
+      "items": "Items",
+      "shippingPrice": "Shipping price",
+      "discount": "Discount",
+      "priceTotal": "Total"
+
+     },
+
+    "ProductDetails": {
+      "headerTitle": "Sub-família",
+      "titleActionSheet": "Options",
+      "buttonAddCart": "Add to cart ",
+      "availableStock": " Available stock ",
+      "value": "Valor",
+      "subHeaderActionSheet": "AVAILABLE STOCKS ABOUT THE PRODUCT",
+      "price": "Change price",
+      "stock": "No stock"
     }
   }
 }

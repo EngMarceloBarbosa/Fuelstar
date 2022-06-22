@@ -125,6 +125,7 @@
         <div class="new-client-container" *ngIf="!active">
           <div class="inputs">
             <nc-input
+              [formGroup]="tas.crudGroup"
               [attr.tester]="'search-bar-current'"
               [placeholder]="'First name'"
               [bgInputColor]="'c-scale-12'"
@@ -132,6 +133,8 @@
               [clear]="true"
               [type]="'text'"
               [size]="'medium'"
+              [(ngModel)]="value"
+              (onChange)="change($event)"
               (valueChange)="searchDocument($event)"
             >
             </nc-input>
@@ -190,7 +193,7 @@
         </div>
         <div class="title-add-products">
           <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-            >Adicionar produtos</nc-text
+            >{{'App.Orders.addProducts' | translate}}</nc-text
           >
         </div>
         <div class="description-add-products">

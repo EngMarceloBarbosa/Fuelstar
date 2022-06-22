@@ -16,6 +16,7 @@
     "Login": {
       "titleLogin": "Bem vindo a FuelStar",
       "descriptionLogin": "Bem vindo a FuelStar",
+      "login" : "Iniciar Sessão",
       "labelInputUser": "Email ou Código Niup",
       "placeholderUser": "da conta niup.me",
       "labelInputPassword": "Palavra-passe",
@@ -37,7 +38,7 @@
     "Tab1": {
       "titleHeader": "Bem Vindo",
       "operator": "operador",
-      "numberShift": "Shift 2",
+      "numberShift": "Turno 2",
       "visitsDone": "Visitas Efetuadas",
       "visitsTodo": "Visitas para fazer",
       "visitsForToday": "Visitas para hoje",
@@ -58,7 +59,7 @@
       "desciptionShift": "Turno aberto com o empregado associado com o utilizador",
       "timeline": "Cronologia",
       "desciptionTimeline": "Veja a sua acção sobre o 'vendedor' Fuelstar",
-      "language": "Linguagem",
+      "language": "Idioma",
       "changeYourAppLanguage": "Mudar a linguagem da aplicação",
       "logout": "Sair",
       "notifications": "Notificações",
@@ -97,8 +98,62 @@
       "service": "Serviço"
     },
 
-    "ProductDetails": {
+    "ProductsFamily": {
+      "headerTitle": "Sub-família"
+
+     },
+
+     "OrderDetails": {
+      "addProductsMore": " + Adicionar produtos",
+      "shippingPrice": "Preço de envio",
+      "discount": "Desconto",
+      "priceTotal": "Total",
+      "buttonOrderAdd": "Voltar",
+      "buttonOrderContinue": "Continuar",
+      "preferentialDeliveryDate": "Data de entrega preferencial",
+      "edit": "editar",
+      "shippingAdress": "Morada de envio",
+      "addNewAdress": "Adicionar nova Morada de envio",
+      "buttonOrderClear": "Apagar",
+      "buttonOrderBack": "Voltar",
+      "buttonOrderFinish": "Finalizar",
+      "optionPay": "Método de Pagamento",
+      "optionCash": "Dinheiro",
+      "optionCreditCard": "Cartão de crédito",
+      "descriptionCash": "Pagar com dinheiro",
+      "descriptionCreditCard": "Pagar com cartão de crédito",
+      "descriptionCredit": "Pagar depois",
+      "optionCredit": "Crédito",
+      "deleteAll": "Apagar tudo",
       "titleActionSheet": "Opções"
+
+
+     },
+
+     "FinishOrder": {
+
+      "optionCash": "Dinheiro",
+      "descriptionCash": "Pagar com dinheiro",
+      "invoiceEmail": "Fatura para o mail",
+      "descriptionInvoice": "Enviar factura para o e-mail do cliente associado",
+      "items": "Itens",
+      "shippingPrice": "Preço de envio",
+      "discount": "Desconto",
+      "priceTotal": "Total"
+
+
+
+     },
+
+    "ProductDetails": {
+      "headerTitle": "Sub-família",
+      "titleActionSheet": "Opções",
+      "buttonAddCart": "Adicionar ao carrinho ",
+      "availableStock": "Stock disponível ",
+      "value": "Valor",
+      "subHeaderActionSheet": "AÇÕES DISPONIVEIS SOBRE O PRODUTO",
+      "price": "Mudar preço",
+      "stock": "Sem stock"
     }
   }
 }

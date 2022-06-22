@@ -1,0 +1,156 @@
+{
+  "App": {
+    "Global": {
+      "fromDate": "De : ",
+      "title2": "Não se trata de dinheiro, mas de verificar as suas finanças.",
+      "description2": "Assuma o controlo da sua conta corrente com um único aplicativo.",
+      "title3": "Selecione a conta corrente que pretende consultar.",
+      "description3": "Poderá aceder por você mesmo, em representação de alguém ou empresa.",
+      "title4": "Situação em tempo real da sua conta corrente",
+      "description4": "Uma visão geral das receitas e despesas com as entidades relacionadas consigo.",
+      "processing": "Em processo",
+      "cancel": "Cancel",
+      "done": "done"
+    },
+
+    "Login": {
+      "titleLogin": "Bienvenido a Fuelstar",
+      "descriptionLogin": "Bienvenido a Fuelstar",
+      "login" : "Inicio de Sesión",
+      "labelInputUser": "Correo electrónico o código Niup",
+      "placeholderUser": "de la cuenta de niup",
+      "labelInputPassword": "Contraseña",
+      "placeholderPassword": "de la cuenta",
+      "openShift": "Turno abierto",
+      "descriptionOpenShift": "Si trabajas con turnos",
+      "titleForgetPassword": "No puedo entrar en la aplicación",
+      "forgetPassword": "Olvidé la contraseña",
+      "buttonFooter": "Iniciar sesión"
+    },
+
+    "RecoverPassword": {
+      "titleRecover": "Olvida tu contraseña",
+      "descriptionRecover": "Introduzca su cuenta de correo electrónico para reseat su contraseña",
+      "placeholderUser": "de la cuenta de niup.me",
+      "send": "Envié"
+    },
+
+    "Tab1": {
+      "titleHeader": "Bienvenido de nuevo",
+      "operator": "operador",
+      "numberShift": "Turno 2",
+      "visitsDone": "Visitas Hechas",
+      "visitsTodo": "Visitas por hacer",
+      "visitsForToday": "Visitas para hoy",
+      "vehicle": "vehículo"
+    },
+
+    "Tabs": {
+      "tab1": "Inicio",
+      "tab2": "Operaciones",
+      "tab3": "Cuadros de mando"
+    },
+
+    "Settings": {
+      "operator": "operador",
+      "changeUser": "Cambiar usuario",
+      "general": "GENERAL",
+      "shift": "Turno",
+      "desciptionShift": "Abrir turno con el empleador asociado al usuario",
+      "timeline": "Línea de tiempo",
+      "desciptionTimeline": "Ver su acción en Fuelstar 'vendedor' ",
+      "language": "Idioma",
+      "changeYourAppLanguage": "Cambia el idioma de tu app ",
+      "logout": "Salida",
+      "notifications": "Notificaciones",
+      "notification": "Notificación",
+      "manage": "Gestione",
+      "disturb": "No molestar"
+    },
+
+    "Tab2": {
+      "operator": "operador",
+      "operations": "operaciones",
+      "choiceOperation": "Tipo de operación de elección",
+      "freeSale": "Venta libre",
+      "startNew": "Inicio Nuevo",
+      "orderFrom": "Pedidos",
+      "survey": "Encuesta",
+      "receiving": "Recepción",
+      "return": "Devolución"
+    },
+
+    "Orders": {
+      "clients": "Clientes",
+      "newClient": "Nueva búsqueda",
+      "search": "Busca en",
+      "clean": "Borrar",
+      "addProducts": "Añadir productos",
+      "description": "Busca en tu familia o subfamilia y añade los productos que quieras",
+      "addProductsMore": "+ Añadir productos",
+      "back": "Volver",
+      "continue": "Continuar"
+    },
+
+    "Products": {
+      "productFamily": "Familia de productos",
+      "home": "Inicio",
+      "service": "Servicio"
+    },
+
+    "ProductsFamily": {
+      "headerTitle": "Subfamilia"
+    },
+
+    "OrderDetails": {
+      "addProductsMore": "+ Añadir productos",
+      "shippingPrice": "Precio de envío",
+      "discount": "Descuento",
+      "priceTotal": "Total",
+      "buttonOrderAdd": " Volver",
+      "buttonOrderContinue": "Continuar",
+      "preferentialDeliveryDate": "Fecha de entrega preferente",
+      "edit": "editar",
+      "shippingAdress": "Dirección de envío",
+      "addNewAdress": "Añadir nueva dirección de envío",
+      "buttonOrderClear": "Limpiar",
+      "buttonOrderBack": "Volver",
+      "buttonOrderFinish": "Terminado",
+      "optionPay": "MÉTODO DE PAGO",
+      "optionCash": "Dinero",
+      "optionCreditCard": "Tarjeta de crédito",
+      "optionCredit": "Crédito",
+      "descriptionCash": "Pagar con dinero en efectivo",
+      "descriptionCreditCard": "Pagar con tarjeta",
+      "descriptionCredit": "Pagar después",
+      "deleteAll": "Borrar todo",
+      "titleActionSheet": "Opciones"
+
+
+    },
+
+
+    "FinishOrder": {
+      "optionCash": "Dinero",
+      "descriptionCash": "Pagar con dinero en efectivo",
+      "invoiceEmail": "Factura a correo electrónico",
+      "descriptionInvoice": "Enviar factura al correo electrónico del cliente asociado",
+      "items": "Artículos",
+      "shippingPrice": "Precio de envío",
+      "discount": "Descuento",
+      "priceTotal": "Total"
+
+     },
+
+    "ProductDetails": {
+      "headerTitle": "Sub-família",
+      "titleActionSheet": "opciones",
+      "buttonAddCart": "Añadir a la cesta ",
+      "availableStock": "Stock disponible ",
+      "value": "Valor",
+      "subHeaderActionSheet": "EXISTENCIAS DISPONIBLES SOBRE EL PRODUCTO",
+      "price": "Cambiar precio",
+      "stock": "No hay existencias"
+    }
+  }
+}

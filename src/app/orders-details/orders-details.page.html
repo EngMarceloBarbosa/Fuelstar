@@ -6,8 +6,13 @@
           <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
             >Order Nº 1923</nc-text
           >
-          <ion-badge color="primary" id="notifications-badge"
+          <ion-badge color="primary" id="notifications-badge" *ngIf= "!badgeOn"
             >{{badges}}</ion-badge
+
+          >
+          <ion-badge color="primary" id="notifications-badge1"  *ngIf= "badgeOn"
+            >{{badges}}</ion-badge
+
           >
         </div>
       </div>
@@ -159,7 +164,7 @@
       </nc-virtual-scroller>
       <div class="add-products" *ngIf="deleteState" (click)="addMoreProducts()">
         <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-          >+ Add products</nc-text
+          >{{'App.OrderDetails.addProductsMore' | translate}}</nc-text
         >
       </div>
       <hr
@@ -176,7 +181,7 @@
           <div class="price-shop">
             <div class="shipping-price">
               <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-                >Shipping price</nc-text
+                >{{'App.OrderDetails.shippingPrice' | translate}}</nc-text
               >
             </div>
 
@@ -189,7 +194,7 @@
           <div class="discont-value">
             <div class="discount">
               <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-                >Discount</nc-text
+                >{{'App.OrderDetails.discount' | translate}}</nc-text
               >
             </div>
             <div class="value">
@@ -201,7 +206,7 @@
           <div class="total-product">
             <div class="total">
               <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
-                >TOTAL</nc-text
+                >{{'App.OrderDetails.priceTotal' | translate}}</nc-text
               >
             </div>
             <div class="value">
@@ -218,7 +223,7 @@
     <div class="delivery-date">
       <div class="title-data">
         <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-          >Preferential delivery date</nc-text
+          >{{'App.OrderDetails.preferentialDeliveryDate' | translate}}</nc-text
         >
       </div>
       <div class="choose-dates">
@@ -288,7 +293,7 @@
                     color="c-scale-12"
                     weight="500"
                     font="primary"
-                    >edit</nc-text
+                    >{{'App.OrderDetails.edit' | translate}}</nc-text
                   >
                 </div>
               </div>
@@ -298,7 +303,7 @@
         <div class="shipping-adress">
           <div class="descrip-adress">
             <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-              >Shipping adress</nc-text
+              >{{'App.OrderDetails.shippingAdress' | translate}}</nc-text
             >
           </div>
           <div class="icon-arrow">
@@ -313,7 +318,7 @@
         </div>
         <div class="add-adress">
           <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-            >Add new Shipping adress</nc-text
+            >{{'App.OrderDetails.addNewAdress' | translate}}</nc-text
           >
         </div>
       </div>
@@ -324,7 +329,7 @@
     <div class="delivery-date">
       <div class="title-data">
         <nc-text size="h7" color="c-scale-8" weight="500" font="primary"
-          >PAYMENT METHOD</nc-text
+          >{{'App.OrderDetails.optionPay' | translate}}</nc-text
         >
       </div>
       <div class="container-payment">
@@ -338,7 +343,7 @@
                     color="c-scale-12"
                     weight="bold"
                     font="primary"
-                    >Cash</nc-text
+                    >{{'App.OrderDetails.optionCash' | translate}}</nc-text
                   >
                 </div>
 
@@ -360,7 +365,7 @@
                   color="c-scale-12"
                   weight="500"
                   font="primary"
-                  >Pay with cash</nc-text
+                  >{{'App.OrderDetails.descriptionCash' | translate}}</nc-text
                 >
               </div>
             </div>
@@ -372,7 +377,7 @@
                     color="c-scale-12"
                     weight="bold"
                     font="primary"
-                    >Credit card</nc-text
+                    >{{'App.OrderDetails.optionCreditCard' | translate}}</nc-text
                   >
                 </div>
                 <div class="radio">
@@ -395,7 +400,7 @@
                   color="c-scale-12"
                   weight="500"
                   font="primary"
-                  >Pay with card</nc-text
+                  >{{'App.OrderDetails.descriptionCreditCard' | translate}}</nc-text
                 >
               </div>
             </div>
@@ -407,7 +412,7 @@
                     color="c-scale-12"
                     weight="bold"
                     font="primary"
-                    >Credit</nc-text
+                    >{{'App.OrderDetails.optionCredit' | translate}}</nc-text
                   >
                 </div>
                 <div class="radio">
@@ -431,7 +436,7 @@
                   color="c-scale-12"
                   weight="500"
                   font="primary"
-                  >Pay later</nc-text
+                  >{{'App.OrderDetails.descriptionCredit' | translate}}</nc-text
                 >
               </div>
             </div>
@@ -445,14 +450,14 @@
 
   <div class="buttons-footer" *ngIf="deleteState">
     <div class="buttons-client">
-      <div class="client">
+      <div class="client" (click)="back()">
         <nc-text
           size="h6"
           color="c-scale-12"
           weight="bolder"
           font="primary"
           hoverColor="c-scale-12"
-          >Back</nc-text
+          >{{'App.OrderDetails.buttonOrderAdd' | translate}}</nc-text
         >
       </div>
       <div class="client-1" (click)="continueButton()">
@@ -462,7 +467,7 @@
           weight="bolder"
           font="primary"
           hoverColor="c-scale-1"
-          >Continue</nc-text
+          >{{'App.OrderDetails.buttonOrderContinue' | translate}}</nc-text
         >
       </div>
     </div>
@@ -479,7 +484,7 @@
           weight="bolder"
           font="primary"
           hoverColor="c-scale-12"
-          >Back</nc-text
+          >{{'App.OrderDetails.buttonOrderBack' | translate}}</nc-text
         >
       </div>
       <div class="client-2" (click)="clearAllButton()">
@@ -489,7 +494,7 @@
           weight="bolder"
           font="primary"
           hoverColor="c-scale-1"
-          >Clear</nc-text
+          >{{'App.OrderDetails.buttonOrderClear' | translate}}</nc-text
         >
       </div>
     </div>
@@ -506,7 +511,7 @@
           weight="bolder"
           font="primary"
           hoverColor="c-scale-12"
-          >Clean</nc-text
+          >{{'App.OrderDetails.buttonOrderClear' | translate}}</nc-text
         >
       </div>
       <div class="client-1" (click)="continueButton1()">
@@ -516,7 +521,7 @@
           weight="bolder"
           font="primary"
           hoverColor="c-scale-1"
-          >Continue</nc-text
+          >{{'App.OrderDetails.buttonOrderContinue' | translate}}</nc-text
         >
       </div>
     </div>
@@ -533,7 +538,7 @@
           weight="bolder"
           font="primary"
           hoverColor="c-scale-12"
-          >back</nc-text
+          >{{'App.OrderDetails.buttonOrderBack' | translate}}</nc-text
         >
       </div>
       <div class="client-1" (click)="finishButton()">
@@ -543,7 +548,7 @@
           weight="bolder"
           font="primary"
           hoverColor="c-scale-1"
-          >finish</nc-text
+          >{{'App.OrderDetails.buttonOrderFinish' | translate}}</nc-text
         >
       </div>
     </div>
@@ -574,7 +579,7 @@
           </div>
           <div class="title-delete">
             <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
-              >Delete all</nc-text
+              >{{'App.OrderDetails.deleteAll' | translate}}</nc-text
             >
           </div>
         </div>

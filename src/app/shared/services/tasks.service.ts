@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { tasksTest } from './utils/models/tasks';
+import { tasksTest } from '../../utils/models/tasks';
 
 
 
@@ -22,6 +22,7 @@ export class TasksService {
   listProductsNew$ = new BehaviorSubject<tasksTest[]>([]);
 
 
+
   list: any []=[];
   checkedList:any [] =[]
   unCheckedList:any[]=[]
@@ -30,6 +31,7 @@ export class TasksService {
   valueTotal$ = new BehaviorSubject<any>('');
   // testTask2$ = new BehaviorSubject<tasksTest[]>([]);
   badge$ = new BehaviorSubject<tasksTest[]>([]);
+  badgeEmpty$ = new  BehaviorSubject<any>('');
 
 
 }

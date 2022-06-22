@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { product } from '../shared/models/product-list';
 
 
-import { TasksService } from '../tasks.service';
+import { TasksService } from '../shared/services/tasks.service';
 
 @Component({
   selector: 'app-products-family',

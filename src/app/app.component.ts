@@ -13,8 +13,8 @@ export class AppComponent {
 
   constructor(private globals: Globals, private translate: TranslateService ) {
 
-    this.translate.addLangs(['en_GB', 'fr_FR', 'pt_PT']);
-    this.translate.setDefaultLang('pt_PT');
+    this.translate.addLangs(['en_GB', 'fr_FR', 'pt_PT', 'es_EN', 'al_DL']);
+    this.translate.setDefaultLang('fr_FR');
     this.globals.defaultImagePath = `./assets/images/`;
     this.globals.imagePath = `./assets/images/`;
   }

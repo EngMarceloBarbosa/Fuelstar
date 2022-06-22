@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
 import { TranslateService } from '@ngx-translate/core';
-import { ProductService } from '../product.service';
+import { ProductService } from '../shared/services/product.service';
 import { product } from '../shared/models/product-list';
-import { TasksService } from '../tasks.service';
+import { TasksService } from '../shared/services/tasks.service';
 
 @Component({
   selector: 'app-products-details',
@@ -17,13 +17,14 @@ export class ProductsDetailsPage implements OnInit {
   itemProduct: any;
   product2 = product
   active: boolean = true;
-  badge: number = 0;
+  @Input() badge: number = 0;
   controlBadge: boolean = true;
   item: any;
   listValue:any;
   globalMessagesTranslations:any;
   loginMessagesTranslations:any;
   productsMessagesTranslations:any;
+  badgeNew: number;
 
   constructor(
     private router: Router,
@@ -42,6 +43,11 @@ export class ProductsDetailsPage implements OnInit {
       this.productsMessagesTranslations = res.ProductDetails;
 
     });
+    this.tasksService.badgeEmpty$
+    .subscribe(testTask1 => {
+      this.badgeNew = testTask1;
+    }),
+
 
     this.tasksService.chooseProduct$
       .subscribe(testTask1 => {

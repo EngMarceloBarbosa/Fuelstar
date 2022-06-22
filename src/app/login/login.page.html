@@ -19,7 +19,7 @@
   <div class="body-login">
     <div class="title-body">
       <nc-text size="h5" color="c-scale-12" weight="bold" font="primary"
-        >Login</nc-text
+        >{{'App.Login.login' | translate}}</nc-text
       >
     </div>
     <div class="credentials-login">
@@ -40,7 +40,7 @@
               autocomplete="false"
               name="identification"
               type="email"
-              placeholder="{{ 'App.Login.placeholderUser' | translate }} "
+              placeholder="{{'App.Login.placeholderUser' | translate}}"
               formControlName="email"
               id="inputEmail"
             />
@@ -109,15 +109,6 @@
       >
     </nc-button>
     <div class="recover">
-      <!-- <div
-        class="recover-text1"
-        [attr.tester]="'click-button-forgot-pass'"
-        (click)="forgotPasswordClick()"
-      >
-        <nc-text size="h7" color="c-scale-8" weight="300" font="primary"
-          >{{'App.Login.TitleForgetPassword' | translate}}</nc-text
-        >
-      </div> -->
       <div class="recover-text"
       (click)="forgotPasswordClick()">
         <nc-text

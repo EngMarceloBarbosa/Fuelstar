@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { TasksService } from '../tasks.service';
+import { TasksService } from '../shared/services/tasks.service';
 import { tasksTest } from '../utils/models/tasks';
 
 
