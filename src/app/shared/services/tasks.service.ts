@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { tasksTest } from '../../utils/models/tasks';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -22,6 +23,13 @@ export class TasksService {
   listProductsNew$ = new BehaviorSubject<tasksTest[]>([]);
 
 
+  croudGroup: FormGroup = new FormGroup({
+    firstName: new FormControl(null),
+    lastName: new FormControl (null, Validators.required),
+    nif: new FormControl( null),
+    email: new FormControl(null),
+    phoneNumber: new FormControl(null),
+  });
 
   list: any []=[];
   checkedList:any [] =[]

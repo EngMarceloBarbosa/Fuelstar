@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { TasksService } from '../shared/services/tasks.service';
+import { Client, clients } from '../shared/models/order-list-clients';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-orders',
@@ -17,58 +20,22 @@ export class OrdersPage implements OnInit {
   continue: boolean = true;
   iconCheck: boolean = false;
   isOnActionButtons: boolean = true;
-
+  valueIcon: string;
+  valueReference: string;
+  valueId: number;
+  valueFirstName: string;
+  valueLastName: string;
+  valueNif: number;
+  valueEmail: string;
+  valuePhoneNumber: number;
+  valueIconCheck: boolean;
+  searchValue: string = "";
   selectedItem: any;
-  listClient = [
-    {
-      icon: "icon_user",
-      name: "Marcelo",
-      id: 1,
-      iconCheck: false
-    },
-    {
-      icon: "icon_user",
-      name: "Berto panasca",
-      id: 2,
-      iconCheck: false
-    },
-    {
-      icon: "icon_user",
-      name: "Rega",
-      id: 3,
-      iconCheck: false
-    },
-    {
-      icon: "icon_user",
-      name: "Tone",
-      id: 4,
-      iconCheck: false
-    },
-    {
-      icon: "icon_user",
-      name: "Dias",
-      id: 5,
-      iconCheck: false
-    },
-    {
-      icon: "icon_user",
-      name: "Coito",
-      id: 5,
-      iconCheck: false
-    },
-    {
-      icon: "icon_user",
-      name: "Carlos",
-      id: 5,
-      iconCheck: false
-    },
-
-
-  ]
+  listClient = clients;
 
 
 
-  constructor(private nav: NavController, private loc: Location, public formBuilder: FormBuilder, private router: Router) { }
+  constructor(private nav: NavController, private loc: Location, public formBuilder: FormBuilder, private router: Router, private tasksService: TasksService) { }
 
   ngOnInit() {
 
@@ -109,33 +76,7 @@ export class OrdersPage implements OnInit {
     this.loc.back();
   }
 
-  /*
- * Document Filter in searchBar
- */
-  searchDocument($event: string) {
-    if ($event == '') {
-      this.allDocumentsFilter = this.tempDocuments;
-    } else {
-      this.allDocumentsFilter = this.tempDocuments.filter(
-        doc =>
-          doc.entity.firstName?.toLowerCase().includes($event.toLowerCase()) ||
-          doc.instanceNumber?.toLowerCase().includes($event.toLowerCase()) ||
-          doc.unlinkedTransactionDescription?.toLowerCase().includes($event.toLowerCase()) ||
-          doc.dueAmount.toString().includes($event) ||
-          doc.debit.toString().includes($event) ||
-          doc.credit.toString().includes($event) ||
-          doc.transactionDate.toString().includes($event)
-      );
-    }
-  }
 
-  /*
-   * Cancel search button on the searchBar
-   */
-  // cancelSearchDoc($event) {
-  //   this.currentAccountService.existFilter = false;
-  //   if ($event) this.allDocumentsFilter = this.tempDocuments;
-  // }
 
   clientButton() {
     console.log("Entrou client");
@@ -148,7 +89,47 @@ export class OrdersPage implements OnInit {
     console.log("Entrou new client");
   }
 
+  // async createBullet() {
+  //   console.log(this.tasksService.croudGroup.getRawValue());
+  //   const temp = this.tasksService.croudGroup.getRawValue();
+  //   let form = {
+  //     firstName: temp.firstName ? temp.firstName.trim() : null,
+  //     lastName: temp.lastName ? temp.lastName.trim() : null,
+  //     nif: temp.nif ? temp.nif : null,
+  //     email: temp.email ? temp.email.trim() : null,
+  //     phoneNumber: temp.phoneNumber ? temp.phoneNumber : null,
+  //   };
+  //   // if (this.bulletService.crudGroup.valid) {
+  //   //   this.bulletAPIService
+  //   //     .put(form)
+  //   //     .then( () => {
+  //   //       this.initalHttpRequest();
+  //   //     })
+  //   //     .catch((error: HttpErrorResponse) => {
+  //   //       console.log(error);
+  //   //     });
+  //   //   } else {
+  //   //     console.log('campo obrigatorio : name');
+  //   //   }
+  // }
+
+
+
   continueButton() {
+
+    const temp = this.tasksService.croudGroup.getRawValue();
+    let form = {
+      icon: temp.icon ? temp.icon.trim() : this.valueIcon,
+      reference: temp.reference ? temp.email.trim() : this.valueReference,
+      id: temp.id ? temp.id.trim() : this.valueId,
+      firstName: temp.firstName ? temp.firstName.trim() : this.valueFirstName,
+      lastName: temp.lastName ? temp.lastName.trim() : this.valueLastName,
+      nif: temp.nif ? temp.nif : this.valueNif,
+      email: temp.email ? temp.email.trim() : this.valueEmail,
+      phoneNumber: temp.phoneNumber ? temp.phoneNumber : this.valuePhoneNumber,
+      iconCheck: temp.iconCheck ? temp.iconCheck.trim() : this.valueIconCheck,
+    };
+    console.log(this.tasksService.croudGroup.getRawValue());
     console.log(this.selectedItem);
     if (!this.selectedItem) {
       this.continue = true;
@@ -157,6 +138,11 @@ export class OrdersPage implements OnInit {
       console.log("entrou no lol")
       this.continue = false;
     }
+    if (this.tasksService.croudGroup) {
+      this.listClient.push(form)
+
+    }
+    console.log(this.listClient);
   }
 
 
@@ -172,4 +158,43 @@ export class OrdersPage implements OnInit {
 
     this.continue = true;
   }
+
+  change(event, id) {
+    console.log(event, id);
+    if (id == 1) {
+      this.valueFirstName = event;
+    }
+    if (id == 2) {
+      this.valueLastName = event;
+    }
+    if (id == 3) {
+      this.valueNif = event;
+    }
+    if (id == 4) {
+      this.valueEmail = event;
+    }
+    if (id == 5) {
+      this.valuePhoneNumber = event;
+    }
+    // this.valueNif = event, 'nif';
+    // this.valueEmail = event, 'email';
+    // this.valuePhoneNumber = event, 'phoneNumber';
+    // this.valueIcon = event;
+    // this.valueReference = event;
+    // this.valueId = event;
+    // this.valueIconCheck= event;
+  }
+
+  searchDocument($event: string) {
+    if ($event == '') {
+      this.allDocumentsFilter = this.listClient;
+    } else {
+      this.allDocumentsFilter = this.listClient.filter(
+        doc =>
+          doc.firstName?.toLowerCase().includes($event.toLowerCase())
+      );
+    }
+  }
+
+
 }

@@ -87,11 +87,12 @@
               [clear]="true"
               [type]="'text'"
               [size]="'medium'"
+              [(value)]="searchValue"
               (valueChange)="searchDocument($event)"
             >
             </nc-input>
           </div>
-          <nc-virtual-scroller #scroll [items]="listClient">
+          <nc-virtual-scroller #scroll [items]="allDocumentsFilter">
             <div
               class="cards-clients"
               *ngFor="let item of scroll.viewPortItems"
@@ -110,7 +111,7 @@
                     color="c-scale-12"
                     weight="500"
                     font="primary"
-                    >{{item.name}}</nc-text
+                    >{{item.firstName}}</nc-text
                   >
                 </div>
               </div>
@@ -125,7 +126,8 @@
         <div class="new-client-container" *ngIf="!active">
           <div class="inputs">
             <nc-input
-              [formGroup]="tas.crudGroup"
+              #inputName
+              [formGroup]="tasksService.croudGroup"
               [attr.tester]="'search-bar-current'"
               [placeholder]="'First name'"
               [bgInputColor]="'c-scale-12'"
@@ -133,12 +135,11 @@
               [clear]="true"
               [type]="'text'"
               [size]="'medium'"
-              [(ngModel)]="value"
-              (onChange)="change($event)"
-              (valueChange)="searchDocument($event)"
+              (onChange)="change($event,1)"
             >
             </nc-input>
             <nc-input
+              [formGroup]="tasksService.croudGroup"
               [attr.tester]="'search-bar-current'"
               [placeholder]="'Last name'"
               [bgInputColor]="'c-scale-12'"
@@ -146,10 +147,11 @@
               [clear]="true"
               [type]="'text'"
               [size]="'medium'"
-              (valueChange)="searchDocument($event)"
+              (onChange)="change($event,2)"
             >
             </nc-input>
             <nc-input
+              [formGroup]="tasksService.croudGroup"
               [attr.tester]="'search-bar-current'"
               [placeholder]="'NIF'"
               [bgInputColor]="'c-scale-12'"
@@ -157,10 +159,11 @@
               [clear]="true"
               [type]="'text'"
               [size]="'medium'"
-              (valueChange)="searchDocument($event)"
+              (onChange)="change($event, 3)"
             >
             </nc-input>
             <nc-input
+              [formGroup]="tasksService.croudGroup"
               [attr.tester]="'search-bar-current'"
               [placeholder]="'Email'"
               [bgInputColor]="'c-scale-12'"
@@ -168,10 +171,11 @@
               [clear]="true"
               [type]="'text'"
               [size]="'medium'"
-              (valueChange)="searchDocument($event)"
+              (onChange)="change($event, 4 )"
             >
             </nc-input>
             <nc-input
+              [formGroup]="tasksService.croudGroup"
               [attr.tester]="'search-bar-current'"
               [placeholder]="'Phone number'"
               [bgInputColor]="'c-scale-12'"
@@ -179,7 +183,7 @@
               [clear]="true"
               [type]="'text'"
               [size]="'medium'"
-              (valueChange)="searchDocument($event)"
+              (onChange)="change($event,5 )"
             >
             </nc-input>
           </div>
