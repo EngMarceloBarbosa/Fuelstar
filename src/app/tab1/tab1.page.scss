@@ -2,7 +2,7 @@
 
 
 nc-virtual-scroller{
-  height: calc(100vh - #{tbu(px(430))})
+  height: calc(100vh - #{tbu(px(465))})
 }
 
 ion-content {
@@ -258,3 +258,73 @@ ion-content {
 // #header{
 //  position: none;
 // }
+
+.arrow-main{
+  display: flex;
+  border-radius: 50%;
+  background-color: var(--c-scale-2);
+  align-self: center;
+  position: absolute;
+  top: 83%;
+  height: tbu(px(70));
+  width: tbu(px(70));
+  right: 40%;
+  box-shadow: 0px 2px 6px #18181829;
+}
+
+.arrow{
+  display: flex;
+  border-radius: 50%;
+  background-color: var(--c-scale-1);
+  align-self: center;
+  position: absolute;
+  top: 14%;
+  height: tbu(px(50));
+  width: tbu(px(50));
+  right: 13%;
+  box-shadow: 0px 2px 6px #3C404326;
+}
+
+.arrow-sub{
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+
+nc-action-sheet {
+  ::ng-deep {
+  .action-sheet.animation{
+    height: 30%;
+  }
+  }
+}
+
+.type-actions{
+display: flex;
+flex-direction: column;
+}
+
+.option{
+  margin-top: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-app{
+  width: 15%;
+}
+
+.title-price{
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+
+.right-icon{
+  display: flex;
+  align-items: center;
+  width: 5%;
+}

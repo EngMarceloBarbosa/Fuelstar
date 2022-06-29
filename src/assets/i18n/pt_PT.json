@@ -29,7 +29,7 @@
     },
 
     "RecoverPassword": {
-      "titleRecover": "Esqueceu a palavra-passe",
+      "titleRecover": "Esqueceu a palavra-passe ?",
       "descriptionRecover": "Insira a sua conta do email para voltar a inserir a sua palavra-passe",
       "placeholderPassword": "da conta ",
       "send": "Enviar"
@@ -154,6 +154,14 @@
       "subHeaderActionSheet": "AÇÕES DISPONIVEIS SOBRE O PRODUTO",
       "price": "Mudar preço",
       "stock": "Sem stock"
+    },
+
+    "Receipts": {
+      "titleHeader": "Recibos",
+      "descriptionHeader": "Registe as suas receitas hoje",
+      "titleBody": "Cliente associado",
+      "search":  "Pesquisa",
+      "value":"Valor"
     }
   }
 }

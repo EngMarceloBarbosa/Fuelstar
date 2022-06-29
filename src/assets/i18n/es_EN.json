@@ -151,6 +151,11 @@
       "subHeaderActionSheet": "EXISTENCIAS DISPONIBLES SOBRE EL PRODUCTO",
       "price": "Cambiar precio",
       "stock": "No hay existencias"
+    },
+
+    "Receipts": {
+      "titleHeader": "Recibos",
+      "descriptionHeader": "Registre sus recepciones hoy mismo"
     }
   }
 }

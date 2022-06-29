@@ -1,7 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
+import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
+import { ProductService } from '../shared/services/product.service';
 import { TasksService } from '../shared/services/tasks.service';
 import { tasksTest } from '../utils/models/tasks';
 
@@ -14,13 +16,13 @@ import { tasksTest } from '../utils/models/tasks';
 export class Tab1Page {
 
   name: string = "Jimmy Smyth";
-  position:any[]=[
+  position: any[] = [
     {
-      name1:'Joao',
+      name1: 'Joao',
       position1: 'operator',
     },
     {
-      name1:'Marco',
+      name1: 'Marco',
       position1: 'operator',
     }
   ];
@@ -29,7 +31,7 @@ export class Tab1Page {
   tests: tasksTest[] = [
 
     {
-      title:'boas',
+      title: 'boas',
       date: '23-23-1982',
       id: 1,
       name: 'Joao',
@@ -37,7 +39,7 @@ export class Tab1Page {
       description: 'Lisboa '
     },
     {
-      title:'boas',
+      title: 'boas',
       date: '23-23-1982',
       id: 2,
       name: 'Gustavo',
@@ -45,7 +47,7 @@ export class Tab1Page {
       description: 'Porto'
     },
     {
-      title:'boas',
+      title: 'boas',
       date: '23-23-1982',
       id: 3,
       name: 'Antonio',
@@ -53,7 +55,7 @@ export class Tab1Page {
       description: 'Régua'
     },
     {
-      title:'boas',
+      title: 'boas',
       date: '23-23-1982',
       id: 3,
       name: 'Rega',
@@ -61,7 +63,7 @@ export class Tab1Page {
       description: 'Capital'
     },
     {
-      title:'boas',
+      title: 'boas',
       date: '23-23-1982',
       id: 3,
       name: 'Couto',
@@ -69,7 +71,7 @@ export class Tab1Page {
       description: 'Algarve'
     },
     {
-      title:'boas',
+      title: 'boas',
       date: '23-23-1982',
       id: 3,
       name: 'Pedro',
@@ -78,28 +80,75 @@ export class Tab1Page {
     },
   ]
 
-  constructor(private router: Router,private nav: NavController, private loc: Location, private tasksService: TasksService) {}
+  globalMessagesTranslations: any;
+  loginMessagesTranslations: any;
+  productsMessagesTranslations: any;
 
-  back(){
-  //  this.loc.back();
-   this.router.navigate(['/']);
+  constructor(private router: Router, private nav: NavController, private loc: Location, private tasksService: TasksService,
+    private actionSheetService: ActionSheetService,
+    private productService: ProductService,
+    public toastController: ToastController) { }
+
+  back() {
+    //  this.loc.back();
+    this.router.navigate(['/']);
   }
 
 
-  detailsTasks(test: any){
-    if(test.id){
-    this.tasksService.listClient$.next(test);
-    console.log(test);
-    console.log("1 entrou");
+  detailsTasks(test: any) {
+    if (test.id) {
+      this.tasksService.listClient$.next(test);
+      console.log(test);
+      console.log("1 entrou");
     }
-    if(test.id == 2) {
+    if (test.id == 2) {
       console.log("2 entrou");
     }
     this.router.navigate(['/search'])
   }
 
-  definitions(){
-  this.router.navigate(['/settings']);
+  definitions() {
+    const temp: ActionSheetModel = {
+      titleText: "TRAJETO",
+      titleTextColor: 'c-scale-12',
+      titleTextSize: "small",
+      iconHeader: 'icon_send',
+      iconHeaderSize: 12,
+      iconHeaderColor: 'c-scale-12',
+    };
+
+    this.actionSheetService.open(temp);
   }
+
+
+
+  async send() {
+    const toast = await this.toastController.create({
+      header: 'Chegou ao destino de David Sanchez',
+      message: '4765-400 | Braga - Guimarães',
+      position: 'top',
+      color: 'light',
+      duration: 1000,
+      buttons: [
+        {
+          side: 'start',
+          icon: 'pin',
+          handler: () => {
+            console.log('Favorite clicked');
+          }
+        },
+        {
+          side: 'end',
+          icon: 'close',
+          handler: () => {
+            console.log('Favorite clicked');
+          }
+        }
+        ]
+    });
+    await toast.present();
+
+  }
+
 }
 

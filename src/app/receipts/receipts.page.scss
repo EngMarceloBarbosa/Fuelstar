@@ -1,0 +1,145 @@
+@import "./../../global.scss";
+
+nc-virtual-scroller {
+  height: calc(100vh - #{tbu(px(279))});
+}
+
+.header-content {
+  margin-left: tbu(px(24));
+  margin-right: tbu(px(24));
+  margin-top: tbu(px(50));
+  margin-bottom: tbu(px(24));
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  height: 15%;
+}
+
+.left-icon {
+  width: 10%;
+}
+
+.main-header {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.right-icon {
+  width: 10%;
+}
+
+.input-recover {
+  margin-top: 5%;
+}
+
+.inputs {
+  nc-form-field {
+    ::ng-deep {
+      input {
+        width: 100%;
+        height: 48px;
+        padding: 19px 79px 5px 9px;
+      }
+    }
+  }
+}
+
+.body-content {
+  height: 80%;
+  margin-top: tbu(px(16));
+}
+
+.title-body {
+  margin-bottom: tbu(px(8));
+}
+
+.cards-clients {
+  width: 100%;
+  height: tbu(px(60));
+  padding-top: tbu(px(13));
+  padding-bottom: tbu(px(11));
+  background-color: var(--c-scale-3);
+  display: flex;
+  align-items: center;
+  border-radius: tbu(px(12));
+  margin-top: tbu(px(15));
+  &.active {
+    background-color: #37b26a1a;
+    border: tbu(px(1)) solid var(--primary_border);
+  }
+}
+
+.icon-name-user {
+  width: 20%;
+}
+
+.description-task {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  margin-left: 4%;
+}
+
+.arrow-info {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.light-bar {
+  width: 11%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 21%;
+  background-color: var(--c-scale-5);
+}
+
+#icon-user {
+  margin-left: 24%;
+}
+
+.icon-name-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  border-radius: 90%;
+  background-color: red;
+  width: 11%;
+  background-color: var(--c-scale-3);
+  margin-left: 10px;
+}
+
+nc-input {
+  width: 100%;
+  padding-bottom: 8px;
+  ::ng-deep {
+    input {
+      background-color: var(--c-scale-1_bg) !important ;
+      border: tbu(px(1)) solid var(--c-scale-3_border);
+    }
+  }
+}
+
+nc-input:hover{
+  ::ng-deep {
+    input:hover {
+      border: 1px solidvar(--primary_border);
+
+    }
+  }
+}
+
+.input-search{
+  margin-top: tbu(px(24));
+}

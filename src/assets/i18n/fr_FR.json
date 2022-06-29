@@ -155,6 +155,11 @@
       "subHeaderActionSheet": "STOCK DISPONIBLE SUR LE PRODUIT",
       "price": "Changement de prix",
       "stock": "En rupture de stock"
+    },
+
+    "Receipts": {
+      "titleHeader": "Recettes",
+      "descriptionHeader": "Enregistrez vos récepteurs aujourd'hui"
     }
   }
 }

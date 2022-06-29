@@ -97,6 +97,18 @@ export class Tab2Page {
       this.router.navigate(['/orders']);
       console.log("entrou");
     }
+    if (id == 2) {
+      this.router.navigate(['/orders']);
+      console.log("entrou");
+    }
+    if (id == 3) {
+      this.router.navigate(['/orders']);
+      console.log("entrou");
+    }
+    if (id == 4) {
+      this.router.navigate(['/receipts']);
+      console.log("entrou");
+    }
   }
 
 }

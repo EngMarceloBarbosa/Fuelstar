@@ -1,6 +1,4 @@
-// /* eslint-disable @typescript-eslint/member-ordering */
-// /* eslint-disable max-len */
-// /* eslint-disable @typescript-eslint/no-unused-expressions */
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
@@ -49,7 +47,7 @@ export class LoginPage implements OnInit {
 
     });
 
-    // this.translate.get('AlertMessages').subscribe(res => (this.alertMessagesTranslations = res));
+
     this.form = this.formBuilder.group({
       email: [
         '',
@@ -92,7 +90,7 @@ export class LoginPage implements OnInit {
    */
 
   forgotPasswordClick() {
-   this.router.navigate(["/recoverPassword"])
+    this.router.navigate(["/recoverPassword"])
   }
 
   /**

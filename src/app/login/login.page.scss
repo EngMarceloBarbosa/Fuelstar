@@ -51,11 +51,17 @@ ion-content {
 .footer-login {
   padding: 0 5%;
   display: flex;
-  align-items: center;
   flex-direction: column;
-height: 6%;
+  height: 6%;
   width: 100%;
   gap: tbu(px(10));
+  ::ng-deep {
+    nc-button {
+      .button.medium {
+        min-width: 100%;
+      }
+    }
+  }
   .signIn {
     width: 100%;
     @extend .flex-center;
@@ -66,6 +72,20 @@ height: 6%;
     width: 100%;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.inputs {
+  nc-form-field {
+    input-wrapper {
+      ::ng-deep {
+      nc-icon {
+          .input-wrapper__show {
+            right: tbu(px(0));
+          }
+        }
+      }
+    }
   }
 }
 
@@ -100,4 +120,3 @@ nc-button {
 .icon-switch {
   @extend .justify-end;
 }
-

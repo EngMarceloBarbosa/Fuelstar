@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
+
 import { IonicModule } from '@ionic/angular';
-import { RecoverPasswordPageRoutingModule } from './recover-password-routing.module';
-import { RecoverPasswordPage } from './recover-password.page';
+
+import { ReceiptsPageRoutingModule } from './receipts-routing.module';
+import { SharedModule } from '../shared/shared.module';
+import { ReceiptsPage } from './receipts.page';
 
 @NgModule({
   imports: [
@@ -12,9 +14,9 @@ import { RecoverPasswordPage } from './recover-password.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    RecoverPasswordPageRoutingModule,
+    ReceiptsPageRoutingModule,
     SharedModule
   ],
-  declarations: [RecoverPasswordPage]
+  declarations: [ReceiptsPage]
 })
-export class RecoverPasswordPageModule { }
+export class ReceiptsPageModule {}
