@@ -120,6 +120,9 @@ export class Tab1Page {
     this.actionSheetService.open(temp);
   }
 
+  definitions1(){
+    this.router.navigate(['settings'])
+  }
 
 
   async send() {
