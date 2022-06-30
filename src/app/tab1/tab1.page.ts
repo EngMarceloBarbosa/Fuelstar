@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
+import { clientsTab } from '../shared/models/clients-tab1';
 import { ProductService } from '../shared/services/product.service';
 import { TasksService } from '../shared/services/tasks.service';
-import { tasksTest } from '../utils/models/tasks';
 
 
 @Component({
@@ -28,57 +28,9 @@ export class Tab1Page {
   ];
 
 
-  tests: tasksTest[] = [
+  tests = clientsTab
 
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 1,
-      name: 'Joao',
-      price: 1.4,
-      description: 'Lisboa '
-    },
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 2,
-      name: 'Gustavo',
-      price: 1.43,
-      description: 'Porto'
-    },
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 3,
-      name: 'Antonio',
-      price: 1.43,
-      description: 'Régua'
-    },
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 3,
-      name: 'Rega',
-      price: 1.43,
-      description: 'Capital'
-    },
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 3,
-      name: 'Couto',
-      price: 1.43,
-      description: 'Algarve'
-    },
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 3,
-      name: 'Pedro',
-      price: 1.43,
-      description: 'Lousada'
-    },
-  ]
+
 
   globalMessagesTranslations: any;
   loginMessagesTranslations: any;
@@ -96,6 +48,7 @@ export class Tab1Page {
 
 
   detailsTasks(test: any) {
+
     if (test.id) {
       this.tasksService.listClient$.next(test);
       console.log(test);
@@ -104,7 +57,7 @@ export class Tab1Page {
     if (test.id == 2) {
       console.log("2 entrou");
     }
-    this.router.navigate(['/search'])
+    this.router.navigate(['/details-client'])
   }
 
   definitions() {

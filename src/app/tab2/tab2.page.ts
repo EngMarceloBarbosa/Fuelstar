@@ -1,7 +1,8 @@
 
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { tasksTest } from '../utils/models/tasks';
+import { clientsTab } from '../shared/models/clients-tab1';
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -34,57 +35,8 @@ export class Tab2Page {
   }
   ];
 
-  tests: tasksTest[] = [
+  tests = clientsTab
 
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 1,
-      name: 'Joao',
-      price: 1.4,
-      description: 'Lisboa '
-    },
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 2,
-      name: 'Gustavo',
-      price: 1.43,
-      description: 'Porto'
-    },
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 3,
-      name: 'Antonio',
-      price: 1.43,
-      description: 'Régua'
-    },
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 3,
-      name: 'Rega',
-      price: 1.43,
-      description: 'Capital'
-    },
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 3,
-      name: 'Couto',
-      price: 1.43,
-      description: 'Algarve'
-    },
-    {
-      title: 'boas',
-      date: '23-23-1982',
-      id: 3,
-      name: 'Pedro',
-      price: 1.43,
-      description: 'Lousada'
-    },
-  ]
 
   constructor(private router: Router) { }
 

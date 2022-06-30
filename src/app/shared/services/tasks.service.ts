@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { tasksTest } from '../../utils/models/tasks';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ClientsTab } from '../models/clients-tab1';
 
 
 
@@ -18,9 +18,9 @@ export class TasksService {
   // }
 
   //  public testTask$ = new Subject<tasksTest>();
-  listClient$ = new BehaviorSubject<tasksTest[]>([]);
-  chooseProduct$ = new BehaviorSubject<tasksTest[]>([]);
-  listProductsNew$ = new BehaviorSubject<tasksTest[]>([]);
+  listClient$ = new BehaviorSubject<ClientsTab[]>([]);
+  chooseProduct$ = new BehaviorSubject<ClientsTab[]>([]);
+  listProductsNew$ = new BehaviorSubject<ClientsTab[]>([]);
 
 
   croudGroup: FormGroup = new FormGroup({
@@ -38,8 +38,9 @@ export class TasksService {
 
   valueTotal$ = new BehaviorSubject<any>('');
   // testTask2$ = new BehaviorSubject<tasksTest[]>([]);
-  badge$ = new BehaviorSubject<tasksTest[]>([]);
+  badge$ = new BehaviorSubject<ClientsTab[]>([]);
   badgeEmpty$ = new  BehaviorSubject<any>('');
+  value$ = new BehaviorSubject<any>('');
 
 
 }

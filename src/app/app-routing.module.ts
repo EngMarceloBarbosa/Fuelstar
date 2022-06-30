@@ -51,6 +51,14 @@ const routes: Routes = [
   {
     path: 'receipts',
     loadChildren: () => import('./receipts/receipts.module').then( m => m.ReceiptsPageModule)
+  },
+  {
+    path: 'details-client',
+    loadChildren: () => import('./details-client/details-client.module').then( m => m.DetailsClientPageModule)
+  },
+  {
+    path: 'edit-contact',
+    loadChildren: () => import('./edit-contact/edit-contact.module').then( m => m.EditContactPageModule)
   }
 
 ];

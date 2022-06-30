@@ -1,0 +1,220 @@
+<ion-content>
+  <div class="header-container">
+    <div class="header">
+      <div class="card-tasks">
+        <div class="box-task">
+          <div class="left-icon">
+            <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+              >icon_arrow-right</nc-icon
+            >
+          </div>
+          <div class="icon-name-user">
+            <nc-text
+              id="icon-user"
+              size="h7"
+              color="c-scale-10"
+              weight="500"
+              font="primary"
+              >{{clientDetails.cunha}}</nc-text
+            >
+          </div>
+          <div class="description-task">
+            <div class="name-task">
+              <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+                >{{clientDetails.name}}</nc-text
+              >
+            </div>
+            <div class="localization-task">
+              <nc-text size="h8" color="c-scale-1" weight="500" font="primary"
+                >{{clientDetails.description}}</nc-text
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body-content">
+    <nc-tabs
+      #tabs
+      class="tabs"
+      (onChange)="clickTab($event)"
+      [tabBarActiveTextColor]="'var(--c-scale-12)'"
+      [tabBarUnderlineStyle]="{borderColor: 'var(--c-scale-12)'}"
+      [tabBarInactiveTextColor]="'var(--c-scale-8)'"
+    >
+      <nc-tab-pane [attr.tester]="'click-tab'" title="Detail info">
+        <div>
+          <div class="container">
+            <div class="box-task">
+              <div class="icon-name-user1">
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+                  >icon_user</nc-icon
+                >
+              </div>
+              <div class="description-task">
+                <div class="name-task">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-8"
+                    weight="500"
+                    font="primary"
+                    >Contacts</nc-text
+                  >
+                </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-11"
+                    weight="500"
+                    font="primary"
+                    >{{this.value}}</nc-text
+                  >
+                </div>
+              </div>
+              <div class="arrow-info" (click)="editContact()">
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+                  >icon_edit</nc-icon
+                >
+              </div>
+              <div class="phone-icon">
+                <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+                  >icon_phone</nc-icon
+                >
+              </div>
+            </div>
+            <div class="box-task">
+              <div class="icon-name-user1">
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+                  >icon_home</nc-icon
+                >
+              </div>
+              <div class="description-task1">
+                <div class="name-task">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-8"
+                    weight="500"
+                    font="primary"
+                    >Adress</nc-text
+                  >
+                </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-11"
+                    weight="500"
+                    font="primary"
+                    >Street urban xpto - Nº 177</nc-text
+                  >
+                </div>
+              </div>
+              <div class="arrow-info1">
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+                  >icon_location</nc-icon
+                >
+              </div>
+            </div>
+            <div class="box-task">
+              <div class="icon-name-user1">
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+                  >icon_content</nc-icon
+                >
+              </div>
+              <div class="description-task1">
+                <div class="name-task">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-8"
+                    weight="500"
+                    font="primary"
+                    >Notes</nc-text
+                  >
+                </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-9"
+                    weight="500"
+                    font="primary"
+                    >Add comment about this delivery</nc-text
+                  >
+                </div>
+              </div>
+              <div class="arrow-info1">
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+                  >icon_content</nc-icon
+                >
+              </div>
+            </div>
+            <div class="box-task">
+              <div class="icon-name-user1">
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+                  >icon_clock</nc-icon
+                >
+              </div>
+              <div class="description-task1">
+                <div class="name-task">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-8"
+                    weight="500"
+                    font="primary"
+                    >Estimated delivery</nc-text
+                  >
+                </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-11"
+                    weight="500"
+                    font="primary"
+                    >1 September 2021 : 16h-19h</nc-text
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nc-tab-pane>
+      <nc-tab-pane [attr.tester]="'click-tab'" title="Documents">
+        <div>
+          <div style="padding: 24px">HOLLA</div>
+        </div>
+      </nc-tab-pane>
+    </nc-tabs>
+  </div>
+  <div class="footer-client">
+    <div class="button-cancel">
+      <nc-text size="h7" color="error" weight="bold" font="primary">
+        Cancel visit
+      </nc-text>
+    </div>
+    <div class="buttons">
+      <div class="button-options">
+        <div class="icon-option">
+          <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+            >icon_plus</nc-icon
+          >
+        </div>
+        <div class="text-option">
+          <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
+            Opções
+          </nc-text>
+        </div>
+      </div>
+      <div class="button-done">
+        <div class="icon-option">
+          <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+            >icon_check</nc-icon
+          >
+        </div>
+        <div class="text-option">
+          <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
+            Done
+          </nc-text>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

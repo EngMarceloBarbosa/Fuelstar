@@ -1,0 +1,74 @@
+<ion-content>
+  <div class="header-container">
+    <div class="header">
+      <div class="card-tasks">
+        <div class="box-task">
+          <div class="left-icon">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1"
+              >icon_phone</nc-icon
+            >
+          </div>
+          <div class="description-task">
+            <div class="name-task">
+              <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+                >Contactos</nc-text
+              >
+            </div>
+            <div class="localization-task">
+              <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+                >Edite os contactos do David Sanchez</nc-text
+              >
+            </div>
+          </div>
+          <div class="right-icon" (click)="close()">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+              >icon_close</nc-icon
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body-content">
+    <div class="input-search">
+      <div class="search-client">
+        <nc-input
+          [attr.tester]="'search-bar-current'"
+          placeholder="phone 1"
+          [bgInputColor]="'c-scale-12'"
+          [clear]="true"
+          [type]="'text'"
+          [size]="'medium'"
+          (onChange)="modelChangeFn($event)"
+          (ngOnChanges) = "ngOnChanges($event)"
+        >
+        </nc-input>
+      </div>
+    </div>
+    <div class="input-search">
+      <div class="search-client">
+        <nc-input
+          [attr.tester]="'search-bar-current'"
+          placeholder="Email"
+          [bgInputColor]="'c-scale-12'"
+          [clear]="true"
+          [type]="'text'"
+          [size]="'medium'"
+        >
+        </nc-input>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+  <div class="button-footer" (click)="save()">
+    <nc-text
+      size="h7"
+      hoverColor="c-scale-1"
+      color="c-scale-1"
+      weight="500"
+      font="primary"
+      >Save</nc-text
+    >
+  </div>
+</div>
+</ion-content>
