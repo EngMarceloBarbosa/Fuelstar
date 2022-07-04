@@ -28,8 +28,8 @@ ion-content {
   width: 90%;
   height: auto;
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
+  flex-direction: column;
 
   .title {
     padding-bottom: tbu(px(10));
@@ -46,6 +46,32 @@ ion-content {
 .title-body {
   margin-bottom: tbu(px(30));
   margin-top: tbu(px(10));
+}
+
+.inputs {
+  nc-form-field {
+    input-wrapper {
+      ::ng-deep {
+        nc-icon {
+          .input-wrapper__show {
+            right: tbu(px(0));
+          }
+        }
+      }
+    }
+  }
+}
+
+.login-switch {
+  margin-top: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.icon-switch {
+  @extend .justify-end;
 }
 
 .footer-login {
@@ -75,20 +101,6 @@ ion-content {
   }
 }
 
-.inputs {
-  nc-form-field {
-    input-wrapper {
-      ::ng-deep {
-      nc-icon {
-          .input-wrapper__show {
-            right: tbu(px(0));
-          }
-        }
-      }
-    }
-  }
-}
-
 nc-button {
   ::ng-deep {
     .button primary {
@@ -107,16 +119,4 @@ nc-button {
       }
     }
   }
-}
-
-.login-switch {
-  margin-top: 10%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.icon-switch {
-  @extend .justify-end;
 }

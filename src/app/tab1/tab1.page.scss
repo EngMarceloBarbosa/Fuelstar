@@ -5,9 +5,10 @@ nc-virtual-scroller{
   height: calc(100vh - #{tbu(px(465))})
 }
 
-ion-content {
-  padding: tbu(px(10));
-}
+// .container{
+//   padding: tbu(px(10));
+// }
+
 
 .header-menu {
   background-color: var(--secondary_dark);

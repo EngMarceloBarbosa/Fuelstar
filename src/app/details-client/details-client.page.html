@@ -1,4 +1,5 @@
-<ion-content>
+<ion-content *ngIf="onNotes">
+  <!-- <div class="CONTAINER" *ngIf="onNotes"> -->
   <div class="header-container">
     <div class="header">
       <div class="card-tasks">
@@ -141,7 +142,7 @@
                   >
                 </div>
               </div>
-              <div class="arrow-info1">
+              <div class="arrow-info1" (click)="notes()">
                 <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                   >icon_content</nc-icon
                 >
@@ -183,15 +184,56 @@
         </div>
       </nc-tab-pane>
     </nc-tabs>
+    <div class="notes" *ngIf="!onNotes">
+      <div class="header-notes">
+        <div class="header">
+          <div class="card-tasks">
+            <div class="box-task">
+              <div class="left-icon">
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1"
+                  >icon_phone</nc-icon
+                >
+              </div>
+              <div class="description-task">
+                <div class="name-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >Notas</nc-text
+                  >
+                </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >Escreva uma ou mais notas sobre a tarefa</nc-text
+                  >
+                </div>
+              </div>
+              <div class="right-icon" (click)="closeNotes()">
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+                  >icon_close</nc-icon
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
   <div class="footer-client">
-    <div class="button-cancel">
+    <div class="button-cancel" (click)="cancel()">
       <nc-text size="h7" color="error" weight="bold" font="primary">
         Cancel visit
       </nc-text>
     </div>
     <div class="buttons">
-      <div class="button-options">
+      <div class="button-options" (click)="options()">
         <div class="icon-option">
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
             >icon_plus</nc-icon
@@ -202,6 +244,163 @@
             Opções
           </nc-text>
         </div>
+        <nc-action-sheet [typeASheet]="1" [showFooter]="false">
+          <div class="action-sheet-body">
+            <div class="content-options">
+              <div class="container-options">
+                <div class="description-options">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >ESCOLHA O TIPO DE OPERAÇÃO EU DESEJA REALIZAR</nc-text
+                  >
+                </div>
+              </div>
+              <div class="type-actions">
+                <div class="option">
+                  <div class="icon-app">
+                    <nc-icon
+                      [size]="18"
+                      color="c-scale-12"
+                      hoverColor="c-scale-1"
+                      >icon_shop_car</nc-icon
+                    >
+                  </div>
+                  <div class="title-price">
+                    <nc-text
+                      size="h7"
+                      color="c-scale-10"
+                      weight="bold"
+                      font="primary"
+                      >Venda</nc-text
+                    >
+                  </div>
+                  <div class="right-icon">
+                    <nc-icon
+                      [size]="18"
+                      color="c-scale-12"
+                      hoverColor="c-scale-12"
+                      >icon_big_arrow-right</nc-icon
+                    >
+                  </div>
+                </div>
+                <div class="option">
+                  <div class="icon-app">
+                    <nc-icon
+                      [size]="18"
+                      color="c-scale-12"
+                      hoverColor="c-scale-1"
+                      >icon_truck_orders</nc-icon
+                    >
+                  </div>
+                  <div class="title-price">
+                    <nc-text
+                      size="h7"
+                      color="c-scale-10"
+                      weight="bold"
+                      font="primary"
+                      >Encomenda</nc-text
+                    >
+                  </div>
+                  <div class="right-icon">
+                    <nc-icon
+                      [size]="18"
+                      color="c-scale-12"
+                      hoverColor="c-scale-12"
+                      >icon_big_arrow-right</nc-icon
+                    >
+                  </div>
+                </div>
+                <div class="option">
+                  <div class="icon-app">
+                    <nc-icon
+                      [size]="18"
+                      color="c-scale-12"
+                      hoverColor="c-scale-1"
+                    >
+                      icon_order_return</nc-icon
+                    >
+                  </div>
+                  <div class="title-price">
+                    <nc-text
+                      size="h7"
+                      color="c-scale-10"
+                      weight="bold"
+                      font="primary"
+                      >Levantamento</nc-text
+                    >
+                  </div>
+                  <div class="right-icon">
+                    <nc-icon
+                      [size]="18"
+                      color="c-scale-12"
+                      hoverColor="c-scale-12"
+                      >icon_big_arrow-right</nc-icon
+                    >
+                  </div>
+                </div>
+                <div class="option">
+                  <div class="icon-app">
+                    <nc-icon
+                      [size]="18"
+                      color="c-scale-12"
+                      hoverColor="c-scale-1"
+                    >
+                      icon_payment</nc-icon
+                    >
+                  </div>
+                  <div class="title-price">
+                    <nc-text
+                      size="h7"
+                      color="c-scale-10"
+                      weight="bold"
+                      font="primary"
+                      >Recebimento</nc-text
+                    >
+                  </div>
+                  <div class="right-icon">
+                    <nc-icon
+                      [size]="18"
+                      color="c-scale-12"
+                      hoverColor="c-scale-12"
+                      >icon_big_arrow-right</nc-icon
+                    >
+                  </div>
+                </div>
+                <div class="option">
+                  <div class="icon-app">
+                    <nc-icon
+                      [size]="18"
+                      color="c-scale-12"
+                      hoverColor="c-scale-1"
+                    >
+                      icon_undo</nc-icon
+                    >
+                  </div>
+                  <div class="title-price">
+                    <nc-text
+                      size="h7"
+                      color="c-scale-10"
+                      weight="bold"
+                      font="primary"
+                      >Devolução</nc-text
+                    >
+                  </div>
+                  <div class="right-icon">
+                    <nc-icon
+                      [size]="18"
+                      color="c-scale-12"
+                      hoverColor="c-scale-12"
+                      >icon_big_arrow-right</nc-icon
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nc-action-sheet>
       </div>
       <div class="button-done">
         <div class="icon-option">
@@ -209,7 +408,7 @@
             >icon_check</nc-icon
           >
         </div>
-        <div class="text-option">
+        <div class="text-option" (click)="done()">
           <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
             Done
           </nc-text>
@@ -217,4 +416,65 @@
       </div>
     </div>
   </div>
+  <!-- </div> -->
 </ion-content>
+
+<div class="notes" *ngIf="!onNotes">
+  <div class="header-notes">
+    <div class="box-task">
+      <div class="left-icon">
+        <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1"
+          >icon_phone</nc-icon
+        >
+      </div>
+      <div class="description-task1">
+        <div class="name-task">
+          <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+            >Notas</nc-text
+          >
+        </div>
+        <div class="localization-task">
+          <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+            >Escreva uma ou mais notas sobre a tarefa</nc-text
+          >
+        </div>
+      </div>
+      <div class="right-icon-notes" (click)="close()">
+        <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+          >icon_close</nc-icon
+        >
+      </div>
+    </div>
+
+    <div class="input-search">
+      <div class="search-client">
+        <nc-input
+          [attr.tester]="'search-bar-current'"
+          placeholder="phone 1"
+          [bgInputColor]="'c-scale-12'"
+          [clear]="true"
+          [type]="'text'"
+          [size]="'medium'"
+          (onChange)="modelChangeFn($event)"
+          (ngOnChanges)="ngOnChanges($event)"
+        >
+        </nc-input>
+      </div>
+    </div>
+  </div>
+    <div class="body-container">
+      <div class="footer">
+        <div class="button-footer" (click)="save()">
+          <nc-text
+            size="h7"
+            hoverColor="c-scale-1"
+            color="c-scale-1"
+            weight="500"
+            font="primary"
+            >Save</nc-text
+          >
+        </div>
+      </div>
+    </div>
+
+</div>

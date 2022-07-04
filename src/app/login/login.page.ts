@@ -53,14 +53,14 @@ export class LoginPage implements OnInit {
         '',
         [
           Validators.required,
-          // Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$|^[0-9]{16}$|^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}/[A-Za-zA-Z0-9]+$|^[0-9]{16}/[a-zA-Z0-9]+$')
+          Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$|^[0-9]{16}$|^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}/[A-Za-zA-Z0-9]+$|^[0-9]{16}/[a-zA-Z0-9]+$')
         ]
       ],
       password: [
         '',
         [
           Validators.required,
-          // Validators.minLength(8)
+          Validators.minLength(8)
         ]]
     });
   }
@@ -109,6 +109,7 @@ export class LoginPage implements OnInit {
 
       environment.token = res.accessToken;
       this.router.navigate(["/tabs/tab1"]);
+
     })
       .catch((error: HttpErrorResponse) => {
 

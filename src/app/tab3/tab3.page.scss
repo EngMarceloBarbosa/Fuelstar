@@ -1,20 +1,19 @@
-@import './../../global.scss';
+@import "./../../global.scss";
 
 nc-virtual-scroller {
   height: calc(100vh - 200px);
 }
 
-
-.header-task{
-@extend .justify-end;
-width: 100%;
-height: 20%;
-background-color: var(--c-scale-12);
-flex-direction: column;
-
+.header-task {
+  @extend .justify-end;
+  width: 100%;
+  height: 20%;
+  background-color: var(--c-scale-12);
+  flex-direction: column;
 }
 
-.filter-header, .states-header{
+.filter-header,
+.states-header {
   @extend .space-between;
   width: 100%;
   padding: tbu(px(12));
@@ -25,7 +24,7 @@ flex-direction: column;
   gap: tbu(px(5));
 }
 
-.icon-task{
+.icon-task {
   padding: tbu(px(10));
 }
 
@@ -40,8 +39,7 @@ flex-direction: column;
   padding: tbu(px(5));
   border-radius: tbu(px(20));
 
-
-  .icon-state{
+  .icon-state {
     height: tbu(px(15));
     width: taction-sheet--headerbu(px(15));
     border-radius: 50%;
@@ -56,13 +54,11 @@ flex-direction: column;
     }
   }
 
-  .txt-state{
+  .txt-state {
     font-size: tbu(px(12));
     color: --c-scale-12;
   }
-
 }
-
 
 .title {
   width: 60%;
@@ -83,7 +79,6 @@ flex-direction: column;
   justify-content: center;
   display: flex;
 }
-
 
 .boxes-task {
   width: 100%;
@@ -123,7 +118,7 @@ flex-direction: column;
 
 .id {
   width: 100%;
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: flex-end;
 }
@@ -134,13 +129,11 @@ flex-direction: column;
   flex-direction: column;
 }
 
-
 .label-box {
   width: 60%;
   display: flex;
   flex-direction: column;
   padding: 2% 2%;
-
 }
 
 .price {
@@ -149,24 +142,22 @@ flex-direction: column;
   justify-content: flex-end;
 }
 
-
-.is_on_color{
-  color : red
+.is_on_color {
+  color: red;
 }
 
-.main{
+.main {
   height: calc(100% - 20%);
   margin-bottom: 0%;
   width: 100%;
 }
 
-.main-principal{
+.main-principal {
   width: 100%;
   height: 100%;
-
 }
 
-.header{
+.header {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -175,22 +166,22 @@ flex-direction: column;
   justify-content: space-between;
 }
 
-.icon-filter{
+.icon-filter {
   display: flex;
   justify-content: flex-start;
 }
 
-.radio-group{
+.radio-group {
   padding-bottom: 5%;
   background-color: #0000;
 }
 
-.text-label-header{
+.text-label-header {
   padding-left: 0%;
   color: #252525;
 }
 
-.text-order{
+.text-order {
   text-indent: 10px;
   padding-left: 3%;
 }
@@ -199,14 +190,12 @@ flex-direction: column;
   display: flex;
   padding-bottom: 3%;
   color: #252525;
-
 }
 
-.text-label{
+.text-label {
   color: #252525;
   padding-bottom: 3%;
 }
-
 
 .choose-dates {
   display: flex;
@@ -215,18 +204,16 @@ flex-direction: column;
 
 .from-until-date {
   background-color: var(--c-scale-3_bg);
-  padding:tbu(px(12)),tbu(px(24)),tbu(px(8)),tbu(px(12));
-  min-height:tbu(px(40));
-  margin-bottom:tbu(px(8));
-    // @extend .flex-center;
-  margin:tbu(px(5)),tbu(px(10));
-  margin-bottom:5%;
-  display:flex;
-  align-items:center;
-  text-indent:10px;
+  padding: tbu(px(12)), tbu(px(24)), tbu(px(8)), tbu(px(12));
+  min-height: tbu(px(40));
+  margin-bottom: tbu(px(8));
+  // @extend .flex-center;
+  margin: tbu(px(5)), tbu(px(10));
+  margin-bottom: 5%;
+  display: flex;
+  align-items: center;
+  text-indent: 10px;
 }
-
-
 
 .date-picker-list .am-list-item .am-list-line .am-list-extra {
   // @include setFontSize(px($font_size_4));
@@ -235,27 +222,24 @@ flex-direction: column;
   color: var(--c-scale-12_txt);
 }
 
-.icon-calendar{
+.icon-calendar {
   margin-left: 3%;
 }
 
-
-
-.text-state{
+.text-state {
   color: #252525;
   padding-bottom: 3%;
 }
 
-.boxes-state{
-    display: flex;
-    width: 100%;
-    height:tbu(px(50));
-    justify-content: flex-start;
-    gap: tbu(px(5));
+.boxes-state {
+  display: flex;
+  width: 100%;
+  height: tbu(px(50));
+  justify-content: flex-start;
+  gap: tbu(px(5));
 }
 
-
-.box-state{
+.box-state {
   margin: 3% 5%;
   border: 1px solid black;
   display: flex;
@@ -267,16 +251,14 @@ flex-direction: column;
   /* flex-direction: row; */
   padding: 3%;
   align-items: center;
-
 }
 
-nc-searchbar{
-  ::ng-deep{
-              input{
-                  background: var(--c-scale-12_bg) !important ;
-                  text-indent: tbu(px(30));
-                  color: var(--c-scale-1);
-              }
-          }
+nc-searchbar {
+  ::ng-deep {
+    input {
+      background: var(--c-scale-12_bg) !important ;
+      text-indent: tbu(px(30));
+      color: var(--c-scale-1);
+    }
   }
-
+}

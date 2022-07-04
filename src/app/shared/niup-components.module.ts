@@ -18,7 +18,8 @@ import {
   StepperModule,
   ActionSheetModule,
   HeadingModule,
-  AccordionModule
+  AccordionModule,
+
 } from '@nc-angular/library-mobile.stg';
 
 import { PipesModule } from '@nc-angular/devkit';

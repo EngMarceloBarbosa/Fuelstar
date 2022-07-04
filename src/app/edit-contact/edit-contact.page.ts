@@ -76,6 +76,7 @@ console.log(this.value);
   save(){
     console.log(this.value)
     this.tasksService.value$.next(this.value);
+    this.router.navigate(["/details-client"])
 
   }
 
