@@ -14,7 +14,7 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 export class OrdersPage implements OnInit {
 
-  allDocumentsFilter: any;
+  allDocumentsFilter = clients;
   tempDocuments: any;
   active: boolean = true;
   continue: boolean = true;
@@ -186,13 +186,14 @@ export class OrdersPage implements OnInit {
   }
 
   searchDocument($event: string) {
-    if ($event == '') {
+    if ($event.length == 0) {
       this.allDocumentsFilter = this.listClient;
     } else {
       this.allDocumentsFilter = this.listClient.filter(
         doc =>
           doc.firstName?.toLowerCase().includes($event.toLowerCase())
       );
+
     }
   }
 

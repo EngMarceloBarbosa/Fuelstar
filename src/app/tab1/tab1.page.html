@@ -1,225 +1,213 @@
-
-  <div class="header-menu">
-    <div class="title-menu">
-      <div class="title-main-menu">
-        <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
-          >{{'App.Tab1.titleHeader' | translate}}</nc-text
-        >
-      </div>
-      <div class="icon-cart">
-        <nc-icon
-          [size]="18"
-          color="c-scale-1"
-          hoverColor="c-scale-1"
-          (click)="definitions1()"
-          >icon_configurations</nc-icon
-        >
-      </div>
-    </div>
-    <div class="operation-details">
-      <div class="operator-name">
-        <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-          >{{name}}</nc-text
-        >
-      </div>
-      <div class="operator-position">
-        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-          >{{'App.Tab1.operator' | translate}}</nc-text
-        >
-      </div>
-    </div>
-    <div class="information-shift">
-      <div class="date">
-        <div class="icon-calendar">
-          <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
-            >icon_calendar</nc-icon
-          >
-        </div>
-        <div class="info-date">
-          <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-            >11/August/2021</nc-text
-          >
-        </div>
-      </div>
-      <div class="details-shift">
-        <div class="number-shift">
-          <nc-text size="h8" color="c-scale-1" weight="500" font="primary"
-            >{{'App.Tab1.numberShift' | translate}}</nc-text
-          >
-        </div>
-        <div class="hour-shift">
-          <nc-text size="h8" color="c-scale-1" weight="500" font="primary"
-            >14H-22H00</nc-text
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="body-content">
-    <div class="box-visits">
-      <div class="box done">
-        <div class="box-info">
-          <div class="number-task">
-            <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
-              >1</nc-text
-            >
-          </div>
-          <div class="box-text-visits-done">
-            <nc-text size="h6" color="c-scale-10" weight="500" font="primary"
-              >{{'App.Tab1.visitsDone' | translate}}</nc-text
-            >
-          </div>
-        </div>
-        <div class="box-image">
-          <img src="./../../assets/img/image_tasks_done.svg" />
-        </div>
-      </div>
-      <div class="box to-do">
-        <div class="box-info">
-          <div class="number-task">
-            <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
-              >1</nc-text
-            >
-          </div>
-          <div class="box-text-visits-done">
-            <nc-text size="h6" color="c-scale-10" weight="500" font="primary"
-              >{{'App.Tab1.visitsTodo' | translate}}</nc-text
-            >
-          </div>
-        </div>
-        <div class="box-image">
-          <img src="./../../assets/img/images_tasks_todo.svg" />
-        </div>
-      </div>
-    </div>
-    <div class="title-tasks">
-      <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-        >{{'App.Tab1.visitsForToday' | translate}}</nc-text
+<div class="header-menu">
+  <div class="title-menu">
+    <div class="title-main-menu">
+      <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+        >{{'App.Tab1.titleHeader' | translate}}</nc-text
       >
     </div>
-    <div class="type-car">
-      <div class="car-icon">
-        <nc-icon [size]="18" color="c-scale-8">icon_truck</nc-icon>
+    <div class="icon-cart">
+      <nc-icon
+        [size]="18"
+        color="c-scale-1"
+        hoverColor="c-scale-1"
+        (click)="definitions1()"
+        >icon_configurations</nc-icon
+      >
+    </div>
+  </div>
+  <div class="operation-details">
+    <div class="operator-name">
+      <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+        >{{name}}</nc-text
+      >
+    </div>
+    <div class="operator-position">
+      <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+        >{{'App.Tab1.operator' | translate}}</nc-text
+      >
+    </div>
+  </div>
+  <div class="information-shift">
+    <div class="date">
+      <div class="icon-calendar">
+        <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+          >icon_calendar</nc-icon
+        >
       </div>
-      <div class="name-viature">
-        <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
-          >{{'App.Tab1.vehicle' | translate}}
-        </nc-text>
-      </div>
-      <div class="matri-viature">
-        <nc-text size="h8" color="c-scale-9" weight="500" font="primary"
-          >| 12.AB.34</nc-text
+      <div class="info-date">
+        <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+          >11/August/2021</nc-text
         >
       </div>
     </div>
-
-    <nc-virtual-scroller #scroll [items]="tests">
-      <div class="card-tasks" *ngFor="let test  of scroll.viewPortItems">
-        <div class="box-task" (click)="detailsTasks(test)">
-          <div class="icon-name-user">
-            <nc-text
-              id="icon-user"
-              size="h7"
-              color="c-scale-10"
-              weight="500"
-              font="primary"
-              >{{test.cunha}}</nc-text
-            >
-          </div>
-          <div class="description-task">
-            <div class="name-task">
-              <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-                >{{test.name}}</nc-text
-              >
-            </div>
-            <div class="localization-task">
-              <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-                >{{test.description}}</nc-text
-              >
-            </div>
-          </div>
-          <div class="bar-task">
-            <div class="light-bar"></div>
-          </div>
+    <div class="details-shift">
+      <div class="number-shift">
+        <nc-text size="h8" color="c-scale-1" weight="500" font="primary"
+          >{{'App.Tab1.numberShift' | translate}}</nc-text
+        >
+      </div>
+      <div class="hour-shift">
+        <nc-text size="h8" color="c-scale-1" weight="500" font="primary"
+          >14H-22H00</nc-text
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<div class="body-content">
+  <div class="box-visits">
+    <div class="box done">
+      <div class="box-info">
+        <div class="number-task">
+          <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+            >1</nc-text
+          >
+        </div>
+        <div class="box-text-visits-done">
+          <nc-text size="h6" color="c-scale-10" weight="500" font="primary"
+            >{{'App.Tab1.visitsDone' | translate}}</nc-text
+          >
         </div>
       </div>
-    </nc-virtual-scroller>
-<div class="arrow-main" (click)="definitions()">
+      <div class="box-image">
+        <img src="./../../assets/img/image_tasks_done.svg" />
+      </div>
+    </div>
+    <div class="box to-do">
+      <div class="box-info">
+        <div class="number-task">
+          <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+            >1</nc-text
+          >
+        </div>
+        <div class="box-text-visits-done">
+          <nc-text size="h6" color="c-scale-10" weight="500" font="primary"
+            >{{'App.Tab1.visitsTodo' | translate}}</nc-text
+          >
+        </div>
+      </div>
+      <div class="box-image">
+        <img src="./../../assets/img/images_tasks_todo.svg" />
+      </div>
+    </div>
+  </div>
+  <div class="title-tasks">
+    <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+      >{{'App.Tab1.visitsForToday' | translate}}</nc-text
+    >
+  </div>
+  <div class="type-car">
+    <div class="car-icon">
+      <nc-icon [size]="18" color="c-scale-8">icon_truck</nc-icon>
+    </div>
+    <div class="name-viature">
+      <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
+        >{{'App.Tab1.vehicle' | translate}}
+      </nc-text>
+    </div>
+    <div class="matri-viature">
+      <nc-text size="h8" color="c-scale-9" weight="500" font="primary"
+        >| 12.AB.34</nc-text
+      >
+    </div>
+  </div>
+
+  <nc-virtual-scroller #scroll [items]="tests">
+    <div class="card-tasks" *ngFor="let test  of scroll.viewPortItems">
+      <div class="box-task" (click)="detailsTasks(test)">
+        <div class="icon-name-user">
+          <nc-text
+            id="icon-user"
+            size="h7"
+            color="c-scale-10"
+            weight="500"
+            font="primary"
+            >{{test.cunha}}</nc-text
+          >
+        </div>
+        <div class="description-task">
+          <div class="name-task">
+            <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+              >{{test.name}}</nc-text
+            >
+          </div>
+          <div class="localization-task">
+            <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+              >{{test.description}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="bar-task">
+          <div class="light-bar"></div>
+        </div>
+      </div>
+    </div>
+  </nc-virtual-scroller>
+  <div class="arrow-main" (click)="definitions()">
     <div class="arrow">
       <div class="arrow-sub">
-        <nc-icon
-        [size]="18"
-        color="--success"
-        hoverColor="c-scale-12"
-
-        >icon_send</nc-icon>
+        <nc-icon [size]="18" color="--success" hoverColor="c-scale-12"
+          >icon_send</nc-icon
+        >
       </div>
     </div>
   </div>
-  </div>
+</div>
 
-  <nc-action-sheet [typeASheet]="1" [showFooter]="false">
-    <div class="action-sheet-body">
-      <div class="content-options">
-        <div class="container-options">
-          <div class="description-options">
-            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-              >Escolha a viatura da qual deseja abrir trajeto</nc-text
+<nc-action-sheet [typeASheet]="1" [showFooter]="false">
+  <div class="action-sheet-body">
+    <div class="content-options">
+      <div class="container-options">
+        <div class="description-options">
+          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            >Escolha a viatura da qual deseja abrir trajeto</nc-text
+          >
+        </div>
+      </div>
+      <div class="type-actions">
+        <div class="option">
+          <div class="icon-app">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+              >icon_truck_orders</nc-icon
+            >
+          </div>
+          <div class="title-price">
+            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+              >Viatura | 24.JD.00</nc-text
+            >
+          </div>
+          <div class="right-icon">
+            <nc-icon
+              [size]="18"
+              color="c-scale-12"
+              hoverColor="c-scale-12"
+              (click)="send()"
+              >icon_big_arrow-right</nc-icon
             >
           </div>
         </div>
-        <div class="type-actions">
-          <div class="option">
-            <div class="icon-app">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
-                >icon_truck_orders</nc-icon
-              >
-            </div>
-            <div class="title-price">
-              <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
-                >Viatura | 24.JD.00</nc-text
-              >
-            </div>
-            <div class="right-icon">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
-                (click)="send()"
-                >icon_big_arrow-right</nc-icon
-              >
-            </div>
+        <div class="option">
+          <div class="icon-app">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+              >icon_truck_orders</nc-icon
+            >
           </div>
-          <div class="option">
-            <div class="icon-app">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
-
-                >icon_truck_orders</nc-icon
-              >
-            </div>
-            <div class="title-price">
-              <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
-                >Viatura | 24.JD.09</nc-text
-              >
-            </div>
-            <div class="right-icon">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
-                (click)="send()"
-                >icon_big_arrow-right</nc-icon
-              >
-            </div>
+          <div class="title-price">
+            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+              >Viatura | 24.JD.09</nc-text
+            >
+          </div>
+          <div class="right-icon">
+            <nc-icon
+              [size]="18"
+              color="c-scale-12"
+              hoverColor="c-scale-12"
+              (click)="send()"
+              >icon_big_arrow-right</nc-icon
+            >
           </div>
         </div>
       </div>
     </div>
-  </nc-action-sheet>
-
+  </div>
+</nc-action-sheet>

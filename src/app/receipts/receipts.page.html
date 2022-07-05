@@ -18,7 +18,7 @@
           >
         </div>
       </div>
-      <div class="right-icon">
+      <div class="right-icon" (click)="close()">
         <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
           >icon_cross</nc-icon
         >
@@ -34,7 +34,6 @@
           [clear]="true"
           [type]="'text'"
           [size]="'medium'"
-
         >
         </nc-input>
       </div>

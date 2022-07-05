@@ -1,161 +1,159 @@
 <ion-content>
-<div class="header-container">
-  <div class="header">
-    <div class="title-header">
-    <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
-    >Order Nº 1927</nc-text>
-  </div>
-  <div class="description-header">
-    <nc-text size="h8" color="c-scale-10" weight="bold" font="primary"
-    >FT001/20201</nc-text>
-  </div>
-  </div>
-</div>
-<div class="body-content">
-  <div class="card-types" >
-    <div class="box-task" >
-      <div class="icon-name-user">
-        <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-        >icon_shop_car</nc-icon>
+  <div class="header-container">
+    <div class="header">
+      <div class="title-header">
+        <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
+          >Order Nº 1927</nc-text
+        >
       </div>
-      <div class="description-task">
-        <div class="name-task">
-          <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
-            >Jimmy Smyth</nc-text
-          >
-        </div>
-        <div class="localization-task">
-          <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-            >919 000 777 - Jimmysmyth@fuel.com</nc-text
-          >
-        </div>
+      <div class="description-header">
+        <nc-text size="h8" color="c-scale-10" weight="bold" font="primary"
+          >FT001/20201</nc-text
+        >
       </div>
     </div>
   </div>
-    <div class="card-types" >
-    <div class="box-task" >
-      <div class="icon-name-user">
-        <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-        >icon_shop_car</nc-icon>
-      </div>
-      <div class="description-task">
-        <div class="name-task">
-          <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
-            >{{'App.FinishOrder.optionCash' | translate}}</nc-text
+  <div class="body-content">
+    <div class="card-types">
+      <div class="box-task">
+        <div class="icon-name-user">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+            >icon_shop_car</nc-icon
           >
         </div>
-        <div class="localization-task">
-          <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-            >{{'App.FinishOrder.descriptionCash' | translate}}</nc-text
-          >
+        <div class="description-task">
+          <div class="name-task">
+            <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
+              >Jimmy Smyth</nc-text
+            >
+          </div>
+          <div class="localization-task">
+            <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+              >919 000 777 - Jimmysmyth@fuel.com</nc-text
+            >
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="products-image">
-    <img src="/assets/img/receipt_image.svg" />
-  </div>
-  <div class="login-switch">
-    <div class="text-login-switch">
-      <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-        >{{'App.FinishOrder.invoiceEmail' | translate}}</nc-text
-      >
-      <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-        >{{'App.FinishOrder.descriptionInvoice' | translate}}</nc-text
-      >
+    <div class="card-types">
+      <div class="box-task">
+        <div class="icon-name-user">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+            >icon_shop_car</nc-icon
+          >
+        </div>
+        <div class="description-task">
+          <div class="name-task">
+            <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
+              >{{'App.FinishOrder.optionCash' | translate}}</nc-text
+            >
+          </div>
+          <div class="localization-task">
+            <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+              >{{'App.FinishOrder.descriptionCash' | translate}}</nc-text
+            >
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="icon-switch">
-      <nc-switch
-        [attr.tester]="'click-switch-darkmode'"
-        color="sucess"
-        hoverColor="c-scale-1"
-        >icon_switch</nc-switch
-      >
+    <div class="products-image">
+      <img src="/assets/img/receipt_image.svg" />
     </div>
-  </div>
-  <hr
-  style="
-    height: 1px;
-    border-width: 0;
-    color: rgb(179, 175, 175);
-    background-color: gray;
-  "
-/>
+    <div class="login-switch">
+      <div class="text-login-switch">
+        <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+          >{{'App.FinishOrder.invoiceEmail' | translate}}</nc-text
+        >
+        <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+          >{{'App.FinishOrder.descriptionInvoice' | translate}}</nc-text
+        >
+      </div>
+      <div class="icon-switch">
+        <nc-switch
+          [attr.tester]="'click-switch-darkmode'"
+          color="sucess"
+          hoverColor="c-scale-1"
+          >icon_switch</nc-switch
+        >
+      </div>
+    </div>
+    <hr
+      style="
+        height: 1px;
+        border-width: 0;
+        color: rgb(179, 175, 175);
+        background-color: gray;
+      "
+    />
 
-  <div class="final-sum" >
-    <div class="price-final">
-      <div class="price-shop">
-        <div class="shipping-price">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >{{'App.FinishOrder.items' | translate}}</nc-text
-          >
-        </div>
+    <div class="final-sum">
+      <div class="price-final">
+        <div class="price-shop">
+          <div class="shipping-price">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >{{'App.FinishOrder.items' | translate}}</nc-text
+            >
+          </div>
 
-        <div class="value">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >{{listValue1}}€</nc-text
-          >
+          <div class="value">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >{{listValue1}}€</nc-text
+            >
+          </div>
         </div>
-      </div>
-      <div class="price-shop">
-        <div class="shipping-price">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >{{'App.FinishOrder.shippingPrice' | translate}}</nc-text
-          >
-        </div>
+        <div class="price-shop">
+          <div class="shipping-price">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >{{'App.FinishOrder.shippingPrice' | translate}}</nc-text
+            >
+          </div>
 
-        <div class="value">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >0,00€</nc-text
-          >
+          <div class="value">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >0,00€</nc-text
+            >
+          </div>
         </div>
-      </div>
-      <div class="discont-value">
-        <div class="discount">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >{{'App.FinishOrder.discount' | translate}}</nc-text
-          >
+        <div class="discont-value">
+          <div class="discount">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >{{'App.FinishOrder.discount' | translate}}</nc-text
+            >
+          </div>
+          <div class="value">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >0,00€</nc-text
+            >
+          </div>
         </div>
-        <div class="value">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >0,00€</nc-text
-          >
-        </div>
-      </div>
-      <div class="total-product">
-        <div class="total">
-          <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
-            >{{'App.FinishOrder.priceTotal' | translate}}</nc-text
-          >
-        </div>
-        <div class="value">
-          <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
-            >{{listValue1}}€</nc-text
-          >
+        <div class="total-product">
+          <div class="total">
+            <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
+              >{{'App.FinishOrder.priceTotal' | translate}}</nc-text
+            >
+          </div>
+          <div class="value">
+            <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
+              >{{listValue1}}€</nc-text
+            >
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="container-footer">
-<div class="button-footer">
-  <nc-text
-  size="h6"
-  color="c-scale-1"
-  weight="bolder"
-  font="primary"
-  hoverColor="c-scale-12"
-  >OK</nc-text>
-</div>
-</div>
+  <div class="container-footer">
+    <div class="button-footer">
+      <nc-text
+        size="h6"
+        color="c-scale-1"
+        weight="bolder"
+        font="primary"
+        hoverColor="c-scale-12"
+        >OK</nc-text
+      >
+    </div>
+  </div>
 </ion-content>
-
-
-
-
-
-
-
 
 <!--
 <ion-content>

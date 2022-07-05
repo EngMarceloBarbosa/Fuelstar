@@ -40,7 +40,7 @@
           [type]="'text'"
           [size]="'medium'"
           (onChange)="modelChangeFn($event)"
-          (ngOnChanges) = "ngOnChanges($event)"
+          (ngOnChanges)="ngOnChanges($event)"
         >
         </nc-input>
       </div>
@@ -60,15 +60,15 @@
     </div>
   </div>
   <div class="footer">
-  <div class="button-footer" (click)="save()">
-    <nc-text
-      size="h7"
-      hoverColor="c-scale-1"
-      color="c-scale-1"
-      weight="500"
-      font="primary"
-      >Save</nc-text
-    >
+    <div class="button-footer" (click)="save()">
+      <nc-text
+        size="h7"
+        hoverColor="c-scale-1"
+        color="c-scale-1"
+        weight="500"
+        font="primary"
+        >Save</nc-text
+      >
+    </div>
   </div>
-</div>
 </ion-content>

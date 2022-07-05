@@ -14,8 +14,10 @@ export class ProductService {
 
 
 
-  addValueProduct(newElement){
+  addValueProduct(newElement,ammount){
     console.log(newElement)
+
+    console.log(ammount)
   const index= this.productList.findIndex(ele => ele.id === newElement.id);
   if(index >= 0){
     this.productList[index].quantity++;
@@ -25,15 +27,15 @@ export class ProductService {
       ...this.productList,
       {
         ...newElement,
-        quantity:1,
-        totalValueItem: newElement.price
-
+        quantity:ammount,
+        totalValueItem: newElement.price * ammount
       }
     ];
   }
   this.tasksService.listProductsNew$.next(this.productList);
   console.log(this.productList, "1")
   }
+
 
   totalValueOrder(){
     console.log("Boas")

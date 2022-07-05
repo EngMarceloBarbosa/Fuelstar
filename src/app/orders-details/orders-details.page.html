@@ -6,13 +6,11 @@
           <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
             >Order Nº 1923</nc-text
           >
-          <ion-badge color="primary" id="notifications-badge" *ngIf= "!badgeOn"
+          <ion-badge color="primary" id="notifications-badge" *ngIf="!badgeOn"
             >{{badges}}</ion-badge
-
           >
-          <ion-badge color="primary" id="notifications-badge1"  *ngIf= "badgeOn"
+          <ion-badge color="primary" id="notifications-badge1" *ngIf="badgeOn"
             >{{badges}}</ion-badge
-
           >
         </div>
       </div>
@@ -377,7 +375,8 @@
                     color="c-scale-12"
                     weight="bold"
                     font="primary"
-                    >{{'App.OrderDetails.optionCreditCard' | translate}}</nc-text
+                    >{{'App.OrderDetails.optionCreditCard' |
+                    translate}}</nc-text
                   >
                 </div>
                 <div class="radio">
@@ -400,7 +399,8 @@
                   color="c-scale-12"
                   weight="500"
                   font="primary"
-                  >{{'App.OrderDetails.descriptionCreditCard' | translate}}</nc-text
+                  >{{'App.OrderDetails.descriptionCreditCard' |
+                  translate}}</nc-text
                 >
               </div>
             </div>

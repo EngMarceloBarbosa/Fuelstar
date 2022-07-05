@@ -92,7 +92,7 @@
             >
             </nc-input>
           </div>
-          <nc-virtual-scroller #scroll [items]="allDocumentsFilter">
+          <nc-virtual-scroller #scroll  [items]="allDocumentsFilter" >
             <div
               class="cards-clients"
               *ngFor="let item of scroll.viewPortItems"
@@ -171,7 +171,6 @@
               [clear]="true"
               [type]="'text'"
               [size]="'medium'"
-
             >
             </nc-input>
             <nc-input

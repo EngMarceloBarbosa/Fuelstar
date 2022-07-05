@@ -25,8 +25,8 @@ nc-virtual-scroller {
 
 .order-details {
   display: flex;
-  width: 100%;
   flex-direction: column;
+  width: 100%;
 }
 
 .icon-close {
@@ -44,15 +44,6 @@ nc-virtual-scroller {
   display: flex;
   width: 100%;
   justify-content: space-between;
-}
-
-.step-details {
-  display: flex;
-  flex-direction: column;
-  height: tbu(px(15));
-  background-color: var(--c-scale-6);
-  border-radius: 50%;
-  width: 5%;
 }
 
 .step-space {
@@ -109,11 +100,6 @@ nc-virtual-scroller {
   padding-bottom: tbu(px(8));
 }
 
-.input-search {
-  width: 100%;
-  border: none;
-}
-
 .cards-clients {
   width: 100%;
   height: tbu(px(60));
@@ -144,31 +130,12 @@ nc-virtual-scroller {
 .arrow-info {
   width: 20%;
   height: 100%;
-  display: flex;
+  @extend .align-end;
   flex-direction: column;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.light-bar {
-  width: 11%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 21%;
-  background-color: var(--c-scale-5);
-}
-
-#icon-user {
-  margin-left: 24%;
 }
 
 .icon-name-user {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @extend .flex-center;
   height: 35px;
   border-radius: 90%;
   background-color: red;
@@ -206,17 +173,13 @@ nc-input {
   padding-top: tbu(px(48));
   padding-left: tbu(px(24));
   padding-right: tbu(px(24));
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+  @extend .flex-center;
   text-align: center;
+  flex-direction: column;
 }
 
 .button-add-products {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend .flex-center;
   width: tbu(px(146));
   height: tbu(px(46));
   border: 2px solid var(--c-scale-12);

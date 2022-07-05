@@ -7,7 +7,7 @@ import { AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg'
 import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginApiService } from '../shared/http/login-api.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 
 
@@ -53,14 +53,14 @@ export class LoginPage implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$|^[0-9]{16}$|^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}/[A-Za-zA-Z0-9]+$|^[0-9]{16}/[a-zA-Z0-9]+$')
+          // Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$|^[0-9]{16}$|^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}/[A-Za-zA-Z0-9]+$|^[0-9]{16}/[a-zA-Z0-9]+$')
         ]
       ],
       password: [
         '',
         [
           Validators.required,
-          Validators.minLength(8)
+          // Validators.minLength(6)
         ]]
     });
   }
@@ -116,7 +116,7 @@ export class LoginPage implements OnInit {
         if (error.status === 401) {
           const temp: ModalMessageModel = {
             showTip: false,
-            title: '',
+            title: 'WRONG PASSWORD',
             description: '',
             state: 'error',
             leftButtonSize: 'small',
@@ -137,7 +137,7 @@ export class LoginPage implements OnInit {
           setTimeout(() => {
             // this.loading = 'SingIn';
             this.form.reset();
-          }, 200);
+          });
         } else {
 
           const temp: ModalMessageModel = {

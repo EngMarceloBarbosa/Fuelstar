@@ -1,14 +1,8 @@
 @import "./../../global.scss";
 
-
-nc-virtual-scroller{
-  height: calc(100vh - #{tbu(px(465))})
+nc-virtual-scroller {
+  height: calc(100vh - #{tbu(px(465))});
 }
-
-// .container{
-//   padding: tbu(px(10));
-// }
-
 
 .header-menu {
   background-color: var(--secondary_dark);
@@ -35,16 +29,26 @@ nc-virtual-scroller{
   justify-content: flex-end;
 }
 
-.information-shift {
+.operation-details {
+  width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: tbu(px(12));
+  padding-left: tbu(px(24));
+}
+
+.information-shift {
+  @extend .align-center;
   padding-top: tbu(px(32));
   padding-left: tbu(px(24));
   padding-right: tbu(px(24));
 
+
+
   .date {
-    display: flex;
     width: 60%;
+    display: flex;
     align-items: flex-start;
     flex-direction: row;
 
@@ -70,9 +74,9 @@ nc-virtual-scroller{
   @extend .space-between;
   align-self: center;
   position: absolute;
-  top: tbu(px(-50));
   box-sizing: content-box;
-  padding-right: 24px;
+  top: tbu(px(-50));
+  padding-right: tbu(px(24));
 }
 
 .box {
@@ -103,10 +107,14 @@ nc-virtual-scroller{
   }
 }
 
+
 .title-tasks {
   padding-top: tbu(px(50));
   padding-bottom: tbu(px(12));
 }
+
+
+
 
 .type-car {
   width: 40%;
@@ -115,27 +123,21 @@ nc-virtual-scroller{
 }
 
 
-
 .card-tasks {
   width: 100%;
+@extend .align-center;
   height: tbu(px(60));
   padding-top: tbu(px(13));
   padding-bottom: tbu(px(11));
   background-color: var(--c-scale-3);
-  display: flex;
-  align-items: center;
   margin-bottom: tbu(px(12));
   border-radius: tbu(px(12));
-
 }
 
 .box-task {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @extend .space-between;
   padding: 0 tbu(px(12));
-
 }
 
 .icon-name-user {
@@ -150,11 +152,9 @@ nc-virtual-scroller{
 .bar-task {
   width: 20%;
   height: tbu(px(40));
-  display: flex;
   flex-direction: column;
   display: flex;
   align-items: flex-end;
-
 }
 
 .light-bar {
@@ -167,11 +167,11 @@ nc-virtual-scroller{
   background-color: var(--c-scale-5);
 }
 
-#icon-user{
+#icon-user {
   margin-left: 24%;
 }
 
-.icon-name-user{
+.icon-name-user {
   display: flex;
   align-items: center;
   height: 35px;
@@ -182,85 +182,8 @@ nc-virtual-scroller{
 }
 
 
-// .light-bar {
-//   width: 60%;
-//   height: 93%;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   border-radius: 21%;
-//   background-color: green;
-// }
 
-.cart {
-  width: 20px;
-  height: 20px;
-  background: #fcfcfc 0% 0% no-repeat padding-box;
-  opacity: 1;
-}
-
-.operation-details {
-  display: flex;
-  width: 100%;
-  align-items: flex-start;
-  flex-direction: column;
-  margin-top: tbu(px(12));
-  padding-left: tbu(px(24));
-}
-
-.label-name {
-  text-align: left;
-  font: normal normal 600 16px/22px Source Sans Pro;
-  letter-spacing: 0px;
-  color: black;
-  opacity: 1;
-}
-
-.label-operator {
-  text-align: left;
-  font: normal normal normal 12px/22px Source Sans Pro;
-  letter-spacing: 0px;
-  color: black;
-  opacity: 1;
-}
-
-.label-operators {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10%;
-}
-
-.label-box {
-  margin-top: 3%;
-}
-
-.body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.box-tasks {
-  width: 326px;
-  height: 158px;
-  opacity: 1;
-  background-color: black;
-  margin-top: 5%;
-  margin-bottom: 30px;
-}
-
-.box-supllier {
-  width: 326px;
-  height: 158px;
-  opacity: 1;
-  background-color: black;
-}
-
-// #header{
-//  position: none;
-// }
-
-.arrow-main{
+.arrow-main {
   display: flex;
   border-radius: 50%;
   background-color: var(--c-scale-2);
@@ -273,7 +196,7 @@ nc-virtual-scroller{
   box-shadow: 0px 2px 6px #18181829;
 }
 
-.arrow{
+.arrow {
   display: flex;
   border-radius: 50%;
   background-color: var(--c-scale-1);
@@ -283,48 +206,47 @@ nc-virtual-scroller{
   height: tbu(px(50));
   width: tbu(px(52));
   right: 13%;
-  box-shadow: 0px 2px 6px #3C404326;
+  box-shadow: 0px 2px 6px #3c404326;
 }
 
-.arrow-sub{
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
+.arrow-sub {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 
 nc-action-sheet {
   ::ng-deep {
-  .action-sheet.animation{
-    height: 30%;
-  }
+    .action-sheet.animation {
+      height: 30%;
+    }
   }
 }
 
-.type-actions{
-display: flex;
-flex-direction: column;
+.type-actions {
+  display: flex;
+  flex-direction: column;
 }
 
-.option{
+.option {
   margin-top: 5%;
   width: 100%;
   display: flex;
   flex-direction: row;
 }
 
-.icon-app{
+.icon-app {
   width: 15%;
 }
 
-.title-price{
+.title-price {
   display: flex;
   align-items: center;
   width: 80%;
 }
 
-.right-icon{
+.right-icon {
   display: flex;
   align-items: center;
   width: 5%;

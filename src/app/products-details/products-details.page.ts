@@ -25,6 +25,7 @@ export class ProductsDetailsPage implements OnInit {
   loginMessagesTranslations:any;
   productsMessagesTranslations:any;
   badgeNew: number;
+  ammount = 1;
 
   constructor(
     private router: Router,
@@ -80,7 +81,7 @@ export class ProductsDetailsPage implements OnInit {
     });
     await toast.present();
 
-this.productService.addValueProduct(product);
+this.productService.addValueProduct(product,this.ammount);
 this.productService.totalValueOrder()
 
   }
@@ -138,6 +139,10 @@ this.productService.totalValueOrder()
       this.tasksService.badge$.next(badge);
       this.controlBadge = false;
     }
+  }
+
+  show(value1){
+console.log(value1);
   }
 
   send(){

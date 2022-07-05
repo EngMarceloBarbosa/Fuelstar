@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { FilterServiceService } from '../shared/filter-service.service';
 import { TranslateService } from '@ngx-translate/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -80,6 +81,8 @@ export class OrdersDetailsPage implements OnInit {
   close() {
     this.router.navigate(['products-details']);
     this.badges = "" ;
+    this.listProducts = [];
+
   }
 
   continueButton() {

@@ -1,4 +1,3 @@
-
 <ion-content>
   <div class="header-menu">
     <div class="title-menu">
@@ -24,24 +23,28 @@
         >
       </div>
     </div>
-<div class="operation-info">
-  <div class="Title-info">
-  <nc-text size="h2" color="c-scale-1" weight="bold" font="primary" >{{'App.Tab2.operations' | translate}}</nc-text>
-</div>
-<div class="choice-operation">
-  <nc-text size="h4" color="c-scale-1" weight="regular" font="primary" >{{'App.Tab2.choiceOperation' | translate}}</nc-text>
-</div>
-</div>
-
+    <div class="operation-info">
+      <div class="Title-info">
+        <nc-text size="h2" color="c-scale-1" weight="bold" font="primary"
+          >{{'App.Tab2.operations' | translate}}</nc-text
+        >
+      </div>
+      <div class="choice-operation">
+        <nc-text size="h4" color="c-scale-1" weight="regular" font="primary"
+          >{{'App.Tab2.choiceOperation' | translate}}</nc-text
+        >
+      </div>
+    </div>
   </div>
 
   <div class="body-content">
     <nc-virtual-scroller #scroll [items]="tests">
       <div class="card-types" (click)="select(1)">
-        <div class="box-task" >
+        <div class="box-task">
           <div class="icon-name-user">
             <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-            >icon_shop_car</nc-icon>
+              >icon_shop_car</nc-icon
+            >
           </div>
           <div class="description-task">
             <div class="name-task">
@@ -56,16 +59,18 @@
             </div>
           </div>
           <div class="arrow-info">
-              <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-10"
-            >icon_big_arrow-right</nc-icon>
+            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-10"
+              >icon_big_arrow-right</nc-icon
+            >
           </div>
         </div>
       </div>
-      <div class="card-types" (click)="select(2)" >
-        <div class="box-task" >
+      <div class="card-types" (click)="select(2)">
+        <div class="box-task">
           <div class="icon-name-user">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-            > icon_truck_orders</nc-icon>
+            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1">
+              icon_truck_orders</nc-icon
+            >
           </div>
           <div class="description-task">
             <div class="name-task">
@@ -80,16 +85,18 @@
             </div>
           </div>
           <div class="arrow-info">
-              <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-            >icon_big_arrow-right</nc-icon>
+            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+              >icon_big_arrow-right</nc-icon
+            >
           </div>
         </div>
       </div>
       <div class="card-types" (click)="select(3)">
-        <div class="box-task" >
+        <div class="box-task">
           <div class="icon-name-user">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-            > icon_order_return</nc-icon>
+            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1">
+              icon_order_return</nc-icon
+            >
           </div>
           <div class="description-task">
             <div class="name-task">
@@ -104,16 +111,18 @@
             </div>
           </div>
           <div class="arrow-info">
-              <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-            >icon_big_arrow-right</nc-icon>
+            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+              >icon_big_arrow-right</nc-icon
+            >
           </div>
         </div>
       </div>
       <div class="card-types" (click)="select(4)">
-        <div class="box-task" >
+        <div class="box-task">
           <div class="icon-name-user">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-            > icon_payment </nc-icon>
+            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1">
+              icon_payment
+            </nc-icon>
           </div>
           <div class="description-task">
             <div class="name-task">
@@ -128,16 +137,18 @@
             </div>
           </div>
           <div class="arrow-info">
-              <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-            >icon_big_arrow-right</nc-icon>
+            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+              >icon_big_arrow-right</nc-icon
+            >
           </div>
         </div>
       </div>
       <div class="card-types" (click)="select(5)">
-        <div class="box-task" >
+        <div class="box-task">
           <div class="icon-name-user">
             <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-            >icon_undo</nc-icon>
+              >icon_undo</nc-icon
+            >
           </div>
           <div class="description-task">
             <div class="name-task">
@@ -152,14 +163,12 @@
             </div>
           </div>
           <div class="arrow-info">
-              <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-            >icon_big_arrow-right</nc-icon>
+            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+              >icon_big_arrow-right</nc-icon
+            >
           </div>
         </div>
       </div>
     </nc-virtual-scroller>
   </div>
-
-
-
 </ion-content>
