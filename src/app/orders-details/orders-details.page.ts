@@ -81,7 +81,7 @@ export class OrdersDetailsPage implements OnInit {
   close() {
     this.router.navigate(['products-details']);
     this.badges = "" ;
-    this.listProducts = [];
+    this.list = [];
 
   }
 
