@@ -26,6 +26,7 @@ export class ProductsDetailsPage implements OnInit {
   productsMessagesTranslations:any;
   badgeNew: number;
   ammount = 1;
+  ammountNew:any;
 
   constructor(
     private router: Router,
@@ -47,6 +48,10 @@ export class ProductsDetailsPage implements OnInit {
     this.tasksService.badgeEmpty$
     .subscribe(testTask1 => {
       this.badgeNew = testTask1;
+    }),
+    this.tasksService.ammountNew$
+    .subscribe(testTask1 => {
+      this.ammountNew = testTask1;
     }),
 
 

@@ -9,24 +9,27 @@ export class ProductService {
   productList:any[]=[];
   totalValueRequest: number;
   Total:number;
+  // quantity:any;
 
+  // quantity1: any = 0;
   constructor(private tasksService: TasksService) { }
 
 
 
   addValueProduct(newElement,ammount){
-    console.log(newElement)
+    console.log(newElement, "NOVO ELEEMNTO")
 
-    console.log(ammount)
+    console.log(ammount, "QUANTIDADE")
   const index= this.productList.findIndex(ele => ele.id === newElement.id);
   if(index >= 0){
-    this.productList[index].quantity++;
+    // this.quantity1 = this.quantity1 + this.quantity;
+    this.productList[index].quantity = ammount;
     this.productList[index].totalValueItem = newElement.price * this.productList[index].quantity;
   }else {
     this.productList = [
       ...this.productList,
       {
-        ...newElement,
+        ...newElement,ammount,
         quantity:ammount,
         totalValueItem: newElement.price * ammount
       }

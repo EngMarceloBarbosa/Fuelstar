@@ -34,6 +34,9 @@ export class FinishOrderPage implements OnInit {
         console.log(this.listProducts)
   }
 
+  finish(){
+
+  }
 
   clear(){
 

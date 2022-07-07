@@ -73,7 +73,7 @@ export class OrdersPage implements OnInit {
 
 
   close() {
-    this.loc.back();
+    this.router.navigate(['/tabs/tab2']);
   }
 
 

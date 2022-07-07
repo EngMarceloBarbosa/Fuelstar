@@ -142,19 +142,29 @@ ion-checkbox {
 }
 
 .img-article {
-  width: 28%;
+  width: 17%;
 }
 
 .type-article {
   display: flex;
-  width: 22%;
+  width: 40%;
   flex-direction: column;
 }
 
 .reference-article {
   display: flex;
-  width: 35%;
+  width: 50%;
   flex-direction: column;
+}
+
+.reference {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.total-price {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .add-products {

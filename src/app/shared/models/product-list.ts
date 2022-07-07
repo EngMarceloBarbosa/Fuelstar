@@ -8,7 +8,7 @@ export interface Products {
 export const product: Array<Products> = [
 
 {
-  tittle: 'vinhos',
+  tittle: 'Vinhos',
   image: 'assets/img/winw.jpg',
   price: 3.34,
   reference: 'REF.ª 123456789',

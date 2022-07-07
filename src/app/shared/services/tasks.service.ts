@@ -21,6 +21,7 @@ export class TasksService {
   listClient$ = new BehaviorSubject<ClientsTab[]>([]);
   chooseProduct$ = new BehaviorSubject<ClientsTab[]>([]);
   listProductsNew$ = new BehaviorSubject<ClientsTab[]>([]);
+  ammountNew$ = new BehaviorSubject<ClientsTab[]>([]);
 
 
   croudGroup: FormGroup = new FormGroup({

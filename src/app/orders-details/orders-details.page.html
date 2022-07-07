@@ -14,12 +14,8 @@
           >
         </div>
       </div>
-      <div class="icon-close">
-        <nc-icon
-          [size]="18"
-          color="c-scale-1"
-          hoverColor="c-scale-1"
-          (click)="close()"
+      <div class="icon-close" (click)="close()">
+        <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
           >icon_close</nc-icon
         >
       </div>
@@ -106,8 +102,8 @@
                     <div class="description">
                       <nc-text
                         size="h8"
-                        color="primary_dark"
-                        weight="500"
+                        color="--c-scale-12"
+                        weight="Bold"
                         font="primary"
                         >{{test.tittle}}</nc-text
                       >
@@ -115,10 +111,10 @@
                     <div class="price">
                       <nc-text
                         size="h8"
-                        color="primary_dark"
+                        color="--c-scale-3"
                         weight="500"
                         font="primary"
-                        >{{test.quantity}}</nc-text
+                        >{{test.quantity}}x {{test.price}}€</nc-text
                       >
                     </div>
                   </div>
@@ -126,7 +122,7 @@
                     <div class="reference">
                       <nc-text
                         size="h8"
-                        color="primary_dark"
+                        color="--c-scale-3"
                         weight="500"
                         font="primary"
                         >{{listProducts.reference}}</nc-text
@@ -135,7 +131,7 @@
                     <div class="total-price">
                       <nc-text
                         size="h8"
-                        color="primary_dark"
+                        color="--c-scale-12"
                         weight="Bold"
                         font="primary"
                         >{{test.totalValueItem}}€</nc-text
@@ -475,9 +471,9 @@
 
   <!-- CLEAR BUTTONS -->
 
-  <div class="buttons-footer" *ngIf="clearState">
+  <div class="buttons-footer" *ngIf="clearState" >
     <div class="buttons-client">
-      <div class="client">
+      <div class="client" (click)="backToProducts()">
         <nc-text
           size="h6"
           color="c-scale-12"
@@ -565,7 +561,7 @@
           </div>
         </div>
         <div class="quantity-products">
-          <nc-stepper [showNumber]="true" [value]="1" [min]="0"></nc-stepper>
+          <nc-stepper [showNumber]="true" [value]="2" [min]="0" (onChange)="onChanged($event)" (click)="addQuantity(ammountNew)" ></nc-stepper>
         </div>
         <div class="delete-item">
           <div class="icon-delete">

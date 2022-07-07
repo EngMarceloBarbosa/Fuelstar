@@ -5,7 +5,9 @@ import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { FilterServiceService } from '../shared/filter-service.service';
 import { TranslateService } from '@ngx-translate/core';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
+import { ProductService } from '../shared/services/product.service';
+import { throwError } from 'rxjs';
 
 
 @Component({
@@ -31,22 +33,26 @@ export class OrdersDetailsPage implements OnInit {
   selectedFilter: number = 0;
   translateStrings: any;
   list;
-  onPayment:boolean= false;
+  onPayment: boolean = false;
   listValue: any;
   productList: any[] = [];
   key: any;
-  continueState:boolean = true;
-  clearState:boolean = false;
-  finishstate:boolean = false;
-  onAdressNew:boolean = false;
-  globalMessagesTranslations:any;
-  deleteMessagesTranslations:any;
-  productsMessagesTranslations:any;
+  continueState: boolean = true;
+  clearState: boolean = false;
+  finishstate: boolean = false;
+  onAdressNew: boolean = false;
+  globalMessagesTranslations: any;
+  deleteMessagesTranslations: any;
+  productsMessagesTranslations: any;
   badgeOn: boolean = false;
   selectedList: any[] = [];
   checkedProduct: any;
+  ammountNew: any = 1;
+  ammountNew1:any;
 
-  constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService,  private translate: TranslateService) { }
+
+
+  constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService, private translate: TranslateService, private productService: ProductService) { }
 
   ngOnInit() {
 
@@ -69,6 +75,7 @@ export class OrdersDetailsPage implements OnInit {
       this.tasksService.listProductsNew$
         .subscribe(testTask3 => {
           this.list = testTask3;
+          console.log(this.list, "TESTE")
         }),
       this.tasksService.valueTotal$
         .subscribe(testTask4 => {
@@ -80,8 +87,11 @@ export class OrdersDetailsPage implements OnInit {
 
   close() {
     this.router.navigate(['products-details']);
-    this.badges = "" ;
+    this.badges = "";
     this.list = [];
+    console.log(this.badges, "BADGES")
+    console.log(this.list, "LISTA")
+
 
   }
 
@@ -92,11 +102,11 @@ export class OrdersDetailsPage implements OnInit {
     this.deleteState = false;
   }
 
-  continueButton1(){
-this.onPayment = true;
-this.finishstate = true;
-this.deleteStateNext = false;
-this.onAdressNew = false;
+  continueButton1() {
+    this.onPayment = true;
+    this.finishstate = true;
+    this.deleteStateNext = false;
+    this.onAdressNew = false;
   }
 
   /* START DATE PICKER */
@@ -184,8 +194,10 @@ this.onAdressNew = false;
 
 
   edit(id) {
+    console.log(this.ammountNew);
+    console.log(this.list.ammount);
+    this.tasksService.ammountNew$.next(this.ammountNew);
     console.log(id)
-
     const temp: ActionSheetModel = {
       titleText: this.productsMessagesTranslations.titleActionSheet,
       titleTextColor: 'c-scale-12',
@@ -202,7 +214,6 @@ this.onAdressNew = false;
 
     this.actionSheetService.open(temp);
 
-
   }
 
   options() {
@@ -215,7 +226,7 @@ this.onAdressNew = false;
 
 
   deleteNavigation() {
-    this.deleteState= false
+    this.deleteState = false
     this.clearState = true
     this.selectedList = [...this.list]
 
@@ -266,7 +277,7 @@ this.onAdressNew = false;
   deleteProduct(key: number) {
     this.list.forEach((element, index) => {
       if (element.id == key)
-      this.list.splice(index, 1)
+        this.list.splice(index, 1)
 
     });
 
@@ -282,21 +293,21 @@ this.onAdressNew = false;
     //   }
 
     // })
-    this.badges = "" ;
+    this.badges = "";
     this.badgeOn = true;
     console.log(this.list);
   }
 
-  finishButton(){
+  finishButton() {
     this.router.navigate(['/finish-order']);
   }
 
-  addMoreProducts(){
+  addMoreProducts() {
     this.router.navigate(['/products']);
   }
 
-  choose(number){
-    if(number == 1){
+  choose(number) {
+    if (number == 1) {
 
     }
 
@@ -305,10 +316,39 @@ this.onAdressNew = false;
   }
 
 
-  back(){
-    this.router.navigate(['products-details']);
-    this.badges = ""
-    this.tasksService.badgeEmpty$.next(this.badges);
+  onChanged(e){
+    console.log(e)
+    this.ammountNew = e;
+    console.log(this.ammountNew);
+  }
 
+  addQuantity(value) {
+    const index = this.list.findIndex(el => this.list.id === el.id);
+    // this.list.length[0].push(this.ammountNew);
+    if ( index  ) {
+
+      //       this.list[index].quantity =this.ammountNew;
+      // this.list[index].totalValueItem = this.list[index].price * this.list[index].quantity;
+      this.list[0].quantity = this.ammountNew;
+      this.list[0].totalValueItem = this.list[0].price * this.list[0].quantity;
+      this.listValue = this.list[0].totalValueItem
+    }else {
+    }
+    console.log(this.list)
+    console.log(value, "AMMOUNTNEW")
+  }
+
+  back() {
+    this.router.navigate(['orders']);
+    // this.badges = ""
+    // this.tasksService.badgeEmpty$.next(this.badges);
+
+
+  }
+  backToProducts(){
+    this.list= [];
+    this.router.navigate(['products-details']);
+    this.deleteState = true;
+    this.clearState = false;
   }
 }
