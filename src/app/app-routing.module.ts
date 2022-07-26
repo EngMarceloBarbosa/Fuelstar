@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
@@ -21,12 +21,6 @@ const routes: Routes = [
   {
     path: 'orders',
     loadChildren: () => import('./orders/orders.module').then( m => m.OrdersPageModule)
-  },
-
-  {
-    path: '*',
-    redirectTo:'/login'
-
   },
   {
     path: 'products',
@@ -59,6 +53,33 @@ const routes: Routes = [
   {
     path: 'edit-contact',
     loadChildren: () => import('./edit-contact/edit-contact.module').then( m => m.EditContactPageModule)
+  },
+
+
+  // INICIALIZING APP
+
+
+  {
+
+    path: '',
+
+    redirectTo: 'login',
+
+    pathMatch: 'full'
+
+  },
+
+
+
+
+ /* When can find route -> login] */
+
+  {
+
+    path: '**',
+
+    redirectTo: '/login'
+
   }
 
 ];

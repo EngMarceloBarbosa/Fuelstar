@@ -334,3 +334,31 @@ nc-searchbar {
     }
   }
 }
+
+.buttons-footer{
+  background-color: var(--c-scale-1_bg);
+  height: 11%;
+  padding: tbu(px(0)) tbu(px(24));
+  width: 100%;
+
+}
+.clean-button {
+  padding-top: tbu(px(48));
+  padding-left: tbu(px(24));
+  padding-right: tbu(px(24));
+  @extend .flex-center;
+  text-align: center;
+  flex-direction: column;
+  background-color: var(--primary);
+}
+
+.apply-button {
+  @extend .flex-center;
+  width: tbu(px(146));
+  height: tbu(px(46));
+  border: 2px solid var(--c-scale-12);
+  border-radius: tbu(px(4));
+  margin-top: tbu(px(14));
+  background-color: var(--c-scale-1_bg);
+}
+

@@ -20,10 +20,10 @@
   .icon-back {
     display: flex;
     flex-direction: row;
-    width: 5%;
+    width: 8%;
   }
   .text-back {
-    width: 95%;
+    width: 92%;
   }
 }
 
@@ -118,3 +118,31 @@
     }
   }
 }
+
+
+.sticky{
+  position: -webkit-sticky;
+position: sticky;
+top: 0px;
+}
+
+.header{
+  height: 50px;
+}
+
+.top {
+  background-color: blue;
+  color: white;
+  height:  20px;
+}
+
+.bottom{
+  background-color:yellow;
+}
+
+// .nofixed{
+//   position: static;
+//   transition: 0.2s linear;
+//   top: -50px;
+// }
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 
@@ -11,6 +11,21 @@ export class SettingsPage implements OnInit {
   alertMessagesTranslations:any;
   loginMessagesTranslations:any;
   productsMessagesTranslations:any;
+  headerfixed: boolean = false;
+  isBottom: boolean;
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    if(window.innerHeight + window.scrollY >= document.body.offsetHeight){
+      this.isBottom = true;
+      console.log( window.innerHeight, 'entrou aqui')
+    }else{
+      this.isBottom = false;
+      console.log('entrou 421')
+    }
+    console.log(window.innerHeight);
+    console.log(window.scrollY);
+  }
 
   constructor( private router: Router, private alertService: AlertService) { }
 

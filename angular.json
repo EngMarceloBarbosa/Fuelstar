@@ -31,7 +31,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": ["src/assets/theme/variables.css", "src/global.scss"],
             "scripts": [  {
               "input": "node_modules/@nc-angular/library-mobile.stg/js/Helpers/tbu.js",
               "bundleName": "tbu"

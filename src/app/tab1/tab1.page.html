@@ -112,9 +112,9 @@
     </div>
   </div>
 
-  <nc-virtual-scroller #scroll [items]="tests">
-    <div class="card-tasks" *ngFor="let test  of scroll.viewPortItems">
-      <div class="box-task" (click)="detailsTasks(test)">
+  <nc-virtual-scroller #scroll [items]="listTasks">
+    <div class="card-tasks" *ngFor="let task  of scroll.viewPortItems">
+      <div class="box-task" (click)="detailsTasks(task)">
         <div class="icon-name-user">
           <nc-text
             id="icon-user"
@@ -122,18 +122,18 @@
             color="c-scale-10"
             weight="500"
             font="primary"
-            >{{test.cunha}}</nc-text
+            >{{task.entity.firstName | prefix}}</nc-text
           >
         </div>
         <div class="description-task">
           <div class="name-task">
             <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-              >{{test.name}}</nc-text
+              >{{task.entity.firstName}} {{task.entity.lastName}}</nc-text
             >
           </div>
           <div class="localization-task">
             <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-              >{{test.description}}</nc-text
+              >{{task.address.cityName}}</nc-text
             >
           </div>
         </div>

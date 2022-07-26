@@ -1,10 +1,10 @@
 <ion-content>
   <div class="container">
     <div class="header-profile">
-      <div class="back" (click)="back()">
+      <div class="back sticky " (click)="back()" [ngClass]="isBottom ? 'top' : 'bottom'">
         <div class="icon-back">
           <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
-            >icon_arrow-right</nc-icon
+            >arrow-left</nc-icon
           >
         </div>
         <div class="text-back">

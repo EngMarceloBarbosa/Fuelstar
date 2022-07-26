@@ -8,6 +8,9 @@ import { SharedModule } from './shared/shared.module';
 import { TranslateModule, TranslateLoader, } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { PipesModule } from "./shared/pipes/pipes.module";
+import { LoginProvider } from "./shared/providers/login.provider";
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -23,6 +26,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     IonicModule.forRoot(),
     AppRoutingModule,
     SharedModule,
+    PipesModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

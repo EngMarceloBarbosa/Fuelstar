@@ -97,6 +97,7 @@ export class LoginPage implements OnInit {
    * Sign In button Click
    */
   signInClick() {
+
     // this.loading = 'loading';
 
     const authentication = {
@@ -108,7 +109,7 @@ export class LoginPage implements OnInit {
     this.loginApiService.getLogin(authentication).then(res => {
 
       environment.token = res.accessToken;
-      this.router.navigate(["/tabs/tab1"]);
+          this.router.navigate(["/tabs/tab1"]);
 
     })
       .catch((error: HttpErrorResponse) => {

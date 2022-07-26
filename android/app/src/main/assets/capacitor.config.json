@@ -2,5 +2,5 @@
 	"appId": "io.ionic.starter",
 	"appName": "Fuelstar",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": true
 }

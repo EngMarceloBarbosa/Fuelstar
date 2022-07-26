@@ -3,9 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
+import { TaskApiService } from '../shared/http/task-api.service';
 import { clientsTab } from '../shared/models/clients-tab1';
 import { ProductService } from '../shared/services/product.service';
 import { TasksService } from '../shared/services/tasks.service';
+import { Tasks } from '../utils/models/tasks';
 
 
 @Component({
@@ -13,7 +15,7 @@ import { TasksService } from '../shared/services/tasks.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
   name: string = "Jimmy Smyth";
   position: any[] = [
@@ -26,7 +28,7 @@ export class Tab1Page {
       position1: 'operator',
     }
   ];
-
+listTasks: Tasks;
 
   tests = clientsTab
 
@@ -36,16 +38,32 @@ export class Tab1Page {
   loginMessagesTranslations: any;
   productsMessagesTranslations: any;
 
-  constructor(private router: Router, private nav: NavController, private loc: Location, private tasksService: TasksService,
+
+  constructor(
+    private router: Router,
+    private nav: NavController,
+    private loc: Location,
+    private tasksService: TasksService,
     private actionSheetService: ActionSheetService,
     private productService: ProductService,
-    public toastController: ToastController) { }
+    public toastController: ToastController,
+    public taskApiService: TaskApiService
+    ) { }
+
+   async ngOnInit(){
+       await this.taskApiService.getTasks().then(res =>
+          {
+            console.log(res)
+            this.listTasks = res;
+          })
+    }
+
+
 
   back() {
     //  this.loc.back();
     this.router.navigate(['/']);
   }
-
 
   detailsTasks(test: any) {
 
@@ -77,7 +95,6 @@ export class Tab1Page {
     this.router.navigate(['settings'])
   }
 
-
   async send() {
     const toast = await this.toastController.create({
       header: 'Chegou ao destino de David Sanchez',
@@ -105,6 +122,8 @@ export class Tab1Page {
     await toast.present();
 
   }
+
+
 
 }
 

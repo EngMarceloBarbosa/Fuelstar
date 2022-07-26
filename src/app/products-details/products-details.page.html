@@ -67,7 +67,13 @@
       </div>
       <div class="add-product">
         <div class="quantity-products">
-          <nc-stepper [showNumber]="true" [value]="3"  [min]="0" [(ngModel)] ="ammount" (click)="show(ammount)"></nc-stepper>
+          <nc-stepper
+            [showNumber]="true"
+            [value]="3"
+            [min]="0"
+            [(ngModel)]="ammount"
+            (click)="show(ammount)"
+          ></nc-stepper>
         </div>
         <div class="button-add">
           <nc-text
@@ -76,7 +82,8 @@
             weight="500"
             font="primary"
             (click)="addProduct(itemProduct)"
-            > {{'App.ProductDetails.buttonAddCart' | translate}}
+          >
+            {{'App.ProductDetails.buttonAddCart' | translate}}
           </nc-text>
         </div>
       </div>
@@ -103,7 +110,8 @@
         <div class="container-options">
           <div class="description-options">
             <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-              >{{'App.ProductDetails.subHeaderActionSheet' | translate}}</nc-text
+              >{{'App.ProductDetails.subHeaderActionSheet' |
+              translate}}</nc-text
             >
           </div>
         </div>

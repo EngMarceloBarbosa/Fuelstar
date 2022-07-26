@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
+import { PipesModule } from '@nc-angular/devkit';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     CommonModule,
     FormsModule,
     Tab1PageRoutingModule,
-    SharedModule
+    SharedModule,
+    PipesModule
   ],
   declarations: [Tab1Page]
 })
