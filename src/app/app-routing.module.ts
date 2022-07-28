@@ -74,13 +74,13 @@ const routes: Routes = [
 
  /* When can find route -> login] */
 
-  {
+  // {
 
-    path: '**',
+  //   path: '**',
 
-    redirectTo: '/login'
+  //   redirectTo: '/login'
 
-  }
+  // }
 
 ];
 @NgModule({

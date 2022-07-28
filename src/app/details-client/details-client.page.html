@@ -3,7 +3,7 @@
   <div class="header-container">
     <div class="header">
       <div class="card-tasks">
-        <div class="box-task">
+        <div class="box-task-header">
           <div class="left-icon">
             <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
               >arrow-left</nc-icon
@@ -16,13 +16,13 @@
               color="c-scale-10"
               weight="500"
               font="primary"
-              >{{clientDetails.cunha}}</nc-text
+              >{{clientDetails}}</nc-text
             >
           </div>
           <div class="description-task">
             <div class="name-task">
               <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-                >{{clientDetails.name}}</nc-text
+                >{{clientDetails.entity.firstName}}</nc-text
               >
             </div>
             <div class="localization-task">
@@ -63,13 +63,14 @@
                     >Contacts</nc-text
                   >
                 </div>
+
                 <div class="localization-task">
                   <nc-text
                     size="h7"
                     color="c-scale-11"
                     weight="500"
                     font="primary"
-                    >{{this.value}}</nc-text
+                    >{{listContacts[0]?.value}}</nc-text
                   >
                 </div>
               </div>

@@ -1,3 +1,5 @@
+
+
 export interface Tasks {
   id: string;
   address: Address;
@@ -5,6 +7,18 @@ export interface Tasks {
 
 
 }
+
+
+export interface Contacts {
+  contactId : string;
+  contactNamme: string;
+  contactTypeId : string;
+  contactTypeName: string;
+  entity:Entity;
+  id : string;
+  value: string;
+}
+
 
 export class Entity {
   id: string;
@@ -31,4 +45,5 @@ export class Address {
   stateId: string
   stateName: string
 }
+
 

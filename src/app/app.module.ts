@@ -9,7 +9,6 @@ import { TranslateModule, TranslateLoader, } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { PipesModule } from "./shared/pipes/pipes.module";
-import { LoginProvider } from "./shared/providers/login.provider";
 
 
 export function HttpLoaderFactory(http: HttpClient) {

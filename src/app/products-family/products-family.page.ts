@@ -82,7 +82,7 @@ filterClick(){
 
   detailsTasks(test: any){
     if(test.id){
-    this.tasksService.listClient$.next(test);
+    this.tasksService.infoClient$.next(test);
     console.log(test);
     console.log("1 entrou");
     }

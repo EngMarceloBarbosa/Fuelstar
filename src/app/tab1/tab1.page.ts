@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
+import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { clientsTab } from '../shared/models/clients-tab1';
 import { ProductService } from '../shared/services/product.service';
 import { TasksService } from '../shared/services/tasks.service';
-import { Tasks } from '../utils/models/tasks';
+import { Contacts, Tasks } from '../utils/models/tasks';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class Tab1Page implements OnInit {
       position1: 'operator',
     }
   ];
-listTasks: Tasks;
+  listTasks: Tasks;
 
   tests = clientsTab
 
@@ -47,16 +48,19 @@ listTasks: Tasks;
     private actionSheetService: ActionSheetService,
     private productService: ProductService,
     public toastController: ToastController,
-    public taskApiService: TaskApiService
-    ) { }
+    public taskApiService: TaskApiService,
+    public contactsTaskService: ContactsTaskService
+  ) { }
 
-   async ngOnInit(){
-       await this.taskApiService.getTasks().then(res =>
-          {
-            console.log(res)
-            this.listTasks = res;
-          })
-    }
+  async ngOnInit() {
+    await this.taskApiService.getTasks().then(res => {
+      console.log(res)
+      this.listTasks = res;
+    })
+
+
+  }
+
 
 
 
@@ -65,10 +69,10 @@ listTasks: Tasks;
     this.router.navigate(['/']);
   }
 
-  detailsTasks(test: any) {
-
+  selectedTask(test: any) {
+console.log(test)
     if (test.id) {
-      this.tasksService.listClient$.next(test);
+      this.tasksService.infoClient$.next(test);
       console.log(test);
       console.log("1 entrou");
     }
@@ -91,7 +95,7 @@ listTasks: Tasks;
     this.actionSheetService.open(temp);
   }
 
-  definitions1(){
+  definitions1() {
     this.router.navigate(['settings'])
   }
 
@@ -117,7 +121,7 @@ listTasks: Tasks;
             console.log('Favorite clicked');
           }
         }
-        ]
+      ]
     });
     await toast.present();
 

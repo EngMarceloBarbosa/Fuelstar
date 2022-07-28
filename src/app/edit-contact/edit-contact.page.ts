@@ -1,3 +1,4 @@
+import { ClassField, ThrowStmt } from '@angular/compiler';
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup, NgForm ,Validators, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,14 +18,16 @@ export class EditContactPage implements OnInit, OnChanges {
   clientDetails: any;
   filters: FormGroup
   form: FormGroup;
-  value: any;
+  email: any;
+
+
   @Input() prop: number = 0;
   // valuePhone: any;
 
   constructor(public formBuilder: FormBuilder, private tasksService: TasksService, private router:Router,) { }
 
   ngOnInit() {
-    this.tasksService.listClient$
+    this.tasksService.infoClient$
     .subscribe(client => {
       this.clientDetails = client;
     })
@@ -44,8 +47,9 @@ export class EditContactPage implements OnInit, OnChanges {
   }
 
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(  changes: SimpleChanges) {
     console.log(changes)
+
 
     }
 
@@ -65,17 +69,35 @@ export class EditContactPage implements OnInit, OnChanges {
     this.router.navigate(['/details-client'])
   }
 
-  modelChangeFn(e){
+  modelChangeFn(number,e){
     // this.filters.patchValue({
     //   phoneNumber: e?.value[0]?.id ?? null
     // });
-this.value= e;
-console.log(this.value);
+    if(number == 1) {
+this.tasksService.contactNumber= e;
+console.log(this.tasksService.contactNumber);
+    }
+    if(number == 2) {
+      this.email = e;
+      console.log(this.email, "BOAS");
+    }
+
+    var form = {
+      phone: this.tasksService.contactNumber,
+      email: this.email
+
+    }
+
+    console.log(form);
   }
 
+
+
+
   save(){
-    console.log(this.value)
-    this.tasksService.value$.next(this.value);
+    console.log(this.tasksService.contactNumber)
+    this.tasksService.putPhoneNumber('00000000-0000-0000-0000-000000000001');
+    // this.tasksService.value$.next(this.value);
     this.router.navigate(["/details-client"])
 
   }

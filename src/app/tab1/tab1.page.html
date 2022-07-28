@@ -114,7 +114,7 @@
 
   <nc-virtual-scroller #scroll [items]="listTasks">
     <div class="card-tasks" *ngFor="let task  of scroll.viewPortItems">
-      <div class="box-task" (click)="detailsTasks(task)">
+      <div class="box-task" (click)="selectedTask(task)">
         <div class="icon-name-user">
           <nc-text
             id="icon-user"

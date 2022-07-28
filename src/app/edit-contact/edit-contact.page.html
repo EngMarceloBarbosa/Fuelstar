@@ -39,7 +39,7 @@
           [clear]="true"
           [type]="'text'"
           [size]="'medium'"
-          (onChange)="modelChangeFn($event)"
+          (onChange)="modelChangeFn(1,$event)"
           (ngOnChanges)="ngOnChanges($event)"
         >
         </nc-input>
@@ -54,6 +54,8 @@
           [clear]="true"
           [type]="'text'"
           [size]="'medium'"
+          (onChange)="modelChangeFn(2,$event)"
+          (ngOnChanges)="ngOnChanges($event)"
         >
         </nc-input>
       </div>

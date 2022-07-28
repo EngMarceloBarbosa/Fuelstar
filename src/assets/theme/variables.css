@@ -1,3 +1,6 @@
+
+
+
 :root {
 
 
@@ -272,7 +275,7 @@ body.dark {
   --primary_light_fill: #32C4FB;
 
   /* PRIMARY */
-  --primary: #0CB6FF;
+  --primary: #ff0cff;
   --primary_bg: #0CB6FF;
   --primary_border: #0CB6FF;
   --primary_txt: #0CB6FF;
@@ -280,7 +283,7 @@ body.dark {
   --primary_fill: #0CB6FF;
 
   /* PRIMARY_DARK */
-  --primary_dark: #008EC9;
+  --primary_dark: #b100c9;
   --primary_dark_bg: #008EC9;
   --primary_dark_border: #008EC9;
   --primary_dark_txt: #008EC9;
