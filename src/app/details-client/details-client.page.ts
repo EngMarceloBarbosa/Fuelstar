@@ -22,8 +22,8 @@ export class DetailsClientPage implements OnInit {
   onNotes: boolean = true;
   value: any;
   @Input() prop: number = 0;
-  listContacts: Contacts[] = [];
-  entityId : Entity
+
+  entityId: Entity
 
 
   constructor(private translate: TranslateService, private tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService) { }
@@ -31,20 +31,20 @@ export class DetailsClientPage implements OnInit {
   ngOnInit() {
 
 
-        this.tasksService.infoClient$
-          .subscribe(client => {
-            this.clientDetails = client;
-          })
-
-
-      this.contactsTaskService.getContactById(this.clientDetails.entity.id).then(res => {
-        console.log('resultado', res)
-        this.listContacts = res;
-        this.tasksService.idContact = this.listContacts[0].id
-        this.tasksService.idContactId = this.listContacts[0].contactId
-        this.tasksService.idEntityId = this.listContacts[0].entity.id
-       console.log(this.listContacts)
+    this.tasksService.infoClient$
+      .subscribe(client => {
+        this.clientDetails = client;
       })
+
+
+    this.contactsTaskService.getContactById(this.clientDetails.entity.id).then(res => {
+      console.log('resultado', res)
+      this.tasksService.listContacts = res;
+      this.tasksService.idContact = this.tasksService.listContacts[0].id
+      this.tasksService.idContactId = this.tasksService.listContacts[0].contactId
+      this.tasksService.idEntityId = this.tasksService.listContacts[0].entity.id
+      console.log(this.tasksService.idContact)
+    })
 
   }
 

@@ -44,11 +44,10 @@ export class ContactsTaskService {
   }
 
 
-  putContacts(entityId) {
-
-    // this.loadingService.loader();
+  putContacts(contact) {
+    console.log('value', contact);
     return this.http
-      .put<any>(`${environment.api}/api/Thebox/Entities/${entityId}/Contacts`, {
+      .put<any>(`${environment.api}/api/Thebox/Entities/${contact.entityId}/Contacts`, contact,{
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,

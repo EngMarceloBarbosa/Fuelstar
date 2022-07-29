@@ -15,10 +15,11 @@ export class TaskApiService {
     // this.loadingService.loader();
     return this.http
       .get<any>(`${environment.api}/api/Thebox/Bullets/Instances`, {
-       headers : new HttpHeaders({
-        "content-type": "application/json",
-        Authorization: "Bearer " + environment.token,
-      })} )
+        headers: new HttpHeaders({
+          "content-type": "application/json",
+          Authorization: "Bearer " + environment.token,
+        })
+      })
       .pipe()
       .toPromise();
 

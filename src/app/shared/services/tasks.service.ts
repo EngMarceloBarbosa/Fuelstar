@@ -4,6 +4,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
+import { Contacts } from 'src/app/utils/models/tasks';
 
 
 
@@ -13,7 +14,8 @@ export class TasksService {
   idContact:any;
   idContactId:any;
   idEntityId: any;
-  phoneContact:any;
+  phoneContact: any;
+  listContacts: Contacts[] = [];
 
   constructor(private http: HttpClient, private contactApiService: ContactsTaskService) { }
 
@@ -49,7 +51,7 @@ export class TasksService {
   value$ = new BehaviorSubject<any>('');
 
 
-  putPhoneNumber(entityId){
+  putPhoneNumber(){
 
     var contact = {
       id: this.idContact ,
@@ -57,10 +59,17 @@ export class TasksService {
       contactId: this.idContactId,
       value:  this.contactNumber,
     }
-this.contactApiService.putContacts(entityId).then(() =>
-contact = this.phoneContact
+    console.log(contact)
+this.contactApiService.putContacts(contact).then(() =>
+this.listContacts = [contact.value]
+
+
 
 )
+console.log(this.listContacts)
+
+
+
   }
 
 
