@@ -4,7 +4,8 @@ import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile
 import { TranslateService } from '@ngx-translate/core';
 import { TasksService } from '../shared/services/tasks.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
-import { Contacts, Entity } from '../utils/models/tasks';
+import { Contacts, Entity, Tasks } from '../utils/models/tasks';
+import { TaskApiService } from '../shared/http/task-api.service';
 
 @Component({
   selector: 'app-details-client',
@@ -22,11 +23,13 @@ export class DetailsClientPage implements OnInit {
   onNotes: boolean = true;
   value: any;
   @Input() prop: number = 0;
+  idTask: any;
+  noteTask: Entity;
+  entityId: Entity;
+  listTasksAll: any;
 
-  entityId: Entity
 
-
-  constructor(private translate: TranslateService, private tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService) { }
+  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService,) { }
 
   ngOnInit() {
 
@@ -36,6 +39,11 @@ export class DetailsClientPage implements OnInit {
         this.clientDetails = client;
       })
 
+      // this.tasksService.listTasks$
+      // .subscribe(listTasks => {
+      //  this.listTasksAll = listTasks
+      // })
+
 
     this.contactsTaskService.getContactById(this.clientDetails.entity.id).then(res => {
       console.log('resultado', res)
@@ -43,10 +51,24 @@ export class DetailsClientPage implements OnInit {
       this.tasksService.idContact = this.tasksService.listContacts[0].id
       this.tasksService.idContactId = this.tasksService.listContacts[0].contactId
       this.tasksService.idEntityId = this.tasksService.listContacts[0].entity.id
+
       console.log(this.tasksService.idContact)
     })
 
+    this.contactsTaskService.getEntityHeader(this.clientDetails.entity.id).then(res => {
+      console.log('resultado', res)
+      this.tasksService.listEntitys = res;
+      console.log(this.tasksService.listEntitys, "entidades")
+    })
+
+    this.contactsTaskService.getAddressById(this.clientDetails.id).then(res => {
+      console.log(res, 'Nota')
+      this.tasksService.listTasksById = res;
+      console.log(this.tasksService.listTasksById.address.addressLine1, "Tarefas id")
+    })
   }
+
+
 
 
 
@@ -88,6 +110,13 @@ export class DetailsClientPage implements OnInit {
 
   }
 
+
+  modelChangeFn(e) {
+    this.tasksService.notes = e;
+    console.log(this.tasksService.notes);
+
+  }
+
   close() {
     this.onNotes = true;
   }
@@ -95,5 +124,7 @@ export class DetailsClientPage implements OnInit {
   done() {
     this.router.navigate(["/tabs/tab1"])
   }
-
+  save() {
+    this.tasksService.addNotes();
+  }
 }

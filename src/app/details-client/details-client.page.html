@@ -64,6 +64,7 @@
                   >
                 </div>
 
+
                 <div class="localization-task">
                   <nc-text
                     size="h7"
@@ -71,6 +72,15 @@
                     weight="500"
                     font="primary"
                     >{{tasksService.listContacts[0]?.value}}</nc-text
+                  >
+                </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-11"
+                    weight="500"
+                    font="primary"
+                    >EMAIL</nc-text
                   >
                 </div>
               </div>
@@ -107,7 +117,7 @@
                     color="c-scale-11"
                     weight="500"
                     font="primary"
-                    >Street urban xpto - Nº 177</nc-text
+                    >{{tasksService.listTasksById?.address.addressLine1}}</nc-text
                   >
                 </div>
               </div>
@@ -451,7 +461,7 @@
       <div class="search-client">
         <nc-input
           [attr.tester]="'search-bar-current'"
-          placeholder="phone 1"
+          placeholder="Notas"
           [bgInputColor]="'c-scale-12'"
           [clear]="true"
           [type]="'text'"

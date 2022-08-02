@@ -29,7 +29,7 @@ export class Tab1Page implements OnInit {
       position1: 'operator',
     }
   ];
-  listTasks: Tasks;
+  listTasks: Tasks ;
 
   tests = clientsTab
 
@@ -56,7 +56,12 @@ export class Tab1Page implements OnInit {
     await this.taskApiService.getTasks().then(res => {
       console.log(res)
       this.listTasks = res;
+      // this.tasksService.listTasks$.next(this.listTasks);
     })
+    // this.contactsTaskService.getNoteById().then(res => {
+    // this.tasksService.listTasksById = res
+    // console.log(this.tasksService.listTasksById);
+    // } )
 
 
   }

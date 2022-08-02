@@ -4,18 +4,27 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
-import { Contacts } from 'src/app/utils/models/tasks';
+import { Contacts, Entity, Instance, InstancePatch } from 'src/app/utils/models/tasks';
+
 
 
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
   contactNumber: any;
-  idContact:any;
-  idContactId:any;
+  idContact: any;
+  idContactId: any;
   idEntityId: any;
+  value: any;
   phoneContact: any;
+
   listContacts: Contacts[] = [];
+  listEntitys: Entity = null;
+  listTasksById:Instance ;
+  entity: Entity;
+  noteEntity: any;
+  notes: any;
+
 
   constructor(private http: HttpClient, private contactApiService: ContactsTaskService) { }
 
@@ -33,46 +42,73 @@ export class TasksService {
 
   croudGroup: FormGroup = new FormGroup({
     firstName: new FormControl(null),
-    lastName: new FormControl (null, Validators.required),
-    nif: new FormControl( null),
+    lastName: new FormControl(null, Validators.required),
+    nif: new FormControl(null),
     email: new FormControl(null),
     phoneNumber: new FormControl(null),
   });
 
-  list: any []=[];
-  checkedList:any [] =[]
-  unCheckedList:any[]=[]
+  list: any[] = [];
+  checkedList: any[] = []
+  unCheckedList: any[] = []
 
 
   valueTotal$ = new BehaviorSubject<any>('');
   // testTask2$ = new BehaviorSubject<tasksTest[]>([]);
   badge$ = new BehaviorSubject<ClientsTab[]>([]);
-  badgeEmpty$ = new  BehaviorSubject<any>('');
+  badgeEmpty$ = new BehaviorSubject<any>('');
   value$ = new BehaviorSubject<any>('');
+  contact$ = new BehaviorSubject<any>('');
 
 
-  putPhoneNumber(){
+  putPhoneNumber() {
 
     var contact = {
-      id: this.idContact ,
+      id: this.idContact,
       entityId: this.idEntityId,
       contactId: this.idContactId,
-      value:  this.contactNumber,
+      value: this.contactNumber,
     }
     console.log(contact)
-this.contactApiService.putContacts(contact).then(() =>
-this.listContacts = [contact.value]
-
-
-
-)
-console.log(this.listContacts)
-
-
-
+    this.contactApiService.putContacts(contact).then(() =>
+      this.listContacts[0].value = contact.value
+    )
   }
 
 
+  addNotes() {
+
+    var contactEntity = {
+
+      id: this.idContact,
+      entityId: this.idEntityId,
+    }
+
+    var entity = {
+      note: this.notes
+    }
+
+    // this.listTasksById1 = new InstancePatch();
+    // this.listTasksById
+    // this.listTasksById1.name = this.listTasksById.name;
+
+    // this.listTasksById.taks.array.forEach(element => {
+
+    // });
+/**
+ * {
+      ...this.listTasksById1,
+      note: this.notes
+    }
+ */
+    console.log(entity);
+
+    this.contactApiService.putNotesInstance(this.listTasksById).then(() =>
+
+      this.notes = this.entity.note
+    )
+    console.log(this.listTasksById, ' LISTA NOVA');
+  }
 
 
 }
