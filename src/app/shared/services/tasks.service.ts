@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
 import { Contacts, Entity, Instance, InstancePatch } from 'src/app/utils/models/tasks';
+import { stringify } from 'querystring';
 
 
 
@@ -23,8 +24,8 @@ export class TasksService {
   listTasksById:Instance ;
   entity: Entity;
   noteEntity: any;
-  notes: any;
-
+  notes: any = "Add comment about this delivery";
+  email: any;
 
   constructor(private http: HttpClient, private contactApiService: ContactsTaskService) { }
 
@@ -78,16 +79,6 @@ export class TasksService {
 
   addNotes() {
 
-    var contactEntity = {
-
-      id: this.idContact,
-      entityId: this.idEntityId,
-    }
-
-    var entity = {
-      note: this.notes
-    }
-
     // this.listTasksById1 = new InstancePatch();
     // this.listTasksById
     // this.listTasksById1.name = this.listTasksById.name;
@@ -95,17 +86,20 @@ export class TasksService {
     // this.listTasksById.taks.array.forEach(element => {
 
     // });
-/**
- * {
-      ...this.listTasksById1,
-      note: this.notes
-    }
- */
-    console.log(entity);
 
-    this.contactApiService.putNotesInstance(this.listTasksById).then(() =>
+//  var  listTasksById{
+//       ...this.listTasksById,
+//       note: this.notes
+//     }
 
-      this.notes = this.entity.note
+
+console.log(this.listTasksById , "DATA")
+let data:InstancePatch = new InstancePatch(this.listTasksById);
+//  this.listTasksById.note = this.notes;
+console.log(data, this.listTasksById , "DATA")
+    this.contactApiService.putNotesInstance(data, this.listTasksById.id).then(() =>
+
+      this.notes = this.listTasksById.note
     )
     console.log(this.listTasksById, ' LISTA NOVA');
   }

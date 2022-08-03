@@ -91,10 +91,10 @@ export class ContactsTaskService {
   }
 
 
-  putNotesInstance(listTasksById) {
+  putNotesInstance(listTasksById, instanceId) {
     console.log('value', listTasksById);
     return this.http
-      .patch<any>(`${environment.api}/api/Thebox/Bullets/Instances/${listTasksById.id}`, JSON.stringify(listTasksById), {
+      .patch<any>(`${environment.api}/api/Thebox/Bullets/Instances/${instanceId}`,  (listTasksById), {
         headers: new HttpHeaders({
           Authorization: "Bearer " + environment.token,
           'Content-type': 'application/json',

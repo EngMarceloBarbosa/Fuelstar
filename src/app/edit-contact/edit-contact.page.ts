@@ -18,7 +18,7 @@ export class EditContactPage implements OnInit, OnChanges {
   clientDetails: any;
   filters: FormGroup
   form: FormGroup;
-  email: any;
+
 
 
   @Input() prop: number = 0;
@@ -78,13 +78,13 @@ this.tasksService.contactNumber= e;
 console.log(this.tasksService.contactNumber);
     }
     if(number == 2) {
-      this.email = e;
-      console.log(this.email, "BOAS");
+      this.tasksService.email = e;
+      console.log( this.tasksService.email, "BOAS");
     }
 
     var form = {
       phone: this.tasksService.contactNumber,
-      email: this.email
+      email: this.tasksService.email
 
     }
 

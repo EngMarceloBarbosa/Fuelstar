@@ -11,12 +11,12 @@ export interface Tasks {
 
 
 export interface Contacts {
-  contactId : string;
+  contactId: string;
   contactNamme: string;
-  contactTypeId : string;
+  contactTypeId: string;
   contactTypeName: string;
-  entity:Entity;
-  id : string;
+  entity: Entity;
+  id: string;
   value: string;
 }
 
@@ -24,14 +24,14 @@ export interface Contacts {
 
 export class Entity {
   id: string;
-  individualEntity:boolean;
+  individualEntity: boolean;
   firstName: string;
   middleName: string;
   lastName: string;
   alias: string;
   title: string;
   note?: string;
-  description:string;
+  description: string;
   countryId: string;
   countryName: string;
   idiomId: string;
@@ -66,14 +66,14 @@ export class Address {
   stateName: string
 }
 export class Item {
-  id:string;
-  name:string;
-  alias:string;
+  id: string;
+  name: string;
+  alias: string;
 
 }
 
 export class DocumentInstances {
-  documentIntanceId: string;
+  documentInstanceId: string;
   documentType: number;
   documentId: string;
   documentName: string;
@@ -88,14 +88,14 @@ export class EntityRoles {
   isParticipant: boolean;
   isMain: boolean;
   entityRoleName: string;
-  entity:Entity;
+  entity: Entity;
 
 }
 export class EntityRolesPatch {
   entityRoleId: string;
   isParticipant: boolean;
   isMain: boolean;
-  entityId:string;
+  entityId: string;
 
 }
 
@@ -104,51 +104,83 @@ export class Tags {
   tagName: string;
 }
 
-export class Task{
-  id:string;
+export class Task {
+  id: string;
   note: string;
   startDate: string;
-  endDate:string;
+  endDate: string;
   entity: Entity;
 }
 
-export interface Instance {
-  id:string;
+export class Instance {
+  id: string;
   name: string;
   description: string;
   note: string;
-  bulletId:string;
+  bulletId: string;
   bulletName: string;
-  isImportant:boolean;
+  isImportant: boolean;
   projectId: string;
   projectName: string;
-  address:Address;
-  entity:Entity;
-  item:Item;
-  creationDate:string;
-  documentInstances:DocumentInstances;
-  entityRoles:EntityRoles;
-  tags: Tags;
+  address: Address;
+  entity: Entity;
+  item: Item;
+  creationDate: string;
+  documentInstances: DocumentInstances[];
+  entityRoles: EntityRoles[];
+  tags: Tags[];
   taks: Task;
+
+
 }
 
-export class DocumentInstancesPatch{
+export class DocumentInstancesPatch {
   documentInstanceId: string;
   documentType: number;
 }
 
-
 export class InstancePatch {
 
-  name:string;
-  desciption: string;
+  name: string;
+  description: string;
   note: string;
   isImportant: boolean;
   projectId: string;
   itemId: string;
-  address:Address;
-  documentInstances: DocumentInstancesPatch;
-  entities:EntityRolesPatch;
-  tags: string;
-}
+  address: Address;
+  documentInstances: DocumentInstancesPatch[];
+  entities: EntityRolesPatch[];
+  tags: Tags[];
 
+  constructor(instance: Instance) {
+
+    this.name = instance.name ?? null;
+    this.description = instance.description?? null;
+    this.note = instance.note ?? null;
+    this.isImportant = instance.isImportant ?? false;
+    this.projectId = instance.projectId ?? null;
+    this.itemId = instance.item?.id ?? null;
+    this.address = instance.address;
+    this.documentInstances = instance.documentInstances.map(elem => {
+      return {
+        documentInstanceId: elem.documentInstanceId,
+        documentType: elem.documentType
+      }
+    });
+    this.entities = instance.entityRoles.map(elem => {
+      return {
+        entityRoleId: elem.entityRoleId,
+        isParticipant: elem.isParticipant,
+        isMain: elem.isMain,
+        entityId: elem.entity.id
+      }
+    });
+    this.tags = instance.tags != null ? instance.tags.map(elem => {
+      return {
+        tagId: elem.tagId,
+        tagName: elem.tagName
+      }
+    }): null;
+  }
+
+}

@@ -64,6 +64,7 @@ export class DetailsClientPage implements OnInit {
     this.contactsTaskService.getAddressById(this.clientDetails.id).then(res => {
       console.log(res, 'Nota')
       this.tasksService.listTasksById = res;
+      this.tasksService.listTasksById.note = this.tasksService.notes;
       console.log(this.tasksService.listTasksById.address.addressLine1, "Tarefas id")
     })
   }
@@ -126,5 +127,6 @@ export class DetailsClientPage implements OnInit {
   }
   save() {
     this.tasksService.addNotes();
+    this.onNotes= true;
   }
 }
