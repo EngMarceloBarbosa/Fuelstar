@@ -58,6 +58,8 @@ export class Tab1Page implements OnInit {
       this.listTasks = res;
       // this.tasksService.listTasks$.next(this.listTasks);
     })
+
+
     // this.contactsTaskService.getNoteById().then(res => {
     // this.tasksService.listTasksById = res
     // console.log(this.tasksService.listTasksById);

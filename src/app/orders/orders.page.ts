@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { TasksService } from '../shared/services/tasks.service';
 import { Client, clients } from '../shared/models/order-list-clients';
 import { TouchSequence } from 'selenium-webdriver';
+import { TaskApiService } from '../shared/http/task-api.service';
+import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 
 @Component({
   selector: 'app-orders',
@@ -14,62 +16,49 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 export class OrdersPage implements OnInit {
 
-  allDocumentsFilter = clients;
+
   tempDocuments: any;
   active: boolean = true;
-  continue: boolean = true;
+  continue1: boolean = true;
   iconCheck: boolean = false;
   isOnActionButtons: boolean = true;
   valueIcon: string;
   valueReference: string;
   valueId: number;
-  valueFirstName: string;
-  valueLastName: string;
-  valueNif: number;
-  valueEmail: string;
-  valuePhoneNumber: number;
   valueIconCheck: boolean;
   searchValue: string = "";
   selectedItem: any;
-  listClient = clients;
 
 
 
-  constructor(private nav: NavController, private loc: Location, public formBuilder: FormBuilder, private router: Router, private tasksService: TasksService) { }
 
-  ngOnInit() {
+
+  constructor(private nav: NavController, private loc: Location, public formBuilder: FormBuilder, private router: Router, private tasksService: TasksService, public taskApiService: TaskApiService, private contactsTaskService: ContactsTaskService) { }
+
+  async ngOnInit() {
+    await this.contactsTaskService.getEntities().then(res => {
+      console.log(res)
+      this.tasksService.listClients = res;
+      // this.tasksService.listTasks$.next(this.listTasks);
+    })
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients
+
+
 
   }
 
   selectedItemList(item: any) {
-    this.listClient.forEach((element) => {
-      element.iconCheck = false;
-      return element;
+
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients.map((element) => {
+      return {
+        ...element,
+        iconCheck: element.id === item.id
+      }
     });
+    this.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
 
-    this.selectedItem = item;
-    item.iconCheck = true;
+    console.log(this.selectedItem)
   }
-
-  // selectedItemList(item: any) {
-
-  //   this.selectedItem = item;
-  //   item.iconCheck = !item.iconCheck;
-  // }
-
-
-  //  selectedItemList(item) {
-  //   this.(tua_lista).map((elem) => {
-  //     elem.iconCheck = false;
-  //     return elem;
-  //   });
-
-  //   item.iconCheck = true;
-  //   this.selectedItem = item;
-  //   item.iconCheck = true;
-  //   this.nextButtonDisabled = false;
-  // }
-
 
 
   close() {
@@ -86,6 +75,8 @@ export class OrdersPage implements OnInit {
   }
   newClientButton() {
     this.active = false;
+    // this.continue = false;
+    // this.isOnActionButtons = false;
     console.log("Entrou new client");
   }
 
@@ -116,33 +107,9 @@ export class OrdersPage implements OnInit {
 
 
   continueButton() {
-
-    const temp = this.tasksService.croudGroup.getRawValue();
-    let form = {
-      icon: temp.icon ? temp.icon.trim() : this.valueIcon,
-      reference: temp.reference ? temp.email.trim() : this.valueReference,
-      id: temp.id ? temp.id.trim() : this.valueId,
-      firstName: temp.firstName ? temp.firstName.trim() : this.valueFirstName,
-      lastName: temp.lastName ? temp.lastName.trim() : this.valueLastName,
-      nif: temp.nif ? temp.nif : this.valueNif,
-      email: temp.email ? temp.email.trim() : this.valueEmail,
-      phoneNumber: temp.phoneNumber ? temp.phoneNumber : this.valuePhoneNumber,
-      iconCheck: temp.iconCheck ? temp.iconCheck.trim() : this.valueIconCheck,
-    };
-    console.log(this.tasksService.croudGroup.getRawValue());
-    console.log(this.selectedItem);
-    if (!this.selectedItem) {
-      this.continue = true;
-      console.log("entrou no Conitue")
-    } else {
-      console.log("entrou no lol")
-      this.continue = false;
-    }
-    if (this.tasksService.croudGroup) {
-      this.listClient.push(form)
-
-    }
-    console.log(this.listClient);
+    this.continue1 = false;
+    this.active = true;
+    console.log(this.tasksService.listClients);
   }
 
 
@@ -156,25 +123,25 @@ export class OrdersPage implements OnInit {
 
   back() {
 
-    this.continue = true;
+    this.continue1 = true;
   }
 
   change(event, id) {
     console.log(event, id);
     if (id == 1) {
-      this.valueFirstName = event;
+      this.tasksService.valueFirstName = event;
     }
     if (id == 2) {
-      this.valueLastName = event;
+      this.tasksService.valueLastName = event;
     }
     if (id == 3) {
-      this.valueNif = event;
+      this.tasksService.valueNif = event;
     }
     if (id == 4) {
-      this.valueEmail = event;
+      this.tasksService.valueEmail = event;
     }
     if (id == 5) {
-      this.valuePhoneNumber = event;
+      this.tasksService.valuePhoneNumber = event;
     }
     // this.valueNif = event, 'nif';
     // this.valueEmail = event, 'email';
@@ -186,15 +153,71 @@ export class OrdersPage implements OnInit {
   }
 
   searchDocument($event: string) {
+    console.log($event)
     if ($event.length == 0) {
-      this.allDocumentsFilter = this.listClient;
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients;
     } else {
-      this.allDocumentsFilter = this.listClient.filter(
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients.filter(
         doc =>
-          doc.firstName?.toLowerCase().includes($event.toLowerCase())
+          doc.firstName?.trim().toLowerCase().includes($event.trim().toLowerCase()) ||
+          doc.lastName?.trim().toLowerCase().includes($event.trim().toLowerCase())
       );
 
     }
+  }
+
+  save() {
+
+
+    // let form = {
+
+    //   firstName: this.tasksService.valueFirstName,
+    //   lastName: this.tasksService.valueLastName,
+    //   nif:this.tasksService.valueNif,
+    //   email:this.tasksService.valueEmail,
+    //   phoneNumber: this.tasksService.valuePhoneNumber,
+
+    // };
+
+    let form = new FormData();
+    form.append('FirstName', this.tasksService.valueFirstName);
+    form.append('LastName', this.tasksService.valueLastName);
+    form.append('Nif', this.tasksService.listContacts[0]?.contactId);
+    form.append('Email', this.tasksService.listContacts[0]?.contactName);
+    form.append('PhoneNumber', this.tasksService.listContacts[0]?.value);
+
+
+    console.log(this.tasksService.clientFields);
+
+
+    console.log(this.tasksService.croudGroup)
+    this.contactsTaskService.addClient(form).then(res => {
+  this.tasksService.listClients = res;
+
+        console.log(this.tasksService.listEntitys, "entidades")
+      })
+
+
+    if (this.tasksService.croudGroup) {
+      // this.tasksService.listClients.push(form)
+    }
+  }
+
+  clean() {
+    console.log(this.selectedItem.id);
+    this.contactsTaskService.deleteClient(this.selectedItem[0].id).then(res => {
+    this.selectedItem = res;
+    this.selectedItem = [];
+
+      console.log(this.tasksService.listEntitys, "entidades")
+    })
+
+    console.log(this.selectedItem)
+    if(this.selectedItem == true) {
+    this.tasksService.allDocumentsFilter.slice(this.selectedItem);
+    }
+
+
   }
 
 

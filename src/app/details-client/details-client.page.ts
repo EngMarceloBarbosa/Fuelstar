@@ -64,13 +64,9 @@ export class DetailsClientPage implements OnInit {
     this.contactsTaskService.getAddressById(this.clientDetails.id).then(res => {
       console.log(res, 'Nota')
       this.tasksService.listTasksById = res;
-      this.tasksService.listTasksById.note = this.tasksService.notes;
       console.log(this.tasksService.listTasksById.address.addressLine1, "Tarefas id")
     })
   }
-
-
-
 
 
   clickTab(event: any) {
@@ -84,6 +80,7 @@ export class DetailsClientPage implements OnInit {
 
   cancel() {
     this.router.navigate(["/tabs/tab1"]);
+    this.tasksService.notes = "";
   }
 
   options() {

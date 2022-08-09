@@ -29,6 +29,22 @@ export class ContactsTaskService {
 
   }
 
+
+  getEntities() {
+
+    // this.loadingService.loader();
+    return this.http
+      .get<any>(`${environment.api}/api/Thebox/Entities`, {
+        headers: new HttpHeaders({
+          "content-type": "application/json",
+          Authorization: "Bearer " + environment.token,
+        })
+      })
+      .pipe()
+      .toPromise();
+
+  }
+
   getContactById(entityId:any) {
 
     // this.loadingService.loader();
@@ -92,13 +108,41 @@ export class ContactsTaskService {
 
 
   putNotesInstance(listTasksById, instanceId) {
-    console.log('value', listTasksById);
+    console.log('value', instanceId);
     return this.http
       .patch<any>(`${environment.api}/api/Thebox/Bullets/Instances/${instanceId}`,  (listTasksById), {
         headers: new HttpHeaders({
           Authorization: "Bearer " + environment.token,
           'Content-type': 'application/json',
           'accept': '*/*'
+        })
+      })
+      .pipe()
+      .toPromise();
+  }
+
+
+  deleteClient(entityId){
+    console.log(entityId)
+    // this.loadingService.loader();
+    return this.http
+      .delete<any>(`${environment.api}/api/Thebox/Entities/${entityId}`, {
+        headers: new HttpHeaders({
+          "content-type": "application/json",
+          Authorization: "Bearer " + environment.token,
+        })
+      })
+      .pipe()
+      .toPromise();
+  }
+
+  addClient(form){
+
+    return this.http
+      .put<any>(`${environment.api}/api/Thebox/Entities`, (form) ,{
+        headers: new HttpHeaders({
+          "content-type": "multipart/form-data",
+          Authorization: "Bearer " + environment.token,
         })
       })
       .pipe()
@@ -126,3 +170,7 @@ export class ContactsTaskService {
 
   // }
 }
+
+
+
+

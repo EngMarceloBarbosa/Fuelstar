@@ -1,31 +1,48 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
-import { Contacts, Entity, Instance, InstancePatch } from 'src/app/utils/models/tasks';
-import { stringify } from 'querystring';
+import { Contacts, Entity, Instance, InstancePatch, Tasks } from 'src/app/utils/models/tasks';
+
 
 
 
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
+
+  allDocumentsFilter: any;
   contactNumber: any;
   idContact: any;
   idContactId: any;
   idEntityId: any;
   value: any;
   phoneContact: any;
-
+  listClients: Entity[] = [];
   listContacts: Contacts[] = [];
   listEntitys: Entity = null;
-  listTasksById:Instance ;
+  listTasksById: Instance;
   entity: Entity;
   noteEntity: any;
-  notes: any = "Add comment about this delivery";
+  notes: any;
   email: any;
+  valueFirstName: string;
+  valueLastName: string;
+  valueNif: number;
+  valueEmail: string;
+  valuePhoneNumber: number;
+  clientFields: any;
+
+  //   newClientForm: FormGroup =  new FormGroup({
+  //   firstName: new FormControl(this.valueFirstName),
+  //   lastName: new FormControl(null),
+  //   identityDocumentId: new FormControl(null),
+  //   contactId: new FormControl(null),
+  //   value: new FormControl(null)
+  // }
+  // )
 
   constructor(private http: HttpClient, private contactApiService: ContactsTaskService) { }
 
@@ -39,6 +56,7 @@ export class TasksService {
   chooseProduct$ = new BehaviorSubject<ClientsTab[]>([]);
   listProductsNew$ = new BehaviorSubject<ClientsTab[]>([]);
   ammountNew$ = new BehaviorSubject<ClientsTab[]>([]);
+
 
 
   croudGroup: FormGroup = new FormGroup({
@@ -81,27 +99,31 @@ export class TasksService {
 
     // this.listTasksById1 = new InstancePatch();
     // this.listTasksById
-    // this.listTasksById1.name = this.listTasksById.name;
+    // this.listTasksById1.name = this.listTasksById.name;ks
 
     // this.listTasksById.taks.array.forEach(element => {
 
     // });
 
-//  var  listTasksById{
-//       ...this.listTasksById,
-//       note: this.notes
-//     }
 
 
-console.log(this.listTasksById , "DATA")
-let data:InstancePatch = new InstancePatch(this.listTasksById);
-//  this.listTasksById.note = this.notes;
-console.log(data, this.listTasksById , "DATA")
-    this.contactApiService.putNotesInstance(data, this.listTasksById.id).then(() =>
 
-      this.notes = this.listTasksById.note
+    console.log(this.listTasksById, "DATA")
+    let data: InstancePatch = new InstancePatch(this.listTasksById);
+
+    const listTasksByIdNew = {
+      ...data,
+      note: this.notes
+    };
+    console.log(this.notes, 'NOTES A NULO ')
+
+    // this.listTasksById.note = this.notes;
+    console.log(data, listTasksByIdNew, "DATA")
+    this.contactApiService.putNotesInstance(listTasksByIdNew, this.listTasksById.id).then(() =>
+      this.listTasksById.note = listTasksByIdNew.note
     )
-    console.log(this.listTasksById, ' LISTA NOVA');
+    console.log(this.notes);
+    console.log(listTasksByIdNew, ' LISTA NOVA');
   }
 
 

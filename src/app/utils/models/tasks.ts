@@ -1,6 +1,4 @@
 
-
-
 export interface Tasks {
   id: string;
   address: Address;
@@ -12,13 +10,14 @@ export interface Tasks {
 
 export interface Contacts {
   contactId: string;
-  contactNamme: string;
+  contactName: string;
   contactTypeId: string;
   contactTypeName: string;
   entity: Entity;
   id: string;
   value: string;
 }
+
 
 
 
@@ -45,6 +44,7 @@ export class Entity {
   creationDate: string;
   updateDate: string;
   image?: string;
+  iconCheck: boolean;
 }
 
 export class Address {
