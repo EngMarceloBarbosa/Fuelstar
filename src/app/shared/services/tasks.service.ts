@@ -28,11 +28,11 @@ export class TasksService {
   noteEntity: any;
   notes: any;
   email: any;
-  valueFirstName: string;
+  valueFirstName: string ="";
   valueLastName: string;
-  valueNif: number;
+  valueNif: string;
   valueEmail: string;
-  valuePhoneNumber: number;
+  valuePhoneNumber: string;
   clientFields: any;
 
   //   newClientForm: FormGroup =  new FormGroup({

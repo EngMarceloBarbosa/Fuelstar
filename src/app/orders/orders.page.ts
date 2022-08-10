@@ -4,10 +4,10 @@ import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { TasksService } from '../shared/services/tasks.service';
-import { Client, clients } from '../shared/models/order-list-clients';
-import { TouchSequence } from 'selenium-webdriver';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
+import { TouchSequence } from 'selenium-webdriver';
+
 
 @Component({
   selector: 'app-orders',
@@ -168,23 +168,22 @@ export class OrdersPage implements OnInit {
 
   save() {
 
-
-    // let form = {
-
-    //   firstName: this.tasksService.valueFirstName,
-    //   lastName: this.tasksService.valueLastName,
-    //   nif:this.tasksService.valueNif,
-    //   email:this.tasksService.valueEmail,
-    //   phoneNumber: this.tasksService.valuePhoneNumber,
-
-    // };
-
+  console.log(this.tasksService.listContacts[0]?.contactId);
     let form = new FormData();
+
     form.append('FirstName', this.tasksService.valueFirstName);
     form.append('LastName', this.tasksService.valueLastName);
-    form.append('Nif', this.tasksService.listContacts[0]?.contactId);
-    form.append('Email', this.tasksService.listContacts[0]?.contactName);
-    form.append('PhoneNumber', this.tasksService.listContacts[0]?.value);
+    form.append('IdentityDocuments[0].value',this.tasksService.valueNif)
+    form.append('IdentityDocuments[0].IdentityDocumentId', "00000000-0001-0000-0000-000000000001");
+    form.append('Contact[0].ContactId', "00000000-0007-0000-0000-000000000012");
+    form.append('Contact[0].Value', this.tasksService.valueEmail);
+    form.append('Contact[1].ContactId', "00000000-0007-0000-0000-000000000001");
+    form.append('Contact[1].Value', this.tasksService.valuePhoneNumber);
+    form.append('CountryId', "00000000-0032-0000-0000-000000000033");
+    form.append('IdiomId',  "00000000-0036-0000-0000-000000000001");
+
+
+
 
 
     console.log(this.tasksService.clientFields);
@@ -194,13 +193,21 @@ export class OrdersPage implements OnInit {
     this.contactsTaskService.addClient(form).then(res => {
   this.tasksService.listClients = res;
 
+
+
         console.log(this.tasksService.listEntitys, "entidades")
       })
-
-
-    if (this.tasksService.croudGroup) {
-      // this.tasksService.listClients.push(form)
-    }
+      console.log(this.tasksService.valueFirstName)
+      if(this.tasksService.valueFirstName == "" ) {
+return;
+      }else{
+   this.active = true;
+   this.tasksService.valueFirstName = "";
+   1
+      }
+    // if (this.tasksService.croudGroup) {
+    //   // this.tasksService.listClients.push(form)
+    // }
   }
 
   clean() {

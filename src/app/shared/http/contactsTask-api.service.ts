@@ -141,7 +141,6 @@ export class ContactsTaskService {
     return this.http
       .put<any>(`${environment.api}/api/Thebox/Entities`, (form) ,{
         headers: new HttpHeaders({
-          "content-type": "multipart/form-data",
           Authorization: "Bearer " + environment.token,
         })
       })
