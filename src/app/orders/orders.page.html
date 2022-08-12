@@ -134,11 +134,15 @@
               [bgInputColor]="'c-scale-12'"
               [iconPosition]="'left'"
               [clear]="true"
-              [type]="'text'"
+              [type]="'text'" required
               [size]="'medium'"
               (onChange)="change($event,1)"
             >
+
             </nc-input>
+            <div class="erro" *ngIf="msgErroCheck">
+            <nc-text size="h7" color="error" weight="500" font="primary" >{{msgErro}}</nc-text>
+          </div>
             <nc-input
               [formGroup]="tasksService.croudGroup"
               [attr.tester]="'search-bar-current'"
@@ -146,11 +150,14 @@
               [bgInputColor]="'c-scale-12'"
               [iconPosition]="'left'"
               [clear]="true"
-              [type]="'text'"
+              [type]="'text'" required
               [size]="'medium'"
               (onChange)="change($event,2)"
             >
             </nc-input>
+            <div class="erro" *ngIf="msgErroCheck">
+              <nc-text size="h7" color="error" weight="500" font="primary" >{{ msgErroLastname}}</nc-text>
+            </div>
             <nc-input
               [formGroup]="tasksService.croudGroup"
               [attr.tester]="'search-bar-current'"
@@ -158,7 +165,7 @@
               [bgInputColor]="'c-scale-12'"
               [iconPosition]="'left'"
               [clear]="true"
-              [type]="'text'"
+              [type]="'text'" required
               [size]="'medium'"
               (onChange)="change($event, 3)"
             >
@@ -170,7 +177,7 @@
               [bgInputColor]="'c-scale-12'"
               [iconPosition]="'left'"
               [clear]="true"
-              [type]="'text'"
+              [type]="'text'" required
               [size]="'medium'"
               (onChange)="change($event, 4)"
             >
@@ -182,9 +189,11 @@
               [bgInputColor]="'c-scale-12'"
               [iconPosition]="'left'"
               [clear]="true"
-              [type]="'text'"
+              [type]="'number'" required
               [size]="'medium'"
               (onChange)="change($event,5 )"
+              pattern = "[0-9]"
+
             >
             </nc-input>
           </div>
@@ -268,7 +277,7 @@
 </div>
   <div class="buttons-footer" *ngIf="!active">
     <div class="buttons-client">
-      <div class="client" >
+      <div class="client" (click)="goBack()">
         <nc-text
           size="h6"
           color="c-scale-12"

@@ -28,6 +28,10 @@ export class OrdersPage implements OnInit {
   valueIconCheck: boolean;
   searchValue: string = "";
   selectedItem: any;
+  msgErro: any;
+  msgErroCheck : boolean = false;
+  msgErroLastname: any;
+  msgErroCheckLastName:boolean = true;
 
 
 
@@ -107,9 +111,13 @@ export class OrdersPage implements OnInit {
 
 
   continueButton() {
-    this.continue1 = false;
-    this.active = true;
-    console.log(this.tasksService.listClients);
+    if (this.selectedItem == null) {
+
+    } else {
+      this.continue1 = false;
+      this.active = true;
+      console.log(this.tasksService.listClients);
+    }
   }
 
 
@@ -128,11 +136,20 @@ export class OrdersPage implements OnInit {
 
   change(event, id) {
     console.log(event, id);
-    if (id == 1) {
+    if (id == 1 && event.length > 5 ) {
+      this.msgErro = "Só pode ter 5 carateres"
+      console.log(this.msgErro)
+      this.msgErroCheck = true;
       this.tasksService.valueFirstName = event;
+    }else {
+      this.msgErroCheck= false;
     }
-    if (id == 2) {
+    if (id == 2 && event == "") {
+      this.msgErroLastname = "Campo Obrigatório"
+      this.msgErroCheckLastName = true;
       this.tasksService.valueLastName = event;
+    }else {
+      this.msgErroCheckLastName= false;
     }
     if (id == 3) {
       this.tasksService.valueNif = event;
@@ -168,43 +185,44 @@ export class OrdersPage implements OnInit {
 
   save() {
 
-  console.log(this.tasksService.listContacts[0]?.contactId);
-    let form = new FormData();
-
-    form.append('FirstName', this.tasksService.valueFirstName);
-    form.append('LastName', this.tasksService.valueLastName);
-    form.append('IdentityDocuments[0].value',this.tasksService.valueNif)
-    form.append('IdentityDocuments[0].IdentityDocumentId', "00000000-0001-0000-0000-000000000001");
-    form.append('Contact[0].ContactId', "00000000-0007-0000-0000-000000000012");
-    form.append('Contact[0].Value', this.tasksService.valueEmail);
-    form.append('Contact[1].ContactId', "00000000-0007-0000-0000-000000000001");
-    form.append('Contact[1].Value', this.tasksService.valuePhoneNumber);
-    form.append('CountryId', "00000000-0032-0000-0000-000000000033");
-    form.append('IdiomId',  "00000000-0036-0000-0000-000000000001");
 
 
+    if (this.tasksService.valueFirstName == "" || this.tasksService.valueEmail == null || this.tasksService.valueLastName == null || this.tasksService.valueNif == null || this.tasksService.valuePhoneNumber == null ) {
+      return;
+    } else {
+      console.log(this.tasksService.listContacts[0]?.contactId);
+      let form = new FormData();
 
-
-
-    console.log(this.tasksService.clientFields);
-
-
-    console.log(this.tasksService.croudGroup)
-    this.contactsTaskService.addClient(form).then(res => {
-  this.tasksService.listClients = res;
+      form.append('FirstName', this.tasksService.valueFirstName);
+      form.append('LastName', this.tasksService.valueLastName);
+      form.append('IdentityDocuments[0].value', this.tasksService.valueNif)
+      form.append('IdentityDocuments[0].IdentityDocumentId', "00000000-0001-0000-0000-000000000001");
+      form.append('Contact[0].ContactId', "00000000-0007-0000-0000-000000000012");
+      form.append('Contact[0].Value', this.tasksService.valueEmail);
+      form.append('Contact[1].ContactId', "00000000-0007-0000-0000-000000000001");
+      form.append('Contact[1].Value', this.tasksService.valuePhoneNumber);
+      form.append('CountryId', "00000000-0032-0000-0000-000000000033");
+      form.append('IdiomId', "00000000-0036-0000-0000-000000000001");
 
 
 
-        console.log(this.tasksService.listEntitys, "entidades")
+
+
+      console.log(this.tasksService.clientFields);
+
+
+      console.log(this.tasksService.croudGroup)
+      this.contactsTaskService.addClient(form).then(res => {
+        this.tasksService.listClients = res;
       })
-      console.log(this.tasksService.valueFirstName)
-      if(this.tasksService.valueFirstName == "" ) {
-return;
-      }else{
-   this.active = true;
-   this.tasksService.valueFirstName = "";
-   1
-      }
+
+
+      console.log(this.tasksService.list)
+
+      this.active = true;
+      this.tasksService.valueFirstName = "";
+      1
+    }
     // if (this.tasksService.croudGroup) {
     //   // this.tasksService.listClients.push(form)
     // }
@@ -213,19 +231,22 @@ return;
   clean() {
     console.log(this.selectedItem.id);
     this.contactsTaskService.deleteClient(this.selectedItem[0].id).then(res => {
-    this.selectedItem = res;
-    this.selectedItem = [];
+      this.selectedItem = res;
+      this.selectedItem = [];
 
       console.log(this.tasksService.listEntitys, "entidades")
     })
 
     console.log(this.selectedItem)
-    if(this.selectedItem == true) {
-    this.tasksService.allDocumentsFilter.slice(this.selectedItem);
+    if (this.selectedItem == true) {
+      this.tasksService.allDocumentsFilter.slice(this.selectedItem);
     }
 
 
   }
 
+  goBack() {
+    this.active = true;
+  }
 
 }
