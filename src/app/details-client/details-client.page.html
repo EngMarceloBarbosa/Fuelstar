@@ -413,13 +413,13 @@
           </div>
         </nc-action-sheet>
       </div>
-      <div class="button-done">
+      <div class="button-done"  (click)="done()">
         <div class="icon-option">
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
             >icon_check</nc-icon
           >
         </div>
-        <div class="text-option" (click)="done()">
+        <div class="text-option">
           <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
             Done
           </nc-text>

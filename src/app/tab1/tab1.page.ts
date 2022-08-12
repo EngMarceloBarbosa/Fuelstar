@@ -19,6 +19,7 @@ import { Contacts, Tasks } from '../utils/models/tasks';
 export class Tab1Page implements OnInit {
 
   name: string = "Jimmy Smyth";
+
   position: any[] = [
     {
       name1: 'Joao',
@@ -29,7 +30,6 @@ export class Tab1Page implements OnInit {
       position1: 'operator',
     }
   ];
-  listTasks: Tasks ;
 
   tests = clientsTab
 
@@ -44,7 +44,7 @@ export class Tab1Page implements OnInit {
     private router: Router,
     private nav: NavController,
     private loc: Location,
-    private tasksService: TasksService,
+    public tasksService: TasksService,
     private actionSheetService: ActionSheetService,
     private productService: ProductService,
     public toastController: ToastController,
@@ -55,7 +55,12 @@ export class Tab1Page implements OnInit {
   async ngOnInit() {
     await this.taskApiService.getTasks().then(res => {
       console.log(res)
-      this.listTasks = res;
+      this.tasksService.listTasks = res;
+      this.tasksService.countVisits  = this.tasksService.listTasks.length
+      console.log(this.tasksService.countVisits)
+      this.tasksService.countsToDo =  this.tasksService.listTasks.length-this.tasksService.countVisits
+
+
       // this.tasksService.listTasks$.next(this.listTasks);
     })
 

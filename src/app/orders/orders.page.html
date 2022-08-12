@@ -143,6 +143,9 @@
             <div class="erro" *ngIf="msgErroCheck">
             <nc-text size="h7" color="error" weight="500" font="primary" >{{msgErro}}</nc-text>
           </div>
+          <div class="erro" *ngIf="msgErroFields">
+            <nc-text size="h7" color="error" weight="500" font="primary" >{{msgErroLastname}}</nc-text>
+          </div>
             <nc-input
               [formGroup]="tasksService.croudGroup"
               [attr.tester]="'search-bar-current'"
@@ -155,8 +158,8 @@
               (onChange)="change($event,2)"
             >
             </nc-input>
-            <div class="erro" *ngIf="msgErroCheck">
-              <nc-text size="h7" color="error" weight="500" font="primary" >{{ msgErroLastname}}</nc-text>
+            <div class="erro" *ngIf="msgErroFields">
+              <nc-text size="h7" color="error" weight="500" font="primary" >{{msgErroLastname}}</nc-text>
             </div>
             <nc-input
               [formGroup]="tasksService.croudGroup"
@@ -170,6 +173,9 @@
               (onChange)="change($event, 3)"
             >
             </nc-input>
+            <div class="erro" *ngIf="msgErroFields">
+              <nc-text size="h7" color="error" weight="500" font="primary" >{{msgErroLastname}}</nc-text>
+            </div>
             <nc-input
               [formGroup]="tasksService.croudGroup"
               [attr.tester]="'search-bar-current'"
@@ -181,7 +187,11 @@
               [size]="'medium'"
               (onChange)="change($event, 4)"
             >
+
             </nc-input>
+            <div class="erro" *ngIf="msgErroFields">
+              <nc-text size="h7" color="error" weight="500" font="primary" >{{msgErroLastname}}</nc-text>
+            </div>
             <nc-input
               [formGroup]="tasksService.croudGroup"
               [attr.tester]="'search-bar-current'"
@@ -196,6 +206,9 @@
 
             >
             </nc-input>
+            <div class="erro" *ngIf="msgErroFields">
+              <nc-text size="h7" color="error" weight="500" font="primary" >{{msgErroLastname}}</nc-text>
+            </div>
           </div>
         </div>
       </form>

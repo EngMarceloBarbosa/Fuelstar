@@ -20,6 +20,8 @@ export class TasksService {
   idEntityId: any;
   value: any;
   phoneContact: any;
+  listTasks: Tasks[] ;
+
   listClients: Entity[] = [];
   listContacts: Contacts[] = [];
   listEntitys: Entity = null;
@@ -29,11 +31,14 @@ export class TasksService {
   notes: any;
   email: any;
   valueFirstName: string ="";
-  valueLastName: string;
-  valueNif: string;
-  valueEmail: string;
-  valuePhoneNumber: string;
+  valueLastName: string= "";
+  valueNif: string="";
+  valueEmail: string = "";
+  valuePhoneNumber: string = "";
   clientFields: any;
+  countVisits:any=[];
+  countsToDo:any = [];
+
 
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),

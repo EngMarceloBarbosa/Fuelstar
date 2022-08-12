@@ -32,6 +32,7 @@ export class OrdersPage implements OnInit {
   msgErroCheck : boolean = false;
   msgErroLastname: any;
   msgErroCheckLastName:boolean = true;
+  msgErroFields:boolean = false;
 
 
 
@@ -136,19 +137,26 @@ export class OrdersPage implements OnInit {
 
   change(event, id) {
     console.log(event, id);
-    if (id == 1 && event.length > 5 ) {
-      this.msgErro = "Só pode ter 5 carateres"
-      console.log(this.msgErro)
-      this.msgErroCheck = true;
+    // if (id == 1 && event.length > 7) {
+    //   this.msgErro = "Só pode ter 7 carateres"
+    //   console.log(this.msgErro)
+    //   this.msgErroCheck = true;
+
+      if(id == 1 && event.length == 0){
+
+      }
+      if(id == 1 && event.length != 0){
       this.tasksService.valueFirstName = event;
-    }else {
       this.msgErroCheck= false;
+      this.msgErroFields = false;
     }
     if (id == 2 && event == "") {
-      this.msgErroLastname = "Campo Obrigatório"
+
       this.msgErroCheckLastName = true;
+
+    }if( id == 2 && event != "") {
       this.tasksService.valueLastName = event;
-    }else {
+      this.msgErroFields = false
       this.msgErroCheckLastName= false;
     }
     if (id == 3) {
@@ -186,10 +194,22 @@ export class OrdersPage implements OnInit {
   save() {
 
 
+    console.log(this.tasksService.valueFirstName)
+    console.log(this.tasksService.valueEmail)
+    console.log(this.tasksService.valueLastName)
+    console.log(this.tasksService.valuePhoneNumber)
+    console.log(this.tasksService.valueNif)
 
-    if (this.tasksService.valueFirstName == "" || this.tasksService.valueEmail == null || this.tasksService.valueLastName == null || this.tasksService.valueNif == null || this.tasksService.valuePhoneNumber == null ) {
+
+
+    if (this.tasksService.valueFirstName == "" || this.tasksService.valueEmail == "" || this.tasksService.valueLastName == "" || this.tasksService.valueNif == "" || this.tasksService.valuePhoneNumber == "" ) {
+      this.msgErroFields = true;
+      this.msgErroLastname = "Campo Obrigatório"
       return;
+
     } else {
+      console.log("ENTROU NO ADD")
+      this.msgErroFields = false;
       console.log(this.tasksService.listContacts[0]?.contactId);
       let form = new FormData();
 

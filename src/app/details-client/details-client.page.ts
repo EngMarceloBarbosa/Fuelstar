@@ -27,6 +27,7 @@ export class DetailsClientPage implements OnInit {
   noteTask: Entity;
   entityId: Entity;
   listTasksAll: any;
+  NewListTest: any;
 
 
   constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService,) { }
@@ -120,7 +121,13 @@ export class DetailsClientPage implements OnInit {
   }
 
   done() {
-    this.router.navigate(["/tabs/tab1"])
+
+
+    this.tasksService.countVisits = this.tasksService.countVisits -1  ;
+    this.tasksService.countsToDo = this.tasksService.countsToDo + 1;
+   this.router[('')]
+   this.router.navigate(['tabs/tab1']);
+
   }
   save() {
     this.tasksService.addNotes();

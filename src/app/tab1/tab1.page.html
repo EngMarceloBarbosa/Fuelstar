@@ -60,7 +60,7 @@
       <div class="box-info">
         <div class="number-task">
           <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
-            >1</nc-text
+            >{{tasksService.countsToDo}}</nc-text
           >
         </div>
         <div class="box-text-visits-done">
@@ -77,7 +77,7 @@
       <div class="box-info">
         <div class="number-task">
           <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
-            >1</nc-text
+            >{{tasksService.countVisits}}</nc-text
           >
         </div>
         <div class="box-text-visits-done">
@@ -112,7 +112,7 @@
     </div>
   </div>
 
-  <nc-virtual-scroller #scroll [items]="listTasks">
+  <nc-virtual-scroller #scroll [items]="tasksService.listTasks">
     <div class="card-tasks" *ngFor="let task  of scroll.viewPortItems">
       <div class="box-task" (click)="selectedTask(task)">
         <div class="icon-name-user">
