@@ -28,6 +28,7 @@ export class ProductsDetailsPage implements OnInit {
   ammount = 1;
   ammountNew:any;
 
+
   constructor(
     private router: Router,
     public toastController: ToastController,
@@ -76,6 +77,7 @@ export class ProductsDetailsPage implements OnInit {
 
   async addProduct(product) {
     this.badge = ++this.badge;
+    console.log(this.tasksService.quantity1)
     this.controlBadge = false;
     const toast = await this.toastController.create({
       header: 'You add new product to cart "item xpto',
@@ -147,6 +149,7 @@ this.productService.totalValueOrder()
   }
 
   show(value1){
+    this.tasksService.quantity1 = value1
 console.log(value1);
   }
 

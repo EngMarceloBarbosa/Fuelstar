@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
-import { Contacts, Entity, Instance, InstancePatch, Tasks } from 'src/app/utils/models/tasks';
+import { Contacts, Entity, Instance, InstancePatch, Items, Tasks } from 'src/app/utils/models/tasks';
 
 
 
@@ -38,6 +38,9 @@ export class TasksService {
   clientFields: any;
   countVisits:any=[];
   countsToDo:any = [];
+  quantity1:any;
+  listValue: any;
+  listItems: Items;
 
 
   //   newClientForm: FormGroup =  new FormGroup({

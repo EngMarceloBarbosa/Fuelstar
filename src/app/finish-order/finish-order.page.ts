@@ -12,7 +12,7 @@ export class FinishOrderPage implements OnInit {
   listValue1:any;
   listProducts1:any;
 
-  constructor(  private tasksService: TasksService) { }
+  constructor(  public tasksService: TasksService) { }
 
   ngOnInit( ) {
 

@@ -34,7 +34,7 @@ export class OrdersDetailsPage implements OnInit {
   translateStrings: any;
   list;
   onPayment: boolean = false;
-  listValue: any;
+
   productList: any[] = [];
   key: any;
   continueState: boolean = true;
@@ -79,8 +79,8 @@ export class OrdersDetailsPage implements OnInit {
         }),
       this.tasksService.valueTotal$
         .subscribe(testTask4 => {
-          this.listValue = testTask4;
-          console.log(this.listValue, "ENTROU")
+          this.tasksService.listValue = testTask4;
+          console.log(this.tasksService.listValue, "ENTROU")
         })
 
   }
@@ -331,7 +331,7 @@ export class OrdersDetailsPage implements OnInit {
       // this.list[index].totalValueItem = this.list[index].price * this.list[index].quantity;
       this.list[0].quantity = this.ammountNew;
       this.list[0].totalValueItem = this.list[0].price * this.list[0].quantity;
-      this.listValue = this.list[0].totalValueItem
+      this.tasksService.listValue = this.list[0].totalValueItem
     }else {
     }
     console.log(this.list)

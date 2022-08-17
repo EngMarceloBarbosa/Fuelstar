@@ -13,7 +13,7 @@ nc-virtual-scroller {
   justify-content: flex-start;
   flex-direction: column;
   width: 100%;
-  padding: tbu(px(50)) tbu(px(24)) tbu(px(24)) tbu(px(24));
+  padding: tbu(px(24)) tbu(px(24)) tbu(px(24));
 }
 
 .card-types {
@@ -23,7 +23,6 @@ nc-virtual-scroller {
   padding-top: tbu(px(13));
   padding-bottom: tbu(px(11));
   background-color: var(--c-scale-1);
-  margin-bottom: tbu(px(20));
   border-radius: tbu(px(12));
 }
 
@@ -62,8 +61,7 @@ nc-virtual-scroller {
 .products-image {
   @extend .flex-center;
   img {
-    width: tbu(px(183));
-    height: tbu(px(219));
+  width: 70%;
   }
 }
 
@@ -71,7 +69,6 @@ nc-virtual-scroller {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 10%;
   width: 100%;
 }
 
@@ -124,10 +121,14 @@ nc-virtual-scroller {
   }
 }
 
+.footer {
+  height: 10%;
+}
+
 .container-footer {
   display: flex;
   width: 100%;
-  height: 10%;
+  height: 80%;
 }
 
 .button-footer {

@@ -37,7 +37,7 @@
   </div>
 </ion-header>
 
- <!-- FILTER -->
+<!-- FILTER -->
 
 <nc-action-sheet [typeASheet]="1" [showFooter]="true">
   <div class="action-sheet--header">
@@ -164,17 +164,13 @@
         <div class="box-state" [class.is-on-action-Buttons]="isOnActionButtons3"  (click)="selectedTypeFilter(2)" >Return</div> -->
       </div>
     </div>
-
   </div>
 </nc-action-sheet>
 
 <ion-content>
   <div class="list-content">
-    <nc-virtual-scroller class="card-list" #scrollList [items]="products2">
-      <div
-        *ngFor="let test of scrollList.viewPortItems"
-        class="card-list__wrap"
-      >
+    <nc-virtual-scroller class="card-list" #scroll [items]="products2">
+      <div *ngFor="let test of scroll.viewPortItems" class="card-list__wrap">
         <div class="card">
           <div class="img-card" (click)="cardsClick(test)">
             <img src="{{test.image}}" />
@@ -192,3 +188,4 @@
     </nc-virtual-scroller>
   </div>
 </ion-content>
+

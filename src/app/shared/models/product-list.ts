@@ -16,21 +16,21 @@ export const product: Array<Products> = [
 },
 {
   tittle: 'Comidas',
-  image: 'assets/img/2050435-frente.jpg',
+  image: 'assets/img/wine1.jpg',
   price: 2.60,
   reference: 'REF.ª 123456789',
   id: 2
 },
 {
   tittle: 'Snacks',
-  image: 'assets/img/2050435-frente.jpg',
+  image: 'assets/img/wine 2.jpg',
   price: 1.50,
   reference: 'REF.ª 123456789',
   id: 3
 },
 {
   tittle: 'Snacks',
-  image: 'assets/img/2050435-frente.jpg',
+  image: 'assets/img/wine 3.jpg',
   price: 1.50 ,
   reference: 'REF.ª 123456789',
   id: 4

@@ -125,7 +125,6 @@ export class DetailsClientPage implements OnInit {
 
     this.tasksService.countVisits = this.tasksService.countVisits -1  ;
     this.tasksService.countsToDo = this.tasksService.countsToDo + 1;
-   this.router[('')]
    this.router.navigate(['tabs/tab1']);
 
   }

@@ -1,9 +1,23 @@
+import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
 
 export interface Tasks {
   id: string;
   address: Address;
   entity: Entity;
 
+
+}
+
+export interface Items {
+  id:string;
+  name:string;
+  alias:string;
+  description:string;
+  note:string;
+  isActive:boolean;
+  nasnId: string;
+  creationDate: string;
+  updateDate: string;
 
 }
 

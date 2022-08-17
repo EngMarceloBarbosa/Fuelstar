@@ -1,6 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ActionSheetService } from '@nc-angular/library-mobile.stg';
+import { TranslateService } from '@ngx-translate/core';
+import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
+import { ItemApiService } from '../shared/http/item-api.service';
+import { TaskApiService } from '../shared/http/task-api.service';
+import { TasksService } from '../shared/services/tasks.service';
 
 @Component({
   selector: 'app-products',
@@ -8,6 +14,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./products.page.scss'],
 })
 export class ProductsPage implements OnInit {
+
+
+
 
   active: boolean = true;
   activeTest: boolean = false;
@@ -23,7 +32,7 @@ export class ProductsPage implements OnInit {
   entitiesListFilter: any;
   id: number;
 
-  constructor(private router: Router) { }
+  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public itemApiService: ItemApiService) { }
 
 
   products1: any[] = [{
@@ -55,6 +64,21 @@ export class ProductsPage implements OnInit {
 
 
   ngOnInit() {
+        this.itemApiService.getItem().then(res => {
+        console.log(res)
+        this.tasksService.listItems = res;
+      console.log(   this.tasksService.listItems);
+
+        // this.tasksService.listTasks$.next(this.listTasks);
+      })
+
+
+      // this.contactsTaskService.getNoteById().then(res => {
+      // this.tasksService.listTasksById = res
+      // console.log(this.tasksService.listTasksById);
+      // } )
+
+
   }
 
 

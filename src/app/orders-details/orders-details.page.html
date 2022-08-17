@@ -7,10 +7,10 @@
             >Order Nº 1923</nc-text
           >
           <ion-badge color="primary" id="notifications-badge" *ngIf="!badgeOn"
-            >{{badges}}</ion-badge
+            >{{tasksService.quantity1}}</ion-badge
           >
           <ion-badge color="primary" id="notifications-badge1" *ngIf="badgeOn"
-            >{{badges}}</ion-badge
+            >{{tasksService.quantity1}}</ion-badge
           >
         </div>
       </div>
@@ -205,7 +205,7 @@
             </div>
             <div class="value">
               <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-                >{{listValue}}€</nc-text
+                >{{tasksService.listValue}}€</nc-text
               >
             </div>
           </div>
@@ -471,7 +471,7 @@
 
   <!-- CLEAR BUTTONS -->
 
-  <div class="buttons-footer" *ngIf="clearState" >
+  <div class="buttons-footer" *ngIf="clearState">
     <div class="buttons-client">
       <div class="client" (click)="backToProducts()">
         <nc-text
@@ -561,7 +561,13 @@
           </div>
         </div>
         <div class="quantity-products">
-          <nc-stepper [showNumber]="true" [value]="2" [min]="0" (onChange)="onChanged($event)" (click)="addQuantity(ammountNew)" ></nc-stepper>
+          <nc-stepper
+            [showNumber]="true"
+            [value]="2"
+            [min]="0"
+            (onChange)="onChanged($event)"
+            (click)="addQuantity(ammountNew)"
+          ></nc-stepper>
         </div>
         <div class="delete-item">
           <div class="icon-delete">
