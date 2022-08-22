@@ -18,7 +18,7 @@ export class ItemApiService {
 
     // this.loadingService.loader();
     return this.http
-      .get<any>(`${environment.api}/api/Thebox/Items`, {
+      .get<any>(`${environment.api}/api/Thebox/Items/ItemProperties/Types/Tree`, {
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,
@@ -29,6 +29,23 @@ export class ItemApiService {
 
   }
 
+  putImageItem(itemId, formImage) {
+    return this.http
+      .patch<any>(`${environment.api}/api/Thebox/Items/${itemId}/Image`, (formImage), {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + environment.token,
+        })
+      })
+      .pipe()
+      .toPromise();
 
+  }
 
 }
+
+
+
+
+
+
+

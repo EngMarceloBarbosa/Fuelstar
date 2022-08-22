@@ -158,6 +158,7 @@
               (onChange)="change($event,2)"
             >
             </nc-input>
+
             <div class="erro" *ngIf="msgErroFields">
               <nc-text size="h7" color="error" weight="500" font="primary" >{{msgErroLastname}}</nc-text>
             </div>
@@ -172,7 +173,11 @@
               [size]="'medium'"
               (onChange)="change($event, 3)"
             >
-            </nc-input>
+          </nc-input>
+          <div class="nifError" *ngIf="alertMessage1">
+            <nc-text size="h7" color="error" weight="500" font="primary">{{alertMessage}}</nc-text>
+          </div>
+
             <div class="erro" *ngIf="msgErroFields">
               <nc-text size="h7" color="error" weight="500" font="primary" >{{msgErroLastname}}</nc-text>
             </div>

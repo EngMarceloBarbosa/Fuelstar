@@ -264,7 +264,10 @@ export class OrdersDetailsPage implements OnInit {
     })
     this.selectedList = []
 
+this.list = ""
+
     console.log(this.list)
+
 
   }
 
@@ -275,11 +278,25 @@ export class OrdersDetailsPage implements OnInit {
 
 
   deleteProduct(key: number) {
-    this.list.forEach((element, index) => {
+    console.log(this.list, 'INICIO')
+    this.list.map((element, index) => {
       if (element.id == key)
         this.list.splice(index, 1)
+        console.log(this.list, 'FIM')
+        console.log(this.tasksService.totalValueRequest, 'COMECÇO');
+        console.log(element.totalValueItem, 'MEIO');
+        this.productService.totalValueOrder();
+        // this.tasksService.totalValueRequest = this.tasksService.totalValueRequest - element.totalValueItem;
+
+
 
     });
+
+
+    if(this.list == ""){
+      this.router.navigate(['/products-family'])
+
+    }
 
     // console.log(this.list)
     // // console.log(item)
@@ -346,8 +363,10 @@ export class OrdersDetailsPage implements OnInit {
 
   }
   backToProducts(){
-    this.list= [];
-    this.router.navigate(['products-details']);
+
+    this.list = "";
+    console.log(this.list)
+    this.router.navigate(['products-family']);
     this.deleteState = true;
     this.clearState = false;
   }

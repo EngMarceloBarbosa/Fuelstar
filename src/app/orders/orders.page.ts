@@ -33,7 +33,8 @@ export class OrdersPage implements OnInit {
   msgErroLastname: any;
   msgErroCheckLastName:boolean = true;
   msgErroFields:boolean = false;
-
+  alertMessage:any = "NIF inválido"
+  alertMessage1:boolean = false;
 
 
 
@@ -191,7 +192,7 @@ export class OrdersPage implements OnInit {
     }
   }
 
-  save() {
+  async save() {
 
 
     console.log(this.tasksService.valueFirstName)
@@ -222,7 +223,9 @@ export class OrdersPage implements OnInit {
       form.append('Contact[1].ContactId', "00000000-0007-0000-0000-000000000001");
       form.append('Contact[1].Value', this.tasksService.valuePhoneNumber);
       form.append('CountryId', "00000000-0032-0000-0000-000000000033");
+      form.append('IdentityDocuments[0].countryId', "00000000-0032-0000-0000-000000000033");
       form.append('IdiomId', "00000000-0036-0000-0000-000000000001");
+
 
 
 
@@ -232,36 +235,63 @@ export class OrdersPage implements OnInit {
 
 
       console.log(this.tasksService.croudGroup)
+
+      await this.contactsTaskService.verifyNif(form).then(res => {
+        this.tasksService.verifyEntity = res;
+        console.log(   this.tasksService.verifyEntity)
+
+      })
+      if(this.tasksService.verifyEntity.length === 0) {
+ console.log(this.tasksService.verifyEntity.length )
       this.contactsTaskService.addClient(form).then(res => {
         this.tasksService.listClients = res;
-      })
 
+
+      })
+      await this.contactsTaskService.getEntities().then(res => {
+        console.log(res)
+        this.tasksService.listClients = res;
+        // this.tasksService.listTasks$.next(this.listTasks);
+      })
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients;
 
       console.log(this.tasksService.list)
 
       this.active = true;
       this.tasksService.valueFirstName = "";
       1
+    }else {
+this.msgErro = 'ERRO';
+this.alertMessage1 = true;
+console.log(   this.tasksService.verifyEntity)
+
+    }
+
+
     }
     // if (this.tasksService.croudGroup) {
     //   // this.tasksService.listClients.push(form)
     // }
   }
 
-  clean() {
-    console.log(this.selectedItem.id);
-    this.contactsTaskService.deleteClient(this.selectedItem[0].id).then(res => {
-      this.selectedItem = res;
+  async clean() {
+   await this.contactsTaskService.deleteClient(this.selectedItem[0].id).then(res => {
+ console.log(res)
+      this.tasksService.listClients = res;
+
+      console.log(     this.tasksService.listClients )
       this.selectedItem = [];
 
       console.log(this.tasksService.listEntitys, "entidades")
     })
 
-    console.log(this.selectedItem)
-    if (this.selectedItem == true) {
-      this.tasksService.allDocumentsFilter.slice(this.selectedItem);
-    }
 
+   await this.contactsTaskService.getEntities().then(res => {
+      console.log(res)
+      this.tasksService.listClients = res;
+      // this.tasksService.listTasks$.next(this.listTasks);
+    })
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients;
 
   }
 

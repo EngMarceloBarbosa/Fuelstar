@@ -45,6 +45,27 @@ export class ContactsTaskService {
 
   }
 
+verifyNif(form: FormData){
+
+
+  console.log(form.get("IdentityDocuments[0].value"))
+  console.log(form.get("IdentityDocuments[0].IdentityDocumentId"))
+  console.log(form.get("IdentityDocuments[0].countryId"))
+
+
+
+    return this.http
+    .get<any>(`${environment.api}/api/Thebox/Entities/EntityIdentityDocuments?IdentityDocumentId=${form.get("IdentityDocuments[0].IdentityDocumentId")}&CountryId=${form.get("IdentityDocuments[0].countryId")}&Value=${form.get("IdentityDocuments[0].value")}`, {
+              headers: new HttpHeaders({
+          "content-type": "application/json",
+          Authorization: "Bearer " + environment.token,
+              })
+            })
+    .pipe()
+    .toPromise();
+  }
+
+
   getContactById(entityId:any) {
 
     // this.loadingService.loader();

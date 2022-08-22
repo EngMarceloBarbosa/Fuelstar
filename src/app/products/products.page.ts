@@ -18,6 +18,8 @@ export class ProductsPage implements OnInit {
 
 
 
+
+
   active: boolean = true;
   activeTest: boolean = false;
 
@@ -64,26 +66,28 @@ export class ProductsPage implements OnInit {
 
 
   ngOnInit() {
-        this.itemApiService.getItem().then(res => {
-        console.log(res)
-        this.tasksService.listItems = res;
-      console.log(   this.tasksService.listItems);
+    this.itemApiService.getItem().then(res => {
+      console.log(res)
+      this.tasksService.listItems = res;
+      console.log(this.tasksService.listItems, 'LISTA DOS ITEMS');
 
-        // this.tasksService.listTasks$.next(this.listTasks);
-      })
+      // this.tasksService.listTasks$.next(this.listTasks);
+    })
 
 
-      // this.contactsTaskService.getNoteById().then(res => {
-      // this.tasksService.listTasksById = res
-      // console.log(this.tasksService.listTasksById);
-      // } )
+
+
+    // this.contactsTaskService.getNoteById().then(res => {
+    // this.tasksService.listTasksById = res
+    // console.log(this.tasksService.listTasksById);
+    // } )
 
 
   }
 
 
   close() {
-this.router.navigate(['orders'])
+    this.router.navigate(['orders'])
   }
 
   products() {
@@ -101,12 +105,13 @@ this.router.navigate(['orders'])
 
   }
 
-  subFamily(test){
-    if(test.id == 1 ){
-    this.router.navigate(['products-family']);
-    } if(test.id == 2) {
+  subFamily(test) {
+    if (test.id == 1) {
+      // this.tasksService.putImageItems();
+      this.router.navigate(['products-family']);
+    } if (test.id == 2) {
       this.router.navigate(['tabs/tab2']);
-    }if(test.id == 3) {
+    } if (test.id == 3) {
       this.router.navigate(['tabs/tab3']);
     }
   }

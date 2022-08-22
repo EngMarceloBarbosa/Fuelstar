@@ -4,7 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
-import { Contacts, Entity, Instance, InstancePatch, Items, Tasks } from 'src/app/utils/models/tasks';
+import { Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, Tasks } from 'src/app/utils/models/tasks';
+import { ItemApiService } from '../http/item-api.service';
 
 
 
@@ -20,8 +21,8 @@ export class TasksService {
   idEntityId: any;
   value: any;
   phoneContact: any;
-  listTasks: Tasks[] ;
-
+  listTasks: Tasks[];
+  quantityTotal:any;
   listClients: Entity[] = [];
   listContacts: Contacts[] = [];
   listEntitys: Entity = null;
@@ -30,17 +31,19 @@ export class TasksService {
   noteEntity: any;
   notes: any;
   email: any;
-  valueFirstName: string ="";
-  valueLastName: string= "";
-  valueNif: string="";
+  valueFirstName: string = "";
+  valueLastName: string = "";
+  valueNif: string = "";
   valueEmail: string = "";
   valuePhoneNumber: string = "";
   clientFields: any;
-  countVisits:any=[];
-  countsToDo:any = [];
-  quantity1:any;
+  countVisits: any = [];
+  countsToDo: any = [];
+  quantity1: any;
   listValue: any;
-  listItems: Items;
+  listItems: Items[] = [];
+  totalValueRequest: number;
+  verifyEntity:IdentityDocuments[] = [];
 
 
   //   newClientForm: FormGroup =  new FormGroup({
@@ -52,7 +55,7 @@ export class TasksService {
   // }
   // )
 
-  constructor(private http: HttpClient, private contactApiService: ContactsTaskService) { }
+  constructor(private http: HttpClient, private contactApiService: ContactsTaskService, public itemApiService: ItemApiService) { }
 
   // public listTasks(id: string) {
   //     return this.http
@@ -102,6 +105,26 @@ export class TasksService {
     )
   }
 
+  putImageItems() {
+
+
+
+
+    var proImage = new Image();
+    proImage.src = "assets/img/wine 2.jpg"
+    document.body.appendChild(proImage);
+
+    let formImage = new FormData();
+
+    formImage.append('file', proImage.src);
+    console.log(proImage.src)
+
+
+    this.itemApiService.putImageItem(this.listItems[0].id, formImage).then(() =>
+      this.listItems
+    )
+  }
+
 
   addNotes() {
 
@@ -113,6 +136,11 @@ export class TasksService {
 
     // });
 
+
+    //
+
+
+    //
 
 
 
@@ -133,6 +161,13 @@ export class TasksService {
     console.log(this.notes);
     console.log(listTasksByIdNew, ' LISTA NOVA');
   }
+
+
+  //
+
+
+
+  //
 
 
 }

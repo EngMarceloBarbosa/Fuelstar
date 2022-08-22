@@ -29,9 +29,10 @@ isOnActionButtons3: boolean = false;
 selectedFilter: number = 0;
 translateStrings:any;
 
+
   products2 = product ;
 
-  constructor( private router: Router, private tasksService: TasksService,  private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService) { }
+  constructor( private router: Router, public tasksService: TasksService,  private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService) { }
 
   ngOnInit() {
 

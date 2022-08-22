@@ -1,4 +1,5 @@
 import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
+import { StringifyOptions } from "querystring";
 
 export interface Tasks {
   id: string;
@@ -9,15 +10,23 @@ export interface Tasks {
 }
 
 export interface Items {
-  id:string;
-  name:string;
-  alias:string;
-  description:string;
-  note:string;
-  isActive:boolean;
-  nasnId: string;
-  creationDate: string;
-  updateDate: string;
+  children: Children[];
+  description: string;
+  id: string;
+  name: string;
+  note: string;
+  parentId: string;
+  parentName: string;
+}
+
+
+export class Children {
+  description: string;
+  id: string;
+  name: string;
+  note: string;
+  parentId: string;
+  parentName: string;
 
 }
 
@@ -97,6 +106,19 @@ export class DocumentInstances {
   documentInstanceDate: string;
 }
 
+export interface IdentityDocuments {
+  entity: Entity;
+  identityDocumentId: string;
+  identityDocumentName: string;
+  identityDocumentTypeId: string;
+  identityDocumentTypeName: string;
+  countryId: string;
+  countryName: string;
+  expiryDate: string;
+  issueDate: string;
+  value: string;
+}
+
 export class EntityRoles {
   entityRoleId: string;
   isParticipant: boolean;
@@ -169,7 +191,7 @@ export class InstancePatch {
   constructor(instance: Instance) {
 
     this.name = instance.name ?? null;
-    this.description = instance.description?? null;
+    this.description = instance.description ?? null;
     this.note = instance.note ?? null;
     this.isImportant = instance.isImportant ?? false;
     this.projectId = instance.projectId ?? null;
@@ -194,7 +216,7 @@ export class InstancePatch {
         tagId: elem.tagId,
         tagName: elem.tagName
       }
-    }): null;
+    }) : null;
   }
 
 }

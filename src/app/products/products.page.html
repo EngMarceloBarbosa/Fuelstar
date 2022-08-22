@@ -31,11 +31,11 @@
         <div>
           <div style="padding: 24px">
 
-            <nc-accordion>
-              <nc-accordion-tab [header]="'Family'" [expandIcon]="'icon_arrow'" weight="regular" >
-                <div *ngFor="let test  of products1">
+            <nc-accordion >
+              <nc-accordion-tab *ngFor="let test of tasksService.listItems"  [expandIcon]="'icon_arrow'" weight="regular" >
+                <div *ngFor="let test  of tasksService.listItems.children">
 
-                  <nc-text size="h7" color="var(--c-scale-10)" font="primary" weight="regular" (click)="subFamily(test)"> {{test.family}}</nc-text >
+                  <nc-text size="h7" color="var(--c-scale-10)" font="primary" weight="regular" (click)="subFamily(test)"> {{test.name}}</nc-text >
                 </div>
               </nc-accordion-tab>
               <nc-accordion-tab [header]="'Family'" [expandIcon]="'icon_arrow'" >

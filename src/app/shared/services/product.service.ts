@@ -7,7 +7,8 @@ import { TasksService } from './tasks.service';
 export class ProductService {
 
   productList:any[]=[];
-  totalValueRequest: number;
+
+
   Total:number;
   // quantity:any;
 
@@ -42,12 +43,15 @@ export class ProductService {
 
   totalValueOrder(){
     console.log("Boas")
-    this.totalValueRequest = 0;
+    this.tasksService.totalValueRequest = 0;
+    // this.tasksService.quantityTotal = 0;
     this.productList.map(elem => {
-      this.totalValueRequest += elem.totalValueItem;
-      console.log( this.totalValueRequest.toFixed(2));
+      this.tasksService.totalValueRequest += elem.totalValueItem;
+      // this.tasksService.quantityTotal += elem.quantity;
+      console.log( this.tasksService.quantityTotal)
+      console.log( this.tasksService.totalValueRequest.toFixed(2));
     })
-    this.tasksService.valueTotal$.next(this.totalValueRequest.toFixed(2));
+    this.tasksService.valueTotal$.next(this.tasksService.totalValueRequest.toFixed(2));
   }
 
 
