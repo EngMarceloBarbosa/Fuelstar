@@ -59,6 +59,7 @@ export class ProductsDetailsPage implements OnInit {
     this.tasksService.chooseProduct$
       .subscribe(testTask1 => {
         this.itemProduct = testTask1;
+        console.log(this.itemProduct)
       }),
       this.tasksService.valueTotal$
       .subscribe(testTask4 => {

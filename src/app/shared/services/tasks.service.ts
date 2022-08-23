@@ -44,7 +44,7 @@ export class TasksService {
   listItems: Items[] = [];
   totalValueRequest: number;
   verifyEntity:IdentityDocuments[] = [];
-
+  listItemsByType: Items;
 
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
@@ -107,9 +107,6 @@ export class TasksService {
 
   putImageItems() {
 
-
-
-
     var proImage = new Image();
     proImage.src = "assets/img/wine 2.jpg"
     document.body.appendChild(proImage);
@@ -118,7 +115,6 @@ export class TasksService {
 
     formImage.append('file', proImage.src);
     console.log(proImage.src)
-
 
     this.itemApiService.putImageItem(this.listItems[0].id, formImage).then(() =>
       this.listItems

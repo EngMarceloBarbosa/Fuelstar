@@ -169,15 +169,15 @@
 
 <ion-content>
   <div class="list-content">
-    <nc-virtual-scroller class="card-list" #scroll [items]="products2">
-      <div *ngFor="let test of scroll.viewPortItems" class="card-list__wrap">
+    <nc-virtual-scroller class="card-list" #scroll [items]="tasksService.listItemsByType">
+      <div *ngFor="let item of scroll.viewPortItems" class="card-list__wrap">
         <div class="card">
-          <div class="img-card" (click)="cardsClick(test)">
+          <div class="img-card" (click)="cardsClick(item)">
             <img src="{{test.image}}" />
           </div>
           <div class="title-card">
             <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-              >{{test.tittle}}</nc-text
+              >{{test.name}}</nc-text
             >
             <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
               >{{test.price}}</nc-text

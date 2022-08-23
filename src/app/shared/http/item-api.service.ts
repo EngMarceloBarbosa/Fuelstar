@@ -29,7 +29,26 @@ export class ItemApiService {
 
   }
 
+
+  getItems(id) {
+    return this.http
+      .get<any>(`${environment.api}/api/Thebox/Items?TypeFilterMode=1&TypeId=${id}`, {
+        headers: new HttpHeaders({
+          "content-type": "application/json",
+          Authorization: "Bearer " + environment.token,
+        })
+      })
+      .pipe()
+      .toPromise();
+  }
+
+
+
+
+
+
   putImageItem(itemId, formImage) {
+    console.log(formImage)
     return this.http
       .patch<any>(`${environment.api}/api/Thebox/Items/${itemId}/Image`, (formImage), {
         headers: new HttpHeaders({

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { FilterServiceService } from '../shared/filter-service.service';
+import { ItemApiService } from '../shared/http/item-api.service';
 import { product } from '../shared/models/product-list';
 
 
@@ -32,9 +33,10 @@ translateStrings:any;
 
   products2 = product ;
 
-  constructor( private router: Router, public tasksService: TasksService,  private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService) { }
+  constructor( private router: Router, public tasksService: TasksService,  private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService,public itemApiService: ItemApiService) { }
 
   ngOnInit() {
+
 
 
   }
@@ -47,9 +49,9 @@ translateStrings:any;
     this.router.navigate(['products']);
   }
 
-  cardsClick(test){
+  cardsClick(item){
   this.router.navigate(['products-details']);
-  this.tasksService.chooseProduct$.next(test);
+  this.tasksService.chooseProduct$.next(item);
 
 }
 
@@ -116,7 +118,6 @@ return `${dateStr}`;
 }
 
 FromDate(fromDate:any) {
-console.log("iiiiiiiiiiiiiiiiiiiiii");
 if (fromDate > this.value2) {
   const temp: ModalMessageModel = {
     showTip: false,

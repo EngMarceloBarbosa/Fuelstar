@@ -120,8 +120,7 @@ export class DetailsClientPage implements OnInit {
     this.onNotes = true;
   }
 
-  done() {
-
+  done(task) {
 
     this.tasksService.countVisits = this.tasksService.countVisits -1  ;
     this.tasksService.countsToDo = this.tasksService.countsToDo + 1;

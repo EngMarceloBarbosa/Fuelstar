@@ -413,7 +413,7 @@
           </div>
         </nc-action-sheet>
       </div>
-      <div class="button-done"  (click)="done()">
+      <div class="button-done"  (click)="done(tasksService.listTasks.id)">
         <div class="icon-option">
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
             >icon_check</nc-icon

@@ -105,15 +105,36 @@ export class ProductsPage implements OnInit {
 
   }
 
-  subFamily(test) {
-    if (test.id == 1) {
-      // this.tasksService.putImageItems();
+  subFamily(child) {
+    if(child.id){
       this.router.navigate(['products-family']);
-    } if (test.id == 2) {
-      this.router.navigate(['tabs/tab2']);
-    } if (test.id == 3) {
-      this.router.navigate(['tabs/tab3']);
+      this.itemApiService.getItems(child.id).then(res => {
+        this.tasksService.listItemsByType = res;
+        console.log(this.tasksService.listItemsByType)
+        })
+
     }
+
+    console.log(child)
+    // this.tasksService.listItems[0].children.map((element) => {
+    //   if (element.id === test.id) {
+    //     console.log("ENTROU NO RPIMEIRO item")
+    //     this.router.navigate(['products-family']);
+    //   }
+    //   if (test.id === "00000000-0000-0000-0000-000000000204") {
+    //     console.log("ENTROU NO RPIMEIRO item")
+    //     this.router.navigate(['products-family']);
+    //   }
+    // }
+    // )
+    // if (test.id == 1) {
+    //   // this.tasksService.putImageItems();
+    //   this.router.navigate(['products-family']);
+    // } if (test.id == 2) {
+    //   this.router.navigate(['tabs/tab2']);
+    // } if (test.id == 3) {
+    //   this.router.navigate(['tabs/tab3']);
+    // }
   }
 
 }
