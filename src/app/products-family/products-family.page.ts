@@ -50,8 +50,9 @@ translateStrings:any;
   }
 
   cardsClick(item){
+  this.tasksService.item = item;
   this.router.navigate(['products-details']);
-  this.tasksService.chooseProduct$.next(item);
+  // this.tasksService.chooseProduct$.next(item);
 
 }
 

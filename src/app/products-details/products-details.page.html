@@ -1,7 +1,7 @@
 <ion-content>
   <div class="header-container">
     <div class="img-header">
-      <img src="{{itemProduct.image}}" alt="" />
+      <img src="{{tasksService.item.image}}" alt="" />
     </div>
     <div class="header">
       <div class="icon-back">
@@ -24,7 +24,7 @@
             [size]="18"
             color="c-scale-1"
             hoverColor="c-scale-1"
-            (click)="showCart(badge)"
+            (click)="showCart(tasksService.badge)"
             >icon_shopping-cart</nc-icon
           >
           <ion-badge
@@ -49,7 +49,7 @@
       <div class="product-details">
         <div class="title-product">
           <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >ITEM XPTO</nc-text
+            >{{tasksService.item.name}}</nc-text
           >
           <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
             >0,50€</nc-text
@@ -81,7 +81,7 @@
             color="c-scale-10"
             weight="500"
             font="primary"
-            (click)="addProduct(itemProduct)"
+            (click)="addProduct(  this.tasksService.item)"
           >
             {{'App.ProductDetails.buttonAddCart' | translate}}
           </nc-text>

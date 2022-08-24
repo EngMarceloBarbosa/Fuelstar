@@ -111,11 +111,16 @@ export class ProductsPage implements OnInit {
       this.itemApiService.getItems(child.id).then(res => {
         this.tasksService.listItemsByType = res;
         console.log(this.tasksService.listItemsByType)
+        this.itemApiService.getImageItem(res[0].id).then(res => {
+
+          this.tasksService.listItemsByType[0].image = "data:image/png;base64," + res.file
         })
+        })
+
+      console.log(child)
 
     }
 
-    console.log(child)
     // this.tasksService.listItems[0].children.map((element) => {
     //   if (element.id === test.id) {
     //     console.log("ENTROU NO RPIMEIRO item")

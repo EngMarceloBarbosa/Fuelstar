@@ -19,7 +19,6 @@ export class OrdersDetailsPage implements OnInit {
 
   value1 = new Date();
   value2 = new Date();
-  badges: any;
   listProducts: any[] = [];
   onAdress: boolean = true;
   apllyFilterButtonDisabled: boolean = true;
@@ -32,7 +31,7 @@ export class OrdersDetailsPage implements OnInit {
   deleteStateNext: boolean = false;
   selectedFilter: number = 0;
   translateStrings: any;
-  list;
+
   onPayment: boolean = false;
 
   productList: any[] = [];
@@ -49,7 +48,7 @@ export class OrdersDetailsPage implements OnInit {
   checkedProduct: any;
   ammountNew: any = 1;
   ammountNew1:any;
-
+  ammountId:any;
 
 
   constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService, private translate: TranslateService, private productService: ProductService) { }
@@ -63,34 +62,34 @@ export class OrdersDetailsPage implements OnInit {
 
     });
 
-    this.tasksService.badge$
-      .subscribe(res => {
-        this.badges = res;
-      }),
-      this.tasksService.chooseProduct$
-        .subscribe(product => {
-          this.listProducts = product;
+    // this.tasksService.badge$
+    //   .subscribe(res => {
+    //     this.badges = res;
+    //   }),
+      // this.tasksService.chooseProduct$
+      //   .subscribe(product => {
+      //     this.listProducts = product;
 
-        }),
-      this.tasksService.listProductsNew$
-        .subscribe(testTask3 => {
-          this.list = testTask3;
-          console.log(this.list, "TESTE")
-        }),
-      this.tasksService.valueTotal$
-        .subscribe(testTask4 => {
-          this.tasksService.listValue = testTask4;
-          console.log(this.tasksService.listValue, "ENTROU")
-        })
+      //   }),
+      // this.tasksService.listProductsNew$
+      //   .subscribe(testTask3 => {
+      //     this.list = testTask3;
+      //     console.log(this.list, "TESTE")
+      //   }),
+      // this.tasksService.valueTotal$
+      //   .subscribe(testTask4 => {
+      //     this.tasksService.listValue = testTask4;
+      //     console.log(this.tasksService.listValue, "ENTROU")
+      //   })
 
   }
 
   close() {
     this.router.navigate(['products-details']);
-    this.badges = "";
-    this.list = [];
-    console.log(this.badges, "BADGES")
-    console.log(this.list, "LISTA")
+    this.tasksService.badge = 0 ;
+    this.tasksService.productList = [];
+    console.log(this.tasksService.badge, "BADGES")
+    console.log(this.tasksService.productList, "LISTA")
 
 
   }
@@ -194,9 +193,12 @@ export class OrdersDetailsPage implements OnInit {
 
 
   edit(id) {
+    console.log(id)
     console.log(this.ammountNew);
-    console.log(this.list.ammount);
+
+
     this.tasksService.ammountNew$.next(this.ammountNew);
+    this.tasksService.ammountId$.next(id)
     console.log(id)
     const temp: ActionSheetModel = {
       titleText: this.productsMessagesTranslations.titleActionSheet,
@@ -228,7 +230,7 @@ export class OrdersDetailsPage implements OnInit {
   deleteNavigation() {
     this.deleteState = false
     this.clearState = true
-    this.selectedList = [...this.list]
+    this.selectedList = [...this.tasksService.productList]
 
     // this.router.navigate(['delete-page']);
     // this.tasksService.testTask3$.next(this.list);
@@ -260,13 +262,14 @@ export class OrdersDetailsPage implements OnInit {
     // this.list = this.selectedList;
 
     this.selectedList.map(element => {
-      this.list = this.list.filter(item => item.id !== element.id)
+      this.tasksService.productList = this.tasksService.productList.filter(item => item.id !== element.id)
     })
     this.selectedList = []
 
-this.list = ""
 
-    console.log(this.list)
+
+
+    console.log(this.tasksService.productList)
 
 
   }
@@ -278,11 +281,11 @@ this.list = ""
 
 
   deleteProduct(key: number) {
-    console.log(this.list, 'INICIO')
-    this.list.map((element, index) => {
+    console.log(this.tasksService.productList, 'INICIO')
+    this.tasksService.productList.map((element, index) => {
       if (element.id == key)
-        this.list.splice(index, 1)
-        console.log(this.list, 'FIM')
+        this.tasksService.productList.splice(index, 1)
+        console.log(this.tasksService.productList, 'FIM')
         console.log(this.tasksService.totalValueRequest, 'COMECÇO');
         console.log(element.totalValueItem, 'MEIO');
         this.productService.totalValueOrder();
@@ -293,7 +296,7 @@ this.list = ""
     });
 
 
-    if(this.list == ""){
+    if(this.tasksService.productList == []){
       this.router.navigate(['/products-family'])
 
     }
@@ -310,9 +313,9 @@ this.list = ""
     //   }
 
     // })
-    this.badges = "";
+    this.tasksService.badge = 0;
     this.badgeOn = true;
-    console.log(this.list);
+    console.log(this.tasksService.productList);
   }
 
   finishButton() {
@@ -339,20 +342,34 @@ this.list = ""
     console.log(this.ammountNew);
   }
 
-  addQuantity(value) {
-    const index = this.list.findIndex(el => this.list.id === el.id);
-    // this.list.length[0].push(this.ammountNew);
-    if ( index  ) {
+  addQuantity() {
 
-      //       this.list[index].quantity =this.ammountNew;
-      // this.list[index].totalValueItem = this.list[index].price * this.list[index].quantity;
-      this.list[0].quantity = this.ammountNew;
-      this.list[0].totalValueItem = this.list[0].price * this.list[0].quantity;
-      this.tasksService.listValue = this.list[0].totalValueItem
+    this.tasksService.ammountId$
+    .subscribe(testTask1 => {
+      this.ammountId = testTask1;
+    })
+
+    console.log(this.ammountId )
+
+    console.log(this.ammountNew)
+    const index = this.tasksService.productList.findIndex(el => this.ammountId === el.id);
+console.log(index)
+    // this.tasksService.productList.length[0].push(this.ammountNew);
+    if ( index > -1 ) {
+
+      console.log(index)
+      console.log(this.tasksService.productList)
+
+      //       this.tasksService.productList[index].quantity =this.ammountNew;
+      // this.tasksService.productList[index].totalValueItem = this.tasksService.productList[index].price * this.tasksService.productList[index].quantity;
+
+      this.tasksService.productList[index].quantity = this.ammountNew;
+      this.tasksService.productList[index].totalValueItem = this.tasksService.productList[index].price * this.tasksService.productList[index].quantity;
+      this.tasksService.totalValueRequest = this.tasksService.productList[index].totalValueItem
+      this.productService.totalValueOrder();
     }else {
     }
-    console.log(this.list)
-    console.log(value, "AMMOUNTNEW")
+    console.log(this.tasksService.productList)
   }
 
   back() {
@@ -364,8 +381,8 @@ this.list = ""
   }
   backToProducts(){
 
-    this.list = "";
-    console.log(this.list)
+    this.tasksService.productList = [];
+    console.log(this.tasksService.productList)
     this.router.navigate(['products-family']);
     this.deleteState = true;
     this.clearState = false;

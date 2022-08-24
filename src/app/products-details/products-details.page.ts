@@ -14,13 +14,11 @@ import { TasksService } from '../shared/services/tasks.service';
   styleUrls: ['./products-details.page.scss'],
 })
 export class ProductsDetailsPage implements OnInit {
-  itemProduct: any;
-  product2 = product
+
+
   active: boolean = true;
-  @Input() badge: number = 0;
   controlBadge: boolean = true;
   item: any;
-  listValue:any;
   globalMessagesTranslations:any;
   loginMessagesTranslations:any;
   productsMessagesTranslations:any;
@@ -32,7 +30,7 @@ export class ProductsDetailsPage implements OnInit {
   constructor(
     private router: Router,
     public toastController: ToastController,
-    private tasksService: TasksService,
+    public tasksService: TasksService,
     private actionSheetService: ActionSheetService,
     private productService: ProductService,
     private translate: TranslateService) { }
@@ -53,19 +51,19 @@ export class ProductsDetailsPage implements OnInit {
     this.tasksService.ammountNew$
     .subscribe(testTask1 => {
       this.ammountNew = testTask1;
-    }),
+    })
 
 
-    this.tasksService.chooseProduct$
-      .subscribe(testTask1 => {
-        this.itemProduct = testTask1;
-        console.log(this.itemProduct)
-      }),
-      this.tasksService.valueTotal$
-      .subscribe(testTask4 => {
-        this.listValue = testTask4;
-        console.log(this.listValue, "ENTROU")
-      })
+    // this.tasksService.chooseProduct$
+    //   .subscribe(testTask1 => {
+    //     this.tasksService.itemSelected = testTask1;
+
+    //   }),
+      // this.tasksService.valueTotal$
+      // .subscribe(testTask4 => {
+      //   this.listValue = testTask4;
+      //   console.log(this.listValue, "ENTROU")
+      // })
   }
 
   async presentToast() {
@@ -77,7 +75,7 @@ export class ProductsDetailsPage implements OnInit {
   }
 
   async addProduct(product) {
-    this.badge = ++this.badge;
+    this.tasksService.badge = ++this.tasksService.badge;
     console.log(this.tasksService.quantity1)
     this.controlBadge = false;
     const toast = await this.toastController.create({
@@ -144,7 +142,7 @@ this.productService.totalValueOrder()
     } else {
       console.log("BOAS")
       this.router.navigate(['/orders-details']);
-      this.tasksService.badge$.next(badge);
+      this.tasksService.badge = badge
       this.controlBadge = false;
     }
   }

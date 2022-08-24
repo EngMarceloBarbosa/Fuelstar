@@ -70,10 +70,10 @@
           >
         </div>
       </div>
-      <nc-virtual-scroller class="card-list" #scrollList [items]="list">
+      <nc-virtual-scroller class="card-list" #scrollList [items]="tasksService.productList">
         <div
           class="container-articles"
-          *ngFor="let test of scrollList.viewPortItems"
+          *ngFor="let item of scrollList.viewPortItems"
         >
           <ion-item-sliding [attr.tester]="'swipeItemlist'">
             <ion-item class="item">
@@ -88,13 +88,13 @@
                       slot="start"
                       checked="true"
                       (ionChange)="onChange($event)"
-                      (click)="checked(test)"
+                      (click)="checked(item)"
                       value="cord"
                       color="success"
                     ></ion-checkbox>
                   </div>
                 </ion-list>
-                <div class="container-product" (click)="edit(test.id)">
+                <div class="container-product" (click)="edit(item.id)">
                   <div class="img-article">
                     <img src="/assets/img/logo-appsellers.svg" alt="" />
                   </div>
@@ -105,7 +105,7 @@
                         color="--c-scale-12"
                         weight="Bold"
                         font="primary"
-                        >{{test.tittle}}</nc-text
+                        >{{item.name}}</nc-text
                       >
                     </div>
                     <div class="price">
@@ -114,7 +114,7 @@
                         color="--c-scale-3"
                         weight="500"
                         font="primary"
-                        >{{test.quantity}}x {{test.price}}€</nc-text
+                        >{{item.quantity}}x {{item.price}}€</nc-text
                       >
                     </div>
                   </div>
@@ -134,7 +134,7 @@
                         color="--c-scale-12"
                         weight="Bold"
                         font="primary"
-                        >{{test.totalValueItem}}€</nc-text
+                        >{{item.totalValueItem}}€</nc-text
                       >
                     </div>
                   </div>
@@ -144,7 +144,7 @@
             <ion-item-options>
               <ion-item-option
                 color="c-scale-3_bg"
-                (click)="deleteProduct(test.id)"
+                (click)="deleteProduct(item.id)"
               >
                 <div class="swipe">
                   <nc-icon [size]="16" color="error" hoverColor="error"
@@ -566,7 +566,7 @@
             [value]="2"
             [min]="0"
             (onChange)="onChanged($event)"
-            (click)="addQuantity(ammountNew)"
+            (click)="addQuantity()"
           ></nc-stepper>
         </div>
         <div class="delete-item">

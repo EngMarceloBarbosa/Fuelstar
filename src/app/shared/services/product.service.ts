@@ -6,7 +6,7 @@ import { TasksService } from './tasks.service';
 })
 export class ProductService {
 
-  productList:any[]=[];
+  // productList:any[]=[];
 
 
   Total:number;
@@ -21,14 +21,14 @@ export class ProductService {
     console.log(newElement, "NOVO ELEEMNTO")
 
     console.log(ammount, "QUANTIDADE")
-  const index= this.productList.findIndex(ele => ele.id === newElement.id);
+  const index= this.tasksService.productList.findIndex(ele => ele.id === newElement.id);
   if(index >= 0){
     // this.quantity1 = this.quantity1 + this.quantity;
-    this.productList[index].quantity = ammount;
-    this.productList[index].totalValueItem = newElement.price * this.productList[index].quantity;
+    this.tasksService.productList[index].quantity = ammount;
+    this.tasksService.productList[index].totalValueItem = newElement.price * this.tasksService.productList[index].quantity;
   }else {
-    this.productList = [
-      ...this.productList,
+    this.tasksService.productList = [
+      ...this.tasksService.productList,
       {
         ...newElement,ammount,
         quantity:ammount,
@@ -36,22 +36,27 @@ export class ProductService {
       }
     ];
   }
-  this.tasksService.listProductsNew$.next(this.productList);
-  console.log(this.productList, "1")
+  // this.tasksService.listProductsNew$.next(this.tasksService.productList);
+  console.log(this.tasksService.productList, "1")
   }
 
 
   totalValueOrder(){
     console.log("Boas")
     this.tasksService.totalValueRequest = 0;
+    console.log(this.tasksService.productList);
+    this.tasksService.quantity1 = 0
     // this.tasksService.quantityTotal = 0;
-    this.productList.map(elem => {
+    this.tasksService.productList.map(elem => {
+      console.log(elem)
       this.tasksService.totalValueRequest += elem.totalValueItem;
+
+      this.tasksService.quantity1 += elem.quantity;
+      console.log(this.tasksService.quantity1)
       // this.tasksService.quantityTotal += elem.quantity;
-      console.log( this.tasksService.quantityTotal)
       console.log( this.tasksService.totalValueRequest.toFixed(2));
     })
-    this.tasksService.valueTotal$.next(this.tasksService.totalValueRequest.toFixed(2));
+    // this.tasksService.valueTotal$.next(this.tasksService.totalValueRequest.toFixed(2));
   }
 
 

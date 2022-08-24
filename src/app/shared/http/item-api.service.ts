@@ -43,14 +43,26 @@ export class ItemApiService {
   }
 
 
+  // putItems() {
+  //   return this.http
+  //     .put<any>(`${environment.api}/api/Thebox/Items/ItemProperties/Types`,  {
+  //       headers: new HttpHeaders({
+  //         "content-type": "application/json",
+  //         Authorization: "Bearer " + environment.token,
+  //       })
+  //     })
+  //     .pipe()
+  //     .toPromise();
+  // }
 
 
 
 
-  putImageItem(itemId, formImage) {
-    console.log(formImage)
+
+
+ getImageItem(itemId) {
     return this.http
-      .patch<any>(`${environment.api}/api/Thebox/Items/${itemId}/Image`, (formImage), {
+      .get<any>(`${environment.api}/api/Thebox/Items/${itemId}/Image` , {
         headers: new HttpHeaders({
           Authorization: "Bearer " + environment.token,
         })

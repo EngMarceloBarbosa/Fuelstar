@@ -45,6 +45,10 @@ export class TasksService {
   totalValueRequest: number;
   verifyEntity:IdentityDocuments[] = [];
   listItemsByType: Items;
+  itemSelected:any;
+  productList:any[]=[];
+  item:any;
+  badge: number = 0;
 
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
@@ -64,10 +68,10 @@ export class TasksService {
 
   //  public testTask$ = new Subject<tasksTest>();
   infoClient$ = new BehaviorSubject<ClientsTab[]>([]);
-  chooseProduct$ = new BehaviorSubject<ClientsTab[]>([]);
-  listProductsNew$ = new BehaviorSubject<ClientsTab[]>([]);
+  // chooseProduct$ = new BehaviorSubject<ClientsTab[]>([]);
+  // listProductsNew$ = new BehaviorSubject<ClientsTab[]>([]);
   ammountNew$ = new BehaviorSubject<ClientsTab[]>([]);
-
+  ammountId$ = new BehaviorSubject<ClientsTab[]>([]);
 
 
   croudGroup: FormGroup = new FormGroup({
@@ -83,9 +87,9 @@ export class TasksService {
   unCheckedList: any[] = []
 
 
-  valueTotal$ = new BehaviorSubject<any>('');
+  // valueTotal$ = new BehaviorSubject<any>('');
   // testTask2$ = new BehaviorSubject<tasksTest[]>([]);
-  badge$ = new BehaviorSubject<ClientsTab[]>([]);
+  // badge$ = new BehaviorSubject<ClientsTab[]>([]);
   badgeEmpty$ = new BehaviorSubject<any>('');
   value$ = new BehaviorSubject<any>('');
   contact$ = new BehaviorSubject<any>('');
@@ -105,19 +109,23 @@ export class TasksService {
     )
   }
 
-  putImageItems() {
+  getImageItems() {
 
-    var proImage = new Image();
-    proImage.src = "assets/img/wine 2.jpg"
-    document.body.appendChild(proImage);
+    // var proImage = new Image();
+    // proImage.src = "assets/img/wine 2.jpg"
+    // document.body.appendChild(proImage);
 
-    let formImage = new FormData();
+    // let formImage = new FormData();
 
-    formImage.append('file', proImage.src);
-    console.log(proImage.src)
+    // formImage.append('file', proImage.src);
+    // console.log(proImage.src)
 
-    this.itemApiService.putImageItem(this.listItems[0].id, formImage).then(() =>
-      this.listItems
+
+
+    this.itemApiService.getImageItem(this.listItems[0].id).then( res  => {
+
+      console.log(res);
+    }
     )
   }
 

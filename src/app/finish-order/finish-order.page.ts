@@ -16,22 +16,21 @@ export class FinishOrderPage implements OnInit {
 
   ngOnInit( ) {
 
-    this.tasksService.chooseProduct$
-    .subscribe(product => {
-      this.listProducts1 = product;
+    // this.tasksService.chooseProduct$
+    // .subscribe(product => {
+    //   this.listProducts1 = product;
 
-    }),
-    this.tasksService.listProductsNew$
-
-        .subscribe(testTask3 => {
-          this.listProducts = testTask3;
-        }),
-        this.tasksService.valueTotal$
-        .subscribe(valueTotal => {
-          this.listValue1 = valueTotal;
-          console.log(this.listValue1, "ENTROU NO FINISH")
-        }),
-        console.log(this.listProducts)
+    // }),
+    // this.tasksService.listProductsNew$
+    //     .subscribe(testTask3 => {
+    //       this.listProducts = testTask3;
+    //     }),
+        // this.tasksService.valueTotal$
+        // .subscribe(valueTotal => {
+        //   this.listValue1 = valueTotal;
+        //   console.log(this.listValue1, "ENTROU NO FINISH")
+        // }),
+        // console.log(this.listProducts)
   }
 
   finish(){
