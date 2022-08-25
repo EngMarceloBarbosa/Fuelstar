@@ -105,16 +105,20 @@ export class ProductsPage implements OnInit {
 
   }
 
-  subFamily(child) {
+  async subFamily(child) {
     if(child.id){
       this.router.navigate(['products-family']);
-      this.itemApiService.getItems(child.id).then(res => {
+      this.itemApiService.getItems(child.id).then( async res => {
         this.tasksService.listItemsByType = res;
         console.log(this.tasksService.listItemsByType)
-        this.itemApiService.getImageItem(res[0].id).then(res => {
 
-          this.tasksService.listItemsByType[0].image = "data:image/png;base64," + res.file
+    for await ( let item of this.tasksService.listItemsByType) {
+
+        this.itemApiService.getImageItem(item.id).then(res => {
+
+          item.image = "data:image/png;base64," + res.file
         })
+      }
         })
 
       console.log(child)

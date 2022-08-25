@@ -30,6 +30,7 @@ export class ItemApiService {
   }
 
 
+
   getItems(id) {
     return this.http
       .get<any>(`${environment.api}/api/Thebox/Items?TypeFilterMode=1&TypeId=${id}`, {

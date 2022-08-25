@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { ProductService } from '../shared/services/product.service';
 import { throwError } from 'rxjs';
+import { PaymentMethodApiService } from '../shared/http/paymentMethods.service';
 
 
 @Component({
@@ -51,7 +52,7 @@ export class OrdersDetailsPage implements OnInit {
   ammountId:any;
 
 
-  constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService, private translate: TranslateService, private productService: ProductService) { }
+  constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService, private translate: TranslateService, private productService: ProductService, public paymentMethodsApiService:PaymentMethodApiService) { }
 
   ngOnInit() {
 
@@ -60,7 +61,14 @@ export class OrdersDetailsPage implements OnInit {
       this.deleteMessagesTranslations = res.Delete;
       this.productsMessagesTranslations = res.ProductDetails;
 
-    });
+    })
+
+    this.paymentMethodsApiService.getPaymentMethod().then(res => {
+      this.tasksService.paymentMethods = res;
+      console.log(this.tasksService.paymentMethods)
+    })
+
+
 
     // this.tasksService.badge$
     //   .subscribe(res => {
@@ -86,8 +94,6 @@ export class OrdersDetailsPage implements OnInit {
 
   close() {
     this.router.navigate(['products-details']);
-    this.tasksService.badge = 0 ;
-    this.tasksService.productList = [];
     console.log(this.tasksService.badge, "BADGES")
     console.log(this.tasksService.productList, "LISTA")
 
@@ -249,7 +255,6 @@ export class OrdersDetailsPage implements OnInit {
     // this.selectedList = this.list
     const index = this.selectedList.findIndex(el => select.id === el.id);
     if (index > -1) {
-      this.selectedList.splice(index, 1)
     } else {
       this.selectedList = [...this.selectedList, select]
     }
@@ -278,6 +283,19 @@ export class OrdersDetailsPage implements OnInit {
     console.log($event.target.checked);
     this.checkedProduct = $event.target.checked;
   }
+
+  onChange1($e,number){
+    if(number == 1){
+      this.tasksService.checkedMethod = $e.target.checked;
+    }
+    if(number == 2){
+      this.tasksService.checkedMethod = $e.target.checked;
+    }
+    if(number == 3){
+      this.tasksService.checkedMethod = $e.target.checked;
+    }
+  }
+
 
 
   deleteProduct(key: number) {
@@ -319,6 +337,14 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   finishButton() {
+
+    this.tasksService.paymentMethods.map(ele => {
+      return {
+        ...ele,
+        checked: this.tasksService.checkedMethod
+      }
+    })
+    console.log(   this.tasksService.paymentMethods)
     this.router.navigate(['/finish-order']);
   }
 
@@ -341,6 +367,7 @@ export class OrdersDetailsPage implements OnInit {
     this.ammountNew = e;
     console.log(this.ammountNew);
   }
+
 
   addQuantity() {
 
@@ -386,5 +413,12 @@ console.log(index)
     this.router.navigate(['products-family']);
     this.deleteState = true;
     this.clearState = false;
+  }
+
+  backOrders(){
+    this.onAdressNew =true;
+    this.onPayment = false;
+    this.deleteStateNext =  true;
+    this.finishstate = false;
   }
 }

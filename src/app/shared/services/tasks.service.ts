@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
-import { Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, Tasks } from 'src/app/utils/models/tasks';
+import { Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, PaymentMethods, Tasks } from 'src/app/utils/models/tasks';
 import { ItemApiService } from '../http/item-api.service';
 
 
@@ -44,11 +44,16 @@ export class TasksService {
   listItems: Items[] = [];
   totalValueRequest: number;
   verifyEntity:IdentityDocuments[] = [];
-  listItemsByType: Items;
+  listItemsByType: Items[];
   itemSelected:any;
   productList:any[]=[];
   item:any;
   badge: number = 0;
+  selectedItem:any;
+  paymentMethods:PaymentMethods[];
+  checkedMethod:any;
+  checkedMethod2:any;
+  checkedMethod3:any;
 
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),

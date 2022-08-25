@@ -27,7 +27,7 @@ export class OrdersPage implements OnInit {
   valueId: number;
   valueIconCheck: boolean;
   searchValue: string = "";
-  selectedItem: any;
+
   msgErro: any;
   msgErroCheck : boolean = false;
   msgErroLastname: any;
@@ -61,9 +61,9 @@ export class OrdersPage implements OnInit {
         iconCheck: element.id === item.id
       }
     });
-    this.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
+    this.tasksService.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
 
-    console.log(this.selectedItem)
+    console.log(this.tasksService.selectedItem)
   }
 
 
@@ -113,7 +113,7 @@ export class OrdersPage implements OnInit {
 
 
   continueButton() {
-    if (this.selectedItem == null) {
+    if (this.tasksService.selectedItem == null) {
 
     } else {
       this.continue1 = false;
@@ -124,7 +124,7 @@ export class OrdersPage implements OnInit {
 
 
   continueProcess() {
-    this.router.navigate(['/orders']);
+    this.router.navigate(['/orders-details']);
   }
 
   addProducts() {
@@ -275,12 +275,12 @@ console.log(   this.tasksService.verifyEntity)
   }
 
   async clean() {
-   await this.contactsTaskService.deleteClient(this.selectedItem[0].id).then(res => {
+   await this.contactsTaskService.deleteClient(this.tasksService.selectedItem[0].id).then(res => {
  console.log(res)
       this.tasksService.listClients = res;
 
       console.log(     this.tasksService.listClients )
-      this.selectedItem = [];
+      this.tasksService.selectedItem = [];
 
       console.log(this.tasksService.listEntitys, "entidades")
     })

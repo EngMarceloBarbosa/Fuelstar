@@ -96,7 +96,7 @@
                 </ion-list>
                 <div class="container-product" (click)="edit(item.id)">
                   <div class="img-article">
-                    <img src="/assets/img/logo-appsellers.svg" alt="" />
+                    <img src="{{item.image}}" alt="" />
                   </div>
                   <div class="type-article">
                     <div class="description">
@@ -247,7 +247,7 @@
         <ion-list class="radio-group">
           <ion-radio-group>
             <div class="radio1">
-              <div class="main-client">
+              <div class="main-client" *ngFor="let item of tasksService.selectedItem">
                 <div class="text-client">
                   <nc-text
                     class="text-order"
@@ -255,10 +255,10 @@
                     color="c-scale-12"
                     weight="bold"
                     font="primary"
-                    >Jimmy smyth</nc-text
+                    >{{item.firstName}} {{item.lastName}}</nc-text
                   >
                 </div>
-                <div class="icon-radio">
+                <div class="icon-radio" >
                   <ion-radio value="cord"></ion-radio>
                 </div>
               </div>
@@ -329,7 +329,7 @@
       <div class="container-payment">
         <ion-list class="radio-group">
           <ion-radio-group>
-            <div class="container-method">
+            <div class="container-method" >
               <div class="container-cash">
                 <div class="cash">
                   <nc-text
@@ -337,12 +337,16 @@
                     color="c-scale-12"
                     weight="bold"
                     font="primary"
-                    >{{'App.OrderDetails.optionCash' | translate}}</nc-text
+                    >{{tasksService.paymentMethods[1].name}}</nc-text
                   >
                 </div>
 
                 <div class="radio">
-                  <ion-radio value="cord" checked></ion-radio>
+                  <ion-radio
+                   value="cord"
+                   checked
+                   (ionChange)="onChange1($event, 1)"
+                  ></ion-radio>
                   <!-- <ion-checkbox
                   class="checkbox-icon"
                   slot="start"
@@ -359,7 +363,7 @@
                   color="c-scale-12"
                   weight="500"
                   font="primary"
-                  >{{'App.OrderDetails.descriptionCash' | translate}}</nc-text
+                  >{{tasksService.paymentMethods[1].description}}</nc-text
                 >
               </div>
             </div>
@@ -371,12 +375,12 @@
                     color="c-scale-12"
                     weight="bold"
                     font="primary"
-                    >{{'App.OrderDetails.optionCreditCard' |
-                    translate}}</nc-text
+                    >{{tasksService.paymentMethods[0].name}}</nc-text
                   >
                 </div>
                 <div class="radio">
-                  <ion-radio value="cord2"></ion-radio>
+                  <ion-radio value="cord2"
+                  (ionChange)="onChange1($event, 2)"></ion-radio>
                   <!-- <div>
                 <ion-checkbox
                   class="checkbox-icon"
@@ -395,8 +399,7 @@
                   color="c-scale-12"
                   weight="500"
                   font="primary"
-                  >{{'App.OrderDetails.descriptionCreditCard' |
-                  translate}}</nc-text
+                  >{{tasksService.paymentMethods[0].description}}</nc-text
                 >
               </div>
             </div>
@@ -408,11 +411,11 @@
                     color="c-scale-12"
                     weight="bold"
                     font="primary"
-                    >{{'App.OrderDetails.optionCredit' | translate}}</nc-text
+                    >{{tasksService.paymentMethods[2].name}}</nc-text
                   >
                 </div>
                 <div class="radio">
-                  <ion-radio value="cord1"></ion-radio>
+                  <ion-radio value="cord1" (ionChange)="onChange1($event, 3)"></ion-radio>
                   <!-- <div>
                 <ion-checkbox
                   class="checkbox-icon"
@@ -432,7 +435,7 @@
                   color="c-scale-12"
                   weight="500"
                   font="primary"
-                  >{{'App.OrderDetails.descriptionCredit' | translate}}</nc-text
+                  >{{tasksService.paymentMethods[2].description}}</nc-text
                 >
               </div>
             </div>
@@ -527,7 +530,7 @@
 
   <div class="buttons-footer" *ngIf="finishstate">
     <div class="buttons-client">
-      <div class="client">
+      <div class="client" (click)="backOrders()">
         <nc-text
           size="h6"
           color="c-scale-12"

@@ -17,6 +17,7 @@ export interface Items {
   note: string;
   parentId: string;
   parentName: string;
+  image: string;
 }
 
 
@@ -30,6 +31,13 @@ export class Children {
 
 }
 
+export interface PaymentMethods{
+  id: string;
+  name: string;
+  description:string;
+  note:string;
+
+}
 
 export interface Contacts {
   contactId: string;

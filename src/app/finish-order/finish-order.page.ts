@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { TasksService } from '../shared/services/tasks.service';
 
 @Component({
@@ -12,7 +14,7 @@ export class FinishOrderPage implements OnInit {
   listValue1:any;
   listProducts1:any;
 
-  constructor(  public tasksService: TasksService) { }
+  constructor(  public tasksService: TasksService,     public toastController: ToastController, public router:Router) { }
 
   ngOnInit( ) {
 
@@ -33,8 +35,33 @@ export class FinishOrderPage implements OnInit {
         // console.log(this.listProducts)
   }
 
-  finish(){
+   async finish(){
+    const toast = await this.toastController.create({
+      header: 'Nova encomenda Registada',
+      message: 'Order nº1927',
+      position: 'top',
+      color: 'light',
+      duration: 1000,
+      buttons: [
+        {
+          side: 'start',
+          icon: 'pin',
+          handler: () => {
+            console.log('Favorite clicked');
+          }
+        },
+        {
+          side: 'end',
+          icon: 'close',
+          handler: () => {
+            console.log('Favorite clicked');
+          }
+        }
+      ]
+    });
+    await toast.present();
 
+  this.router.navigate(['/tabs/tab1'])
   }
 
   clear(){
