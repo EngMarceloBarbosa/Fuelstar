@@ -51,9 +51,7 @@ export class TasksService {
   badge: number = 0;
   selectedItem:any;
   paymentMethods:PaymentMethods[];
-  checkedMethod:any;
-  checkedMethod2:any;
-  checkedMethod3:any;
+  selectedMethod: any;
 
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),

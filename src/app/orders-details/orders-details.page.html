@@ -70,7 +70,11 @@
           >
         </div>
       </div>
-      <nc-virtual-scroller class="card-list" #scrollList [items]="tasksService.productList">
+      <nc-virtual-scroller
+        class="card-list"
+        #scrollList
+        [items]="tasksService.productList"
+      >
         <div
           class="container-articles"
           *ngFor="let item of scrollList.viewPortItems"
@@ -247,7 +251,10 @@
         <ion-list class="radio-group">
           <ion-radio-group>
             <div class="radio1">
-              <div class="main-client" *ngFor="let item of tasksService.selectedItem">
+              <div
+                class="main-client"
+                *ngFor="let item of tasksService.selectedItem"
+              >
                 <div class="text-client">
                   <nc-text
                     class="text-order"
@@ -258,8 +265,8 @@
                     >{{item.firstName}} {{item.lastName}}</nc-text
                   >
                 </div>
-                <div class="icon-radio" >
-                  <ion-radio value="cord"></ion-radio>
+                <div class="icon-radio">
+                  <ion-radio value="cord" checked></ion-radio>
                 </div>
               </div>
               <div class="main-client">
@@ -327,9 +334,9 @@
         >
       </div>
       <div class="container-payment">
-        <ion-list class="radio-group">
-          <ion-radio-group>
-            <div class="container-method" >
+        <ion-list class="radio-group" >
+          <ion-radio-group >
+            <div class="container-method">
               <div class="container-cash">
                 <div class="cash">
                   <nc-text
@@ -341,12 +348,11 @@
                   >
                 </div>
 
-                <div class="radio">
-                  <ion-radio
-                   value="cord"
-                   checked
-                   (ionChange)="onChange1($event, 1)"
-                  ></ion-radio>
+                <div
+                  class="radio"
+                  (click)="changeRadio(tasksService.paymentMethods[1])"
+                >
+                  <ion-radio value="orderBy1" aria-checked="true"></ion-radio>
                   <!-- <ion-checkbox
                   class="checkbox-icon"
                   slot="start"
@@ -378,9 +384,11 @@
                     >{{tasksService.paymentMethods[0].name}}</nc-text
                   >
                 </div>
-                <div class="radio">
-                  <ion-radio value="cord2"
-                  (ionChange)="onChange1($event, 2)"></ion-radio>
+                <div
+                  class="radio"
+                  (click)="changeRadio(tasksService.paymentMethods[0])"
+                >
+                  <ion-radio value="cord2"></ion-radio>
                   <!-- <div>
                 <ion-checkbox
                   class="checkbox-icon"
@@ -414,8 +422,11 @@
                     >{{tasksService.paymentMethods[2].name}}</nc-text
                   >
                 </div>
-                <div class="radio">
-                  <ion-radio value="cord1" (ionChange)="onChange1($event, 3)"></ion-radio>
+                <div
+                  class="radio"
+                  (click)="changeRadio(tasksService.paymentMethods[2])"
+                >
+                  <ion-radio value="cord3"></ion-radio>
                   <!-- <div>
                 <ion-checkbox
                   class="checkbox-icon"

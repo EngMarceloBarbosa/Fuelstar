@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="body-content">
-    <div class="card-types">
+    <div class="card-types" *ngFor="let item of tasksService.selectedItem">
       <div class="box-task">
         <div class="icon-name-user">
           <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
@@ -23,7 +23,7 @@
         <div class="description-task">
           <div class="name-task">
             <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
-              >Jimmy Smyth</nc-text
+              >{{item.firstName}} {{item.lastName}}</nc-text
             >
           </div>
           <div class="localization-task">
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="card-types">
+    <div class="card-types " >
       <div class="box-task">
         <div class="icon-name-user">
           <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
@@ -44,12 +44,12 @@
         <div class="description-task">
           <div class="name-task">
             <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
-              >{{'App.FinishOrder.optionCash' | translate}}</nc-text
+              >{{tasksService.selectedMethod.name}}</nc-text
             >
           </div>
           <div class="localization-task">
             <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-              >{{'App.FinishOrder.descriptionCash' | translate}}</nc-text
+              >{{tasksService.selectedMethod.description}}</nc-text
             >
           </div>
         </div>

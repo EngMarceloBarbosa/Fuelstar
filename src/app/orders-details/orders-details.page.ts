@@ -32,7 +32,8 @@ export class OrdersDetailsPage implements OnInit {
   deleteStateNext: boolean = false;
   selectedFilter: number = 0;
   translateStrings: any;
-
+  name:any = "Boas"
+  selectedValue: any;
   onPayment: boolean = false;
 
   productList: any[] = [];
@@ -284,17 +285,21 @@ export class OrdersDetailsPage implements OnInit {
     this.checkedProduct = $event.target.checked;
   }
 
-  onChange1($e,number){
-    if(number == 1){
-      this.tasksService.checkedMethod = $e.target.checked;
-    }
-    if(number == 2){
-      this.tasksService.checkedMethod = $e.target.checked;
-    }
-    if(number == 3){
-      this.tasksService.checkedMethod = $e.target.checked;
-    }
-  }
+  // onChange1($e,number){
+
+  //   if(number == 1){
+  //     this.tasksService.checkedMethod = $e.target.checked;
+  //     console.log(    this.tasksService.checkedMethod)
+  //   }
+  //   if(number == 2){
+  //     this.tasksService.checkedMethod2 = $e.target.checked;
+  //     console.log(    this.tasksService.checkedMethod2)
+  //   }
+  //   if(number == 3){
+  //     this.tasksService.checkedMethod3 = $e.target.checked;
+  //     console.log(    this.tasksService.checkedMethod3)
+  //   }
+  // }
 
 
 
@@ -338,13 +343,18 @@ export class OrdersDetailsPage implements OnInit {
 
   finishButton() {
 
-    this.tasksService.paymentMethods.map(ele => {
-      return {
-        ...ele,
-        checked: this.tasksService.checkedMethod
-      }
-    })
-    console.log(   this.tasksService.paymentMethods)
+    // this.tasksService.paymentMethods.map(ele => this.tasksService.checkedMethod.id == ele.id)
+    //   this.tasksService.checkedMethod
+
+
+    // let array = this.tasksService.paymentMethods.map(ele => {
+    //   return {
+    //     ...ele,
+    //     checked: this.name
+    //   }
+
+    // })
+    // console.log(array)
     this.router.navigate(['/finish-order']);
   }
 
@@ -421,4 +431,23 @@ console.log(index)
     this.deleteStateNext =  true;
     this.finishstate = false;
   }
+
+
+
+  checkValue(event){
+    console.log(event.detail.value)
+
+  }
+
+  print(event) {
+    console.log('Selected value: ', this.selectedValue);
+}
+
+
+changeRadio(selected){
+  this.tasksService.selectedMethod = selected;
+
+
+
+}
 }
