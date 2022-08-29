@@ -42,12 +42,12 @@ export class OrdersPage implements OnInit {
   constructor(private nav: NavController, private loc: Location, public formBuilder: FormBuilder, private router: Router, private tasksService: TasksService, public taskApiService: TaskApiService, private contactsTaskService: ContactsTaskService) { }
 
   async ngOnInit() {
-    await this.contactsTaskService.getEntities().then(res => {
-      console.log(res)
-      this.tasksService.listClients = res;
-      // this.tasksService.listTasks$.next(this.listTasks);
-    })
-    this.tasksService.allDocumentsFilter = this.tasksService.listClients
+    // await this.contactsTaskService.getEntities().then(res => {
+    //   console.log(res)
+    //   this.tasksService.listClients = res;
+    //   // this.tasksService.listTasks$.next(this.listTasks);
+    // })
+    // this.tasksService.allDocumentsFilter = this.tasksService.listClients
 
 
 

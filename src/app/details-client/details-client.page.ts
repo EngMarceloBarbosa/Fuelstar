@@ -29,7 +29,6 @@ export class DetailsClientPage implements OnInit {
   listTasksAll: any;
   NewListTest: any;
 
-
   constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService,) { }
 
   ngOnInit() {
@@ -40,10 +39,10 @@ export class DetailsClientPage implements OnInit {
         this.clientDetails = client;
       })
 
-      // this.tasksService.listTasks$
-      // .subscribe(listTasks => {
-      //  this.listTasksAll = listTasks
-      // })
+    // this.tasksService.listTasks$
+    // .subscribe(listTasks => {
+    //  this.listTasksAll = listTasks
+    // })
 
 
     this.contactsTaskService.getContactById(this.clientDetails.entity.id).then(res => {
@@ -121,14 +120,33 @@ export class DetailsClientPage implements OnInit {
   }
 
   done(task) {
+    console.log(task)
+  //  this.tasksService.listTasks.map(ele => {
 
-    this.tasksService.countVisits = this.tasksService.countVisits -1  ;
-    this.tasksService.countsToDo = this.tasksService.countsToDo + 1;
-   this.router.navigate(['tabs/tab1']);
+  //   if( ele.id == task   ) {
+  console.log( this.tasksService.checkList)
+
+
+  const index = this.tasksService.checkList.findIndex(el => task === el );
+
+  console.log(index)
+    if(index > -1)
+    {
+      console.log('Não dá')
+    }
+      else {
+        this.tasksService.countVisits = this.tasksService.countVisits - 1;
+        this.tasksService.countsToDo = this.tasksService.countsToDo + 1;
+        console.log(task)
+        this.tasksService.checkList.push(task)
+      }
+      console.log( this.tasksService.checkList)
+
+    this.router.navigate(['tabs/tab1']);
 
   }
   save() {
     this.tasksService.addNotes();
-    this.onNotes= true;
+    this.onNotes = true;
   }
 }

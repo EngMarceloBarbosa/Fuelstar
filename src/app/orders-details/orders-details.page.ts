@@ -32,7 +32,7 @@ export class OrdersDetailsPage implements OnInit {
   deleteStateNext: boolean = false;
   selectedFilter: number = 0;
   translateStrings: any;
-  name:any = "Boas"
+  name: any = "Boas"
   selectedValue: any;
   onPayment: boolean = false;
 
@@ -49,11 +49,11 @@ export class OrdersDetailsPage implements OnInit {
   selectedList: any[] = [];
   checkedProduct: any;
   ammountNew: any = 1;
-  ammountNew1:any;
-  ammountId:any;
+  ammountNew1: any;
+  ammountId: any;
 
 
-  constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService, private translate: TranslateService, private productService: ProductService, public paymentMethodsApiService:PaymentMethodApiService) { }
+  constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService, private translate: TranslateService, private productService: ProductService, public paymentMethodsApiService: PaymentMethodApiService) { }
 
   ngOnInit() {
 
@@ -75,21 +75,21 @@ export class OrdersDetailsPage implements OnInit {
     //   .subscribe(res => {
     //     this.badges = res;
     //   }),
-      // this.tasksService.chooseProduct$
-      //   .subscribe(product => {
-      //     this.listProducts = product;
+    // this.tasksService.chooseProduct$
+    //   .subscribe(product => {
+    //     this.listProducts = product;
 
-      //   }),
-      // this.tasksService.listProductsNew$
-      //   .subscribe(testTask3 => {
-      //     this.list = testTask3;
-      //     console.log(this.list, "TESTE")
-      //   }),
-      // this.tasksService.valueTotal$
-      //   .subscribe(testTask4 => {
-      //     this.tasksService.listValue = testTask4;
-      //     console.log(this.tasksService.listValue, "ENTROU")
-      //   })
+    //   }),
+    // this.tasksService.listProductsNew$
+    //   .subscribe(testTask3 => {
+    //     this.list = testTask3;
+    //     console.log(this.list, "TESTE")
+    //   }),
+    // this.tasksService.valueTotal$
+    //   .subscribe(testTask4 => {
+    //     this.tasksService.listValue = testTask4;
+    //     console.log(this.tasksService.listValue, "ENTROU")
+    //   })
 
   }
 
@@ -308,18 +308,18 @@ export class OrdersDetailsPage implements OnInit {
     this.tasksService.productList.map((element, index) => {
       if (element.id == key)
         this.tasksService.productList.splice(index, 1)
-        console.log(this.tasksService.productList, 'FIM')
-        console.log(this.tasksService.totalValueRequest, 'COMECÇO');
-        console.log(element.totalValueItem, 'MEIO');
-        this.productService.totalValueOrder();
-        // this.tasksService.totalValueRequest = this.tasksService.totalValueRequest - element.totalValueItem;
+      console.log(this.tasksService.productList, 'FIM')
+      console.log(this.tasksService.totalValueRequest, 'COMECÇO');
+      console.log(element.totalValueItem, 'MEIO');
+      this.productService.totalValueOrder();
+      // this.tasksService.totalValueRequest = this.tasksService.totalValueRequest - element.totalValueItem;
 
 
 
     });
 
 
-    if(this.tasksService.productList == []){
+    if (this.tasksService.productList == []) {
       this.router.navigate(['/products-family'])
 
     }
@@ -372,7 +372,7 @@ export class OrdersDetailsPage implements OnInit {
   }
 
 
-  onChanged(e){
+  onChanged(e) {
     console.log(e)
     this.ammountNew = e;
     console.log(this.ammountNew);
@@ -382,17 +382,17 @@ export class OrdersDetailsPage implements OnInit {
   addQuantity() {
 
     this.tasksService.ammountId$
-    .subscribe(testTask1 => {
-      this.ammountId = testTask1;
-    })
+      .subscribe(testTask1 => {
+        this.ammountId = testTask1;
+      })
 
-    console.log(this.ammountId )
+    console.log(this.ammountId)
 
     console.log(this.ammountNew)
     const index = this.tasksService.productList.findIndex(el => this.ammountId === el.id);
-console.log(index)
+    console.log(index)
     // this.tasksService.productList.length[0].push(this.ammountNew);
-    if ( index > -1 ) {
+    if (index > -1) {
 
       console.log(index)
       console.log(this.tasksService.productList)
@@ -404,7 +404,7 @@ console.log(index)
       this.tasksService.productList[index].totalValueItem = this.tasksService.productList[index].price * this.tasksService.productList[index].quantity;
       this.tasksService.totalValueRequest = this.tasksService.productList[index].totalValueItem
       this.productService.totalValueOrder();
-    }else {
+    } else {
     }
     console.log(this.tasksService.productList)
   }
@@ -416,7 +416,7 @@ console.log(index)
 
 
   }
-  backToProducts(){
+  backToProducts() {
 
     this.tasksService.productList = [];
     console.log(this.tasksService.productList)
@@ -425,29 +425,29 @@ console.log(index)
     this.clearState = false;
   }
 
-  backOrders(){
-    this.onAdressNew =true;
+  backOrders() {
+    this.onAdressNew = true;
     this.onPayment = false;
-    this.deleteStateNext =  true;
+    this.deleteStateNext = true;
     this.finishstate = false;
   }
 
 
 
-  checkValue(event){
+  checkValue(event) {
     console.log(event.detail.value)
 
   }
 
   print(event) {
     console.log('Selected value: ', this.selectedValue);
-}
+  }
 
 
-changeRadio(selected){
-  this.tasksService.selectedMethod = selected;
+  changeRadio(selected) {
+    this.tasksService.selectedMethod = selected;
 
 
 
-}
+  }
 }

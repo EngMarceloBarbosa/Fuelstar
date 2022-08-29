@@ -52,6 +52,8 @@ export class TasksService {
   selectedItem:any;
   paymentMethods:PaymentMethods[];
   selectedMethod: any;
+  checkList:string[]=[];
+
 
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),

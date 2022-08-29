@@ -2,5 +2,14 @@
 	"appId": "io.ionic.starter",
 	"appName": "Fuelstar",
 	"webDir": "www",
-	"bundledWebRuntime": true
+	"bundledWebRuntime": true,
+	"Splashscreen": {
+		"launchAutoHide": true,
+		"launchShowDuration": 0
+	},
+	"cordova": {
+		"preferences": {
+			"SimonKey": true
+		}
+	}
 }

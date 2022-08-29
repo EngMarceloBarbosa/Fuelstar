@@ -53,6 +53,16 @@ export class Tab1Page implements OnInit {
   ) { }
 
   async ngOnInit() {
+
+      await this.contactsTaskService.getEntities().then(res => {
+        console.log(res)
+        this.tasksService.listClients = res;
+        // this.tasksService.listTasks$.next(this.listTasks);
+      })
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients
+
+
+
     await this.taskApiService.getTasks().then(res => {
       console.log(res)
       this.tasksService.listTasks = res;

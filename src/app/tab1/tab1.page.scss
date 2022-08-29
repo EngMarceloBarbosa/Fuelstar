@@ -167,13 +167,11 @@ nc-virtual-scroller {
   background-color: var(--c-scale-5);
 }
 
-#icon-user {
-  margin-left: 24%;
-}
 
 .icon-name-user {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 35px;
   border-radius: 90%;
   background-color: red;

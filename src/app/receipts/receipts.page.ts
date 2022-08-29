@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
 import { clients } from '../shared/models/order-list-clients';
+import { TasksService } from '../shared/services/tasks.service';
 
 @Component({
   selector: 'app-receipts',
@@ -22,7 +23,7 @@ export class ReceiptsPage implements OnInit {
   searchValue: string = "";
   selectedItem: any;
 
-  constructor(private router: Router, private nav: NavController, private loc: Location, public formBuilder: FormBuilder) { }
+  constructor(private router: Router, private nav: NavController, private loc: Location, public formBuilder: FormBuilder, public tasksService:TasksService) { }
 
   ngOnInit() {
 
@@ -38,13 +39,16 @@ export class ReceiptsPage implements OnInit {
   }
 
   selectedItemList(item: any) {
-    this.listClient.forEach((element) => {
-      element.iconCheck = false;
-      return element;
-    });
 
-    this.selectedItem = item;
-    item.iconCheck = true;
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients.map((element) => {
+      return {
+        ...element,
+        iconCheck: element.id === item.id
+      }
+    });
+    this.tasksService.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
+
+    console.log(this.tasksService.selectedItem)
   }
 
   get email() {
@@ -62,13 +66,16 @@ export class ReceiptsPage implements OnInit {
   }
 
   searchDocument($event: string) {
-    if ($event == '') {
-      this.allDocumentsFilter = this.listClient;
+    console.log($event)
+    if ($event.length == 0) {
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients;
     } else {
-      this.allDocumentsFilter = this.listClient.filter(
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients.filter(
         doc =>
-          doc.firstName?.toLowerCase().includes($event.toLowerCase())
+          doc.firstName?.trim().toLowerCase().includes($event.trim().toLowerCase()) ||
+          doc.lastName?.trim().toLowerCase().includes($event.trim().toLowerCase())
       );
+
     }
   }
 

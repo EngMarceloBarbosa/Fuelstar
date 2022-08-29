@@ -61,7 +61,7 @@
           </nc-input>
         </div>
       </div>
-      <nc-virtual-scroller #scroll [items]="allDocumentsFilter">
+      <nc-virtual-scroller #scroll [items]="this.tasksService.allDocumentsFilter">
         <div
           class="cards-clients"
           *ngFor="let item of scroll.viewPortItems"
@@ -76,7 +76,7 @@
           <div class="description-task">
             <div class="name-task">
               <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-                >{{item.firstName}}</nc-text
+                >{{item.firstName}} {{item.lastName}}</nc-text
               >
             </div>
           </div>

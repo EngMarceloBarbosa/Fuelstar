@@ -5,7 +5,7 @@
       <div class="card-tasks">
         <div class="box-task-header">
           <div class="left-icon">
-            <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+            <nc-icon [size]="26" color="c-scale-1" hoverColor="c-scale-1"
               >arrow-left</nc-icon
             >
           </div>
@@ -16,13 +16,13 @@
               color="c-scale-10"
               weight="500"
               font="primary"
-              >{{clientDetails}}</nc-text
+              >{{clientDetails.entity.firstName | prefix}}{{clientDetails.entity.lastName | prefix}}</nc-text
             >
           </div>
           <div class="description-task">
             <div class="name-task">
               <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-                >{{clientDetails.entity.firstName}}</nc-text
+                >{{clientDetails.entity.firstName}} {{clientDetails.entity.lastName}}</nc-text
               >
             </div>
             <div class="localization-task">
@@ -63,7 +63,6 @@
                     >Contacts</nc-text
                   >
                 </div>
-
 
                 <div class="localization-task">
                   <nc-text
@@ -413,7 +412,7 @@
           </div>
         </nc-action-sheet>
       </div>
-      <div class="button-done"  (click)="done(tasksService.listTasks.id)">
+      <div class="button-done" (click)="done(clientDetails.id)">
         <div class="icon-option">
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
             >icon_check</nc-icon
