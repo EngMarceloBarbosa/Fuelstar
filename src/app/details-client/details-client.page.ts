@@ -139,6 +139,11 @@ export class DetailsClientPage implements OnInit {
         this.tasksService.countsToDo = this.tasksService.countsToDo + 1;
         console.log(task)
         this.tasksService.checkList.push(task)
+        this.tasksService.control = true;
+        if(     this.tasksService.control == true) {
+        const box = document.getElementById('box-task-header');
+        box.style.backgroundColor = 'red';
+        }
       }
       console.log( this.tasksService.checkList)
 

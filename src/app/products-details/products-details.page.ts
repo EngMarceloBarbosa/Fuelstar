@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ProductService } from '../shared/services/product.service';
 import { product } from '../shared/models/product-list';
 import { TasksService } from '../shared/services/tasks.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-products-details',
@@ -17,7 +18,7 @@ export class ProductsDetailsPage implements OnInit {
 
 
   active: boolean = true;
-  controlBadge: boolean = true;
+
   item: any;
   globalMessagesTranslations:any;
   loginMessagesTranslations:any;
@@ -77,7 +78,7 @@ export class ProductsDetailsPage implements OnInit {
   async addProduct(product) {
     this.tasksService.badge = ++this.tasksService.badge;
     console.log(this.tasksService.quantity1)
-    this.controlBadge = false;
+    this.tasksService.controlBadge = false;
     const toast = await this.toastController.create({
       header: 'You add new product to cart "item xpto',
       message: 'Back to Articles lis t cart',
@@ -94,8 +95,17 @@ this.productService.totalValueOrder()
 
 
   back() {
-    this.router.navigate(['products-family']);
 
+    this.router.navigate(['products-family']);
+    this.tasksService.quantity2 = 0;
+
+
+
+
+
+  // if(this.tasksService.quantity2 == 0) {
+  //   this.tasksService.controlBadge = true;
+  // }
   }
 
   add() {
@@ -136,19 +146,36 @@ this.productService.totalValueOrder()
     this.router.navigate(['/tabs/tab4'])
   }
 
-  showCart(badge: any) {
-    if (this.controlBadge == true) {
+  showCart(badge: any, item) {
+
+    console.log(item)
+    if (this.tasksService.controlBadge == true) {
 
     } else {
+
       console.log("BOAS")
       this.router.navigate(['/orders-details']);
       this.tasksService.badge = badge
-      this.controlBadge = false;
+      this.tasksService.controlBadge = false;
+      // if(this.tasksService.productList.length !== 0){
+      //   this.tasksService.productList.map((elem)=> {
+      //     if(elem.id == item.id ){
+
+      //       this.tasksService.quantity2 = elem.quantity;
+      //     }
+      //     // else {
+      //     //   r
+      //     // }
+
+      //   })
+      // }
+
     }
   }
 
   show(value1){
-    this.tasksService.quantity1 = value1
+    this.tasksService.controlBadge = true;
+    this.tasksService.quantity2 = value1
 console.log(value1);
   }
 

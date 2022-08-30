@@ -40,6 +40,7 @@ export class TasksService {
   countVisits: any = [];
   countsToDo: any = [];
   quantity1: any;
+  quantity2: any;
   listValue: any;
   listItems: Items[] = [];
   totalValueRequest: number;
@@ -53,6 +54,8 @@ export class TasksService {
   paymentMethods:PaymentMethods[];
   selectedMethod: any;
   checkList:string[]=[];
+  controlBadge: boolean = true;
+  control:boolean = false;
 
 
   //   newClientForm: FormGroup =  new FormGroup({

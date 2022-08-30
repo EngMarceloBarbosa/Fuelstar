@@ -18,20 +18,20 @@
           >{{'App.ProductDetails.headerTitle' | translate}}</nc-text
         >
       </div>
-      <div class="button-cart" id="notification-button">
+      <div class="button-cart" id="notification-button" >
         <div class="icon-app cart">
           <nc-icon
             [size]="18"
             color="c-scale-12"
             hoverColor="c-scale-12"
-            (click)="showCart(tasksService.badge)"
+            (click)="showCart(tasksService.badge, tasksService.item)"
             >icon_shopping-cart</nc-icon
           >
           <ion-badge
             color="primary"
             id="notifications-badge"
-            *ngIf="!controlBadge"
-            >{{tasksService.quantity1}}</ion-badge
+            *ngIf="!tasksService.controlBadge"
+            >{{tasksService.quantity2}}</ion-badge
           >
         </div>
       </div>
@@ -69,7 +69,7 @@
         <div class="quantity-products">
           <nc-stepper
             [showNumber]="true"
-            [value]="3"
+            (value)="this.tasksService.quantity2"
             [min]="0"
             [(ngModel)]="ammount"
             (click)="show(ammount)"

@@ -45,16 +45,18 @@ export class ProductService {
     console.log("Boas")
     this.tasksService.totalValueRequest = 0;
     console.log(this.tasksService.productList);
+this.tasksService.quantity1 = this.tasksService.quantity2
+
     this.tasksService.quantity1 = 0
     // this.tasksService.quantityTotal = 0;
     this.tasksService.productList.map(elem => {
       console.log(elem)
       this.tasksService.totalValueRequest += elem.totalValueItem;
-
       this.tasksService.quantity1 += elem.quantity;
       console.log(this.tasksService.quantity1)
       // this.tasksService.quantityTotal += elem.quantity;
       console.log( this.tasksService.totalValueRequest.toFixed(2));
+
     })
     // this.tasksService.valueTotal$.next(this.tasksService.totalValueRequest.toFixed(2));
   }

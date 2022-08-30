@@ -1,9 +1,11 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { FilterServiceService } from '../shared/filter-service.service';
 import { ItemApiService } from '../shared/http/item-api.service';
 import { product } from '../shared/models/product-list';
+import { ProductService } from '../shared/services/product.service';
 
 
 import { TasksService } from '../shared/services/tasks.service';
@@ -33,10 +35,9 @@ translateStrings:any;
 
   products2 = product ;
 
-  constructor( private router: Router, public tasksService: TasksService,  private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService,public itemApiService: ItemApiService) { }
+  constructor( private router: Router, public tasksService: TasksService,  private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService,public itemApiService: ItemApiService, public productService:ProductService) { }
 
   ngOnInit() {
-
 
 
   }
@@ -47,9 +48,30 @@ translateStrings:any;
 
   back(){
     this.router.navigate(['products']);
+
   }
 
   cardsClick(item){
+
+      this.tasksService.productList.map((elem)=> {
+        console.log(item.id)
+        console.log(elem.id)
+        if(elem.id == item.id){
+       this.tasksService.quantity2 = elem.quantity
+      }
+
+
+      })
+      // this.tasksService.productList.map((elem)=> {
+      //   if(elem.id !== item.id) {
+      //     this.tasksService.controlBadge = true;
+      //   }
+      //       })
+
+      // console.log(this.tasksService.quantity2)
+      // this.tasksService.controlBadge = false;
+
+
   this.tasksService.item = item;
   this.router.navigate(['products-details']);
   // this.tasksService.chooseProduct$.next(item);
