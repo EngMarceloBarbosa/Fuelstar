@@ -110,6 +110,7 @@ export class ProductsPage implements OnInit {
       this.router.navigate(['products-family']);
       this.itemApiService.getItems(child.id).then( async res => {
         this.tasksService.listItemsByType = res;
+        this.tasksService.listsItems = this.tasksService.listItemsByType
         console.log(this.tasksService.listItemsByType)
 
     for await ( let item of this.tasksService.listItemsByType) {

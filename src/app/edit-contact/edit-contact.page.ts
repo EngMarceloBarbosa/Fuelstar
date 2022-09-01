@@ -24,7 +24,7 @@ export class EditContactPage implements OnInit, OnChanges {
   @Input() prop: number = 0;
   // valuePhone: any;
 
-  constructor(public formBuilder: FormBuilder, private tasksService: TasksService, private router:Router,) { }
+  constructor(public formBuilder: FormBuilder, public tasksService: TasksService, private router:Router,) { }
 
   ngOnInit() {
     this.tasksService.infoClient$
@@ -96,9 +96,23 @@ console.log(this.tasksService.contactNumber);
 
   save(){
 
-    this.tasksService.putPhoneNumber();
-    // this.tasksService.value$.next(this.value);
-    this.router.navigate(["/details-client"])
+    if (this.tasksService.contactDetail.invalid) {
+      this.tasksService.isSubmitted = true;
+      }
+
+
+    this.tasksService.validateEmail(this.tasksService.email);
+console.log(this.tasksService.contactNumber.length )
+console.log(this.tasksService.validatorEmail)
+    if(this.tasksService.validatorEmail == true || this.tasksService.contactNumber.length == 0 ){
+return;
+    }else {
+      this.tasksService.putPhoneNumber();
+      // this.tasksService.value$.next(this.value);
+      this.router.navigate(["/details-client"])
+
+    }
+
 
   }
 

@@ -64,8 +64,60 @@ export class SettingsPage implements OnInit {
     this.router.navigate(['/']);
   }
 
-
   change(){
+
+    const temp: ModalMessageModel = {
+      showTip: false,
+      title: "Want to change account?",
+      description: "You will leave this relation to enter with a new one. I will new to insert password.",
+      state: "warning",
+      leftButtonSize: "small",
+      leftButtonType: "text",
+      leftButtonText: "Cancel",
+      showMiddleButton:false,
+      rightButtonSize: "small",
+      rightButtonType: "text",
+      rightButtonText: "Change Account",
+      rightButtonTesterProperty: "clickLeaveApp",
+      rightButtonColor: "c-scale-12",
+      rightButtonCallback: () => {
+        this.exitApp1();
+      },
+    };
+    this.alertService.open(temp);
+
+
+  }
+
+  exitApp1(){
+
+    this.router.navigate(['/']);
+
+  }
+
+
+
+
+  switch(){
+    const temp: ModalMessageModel = {
+      showTip: false,
+      title: "Start shift ?",
+      description: "with the shift started you can do delivery orders, sales, receipts and returns.",
+      state: "warning",
+      leftButtonSize: "small",
+      leftButtonType: "text",
+      leftButtonText: "Cancel",
+      showMiddleButton:false,
+      rightButtonSize: "small",
+      rightButtonType: "text",
+      rightButtonText: "Start",
+      rightButtonTesterProperty: "clickLeaveApp",
+      rightButtonColor: "c-scale-12",
+      rightButtonCallback: () => {
+        this.exitApp1();
+      },
+    };
+    this.alertService.open(temp);
 
   }
 }

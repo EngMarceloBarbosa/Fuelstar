@@ -1,4 +1,5 @@
 import { ThrowStmt } from '@angular/compiler';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
@@ -31,6 +32,7 @@ isOnActionButtons2: boolean = false;
 isOnActionButtons3: boolean = false;
 selectedFilter: number = 0;
 translateStrings:any;
+turnFocus:boolean = false;
 
 
   products2 = product ;
@@ -52,7 +54,7 @@ translateStrings:any;
   }
 
   cardsClick(item){
-
+    this.turnFocus = false;
       this.tasksService.productList.map((elem)=> {
         console.log(item.id)
         console.log(elem.id)
@@ -198,6 +200,24 @@ if (
 }
 
 }
+
+search(){
+this.turnFocus = true;
+}
+
+  searchDocument($event: string) {
+    console.log($event)
+    if ($event.length == 0) {
+      this.tasksService.listsItems = this.tasksService.listItemsByType;
+    } else {
+      console.log(this.tasksService.listsItems)
+      this.tasksService.listsItems = this.tasksService.listItemsByType.filter(
+        doc =>
+          doc.name?.trim().toLowerCase().includes($event.trim().toLowerCase())
+      );
+
+    }
+  }
 
 
 

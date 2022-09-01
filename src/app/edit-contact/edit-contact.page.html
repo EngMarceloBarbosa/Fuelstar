@@ -33,10 +33,14 @@
     <div class="input-search">
       <div class="search-client">
         <nc-input
+        [formGroup]="tasksService.contactDetail"
+              controlName="phone"
           [attr.tester]="'search-bar-current'"
-          placeholder="phone 1"
+          placeholder="phone"
           [bgInputColor]="'c-scale-12'"
           [clear]="true"
+          [state]="tasksService.contactDetail.get('phone').invalid && tasksService.isSubmitted?'error':''"
+          [stateMessage]="'Obrigatório'"
           [type]="'text'"
           [size]="'medium'"
           (onChange)="modelChangeFn(1,$event)"
@@ -48,16 +52,25 @@
     <div class="input-search">
       <div class="search-client">
         <nc-input
+        [formGroup]="tasksService.contactDetail"
+        controlName="email"
           [attr.tester]="'search-bar-current'"
           placeholder="Email"
           [bgInputColor]="'c-scale-12'"
           [clear]="true"
+          [state]="tasksService.contactDetail.get('email').invalid && tasksService.isSubmitted?'error':''"
+          [stateMessage]="'Obrigatório'"
           [type]="'text'"
           [size]="'medium'"
           (onChange)="modelChangeFn(2,$event)"
           (ngOnChanges)="ngOnChanges($event)"
         >
         </nc-input>
+        <div class="erro" *ngIf="this.tasksService.validatorEmail">
+          <nc-text size="h7" color="error" weight="500" font="primary"
+            >Email não Válido</nc-text
+          >
+        </div>
       </div>
     </div>
   </div>

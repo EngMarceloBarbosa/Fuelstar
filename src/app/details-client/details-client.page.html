@@ -16,13 +16,15 @@
               color="c-scale-10"
               weight="500"
               font="primary"
-              >{{clientDetails.entity.firstName | prefix}}{{clientDetails.entity.lastName | prefix}}</nc-text
+              >{{clientDetails.entity.firstName |
+              prefix}}{{clientDetails.entity.lastName | prefix}}</nc-text
             >
           </div>
           <div class="description-task">
             <div class="name-task">
               <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-                >{{clientDetails.entity.firstName}} {{clientDetails.entity.lastName}}</nc-text
+                >{{clientDetails.entity.firstName}}
+                {{clientDetails.entity.lastName}}</nc-text
               >
             </div>
             <div class="localization-task">
@@ -189,8 +191,195 @@
         </div>
       </nc-tab-pane>
       <nc-tab-pane [attr.tester]="'click-tab'" title="Documents">
-        <div>
-          <div style="padding: 24px">HOLLA</div>
+        <div class="container-documents">
+          <div class="boxes-documents">
+            <div class="box-document">
+              <div class="container-light">
+                <div class="light-green"></div>
+              </div>
+              <div class="container-first-column">
+                <div class="reference-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >E0079</nc-text
+                  >
+                </div>
+                <div class="type-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >Recebimento</nc-text
+                  >
+                </div>
+              </div>
+              <div class="container-second-document">
+                <div class="date-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >15 jul-20SET</nc-text
+                  >
+                </div>
+                <div class="price-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >100,00€</nc-text
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="boxes-documents">
+            <div class="box-document">
+              <div class="container-light">
+                <div class="light-green"></div>
+              </div>
+              <div class="container-first-column">
+                <div class="reference-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >E0078</nc-text
+                  >
+                </div>
+                <div class="type-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >Encomenda</nc-text
+                  >
+                </div>
+              </div>
+              <div class="container-second-document">
+                <div class="date-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >15 jul-20SET</nc-text
+                  >
+                </div>
+                <div class="price-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >100,00€</nc-text
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="boxes-documents">
+            <div class="box-document">
+              <div class="container-light">
+                <div class="light-red"></div>
+              </div>
+              <div class="container-first-column">
+                <div class="reference-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >E0079</nc-text
+                  >
+                </div>
+                <div class="type-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >Devolução</nc-text
+                  >
+                </div>
+              </div>
+              <div class="container-second-document">
+                <div class="date-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >15 jul-20SET</nc-text
+                  >
+                </div>
+                <div class="price-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >100,00€</nc-text
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="boxes-documents">
+            <div class="box-document">
+              <div class="container-light">
+                <div class="light-orange"></div>
+              </div>
+              <div class="container-first-column">
+                <div class="reference-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >E0076</nc-text
+                  >
+                </div>
+                <div class="type-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >Levantamento</nc-text
+                  >
+                </div>
+              </div>
+              <div class="container-second-document">
+                <div class="date-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >15 jul-20SET</nc-text
+                  >
+                </div>
+                <div class="price-document">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="bold"
+                    font="primary"
+                    >100,00€</nc-text
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </nc-tab-pane>
     </nc-tabs>

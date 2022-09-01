@@ -6,6 +6,7 @@ import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
 import { Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, PaymentMethods, Tasks } from 'src/app/utils/models/tasks';
 import { ItemApiService } from '../http/item-api.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 
 
@@ -15,6 +16,7 @@ import { ItemApiService } from '../http/item-api.service';
 export class TasksService {
 
   allDocumentsFilter: any;
+  listsItems:any;
   contactNumber: any;
   idContact: any;
   idContactId: any;
@@ -56,7 +58,9 @@ export class TasksService {
   checkList:string[]=[];
   controlBadge: boolean = true;
   control:boolean = false;
-
+  validatorEmail: boolean = false;
+  isSubmitted = false;
+  listClassifications: any;
 
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
@@ -174,6 +178,37 @@ export class TasksService {
     console.log(listTasksByIdNew, ' LISTA NOVA');
   }
 
+
+  validateEmail (email)
+  {
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (email.match(regexEmail) ) {
+      console.log(email, 'Passou')
+      this.validatorEmail = false;
+    } else {
+      this.validatorEmail = true;
+    }
+    if(email.length === 0){
+      this.validatorEmail = false;
+    }
+  }
+
+  client: FormGroup = new FormGroup({
+
+    firstName: new FormControl('',[Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
+    lastName:  new FormControl('',Validators.required),
+    email:  new FormControl('',Validators.required),
+    phone:  new FormControl('',[Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
+    nif:  new FormControl('',Validators.required)
+})
+
+contactDetail: FormGroup = new FormGroup({
+
+
+  phone:  new FormControl('',[Validators.required, Validators.maxLength(9)]),
+  email:  new FormControl('',Validators.required),
+
+})
 
   //
 

@@ -7,6 +7,7 @@ import { TasksService } from '../shared/services/tasks.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { TouchSequence } from 'selenium-webdriver';
+import { HttpHandler } from '@angular/common/http';
 
 
 @Component({
@@ -29,12 +30,16 @@ export class OrdersPage implements OnInit {
   searchValue: string = "";
 
   msgErro: any;
-  msgErroCheck : boolean = false;
+  msgErroCheck: boolean = false;
   msgErroLastname: any;
-  msgErroCheckLastName:boolean = true;
-  msgErroFields:boolean = false;
-  alertMessage:any = "NIF inválido"
-  alertMessage1:boolean = false;
+  msgErroCheckLastName: boolean = true;
+  msgErroFields: boolean = false;
+  msgErroFields1:any;
+  alertMessage: any = "NIF inválido"
+  alertMessage1: boolean = false;
+  turnDisabled1: boolean = true;
+  turnDisabled: boolean = false;
+
 
 
 
@@ -69,21 +74,33 @@ export class OrdersPage implements OnInit {
 
   close() {
     this.router.navigate(['/tabs/tab2']);
+    this.tasksService.isSubmitted = false;
   }
 
 
 
   clientButton() {
+    this.tasksService.isSubmitted = false;
     console.log("Entrou client");
     this.active = true;
     // this.isOnActionButtons = false;
     console.log(this.isOnActionButtons);
+    document.getElementById("client-1").style.borderColor = "var(--c-scale-10)";
+    document.getElementById("client").style.borderColor = "var(--c-scale-12)";
+    this.turnDisabled1 = true;
+    this.turnDisabled = false;
   }
+
   newClientButton() {
+    this.tasksService.isSubmitted = false;
     this.active = false;
     // this.continue = false;
     // this.isOnActionButtons = false;
     console.log("Entrou new client");
+    document.getElementById("client").style.borderColor = "var(--c-scale-10)";
+    document.getElementById("client-1").style.borderColor = "var(--c-scale-12)";
+    this.turnDisabled = true;
+    this.turnDisabled1 = false;
   }
 
   // async createBullet() {
@@ -143,28 +160,29 @@ export class OrdersPage implements OnInit {
     //   console.log(this.msgErro)
     //   this.msgErroCheck = true;
 
-      if(id == 1 && event.length == 0){
+    if (id == 1 && event.length == 0) {
 
-      }
-      if(id == 1 && event.length != 0){
+    }
+    if (id == 1 && event.length != 0) {
       this.tasksService.valueFirstName = event;
-      this.msgErroCheck= false;
-      this.msgErroFields = false;
+      this.msgErroCheck = false;
+
     }
     if (id == 2 && event == "") {
 
       this.msgErroCheckLastName = true;
 
-    }if( id == 2 && event != "") {
+    } if (id == 2 && event != "") {
       this.tasksService.valueLastName = event;
-      this.msgErroFields = false
-      this.msgErroCheckLastName= false;
+
+      this.msgErroCheckLastName = false;
     }
     if (id == 3) {
       this.tasksService.valueNif = event;
     }
     if (id == 4) {
       this.tasksService.valueEmail = event;
+
     }
     if (id == 5) {
       this.tasksService.valuePhoneNumber = event;
@@ -195,22 +213,78 @@ export class OrdersPage implements OnInit {
   async save() {
 
 
+    if (this.tasksService.client.invalid) {
+    this.tasksService.isSubmitted = true;
+    }
+
+
+
+
+
+console.log(this.tasksService.validateEmail(this.tasksService.valueEmail))
+  this.tasksService.validateEmail(this.tasksService.valueEmail);
+
+
     console.log(this.tasksService.valueFirstName)
     console.log(this.tasksService.valueEmail)
     console.log(this.tasksService.valueLastName)
     console.log(this.tasksService.valuePhoneNumber)
     console.log(this.tasksService.valueNif)
 
+    let arr:Array<any> = [
+      {
+      firstName:this.tasksService.valueFirstName
+      },
+      {
+      lastName:this.tasksService.valueLastName
+      },
+      {
+      email:this.tasksService.valueEmail
+      },
+      {
+      phone:this.tasksService.valuePhoneNumber,
+      },
+      {
+      nif: this.tasksService.valueNif
+      }
 
 
-    if (this.tasksService.valueFirstName == "" || this.tasksService.valueEmail == "" || this.tasksService.valueLastName == "" || this.tasksService.valueNif == "" || this.tasksService.valuePhoneNumber == "" ) {
-      this.msgErroFields = true;
-      this.msgErroLastname = "Campo Obrigatório"
+
+
+  ]
+
+
+console.log(arr)
+
+
+console.log(arr)
+    arr.map((ele)=> {
+
+const array = {...ele , msgErroFields1: false}
+      console.log(ele, '230')
+      if(ele.length === 0){
+        ele.msgErroFields1 = true;
+        this.msgErroLastname = "Campo Obrigatório"
+      }else {
+        ele.msgErroFields1 = false;
+      }
+    })
+
+
+
+
+
+
+
+
+
+    if (this.tasksService.valueFirstName == "" || this.tasksService.valueEmail == "" || this.tasksService.valueLastName == "" || this.tasksService.valueNif == "" || this.tasksService.valuePhoneNumber == "" || this.tasksService.validatorEmail == true) {
+
       return;
 
     } else {
       console.log("ENTROU NO ADD")
-      this.msgErroFields = false;
+
       console.log(this.tasksService.listContacts[0]?.contactId);
       let form = new FormData();
 
@@ -238,55 +312,58 @@ export class OrdersPage implements OnInit {
 
       await this.contactsTaskService.verifyNif(form).then(res => {
         this.tasksService.verifyEntity = res;
-        console.log(   this.tasksService.verifyEntity)
+        console.log(this.tasksService.verifyEntity)
 
       })
-      if(this.tasksService.verifyEntity.length === 0) {
- console.log(this.tasksService.verifyEntity.length )
-      this.contactsTaskService.addClient(form).then(res => {
-        this.tasksService.listClients = res;
+      if (this.tasksService.verifyEntity.length === 0) {
+        console.log(this.tasksService.verifyEntity.length)
+        this.contactsTaskService.addClient(form).then(res => {
+          this.tasksService.listClients = res;
 
 
-      })
-      await this.contactsTaskService.getEntities().then(res => {
-        console.log(res)
-        this.tasksService.listClients = res;
-        // this.tasksService.listTasks$.next(this.listTasks);
-      })
-      this.tasksService.allDocumentsFilter = this.tasksService.listClients;
+        })
+        await this.contactsTaskService.getEntities().then(res => {
+          console.log(res)
+          this.tasksService.listClients = res;
+          // this.tasksService.listTasks$.next(this.listTasks);
+        })
+        this.tasksService.allDocumentsFilter = this.tasksService.listClients;
 
-      console.log(this.tasksService.list)
+        console.log(this.tasksService.list)
 
-      this.active = true;
-      this.tasksService.valueFirstName = "";
-      1
-    }else {
-this.msgErro = 'ERRO';
-this.alertMessage1 = true;
-console.log(   this.tasksService.verifyEntity)
+        this.active = true;
+        this.tasksService.valueFirstName = "";
 
-    }
+      } else {
+        this.msgErro = 'ERRO';
+        this.alertMessage1 = true;
+        console.log(this.tasksService.verifyEntity)
+
+      }
+
 
 
     }
     // if (this.tasksService.croudGroup) {
     //   // this.tasksService.listClients.push(form)
     // }
+
+    arr = [];
   }
 
   async clean() {
-   await this.contactsTaskService.deleteClient(this.tasksService.selectedItem[0].id).then(res => {
- console.log(res)
+    await this.contactsTaskService.deleteClient(this.tasksService.selectedItem[0].id).then(res => {
+      console.log(res)
       this.tasksService.listClients = res;
 
-      console.log(     this.tasksService.listClients )
+      console.log(this.tasksService.listClients)
       this.tasksService.selectedItem = [];
 
       console.log(this.tasksService.listEntitys, "entidades")
     })
 
 
-   await this.contactsTaskService.getEntities().then(res => {
+    await this.contactsTaskService.getEntities().then(res => {
       console.log(res)
       this.tasksService.listClients = res;
       // this.tasksService.listTasks$.next(this.listTasks);
@@ -297,6 +374,11 @@ console.log(   this.tasksService.verifyEntity)
 
   goBack() {
     this.active = true;
+    this.tasksService.isSubmitted = false;
+    document.getElementById("client-1").style.borderColor = "var(--c-scale-10)";
+    document.getElementById("client").style.borderColor = "var(--c-scale-12)";
+    this.turnDisabled1 = true;
+    this.turnDisabled = false;
   }
 
 }

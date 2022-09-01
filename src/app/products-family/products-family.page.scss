@@ -360,3 +360,27 @@ nc-searchbar {
   margin-top: tbu(px(14));
   background-color: var(--c-scale-1_bg);
 }
+
+.searchFocus{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.input-search{
+  width: 100%;
+}
+
+
+
+nc-input {
+
+  ::ng-deep {
+    input {
+      background-color: var(--c-scale-12_bg) !important ;
+      border-color: var(--c-scale-12_bg) !important;
+      color: var(--c-scale-1)!important;
+    }
+  }
+}

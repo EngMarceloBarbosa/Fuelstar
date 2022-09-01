@@ -61,14 +61,14 @@
                 >Open shitf with employer associeted with the user.</nc-text
               >
             </div>
-            <div class="toggle">
-              <ion-toggle
+            <div class="toggle" (click)="switch()">
+              <nc-switch
                 slot="start"
                 name="kiwi"
                 color="success"
                 class="switch"
                 checked
-              ></ion-toggle>
+              ></nc-switch>
             </div>
           </div>
           <div class="settings">
@@ -80,14 +80,14 @@
                 >Hide task values and numbers</nc-text
               >
             </div>
-            <div class="toggle">
-              <ion-toggle
+            <div class="toggle" >
+              <nc-switch
                 slot="start"
                 name="kiwi"
                 color="success"
                 class="switch"
                 checked
-              ></ion-toggle>
+              ></nc-switch>
             </div>
           </div>
           <div class="settings">
