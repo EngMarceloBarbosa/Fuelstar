@@ -49,13 +49,14 @@ tests = clientsTab
 
 
 
-constructor(private router: Router, private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService , private tasksService: TasksService ) {
+constructor(private router: Router, private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService , public tasksService: TasksService ) {
 }
 
 
 ngOnInit() {
 
-  }
+
+}
 
   filterClick(){
 

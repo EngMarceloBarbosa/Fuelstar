@@ -61,8 +61,8 @@ export class TasksService {
   validatorEmail: boolean = false;
   isSubmitted = false;
   listClassifications: any;
-  selectedList:any[]=[]
-
+  selectedList:any[]=[];
+  today:any
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),
@@ -72,7 +72,20 @@ export class TasksService {
   // }
   // )
 
-  constructor(private http: HttpClient, private contactApiService: ContactsTaskService, public itemApiService: ItemApiService) { }
+  constructor(private http: HttpClient, private contactApiService: ContactsTaskService, public itemApiService: ItemApiService) {
+
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+   this.today = new Date();
+  var dd = String(this.today.getDate()).padStart(2, '0');
+  var yyyy = this.today.getFullYear();
+
+  this.today = dd + '/' + monthNames[this.today.getMonth()] + '/' + yyyy;
+  console.log(this.today)
+   }
 
   // public listTasks(id: string) {
   //     return this.http
@@ -94,6 +107,7 @@ export class TasksService {
     email: new FormControl(null),
     phoneNumber: new FormControl(null),
   });
+
 
   list: any[] = [];
   checkedList: any[] = []
@@ -209,6 +223,11 @@ export class TasksService {
     email: new FormControl('', Validators.required),
 
   })
+
+
+
+
+
 
   //
 

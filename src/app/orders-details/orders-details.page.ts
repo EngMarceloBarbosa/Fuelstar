@@ -69,6 +69,7 @@ export class OrdersDetailsPage implements OnInit {
       console.log(this.tasksService.paymentMethods)
     })
 
+    this.tasksService.selectedList = this.tasksService.productList
 
 
     // this.tasksService.badge$
@@ -253,26 +254,41 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   checked(select) {
+
     console.log(this.tasksService.selectedList)
-    // this.selectedList = this.list
     const index = this.tasksService.selectedList.findIndex(el => select.id === el.id);
     if (index > -1) {
-      this.tasksService.selectedList.slice(index)
+      console.log(index)
+      this.tasksService.selectedList = this.tasksService.selectedList.filter(el => el.id != select.id)
+      console.log(this.tasksService.selectedList)
     } else {
       this.tasksService.selectedList = [...this.tasksService.selectedList, select]
+      console.log(this.tasksService.selectedList)
     }
     console.log(this.tasksService.selectedList)
+
   }
 
 
   clearAllButton() {
     console.log(this.tasksService.selectedList)
+
+
+
     // this.list = this.tasksService.selectedList;
 
     this.tasksService.selectedList.map(element => {
       this.tasksService.productList = this.tasksService.productList.filter(item => item.id !== element.id)
+
     })
-    this.tasksService.selectedList = []
+
+    if(this.tasksService.productList.length === 0){
+      this.router.navigate(['/orders'])
+      this.tasksService.productList = [];
+      this.tasksService.quantity2 = "";
+      this.tasksService.selectedList = []
+    }
+
 
 
 

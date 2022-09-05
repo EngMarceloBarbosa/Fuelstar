@@ -38,29 +38,25 @@
   <div class="title-menu">
     <div class="searchFocus" *ngIf="turnFocus">
       <div class="icon-search">
-        <nc-icon
-          [size]="18"
-          color="c-scale-1"
-          hoverColor="c-scale-1"
+        <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
           >icon_search</nc-icon
         >
       </div>
       <div class="input-search">
         <nc-input
-        [attr.tester]="'search-bar-current'"
-        placeholder="Pesquise aqui..."
-        [bgInputColor]="'c-scale-12'"
-        [clear]="true"
-        [type]="'text'"
-        [size]="'medium'"
-        (valueChange)="searchDocument($event)"
-        (ngOnChanges)="ngOnChanges($event)">
-
+          [attr.tester]="'search-bar-current'"
+          placeholder="Pesquise aqui..."
+          [bgInputColor]="'c-scale-12'"
+          [clear]="true"
+          [type]="'text'"
+          [size]="'medium'"
+          (valueChange)="searchDocument($event)"
+          (ngOnChanges)="ngOnChanges($event)"
+        >
         </nc-input>
       </div>
     </div>
   </div>
-
 </ion-header>
 
 <!-- FILTER -->
@@ -81,7 +77,7 @@
             <ion-list-header class="text-label-header">
               <ion-label> Order by </ion-label>
             </ion-list-header>
-            <div class="radio1">
+            <div class="radio1" (click)="orderName(tasksService.listItemsByType)">
               <ion-radio value="cord"></ion-radio>
               <ion-label class="text-order"
                 >Order number (small to big)</ion-label
@@ -195,7 +191,11 @@
 
 <ion-content>
   <div class="list-content">
-    <nc-virtual-scroller class="card-list" #scroll [items]=" this.tasksService.listsItems">
+    <nc-virtual-scroller
+      class="card-list"
+      #scroll
+      [items]=" this.tasksService.listsItems"
+    >
       <div *ngFor="let item of scroll.viewPortItems" class="card-list__wrap">
         <div class="card">
           <div class="img-card" (click)="cardsClick(item)">
@@ -214,4 +214,3 @@
     </nc-virtual-scroller>
   </div>
 </ion-content>
-
