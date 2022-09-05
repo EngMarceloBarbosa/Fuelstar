@@ -7,7 +7,7 @@ import { environment } from "src/environments/environment";
   providedIn: "root",
 })
 export class ClassificationApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
 
   getClassification() {

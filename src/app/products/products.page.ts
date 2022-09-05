@@ -106,6 +106,10 @@ export class ProductsPage implements OnInit {
   }
 
   async subFamily(child) {
+
+    if(child.id.length == 0){
+      return false;
+    }
     if(child.id){
       this.router.navigate(['products-family']);
       this.itemApiService.getItems(child.id).then( async res => {

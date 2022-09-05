@@ -16,7 +16,7 @@ import { TouchSequence } from 'selenium-webdriver';
 export class TasksService {
 
   allDocumentsFilter: any;
-  listsItems:any;
+  listsItems: any;
   contactNumber: any;
   idContact: any;
   idContactId: any;
@@ -24,7 +24,7 @@ export class TasksService {
   value: any;
   phoneContact: any;
   listTasks: Tasks[];
-  quantityTotal:any;
+  quantityTotal: any;
   listClients: Entity[] = [];
   listContacts: Contacts[] = [];
   listEntitys: Entity = null;
@@ -46,21 +46,22 @@ export class TasksService {
   listValue: any;
   listItems: Items[] = [];
   totalValueRequest: number;
-  verifyEntity:IdentityDocuments[] = [];
+  verifyEntity: IdentityDocuments[] = [];
   listItemsByType: Items[];
-  itemSelected:any;
-  productList:any[]=[];
-  item:any;
+  itemSelected: any;
+  productList: any[] = [];
+  item: any;
   badge: number = 0;
-  selectedItem:any;
-  paymentMethods:PaymentMethods[];
+  selectedItem: any;
+  paymentMethods: PaymentMethods[];
   selectedMethod: any;
-  checkList:string[]=[];
+  checkList: string[] = [];
   controlBadge: boolean = true;
-  control:boolean = false;
+  control: boolean = false;
   validatorEmail: boolean = false;
   isSubmitted = false;
   listClassifications: any;
+  selectedList:any[]=[]
 
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
@@ -134,7 +135,7 @@ export class TasksService {
 
 
 
-    this.itemApiService.getImageItem(this.listItems[0].id).then( res  => {
+    this.itemApiService.getImageItem(this.listItems[0].id).then(res => {
 
       console.log(res);
     }
@@ -179,36 +180,35 @@ export class TasksService {
   }
 
 
-  validateEmail (email)
-  {
+  validateEmail(email) {
     let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (email.match(regexEmail) ) {
+    if (email.match(regexEmail)) {
       console.log(email, 'Passou')
       this.validatorEmail = false;
     } else {
       this.validatorEmail = true;
     }
-    if(email.length === 0){
+    if (email.length === 0) {
       this.validatorEmail = false;
     }
   }
 
   client: FormGroup = new FormGroup({
 
-    firstName: new FormControl('',[Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
-    lastName:  new FormControl('',Validators.required),
-    email:  new FormControl('',Validators.required),
-    phone:  new FormControl('',[Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
-    nif:  new FormControl('',Validators.required)
-})
+    firstName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    phone: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(9)]),
+    nif: new FormControl('', Validators.required)
+  })
 
-contactDetail: FormGroup = new FormGroup({
+  contactDetail: FormGroup = new FormGroup({
 
 
-  phone:  new FormControl('',[Validators.required, Validators.maxLength(9)]),
-  email:  new FormControl('',Validators.required),
+    phone: new FormControl('', [Validators.required, Validators.maxLength(9)]),
+    email: new FormControl('', Validators.required),
 
-})
+  })
 
   //
 

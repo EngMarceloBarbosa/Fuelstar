@@ -87,7 +87,7 @@ nc-virtual-scroller {
   }
 }
 
-.client-new{
+.client-new {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,8 +96,6 @@ nc-virtual-scroller {
   border-radius: tbu(px(4));
   height: tbu(px(50));
 }
-
-
 
 .search-client {
   display: flex;
@@ -111,9 +109,6 @@ nc-virtual-scroller {
   width: 100%;
   padding-bottom: tbu(px(8));
 }
-
-
-
 
 // .inputs {
 //   display: flex;

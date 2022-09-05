@@ -253,24 +253,26 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   checked(select) {
+    console.log(this.tasksService.selectedList)
     // this.selectedList = this.list
-    const index = this.selectedList.findIndex(el => select.id === el.id);
+    const index = this.tasksService.selectedList.findIndex(el => select.id === el.id);
     if (index > -1) {
+      this.tasksService.selectedList.slice(index)
     } else {
-      this.selectedList = [...this.selectedList, select]
+      this.tasksService.selectedList = [...this.tasksService.selectedList, select]
     }
-    console.log(this.selectedList)
+    console.log(this.tasksService.selectedList)
   }
 
 
   clearAllButton() {
-    console.log(this.selectedList)
-    // this.list = this.selectedList;
+    console.log(this.tasksService.selectedList)
+    // this.list = this.tasksService.selectedList;
 
-    this.selectedList.map(element => {
+    this.tasksService.selectedList.map(element => {
       this.tasksService.productList = this.tasksService.productList.filter(item => item.id !== element.id)
     })
-    this.selectedList = []
+    this.tasksService.selectedList = []
 
 
 

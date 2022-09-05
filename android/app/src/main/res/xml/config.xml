@@ -3,5 +3,5 @@
   <access origin="*" />
   
   
-  <preference name="SimonKey" value="true" />
+  <preference name="LottieFullScreen" value="true" />
 </widget>
