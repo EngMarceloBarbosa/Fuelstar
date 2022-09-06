@@ -337,7 +337,7 @@ export class OrdersDetailsPage implements OnInit {
     });
 
 
-    if (this.tasksService.productList == []) {
+    if (this.tasksService.productList.length == 0) {
       this.router.navigate(['/products-family'])
 
     }
