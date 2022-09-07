@@ -7,6 +7,7 @@ import { AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg'
 import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginApiService } from '../shared/http/login-api.service';
+import { LoadingController } from '@ionic/angular';
 
 
 
@@ -36,6 +37,7 @@ export class LoginPage implements OnInit {
     private alertService: AlertService,
     public formBuilder: FormBuilder,
     public translate: TranslateService,
+    public loadingController: LoadingController
   ) {
   }
 
@@ -46,6 +48,9 @@ export class LoginPage implements OnInit {
       this.loginMessagesTranslations = res.Login;
 
     });
+
+
+
 
 
     this.form = this.formBuilder.group({
@@ -70,6 +75,18 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/recover-password']);
   }
 
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'circular',
+      duration: 3500,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+
+    });
+
+    return await loading.present();
+  }
 
 
   get email() {
@@ -96,7 +113,23 @@ export class LoginPage implements OnInit {
   /**
    * Sign In button Click
    */
-  signInClick() {
+   async signInClick() {
+
+
+  //  {
+  //   const loading = await this.loadingController.create({
+  //     message: 'loading',
+  //     duration: 3000
+  //   });
+  //   await loading.present();
+
+  //   const { role, data } = await loading.onDidDismiss();
+
+  //   console.log('Loading dismissed!');
+  // }
+
+
+  this.presentLoadingWithOptions();
 
 
     // this.loading = 'loading';
@@ -117,7 +150,7 @@ export class LoginPage implements OnInit {
         if (error.status === 401) {
           const temp: ModalMessageModel = {
             showTip: false,
-            title: 'WRONG PASSWORD',
+            title: 'Password Errada',
             description: '',
             state: 'error',
             leftButtonSize: 'small',
@@ -169,6 +202,28 @@ export class LoginPage implements OnInit {
       });
   }
 
+
+  switch(){
+    const temp: ModalMessageModel = {
+      showTip: false,
+      title: "Começar Turno ?",
+      description: "with the shift started you can do delivery orders, sales, receipts and returns.",
+      state: "warning",
+      leftButtonSize: "small",
+      leftButtonType: "text",
+      leftButtonText: "Cancel",
+      showMiddleButton:false,
+      rightButtonSize: "small",
+      rightButtonType: "text",
+      rightButtonText: "Start",
+      rightButtonTesterProperty: "clickLeaveApp",
+      rightButtonColor: "c-scale-12",
+      rightButtonCallback: () => {
+
+      },
+    };
+    this.alertService.open(temp);
+  }
 
 
 

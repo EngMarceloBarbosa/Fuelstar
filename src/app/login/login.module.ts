@@ -16,6 +16,7 @@ import { SharedModule } from '../shared/shared.module';
     LoginPageRoutingModule,
     SharedModule,
 
+
   ],
   declarations: [LoginPage]
 })

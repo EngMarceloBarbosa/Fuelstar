@@ -1,1 +1,15 @@
-{}
+{
+	"appId": "io.ionic.starter",
+	"appName": "app",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+	"Splashscreen": {
+		"launchAutoHide": true,
+		"launchShowDuration": 0
+	},
+	"cordova": {
+		"preferences": {
+			"LottieFullScreen": true
+		}
+	}
+}

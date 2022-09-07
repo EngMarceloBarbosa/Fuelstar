@@ -9,7 +9,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-transla
 })
 export class AppComponent {
 
-
+allow:boolean = false;
 
   constructor(private globals: Globals, private translate: TranslateService ) {
 
@@ -18,6 +18,8 @@ export class AppComponent {
     this.globals.defaultImagePath = `./assets/images/`;
     this.globals.imagePath = `./assets/images/`;
   }
+
+
 
 
 
