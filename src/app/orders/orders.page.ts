@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 import { TasksService } from '../shared/services/tasks.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
-import { TouchSequence } from 'selenium-webdriver';
-import { HttpHandler } from '@angular/common/http';
+
 
 
 @Component({
@@ -224,6 +223,14 @@ export class OrdersPage implements OnInit {
 console.log(this.tasksService.validateEmail(this.tasksService.valueEmail))
   this.tasksService.validateEmail(this.tasksService.valueEmail);
 
+console.log(this.tasksService.validateNIF(this.tasksService.valueNif))
+this.tasksService.validateNIF(this.tasksService.valueNif);
+
+ if( this.tasksService.validateNIF(this.tasksService.valueNif) == false){
+  this.tasksService.validatorNIF = true;
+}else{
+  this.tasksService.validatorNIF = false;
+}
 
     console.log(this.tasksService.valueFirstName)
     console.log(this.tasksService.valueEmail)
@@ -257,29 +264,29 @@ console.log(this.tasksService.validateEmail(this.tasksService.valueEmail))
 console.log(arr)
 
 
-console.log(arr)
-    arr.map((ele)=> {
+// console.log(arr)
+//     arr.map((ele)=> {
 
-const array = {...ele , msgErroFields1: false}
-      console.log(ele, '230')
-      if(ele.length === 0){
-        ele.msgErroFields1 = true;
-        this.msgErroLastname = "Campo Obrigatório"
-      }else {
-        ele.msgErroFields1 = false;
-      }
-    })
-
-
+// const array = {...ele , msgErroFields1: false}
+//       console.log(ele, '230')
+//       if(ele.length === 0){
+//         ele.msgErroFields1 = true;
+//         this.msgErroLastname = "Campo Obrigatório"
+//       }else {
+//         ele.msgErroFields1 = false;
+//       }
+//     })
 
 
 
 
 
 
+console.log(this.tasksService.validatorNIF)
 
-    if (this.tasksService.valueFirstName == "" || this.tasksService.valueEmail == "" || this.tasksService.valueLastName == "" || this.tasksService.valueNif == "" || this.tasksService.valuePhoneNumber == "" || this.tasksService.validatorEmail == true) {
 
+    if (this.tasksService.valueFirstName == "" || this.tasksService.valueEmail == "" || this.tasksService.valueLastName == "" || this.tasksService.valueNif == "" || this.tasksService.valuePhoneNumber == "" || this.tasksService.validatorEmail == true || this.tasksService.validateNIF(this.tasksService.valueNif) == false) {
+      // this.tasksService.validatorNIF = true;
       return;
 
     } else {
@@ -305,7 +312,7 @@ const array = {...ele , msgErroFields1: false}
 
 
 
-      console.log(this.tasksService.clientFields);
+
 
 
       console.log(this.tasksService.croudGroup)
@@ -318,21 +325,33 @@ const array = {...ele , msgErroFields1: false}
       if (this.tasksService.verifyEntity.length === 0) {
         console.log(this.tasksService.verifyEntity.length)
         this.contactsTaskService.addClient(form).then(res => {
-          this.tasksService.listClients = res;
+          // console.log(res)
+          // this.tasksService.listClients = res;
 
 
+           this.contactsTaskService.getEntities().then(res => {
+            console.log(res)
+            this.tasksService.listClients = res;
+            console.log(    this.tasksService.listClients)
+            // this.tasksService.listTasks$.next(this.listTasks);
+            this.tasksService.allDocumentsFilter = this.tasksService.listClients;
+          })
+
+          console.log(this.tasksService.list)
+          arr = [];
+          console.log(arr)
+          this.active = true;
+          this.tasksService.client.reset({
+            valueFirstName: '',
+            valueLastName: '',
+            valueNif: '',
+            valueEmail:  '',
+            valuePhoneNumber: '',
+            title: '',
+            roleId: '',
+
+        });
         })
-        await this.contactsTaskService.getEntities().then(res => {
-          console.log(res)
-          this.tasksService.listClients = res;
-          // this.tasksService.listTasks$.next(this.listTasks);
-        })
-        this.tasksService.allDocumentsFilter = this.tasksService.listClients;
-
-        console.log(this.tasksService.list)
-
-        this.active = true;
-        this.tasksService.valueFirstName = "";
 
       } else {
         this.msgErro = 'ERRO';
