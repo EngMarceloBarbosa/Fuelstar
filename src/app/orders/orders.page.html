@@ -1,4 +1,4 @@
-<ion-content>
+
   <div class="header-menu">
     <div class="title-menu">
       <div class="order-details">
@@ -240,6 +240,11 @@
               (onChange)="change($event, 3)"
             >
             </nc-input>
+            <div class="erro" *ngIf="this.tasksService.validatorNIF">
+              <nc-text size="h7" color="error" weight="500" font="primary"
+                >NIF não Válido</nc-text
+              >
+            </div>
             <!-- <div class="nifError" *ngIf="alertMessage1">
               <nc-text size="h7" color="error" weight="500" font="primary"
                 >{{alertMessage}}</nc-text
@@ -294,11 +299,11 @@
               pattern="[0-9]"
             >
             </nc-input>
-            <div class="erro" *ngIf="msgErroFields">
+            <!-- <div class="erro" *ngIf="msgErroFields">
               <nc-text size="h7" color="error" weight="500" font="primary"
                 >{{msgErroLastname}}</nc-text
               >
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- </form> -->
@@ -402,4 +407,4 @@
       </div>
     </div>
   </div>
-</ion-content>
+

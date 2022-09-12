@@ -63,6 +63,7 @@ export class TasksService {
   listClassifications: any;
   selectedList:any[]=[];
   today:any
+  validatorNIF:boolean = false;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),
@@ -193,6 +194,35 @@ export class TasksService {
     console.log(listTasksByIdNew, ' LISTA NOVA');
   }
 
+  validateNIF(nif: string) {
+    const validationSets = {
+      one: ['1', '2', '3', '5', '6', '8'],
+      two: ['45', '70', '71', '72', '74', '75', '77', '79', '90', '91', '98', '99']
+    };
+    if (nif.length !== 9) {
+      console.log('NÃO PASSOU')
+this.validatorNIF = true;
+    };
+    if (!validationSets.one.includes(nif.substring(0, 1)) && !validationSets.two.includes(nif.substring(0, 2))){
+      this.validatorNIF = true;
+    }else{
+    const nifNumbers = nif.split('').map(c => Number.parseInt(c))
+    const total = nifNumbers[0] * 9 +
+      nifNumbers[1] * 8 +
+      nifNumbers[2] * 7 +
+      nifNumbers[3] * 6 +
+      nifNumbers[4] * 5 +
+      nifNumbers[5] * 4 +
+      nifNumbers[6] * 3 +
+      nifNumbers[7] * 2;
+    const modulo11 = (Number(total) % 11);
+    const checkDigit = modulo11 < 2 ? 0 : 11 - modulo11;
+    this.validatorNIF = false;
+    return checkDigit === Number(nif[8]);
+    }
+  }
+
+
 
   validateEmail(email) {
     let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -206,6 +236,8 @@ export class TasksService {
       this.validatorEmail = false;
     }
   }
+
+
 
   client: FormGroup = new FormGroup({
 

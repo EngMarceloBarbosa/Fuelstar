@@ -19,6 +19,7 @@ import {
   ActionSheetModule,
   HeadingModule,
   AccordionModule,
+  StepsModule
 
 } from '@nc-angular/library-mobile.stg';
 
@@ -46,7 +47,8 @@ const components = [
   StepperModule,
   ActionSheetModule,
   HeadingModule,
-  AccordionModule
+  AccordionModule,
+  StepsModule
 ];
 
 @NgModule({
