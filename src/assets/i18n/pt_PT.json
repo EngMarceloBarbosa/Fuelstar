@@ -26,6 +26,13 @@
       "titleForgetPassword": "Não consegue entrar na aplicação",
       "forgetPassword": "Esqueceu-se da Palavra-passe",
       "buttonFooter": "Iniciar sessão"
+
+    },
+    "AlertMessages": {
+      "titleInternalServerFailed":  "Erro de Servidor",
+      "descriptionInternalServerFailed": "Servidor em baixo",
+      "rigthButtonTryAgain": "Tenta outra vez"
+
     },
 
     "RecoverPassword": {
@@ -126,12 +133,9 @@
       "optionCredit": "Crédito",
       "deleteAll": "Apagar tudo",
       "titleActionSheet": "Opções"
-
-
      },
 
      "FinishOrder": {
-
       "optionCash": "Dinheiro",
       "descriptionCash": "Pagar com dinheiro",
       "invoiceEmail": "Fatura para o mail",
@@ -140,9 +144,6 @@
       "shippingPrice": "Preço de envio",
       "discount": "Desconto",
       "priceTotal": "Total"
-
-
-
      },
 
     "ProductDetails": {

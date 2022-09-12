@@ -46,6 +46,7 @@ export class LoginPage implements OnInit {
     this.translate.get('App').subscribe(res => {
       this.globalMessagesTranslations = res.Global;
       this.loginMessagesTranslations = res.Login;
+      this.alertMessagesTranslations = res.AlertMessages;
 
     });
 
