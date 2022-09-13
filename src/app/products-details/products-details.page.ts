@@ -79,17 +79,17 @@ export class ProductsDetailsPage implements OnInit {
     this.tasksService.badge = ++this.tasksService.badge;
     console.log(this.tasksService.quantity1)
     this.tasksService.controlBadge = false;
+    this.productService.addValueProduct(product,this.ammount);
+    this.productService.totalValueOrder()
     const toast = await this.toastController.create({
       header: 'Adicionado produto ao Carrinho',
-      message: this.tasksService.quantity1,
+      message: this.tasksService.quantity1 ,
       position: 'top',
       color: 'light',
       duration: 500,
     });
     await toast.present();
 
-this.productService.addValueProduct(product,this.ammount);
-this.productService.totalValueOrder()
 
   }
 
