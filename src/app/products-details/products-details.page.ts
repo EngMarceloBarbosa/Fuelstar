@@ -80,8 +80,8 @@ export class ProductsDetailsPage implements OnInit {
     console.log(this.tasksService.quantity1)
     this.tasksService.controlBadge = false;
     const toast = await this.toastController.create({
-      header: 'You add new product to cart "item xpto',
-      message: 'Back to Articles lis t cart',
+      header: 'Adicionado produto ao Carrinho',
+      message: this.tasksService.quantity1,
       position: 'top',
       color: 'light',
       duration: 500,
@@ -157,6 +157,10 @@ this.productService.totalValueOrder()
       this.router.navigate(['/orders-details']);
       this.tasksService.badge = badge
       this.tasksService.controlBadge = false;
+      this.tasksService.controlStep = true;
+      this.tasksService.controlStep1 = true;
+      this.tasksService.controlStepCheck = true;
+      this.tasksService.controlStepCheck1 = false;
       // if(this.tasksService.productList.length !== 0){
       //   this.tasksService.productList.map((elem)=> {
       //     if(elem.id == item.id ){

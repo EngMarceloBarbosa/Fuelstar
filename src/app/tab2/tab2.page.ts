@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { clientsTab } from '../shared/models/clients-tab1';
+import { TasksService } from '../shared/services/tasks.service';
 
 @Component({
   selector: 'app-tab2',
@@ -38,7 +39,7 @@ export class Tab2Page {
   tests = clientsTab
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public tasksService:TasksService) { }
 
   definitions() {
 
@@ -48,6 +49,8 @@ export class Tab2Page {
     if (id == 1) {
       this.router.navigate(['/orders']);
       console.log("entrou");
+      this.tasksService.controlStep = true;
+      this.tasksService.controlStep1 = false;
     }
     if (id == 2) {
       this.router.navigate(['/orders']);

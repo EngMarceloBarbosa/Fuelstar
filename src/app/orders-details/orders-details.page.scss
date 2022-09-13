@@ -62,7 +62,7 @@ nc-virtual-scroller {
 
 .step-space {
   display: flex;
-  height: tbu(px(15));
+  height: tbu(px(17));
   background-color: var(--c-scale-6);
   border-radius: 50%;
   width: 45%;
@@ -70,6 +70,23 @@ nc-virtual-scroller {
 }
 .step-space:hover {
   background-color: var(--primary);
+}
+
+.step-space1 {
+  display: flex;
+  height: tbu(px(17));
+  background-color: var(--c-scale-6);
+  border-radius: 50%;
+  width: 38%;
+  margin-left: tbu(px(10));
+}
+.step-space2 {
+  display: flex;
+  height: tbu(px(17));
+  background-color: var(--c-scale-6);
+  border-radius: 50%;
+  width: 37%;
+  margin-left: tbu(px(10));
 }
 
 .container-articles {
@@ -418,4 +435,32 @@ nc-action-sheet {
   display: flex;
   width: 20%;
   justify-content: flex-end;
+}
+
+
+.step-space-1 {
+  display: flex;
+  height: tbu(px(17));
+  background-color: var(--primary);
+  border-radius: 50%;
+  width: 45%;
+  margin-left: tbu(px(10));
+}
+
+.step-space-3 {
+  display: flex;
+  height: tbu(px(17));
+  background-color: var(--primary);
+  border-radius: 50%;
+  width: 38%;
+  margin-left: tbu(px(10));
+}
+
+.step-space-4 {
+  display: flex;
+  height: tbu(px(17));
+  background-color: var(--primary);
+  border-radius: 50%;
+  width: 37%;
+  margin-left: tbu(px(10));
 }

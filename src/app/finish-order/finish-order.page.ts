@@ -26,6 +26,10 @@ this.classificationApi.getClassification().then((res)=> {
   }
 
    async finish(){
+    this.tasksService.productList = [];
+    this.tasksService.quantity1 = [];
+    this.tasksService.quantity2 = [];
+    this.tasksService.selectedMethod = "";
     const toast = await this.toastController.create({
       header: 'Nova encomenda Registada',
       message: 'Order nº1927',

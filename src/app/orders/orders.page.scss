@@ -48,16 +48,30 @@ nc-virtual-scroller {
 
 .step-space {
   display: flex;
-  height: tbu(px(15));
+  height: tbu(px(17));
   background-color: var(--c-scale-6);
   border-radius: 50%;
   width: 45%;
   margin-left: tbu(px(10));
 }
-.step-space:hover {
-  background-color: var(--primary);
-}
 
+
+.step-space1 {
+  display: flex;
+  height: tbu(px(17));
+  background-color: var(--c-scale-6);
+  border-radius: 50%;
+  width: 38%;
+  margin-left: tbu(px(10));
+}
+.step-space2 {
+  display: flex;
+  height: tbu(px(17));
+  background-color: var(--c-scale-6);
+  border-radius: 50%;
+  width: 37%;
+  margin-left: tbu(px(10));
+}
 .buttons-client {
   display: flex;
   flex-direction: row;
@@ -175,7 +189,8 @@ nc-input {
 .buttons-footer1 {
   background-color: var(--c-scale-1_bg);
   height: 11%;
-  padding-top: 40%;
+  padding-left: tbu(px(24));
+  padding-right: tbu(px(24));
   width: 100%;
 }
 
@@ -187,7 +202,7 @@ nc-input {
 }
 
 .add-products {
-  padding-top: tbu(px(48));
+  padding-top: tbu(px(5));
   padding-left: tbu(px(24));
   padding-right: tbu(px(24));
   @extend .flex-center;
@@ -218,4 +233,41 @@ nc-input {
 
 .erro {
   margin-bottom: tbu(px(3));
+}
+
+
+.step-space-1 {
+  display: flex;
+  height: tbu(px(17));
+  background-color: var(--primary);
+  border-radius: 50%;
+  width: 45%;
+  margin-left: tbu(px(10));
+}
+
+// .step-space-2 {
+//   display: flex;
+//   height: tbu(px(15));
+//   background-color: var(--primary);
+//   border-radius: 50%;
+//   width: 45%;
+//   margin-left: tbu(px(10));
+// }
+
+.step-space-3 {
+  display: flex;
+  height: tbu(px(17));
+  background-color: var(--primary);
+  border-radius: 50%;
+  width: 38%;
+  margin-left: tbu(px(10));
+}
+
+.step-space-4 {
+  display: flex;
+  height: tbu(px(17));
+  background-color: var(--primary);
+  border-radius: 50%;
+  width: 37%;
+  margin-left: tbu(px(10));
 }

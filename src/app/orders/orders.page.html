@@ -22,34 +22,46 @@
   <div class="body-content">
     <div class="steps">
       <div class="steps-details">
-        <div class="step-space"></div>
+        <div *ngIf="tasksService.controlStep"  class="step-space-1">
+          <div *ngIf="tasksService.controlStepCheck">
+          <nc-icon color="c-scale-1" [size]="16">icon_check</nc-icon>
+        </div>
+        </div>
+        <div  *ngIf="!tasksService.controlStep" class="step-space"></div>
         <div class="step-info">
           <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Client</nc-text
+            >Cliente</nc-text
           >
         </div>
       </div>
       <div class="steps-details">
-        <div class="step-space"></div>
+        <div *ngIf="tasksService.controlStep1"   class="step-space-1">
+          <div *ngIf="tasksService.controlStepCheck1">
+          <nc-icon color="c-scale-1" [size]="16">icon_check</nc-icon>
+        </div>
+        </div>
+        <div   *ngIf="!tasksService.controlStep1" class="step-space"></div>
         <div class="step-info">
           <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Client</nc-text
+            >Artigos</nc-text
           >
         </div>
       </div>
       <div class="steps-details">
-        <div class="step-space"></div>
-        <div class="step-info">
+        <div *ngIf="tasksService.controlStep2"   class="step-space-4"><nc-icon color="c-scale-1" [size]="16">icon_check</nc-icon></div>
+        <div   *ngIf="!tasksService.controlStep2" class="step-space2"></div>
+        <div  class="step-info">
           <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Client</nc-text
+            >Address</nc-text
           >
         </div>
       </div>
       <div class="steps-details">
-        <div class="step-space"></div>
+        <div *ngIf="tasksService.controlStep3"   class="step-space-3"><nc-icon color="c-scale-1" [size]="16">icon_check</nc-icon></div>
+        <div   *ngIf="!tasksService.controlStep3" class="step-space1"></div>
         <div class="step-info">
           <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Client</nc-text
+            >Payment</nc-text
           >
         </div>
       </div>
@@ -331,32 +343,35 @@
           >
         </div>
       </div>
-      <div class="buttons-footer1">
-        <div class="buttons-client">
-          <div class="client" (click)="back()">
-            <nc-text
-              size="h6"
-              color="c-scale-12"
-              weight="bolder"
-              font="primary"
-              hoverColor="c-scale-12"
-              >{{'App.Orders.back' | translate}}</nc-text
-            >
-          </div>
-          <div class="client-1" (click)="continueProcess()">
-            <nc-text
-              size="h7"
-              color="c-scale-1"
-              weight="bolder"
-              font="primary"
-              hoverColor="c-scale-1"
-              >{{'App.Orders.continue' | translate}}</nc-text
-            >
-          </div>
-        </div>
+      </div>
+
+</div>
+<div  *ngIf="!continue1">
+  <div class="buttons-footer1">
+    <div class="buttons-client">
+      <div class="client" (click)="back()">
+        <nc-text
+          size="h6"
+          color="c-scale-12"
+          weight="bolder"
+          font="primary"
+          hoverColor="c-scale-12"
+          >{{'App.Orders.back' | translate}}</nc-text
+        >
+      </div>
+      <div class="client-1" (click)="continueProcess()">
+        <nc-text
+          size="h7"
+          color="c-scale-1"
+          weight="bolder"
+          font="primary"
+          hoverColor="c-scale-1"
+          >{{'App.Orders.continue' | translate}}</nc-text
+        >
       </div>
     </div>
   </div>
+</div>
   <div *ngIf="continue1">
     <div class="buttons-footer" *ngIf="active">
       <div class="buttons-client">

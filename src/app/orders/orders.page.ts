@@ -43,7 +43,7 @@ export class OrdersPage implements OnInit {
 
 
 
-  constructor(private nav: NavController, private loc: Location, public formBuilder: FormBuilder, private router: Router, private tasksService: TasksService, public taskApiService: TaskApiService, private contactsTaskService: ContactsTaskService) { }
+  constructor(private nav: NavController, private loc: Location, public formBuilder: FormBuilder, private router: Router, public tasksService: TasksService, public taskApiService: TaskApiService, private contactsTaskService: ContactsTaskService) { }
 
   async ngOnInit() {
     // await this.contactsTaskService.getEntities().then(res => {
@@ -74,8 +74,11 @@ export class OrdersPage implements OnInit {
   close() {
     this.router.navigate(['/tabs/tab2']);
     this.tasksService.isSubmitted = false;
+    this.tasksService.controlStep1 = false;
+    this.tasksService.controlStep = true;
+    this.tasksService.controlStepCheck = false;
+    this.tasksService.controlStepCheck1 = false;
   }
-
 
 
   clientButton() {
@@ -129,18 +132,26 @@ export class OrdersPage implements OnInit {
 
 
   continueButton() {
+    console.log('continuar 04')
     if (this.tasksService.selectedItem == null) {
 
     } else {
       this.continue1 = false;
       this.active = true;
       console.log(this.tasksService.listClients);
+      this.tasksService.controlStepCheck1 = false;
+      this.tasksService.controlStep1 = true;
+      this.tasksService.controlStepCheck = true;
+      this.tasksService.controlStep = true;
     }
+
   }
 
 
   continueProcess() {
+    console.log('continuar 01')
     this.router.navigate(['/orders-details']);
+
   }
 
   addProducts() {
@@ -148,7 +159,9 @@ export class OrdersPage implements OnInit {
   }
 
   back() {
-
+    this.tasksService.controlStep1 = false;
+    this.tasksService.controlStep = true;
+    this.tasksService.controlStepCheck = false;
     this.continue1 = true;
   }
 

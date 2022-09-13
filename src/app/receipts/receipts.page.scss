@@ -1,7 +1,7 @@
 @import "./../../global.scss";
 
 nc-virtual-scroller {
-  height: calc(100vh - #{tbu(px(279))});
+  height: calc(100vh - #{tbu(px(450))});
 }
 
 .header-content {
@@ -129,4 +129,22 @@ nc-input:hover {
 
 .input-search {
   margin-top: tbu(px(24));
+}
+
+
+.buttons-footer{
+  padding-top: 30%;
+  width: 100%;
+  display: flex;
+
+}
+
+.save-button{
+  width: 100%;
+  height: tbu(px(48));
+  background-color: var(--c-scale-12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }

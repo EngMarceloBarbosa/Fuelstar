@@ -75,8 +75,9 @@ nc-virtual-scroller {
   align-self: center;
   position: absolute;
   box-sizing: content-box;
-  top: tbu(px(-50));
+  top: 35%;
   padding-right: tbu(px(24));
+  padding-left: tbu(px(24));
 }
 
 .box {

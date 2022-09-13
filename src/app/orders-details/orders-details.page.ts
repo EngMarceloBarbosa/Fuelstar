@@ -51,9 +51,12 @@ export class OrdersDetailsPage implements OnInit {
   ammountNew: any = 1;
   ammountNew1: any;
   ammountId: any;
+  stateMessageErrorState: boolean = false;
+  stateMessageError:any;
 
 
-  constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, private tasksService: TasksService, private translate: TranslateService, private productService: ProductService, public paymentMethodsApiService: PaymentMethodApiService) { }
+
+  constructor(private loc: Location, private router: Router, private actionSheetService: ActionSheetService, public alertService: AlertService, public filterService: FilterServiceService, public tasksService: TasksService, private translate: TranslateService, private productService: ProductService, public paymentMethodsApiService: PaymentMethodApiService) { }
 
   ngOnInit() {
 
@@ -95,25 +98,52 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   close() {
-    this.router.navigate(['products-details']);
+    this.router.navigate(['products']);
     console.log(this.tasksService.badge, "BADGES")
     console.log(this.tasksService.productList, "LISTA")
-
+    this.tasksService.controlStep = true;
+    this.tasksService.controlStep1 = true;
+    this.tasksService.controlStep2 = false;
+    this.tasksService.controlStep3 = false;
+    this.tasksService.controlStepCheck1 = false;
 
   }
 
+
+  // CONTINUAR DO ADD PRODUCTS
+
   continueButton() {
+    console.log('CONTINNNNUAE')
     this.onAdressNew = true;
     this.onAdress = false
     this.deleteStateNext = true;
     this.deleteState = false;
+    this.tasksService.controlStep = true;
+    this.tasksService.controlStep1 = true;
+    this.tasksService.controlStep2 = true;
+    this.tasksService.controlStep3 = false;
+    this.tasksService.controlStepCheck = true;
+    this.tasksService.controlStepCheck1 = true;
   }
 
+  // Continuar para os Meios de Pagamento
+
   continueButton1() {
+    console.log('ccccccontinuarks')
     this.onPayment = true;
     this.finishstate = true;
     this.deleteStateNext = false;
     this.onAdressNew = false;
+    this.tasksService.controlStep = true;
+    this.tasksService.controlStep1 = true;
+    this.tasksService.controlStep2 = true;
+    this.tasksService.controlStep3 = true;
+    this.tasksService.controlStepCheck = true;
+    this.tasksService.controlStepCheck1 = true;
+    this.tasksService.controlStepCheck2 = true;
+    this.tasksService.selectedMethod = "";
+
+
   }
 
   /* START DATE PICKER */
@@ -360,6 +390,20 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   finishButton() {
+    console.log(this.tasksService.selectedMethod )
+    if(this.tasksService.selectedMethod.length === 0) {
+      this.stateMessageErrorState = true;
+      this.stateMessageError = "Selecione um Meio de Pagamento"
+    }else {
+    console.log('CONTINUAR DO ORDERS')
+    this.tasksService.controlStep = true;
+    this.tasksService.controlStep1 = false;
+    this.tasksService.controlStep2 = false;
+    this.tasksService.controlStep3 = false;
+    this.tasksService.controlStepCheck = false;
+    this.tasksService.controlStepCheck1 = false;
+    this.tasksService.controlStepCheck2 = false;
+    this.stateMessageErrorState = false;
 
     // this.tasksService.paymentMethods.map(ele => this.tasksService.checkedMethod.id == ele.id)
     //   this.tasksService.checkedMethod
@@ -374,6 +418,7 @@ export class OrdersDetailsPage implements OnInit {
     // })
     // console.log(array)
     this.router.navigate(['/finish-order']);
+    }
   }
 
   addMoreProducts() {
@@ -431,6 +476,10 @@ export class OrdersDetailsPage implements OnInit {
     this.router.navigate(['orders']);
     // this.badges = ""
     // this.tasksService.badgeEmpty$.next(this.badges);
+    this.tasksService.controlStep = true;
+    this.tasksService.controlStep1 = true;
+    this.tasksService.controlStep2 = false;
+    this.tasksService.controlStep3 = false;
 
 
   }
@@ -448,6 +497,12 @@ export class OrdersDetailsPage implements OnInit {
     this.onPayment = false;
     this.deleteStateNext = true;
     this.finishstate = false;
+    this.tasksService.controlStep = true;
+    this.tasksService.controlStep1 = true;
+    this.tasksService.controlStep2 = true;
+    this.tasksService.controlStep3 = false;
+    this.tasksService.controlStepCheck2 = false;
+
   }
 
 

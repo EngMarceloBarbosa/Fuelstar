@@ -5,6 +5,7 @@ nc-virtual-scroller {
 }
 
 .header-container {
+  width: 100%;
   background-color: var(--c-scale-12);
   height: 13%;
 }
@@ -12,7 +13,7 @@ nc-virtual-scroller {
 .header {
   padding-left: tbu(px(24));
   padding-right: tbu(px(24));
-  padding-top: tbu(px(35));
+  padding-top: tbu(px(24));
 }
 
 .card-tasks {
@@ -21,7 +22,7 @@ nc-virtual-scroller {
   height: tbu(px(60));
   padding-top: tbu(px(13));
   padding-bottom: tbu(px(11));
-  background-color: var(--c-scale-12);
+
   margin-bottom: tbu(px(12));
   border-radius: tbu(px(12));
 }

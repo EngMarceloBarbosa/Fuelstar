@@ -79,6 +79,10 @@ export class ReceiptsPage implements OnInit {
     }
   }
 
+  save(){
+
+  }
+
   close(){
     this.router.navigate(['/tabs/tab2']);
   }

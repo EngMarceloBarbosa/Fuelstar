@@ -6,7 +6,6 @@ import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
 import { Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, PaymentMethods, Tasks } from 'src/app/utils/models/tasks';
 import { ItemApiService } from '../http/item-api.service';
-import { TouchSequence } from 'selenium-webdriver';
 
 
 
@@ -54,7 +53,7 @@ export class TasksService {
   badge: number = 0;
   selectedItem: any;
   paymentMethods: PaymentMethods[];
-  selectedMethod: any;
+  selectedMethod: any = "";
   checkList: string[] = [];
   controlBadge: boolean = true;
   control: boolean = false;
@@ -64,6 +63,14 @@ export class TasksService {
   selectedList:any[]=[];
   today:any
   validatorNIF:boolean = false;
+  controlStep:boolean = false;
+  controlStep1:boolean = false;
+  controlStep2:boolean = false;
+  controlStep3:boolean = false;
+  controlStepCheck:boolean = false;
+  controlStepCheck1:boolean = false;
+  controlStepCheck2:boolean = false;
+  controlStepCheck3:boolean = false;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),
