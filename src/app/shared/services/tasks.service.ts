@@ -68,6 +68,10 @@ export class TasksService {
   controlStep2:boolean = false;
   controlStep3:boolean = false;
   controlStepCheck:boolean = false;
+  controlStepCheckk: boolean = false;
+  controlStepCheckk1: boolean = false;
+  controlStepCheckk2: boolean = false;
+
   controlStepCheck1:boolean = false;
   controlStepCheck2:boolean = false;
   controlStepCheck3:boolean = false;

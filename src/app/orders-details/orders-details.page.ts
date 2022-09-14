@@ -106,6 +106,7 @@ export class OrdersDetailsPage implements OnInit {
     this.tasksService.controlStep2 = false;
     this.tasksService.controlStep3 = false;
     this.tasksService.controlStepCheck1 = false;
+    this.tasksService.controlStepCheckk1 = false;
 
   }
 
@@ -123,7 +124,9 @@ export class OrdersDetailsPage implements OnInit {
     this.tasksService.controlStep2 = true;
     this.tasksService.controlStep3 = false;
     this.tasksService.controlStepCheck = true;
+    this.tasksService.controlStepCheckk = true;
     this.tasksService.controlStepCheck1 = true;
+    this.tasksService.controlStepCheckk1 = true;
   }
 
   // Continuar para os Meios de Pagamento
@@ -139,8 +142,11 @@ export class OrdersDetailsPage implements OnInit {
     this.tasksService.controlStep2 = true;
     this.tasksService.controlStep3 = true;
     this.tasksService.controlStepCheck = true;
+    this.tasksService.controlStepCheckk = true;
     this.tasksService.controlStepCheck1 = true;
+    this.tasksService.controlStepCheckk1 = true;
     this.tasksService.controlStepCheck2 = true;
+    this.tasksService.controlStepCheckk2 = true;
     this.tasksService.selectedMethod = "";
 
 
@@ -401,8 +407,11 @@ export class OrdersDetailsPage implements OnInit {
     this.tasksService.controlStep2 = false;
     this.tasksService.controlStep3 = false;
     this.tasksService.controlStepCheck = false;
+    this.tasksService.controlStepCheckk = false;
     this.tasksService.controlStepCheck1 = false;
+    this.tasksService.controlStepCheckk1 = false;
     this.tasksService.controlStepCheck2 = false;
+    this.tasksService.controlStepCheckk2 = false;
     this.stateMessageErrorState = false;
 
     // this.tasksService.paymentMethods.map(ele => this.tasksService.checkedMethod.id == ele.id)
@@ -502,6 +511,7 @@ export class OrdersDetailsPage implements OnInit {
     this.tasksService.controlStep2 = true;
     this.tasksService.controlStep3 = false;
     this.tasksService.controlStepCheck2 = false;
+    this.tasksService.controlStepCheckk2 = false;
 
   }
 

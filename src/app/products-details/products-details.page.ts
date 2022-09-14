@@ -160,7 +160,9 @@ export class ProductsDetailsPage implements OnInit {
       this.tasksService.controlStep = true;
       this.tasksService.controlStep1 = true;
       this.tasksService.controlStepCheck = true;
+      this.tasksService.controlStepCheckk = true;
       this.tasksService.controlStepCheck1 = false;
+      this.tasksService.controlStepCheckk1 = false;
       // if(this.tasksService.productList.length !== 0){
       //   this.tasksService.productList.map((elem)=> {
       //     if(elem.id == item.id ){

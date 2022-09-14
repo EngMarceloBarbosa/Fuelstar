@@ -46,9 +46,10 @@ nc-virtual-scroller {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding-left: 24px;
-  padding-right: 24px;
   padding-top: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+
 }
 
 .step-details {
@@ -66,7 +67,7 @@ nc-virtual-scroller {
   background-color: var(--c-scale-6);
   border-radius: 50%;
   width: 45%;
-  margin-left: tbu(px(10));
+
 }
 .step-space:hover {
   background-color: var(--primary);
@@ -77,8 +78,10 @@ nc-virtual-scroller {
   height: tbu(px(17));
   background-color: var(--c-scale-6);
   border-radius: 50%;
-  width: 38%;
-  margin-left: tbu(px(10));
+  width: 33%;
+  align-items: center;
+  justify-content: center;
+
 }
 .step-space2 {
   display: flex;
@@ -86,7 +89,8 @@ nc-virtual-scroller {
   background-color: var(--c-scale-6);
   border-radius: 50%;
   width: 37%;
-  margin-left: tbu(px(10));
+
+
 }
 
 .container-articles {
@@ -444,7 +448,8 @@ nc-action-sheet {
   background-color: var(--primary);
   border-radius: 50%;
   width: 45%;
-  margin-left: tbu(px(10));
+  align-items: center;
+  justify-content: center;
 }
 
 .step-space-3 {
@@ -453,7 +458,8 @@ nc-action-sheet {
   background-color: var(--primary);
   border-radius: 50%;
   width: 38%;
-  margin-left: tbu(px(10));
+
+
 }
 
 .step-space-4 {
@@ -462,5 +468,82 @@ nc-action-sheet {
   background-color: var(--primary);
   border-radius: 50%;
   width: 37%;
-  margin-left: tbu(px(10));
+  align-items: center;
+  justify-content: center;
+
+}
+
+.steps-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.testediv{
+  width: 25%;
+  background-color: var(--c-scale-6);
+  height: 3px;
+  display: flex;
+  align-items: center;
+  margin-right: -21px;
+  margin-left: -18px;
+  margin-top: 7px;
+}
+
+
+.testediv1{
+  width: 25%;
+  background-color: var(--primary);
+  height: 3px;
+  display: flex;
+  align-items: center;
+  margin-right: -21px;
+  margin-left: -18px;
+  margin-top: 7px;
+}
+
+
+.testediv11{
+  width: 25%;
+  background-color: var(--primary);
+  height: 3px;
+  display: flex;
+  align-items: center;
+  margin-right: -13px;
+  margin-left: -12px;
+  margin-top: 7px;
+}
+
+.testedivv{
+  width: 25%;
+  background-color: var(--c-scale-6);
+  height: 3px;
+  display: flex;
+  align-items: center;
+  margin-right: -13px;
+  margin-left: -12px;
+  margin-top: 7px;
+}
+
+.testesdiv{
+  width: 25%;
+  background-color: var(--c-scale-6);
+  height: 3px;
+  display: flex;
+  align-items: center;
+  margin-right: -16px;
+  margin-left: -12px;
+  margin-top: 7px;
+}
+
+.testesdiv1{
+  width: 25%;
+  background-color: var(--primary);
+  height: 3px;
+  display: flex;
+  align-items: center;
+  margin-right: -16px;
+  margin-left: -12px;
+  margin-top: 7px;
 }

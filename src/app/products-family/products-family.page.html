@@ -77,23 +77,23 @@
             <ion-list-header class="text-label-header">
               <ion-label> Order by </ion-label>
             </ion-list-header>
-            <div class="radio1" (click)="orderName(tasksService.listItemsByType)">
+            <div class="radio1" (click)="orderName(tasksService.listItemsByType,1)">
               <ion-radio value="cord"></ion-radio>
               <ion-label class="text-order"
-                >Order number (small to big)</ion-label
+                >valor (small to big)</ion-label
               >
             </div>
-            <div class="radio1">
+            <div class="radio1"  (click)="orderName(tasksService.listItemsByType,2)">
               <ion-radio value="duesenberg"></ion-radio>
               <ion-label class="text-order"
-                >Order number (big to small)
+                >valor (big to small)
               </ion-label>
             </div>
-            <div class="radio1">
+            <div class="radio1"  (click)="orderName(tasksService.listItemsByType,3)">
               <ion-radio value="hudson"></ion-radio>
-              <ion-label class="text-order">Value(low first)</ion-label>
+              <ion-label class="text-order">nome </ion-label>
             </div>
-            <div class="radio1">
+            <div class="radio1"  (click)="orderName(tasksService.listItemsByType,4)">
               <ion-radio value="packard"></ion-radio>
               <ion-label class="text-order">Value (high first)</ion-label>
             </div>

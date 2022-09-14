@@ -219,8 +219,12 @@ this.turnFocus = true;
     }
   }
 
-  orderName(item) {
-    console.log(item)
+  orderName(item , type){
+    if(type == 1){
+      this.tasksService.listItemsByType = this.tasksService.listItemsByType.filter(item =>
+        item.name?.trim().toLowerCase());
+    }
+    console.log(this.tasksService.listItemsByType)
   }
 
 

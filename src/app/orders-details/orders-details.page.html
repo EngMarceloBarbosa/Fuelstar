@@ -21,12 +21,11 @@
       </div>
     </div>
   </div>
-
   <div class="steps">
     <div class="steps-details">
       <div *ngIf="tasksService.controlStep"  class="step-space-1">
         <div *ngIf="tasksService.controlStepCheck">
-        <nc-icon color="c-scale-1" [size]="16">icon_check</nc-icon>
+        <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
       </div>
       </div>
       <div  *ngIf="!tasksService.controlStep" class="step-space"></div>
@@ -36,10 +35,16 @@
         >
       </div>
     </div>
+    <div class="testedivv" *ngIf="!tasksService.controlStepCheckk">
+
+    </div>
+    <div class="testediv11" *ngIf="tasksService.controlStepCheckk">
+
+    </div>
     <div class="steps-details">
       <div *ngIf="tasksService.controlStep1"   class="step-space-1">
         <div *ngIf="tasksService.controlStepCheck1">
-        <nc-icon color="c-scale-1" [size]="16">icon_check</nc-icon>
+        <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
       </div>
       </div>
       <div   *ngIf="!tasksService.controlStep1" class="step-space"></div>
@@ -49,10 +54,16 @@
         >
       </div>
     </div>
+    <div class="testesdiv" *ngIf="!tasksService.controlStepCheckk1">
+
+    </div>
+    <div class="testesdiv1" *ngIf="tasksService.controlStepCheckk1">
+
+    </div>
     <div class="steps-details">
       <div *ngIf="tasksService.controlStep2"   class="step-space-4">
         <div *ngIf="tasksService.controlStepCheck2">
-        <nc-icon color="c-scale-1" [size]="16">icon_check</nc-icon>
+        <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
       </div>
       </div>
       <div   *ngIf="!tasksService.controlStep2" class="step-space2"></div>
@@ -62,10 +73,16 @@
         >
       </div>
     </div>
+     <div class="testediv" *ngIf="!tasksService.controlStepCheckk2">
+
+    </div>
+    <div class="testediv1" *ngIf="tasksService.controlStepCheckk2">
+
+    </div>
     <div class="steps-details">
       <div *ngIf="tasksService.controlStep3"   class="step-space-3">
         <div *ngIf="tasksService.controlStepCheck3">
-        <nc-icon color="c-scale-1" [size]="16">icon_check</nc-icon>
+        <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
       </div>
       </div>
       <div   *ngIf="!tasksService.controlStep3" class="step-space1"></div>

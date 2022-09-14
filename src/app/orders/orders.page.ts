@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { TasksService } from '../shared/services/tasks.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
+import { Item } from '../utils/models/tasks';
 
 
 
@@ -77,7 +78,9 @@ export class OrdersPage implements OnInit {
     this.tasksService.controlStep1 = false;
     this.tasksService.controlStep = true;
     this.tasksService.controlStepCheck = false;
+    this.tasksService.controlStepCheckk = false;
     this.tasksService.controlStepCheck1 = false;
+    this.tasksService.controlStepCheckk1 = false;
   }
 
 
@@ -140,8 +143,10 @@ export class OrdersPage implements OnInit {
       this.active = true;
       console.log(this.tasksService.listClients);
       this.tasksService.controlStepCheck1 = false;
+      this.tasksService.controlStepCheckk1 = false;
       this.tasksService.controlStep1 = true;
       this.tasksService.controlStepCheck = true;
+      this.tasksService.controlStepCheckk = true;
       this.tasksService.controlStep = true;
     }
 
@@ -162,6 +167,7 @@ export class OrdersPage implements OnInit {
     this.tasksService.controlStep1 = false;
     this.tasksService.controlStep = true;
     this.tasksService.controlStepCheck = false;
+    this.tasksService.controlStepCheckk = false;
     this.continue1 = true;
   }
 
@@ -412,5 +418,9 @@ console.log(this.tasksService.validatorNIF)
     this.turnDisabled1 = true;
     this.turnDisabled = false;
   }
+
+
+
+
 
 }
