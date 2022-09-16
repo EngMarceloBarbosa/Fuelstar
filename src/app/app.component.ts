@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Globals } from '@nc-angular/library-mobile.stg';
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
+import { SplashScreenStateService } from './shared/services/splash-screen-state.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent {
 
 allow:boolean = false;
 
-  constructor(private globals: Globals, private translate: TranslateService ) {
+  constructor(private globals: Globals, private translate: TranslateService,   private splashScreenStateService: SplashScreenStateService ) {
 
     this.translate.addLangs(['en_GB', 'fr_FR', 'pt_PT', 'es_EN', 'al_DL']);
     this.translate.setDefaultLang('pt_PT');
@@ -19,7 +20,11 @@ allow:boolean = false;
     this.globals.imagePath = `./assets/images/`;
   }
 
-
+  ngOnInit(): void {
+    setTimeout(() => {
+       this.splashScreenStateService.stop();
+    }, 5000);
+ }
 
 
 

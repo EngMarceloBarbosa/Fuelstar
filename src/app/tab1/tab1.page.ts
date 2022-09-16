@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
@@ -32,7 +33,6 @@ export class Tab1Page implements OnInit {
   ];
 
   tests = clientsTab
-
 
 
   globalMessagesTranslations: any;
@@ -74,6 +74,8 @@ export class Tab1Page implements OnInit {
       // this.tasksService.listTasks$.next(this.listTasks);
     })
 
+    this.randomNumber(1, 1000);
+
 
     // this.contactsTaskService.getNoteById().then(res => {
     // this.tasksService.listTasksById = res
@@ -83,6 +85,13 @@ export class Tab1Page implements OnInit {
 
   }
 
+
+     randomNumber(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max)
+    this.tasksService.random = Math.floor(Math.random() * (max - min)) + min;
+    console.log(this.tasksService.random)
+  }
 
 
 

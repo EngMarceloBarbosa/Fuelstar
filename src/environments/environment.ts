@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // api: 'http://192.168.200.201:9601',
-  api:'http://192.168.56.1:9601',
+  api: 'http://192.168.200.201:9601',
+  // api:'http://192.168.56.1:9601',
   // api: 'http://api.fuelstarplus.com',
   token: ''
 };

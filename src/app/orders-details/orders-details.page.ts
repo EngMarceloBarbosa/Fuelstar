@@ -107,6 +107,7 @@ export class OrdersDetailsPage implements OnInit {
     this.tasksService.controlStep3 = false;
     this.tasksService.controlStepCheck1 = false;
     this.tasksService.controlStepCheckk1 = false;
+    this.tasksService.controlStepCheckk2 = false;
 
   }
 

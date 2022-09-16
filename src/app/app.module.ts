@@ -9,6 +9,9 @@ import { TranslateModule, TranslateLoader, } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { PipesModule } from "./shared/pipes/pipes.module";
+import { SplashScreenStateService } from './shared/services/splash-screen-state.service';
+import { SplashScreenPageModule } from './splash-screen/splash-screen.module';
+import { SplashScreenPage } from './splash-screen/splash-screen.page';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -17,7 +20,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,SplashScreenPage],
   entryComponents: [AppComponent],
   imports: [
     BrowserAnimationsModule,
@@ -36,7 +39,18 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
 
     ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SplashScreenStateService
+ ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+
+
+export class AppModule {
+
+
+  constructor( public splashScreen:SplashScreenStateService){
+  }
+
+
+}

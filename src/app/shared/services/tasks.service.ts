@@ -75,6 +75,10 @@ export class TasksService {
   controlStepCheck1:boolean = false;
   controlStepCheck2:boolean = false;
   controlStepCheck3:boolean = false;
+
+    min = '1';
+  max = '1000';
+  random: any;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),

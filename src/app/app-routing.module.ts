@@ -54,6 +54,10 @@ const routes: Routes = [
     path: 'edit-contact',
     loadChildren: () => import('./edit-contact/edit-contact.module').then( m => m.EditContactPageModule)
   },
+  {
+    path: 'splash-screen',
+    loadChildren: () => import('./splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
+  },
 
 
   // INICIALIZING APP
@@ -68,6 +72,7 @@ const routes: Routes = [
     pathMatch: 'full'
 
   },
+
 
 
 

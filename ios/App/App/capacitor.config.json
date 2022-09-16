@@ -1,6 +1,6 @@
 {
 	"appId": "io.ionic.starter",
-	"appName": "app",
+	"appName": "FuelStar",
 	"webDir": "www",
 	"bundledWebRuntime": false,
 	"Splashscreen": {

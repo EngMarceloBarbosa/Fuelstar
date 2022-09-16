@@ -4,7 +4,7 @@
       <div class="order-details">
         <div class="operator-name">
           <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-            >Order Nº 1923</nc-text
+            >Order Nº {{this.tasksService.random}}</nc-text
           >
           <ion-badge color="primary" id="notifications-badge" *ngIf="!badgeOn"
             >{{tasksService.quantity1}}</ion-badge
