@@ -1,5 +1,5 @@
 <ion-header class="header-menu">
-  <div class="title-menu" *ngIf="!turnFocus">
+  <div *ngIf="!turnFocus" class="title-menu" >
     <div class="icon-close">
       <nc-icon
         [size]="18"
@@ -35,7 +35,7 @@
       >
     </div>
   </div>
-  <div class="title-menu">
+  <div class="title-menu1">
     <div class="searchFocus" *ngIf="turnFocus">
       <div class="icon-search">
         <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"

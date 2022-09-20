@@ -1,3 +1,4 @@
+<div class="container">
 
   <div class="header-login">
     <div class="logo-header">
@@ -16,6 +17,7 @@
       </div>
     </div>
   </div>
+  <div class="wrapper">
   <div class="body-login">
     <div class="title-body">
       <nc-text size="h5" color="c-scale-12" weight="bold" font="primary"
@@ -73,7 +75,7 @@
             />
           </nc-form-field>
         </div>
-        <div class="login-switch">
+        <div class="login-switch"(click)="switch()">
           <div class="text-login-switch">
             <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
               >{{'App.Login.openShift' | translate}}</nc-text
@@ -82,9 +84,12 @@
               >{{'App.Login.descriptionOpenShift' | translate}}</nc-text
             >
           </div>
-          <div class="icon-switch" (click)="switch()">
+          <div class="icon-switch" >
             <nc-switch
+            (onChange)="toggle($event)"
+             [(ngModel)]="checked"
 
+            [ngModelOptions]="{ standalone: true }"
               color="sucess"
               hoverColor="c-scale-1"
               >icon_switch</nc-switch
@@ -95,6 +100,7 @@
     </div>
   </div>
   <div class="footer-login">
+    <div class="button-footer">
     <nc-button
       [attr.tester]="'click-button-signIn'"
       (onClick)="signInClick()"
@@ -108,6 +114,7 @@
         >{{'App.Login.buttonFooter' | translate}}</nc-text
       >
     </nc-button>
+  </div>
     <div class="recover">
       <div class="recover-text" (click)="forgotPasswordClick()">
         <nc-text
@@ -121,4 +128,5 @@
       </div>
     </div>
   </div>
-
+</div>
+</div>

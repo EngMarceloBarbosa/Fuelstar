@@ -31,7 +31,9 @@ export class LoginPage implements OnInit {
   alunos = [];
   globalMessagesTranslations: any;
   loginMessagesTranslations: any;
-
+  event:any;
+  toggleValue:any;
+  checked:any;
   constructor(private router: Router,
     private loginApiService: LoginApiService,
     private alertService: AlertService,
@@ -221,12 +223,25 @@ export class LoginPage implements OnInit {
       rightButtonTesterProperty: "clickLeaveApp",
       rightButtonColor: "c-scale-12",
       rightButtonCallback: () => {
-
+        console.log('BOAS')
+        this.checked = true;
+        console.log(this.checked)
       },
+      leftButtonCallback: () => {
+        console.log('BOAS')
+        this.checked = false;
+        console.log(this.checked);
+      }
     };
     this.alertService.open(temp);
   }
 
+
+  toggle($event){
+    console.log($event)
+        this.checked = $event
+
+  }
 
 
 }

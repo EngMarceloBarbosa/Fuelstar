@@ -13,6 +13,7 @@ export class SettingsPage implements OnInit {
   productsMessagesTranslations:any;
   headerfixed: boolean = false;
   isBottom: boolean;
+  checked:any;
 
   @HostListener('window:scroll', [])
   onScroll(): void {
@@ -90,8 +91,9 @@ export class SettingsPage implements OnInit {
   }
 
   exitApp1(){
-
-    this.router.navigate(['/']);
+    console.log('BOAS')
+    this.checked = true;
+    console.log(this.checked)
 
   }
 
@@ -116,8 +118,20 @@ export class SettingsPage implements OnInit {
       rightButtonCallback: () => {
         this.exitApp1();
       },
+      leftButtonCallback: () => {
+        console.log('BOAS')
+        this.checked = false;
+        console.log(this.checked);
+      }
     };
     this.alertService.open(temp);
 
   }
+
+  toggle($event){
+    console.log($event)
+        this.checked = $event
+
+  }
+
 }
