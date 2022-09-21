@@ -516,6 +516,9 @@ export class OrdersDetailsPage implements OnInit {
 
   }
 
+  backProducts(){
+    this.router.navigate(['/products-family'])
+  }
 
 
   checkValue(event) {

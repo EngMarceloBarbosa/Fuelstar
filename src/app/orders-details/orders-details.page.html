@@ -349,8 +349,7 @@
               [size]="18"
               color="c-scale-12"
               hoverColor="c-scale-12"
-              (click)="close()"
-              >icon_close</nc-icon
+              >arrow-right</nc-icon
             >
           </div>
         </div>
@@ -552,8 +551,8 @@
 
   <!-- INICIO 2 -->
 
-  <div class="buttons-footer" *ngIf="deleteStateNext">
-    <div class="buttons-client">
+  <div class="buttons-footer" *ngIf="deleteStateNext" >
+    <div class="buttons-client" (click)="backProducts()">
       <div class="client">
         <nc-text
           size="h6"
@@ -561,7 +560,7 @@
           weight="bolder"
           font="primary"
           hoverColor="c-scale-12"
-          >{{'App.OrderDetails.buttonOrderClear' | translate}}</nc-text
+          >Voltar</nc-text
         >
       </div>
       <div class="client-1" (click)="continueButton1()">
