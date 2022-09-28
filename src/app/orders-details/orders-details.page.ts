@@ -483,6 +483,7 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   back() {
+    console.log("PORTUGAL")
     this.router.navigate(['orders']);
     // this.badges = ""
     // this.tasksService.badgeEmpty$.next(this.badges);
@@ -494,7 +495,7 @@ export class OrdersDetailsPage implements OnInit {
 
   }
   backToProducts() {
-
+    console.log("PORTUGAL-PORTO")
     this.tasksService.productList = [];
     console.log(this.tasksService.productList)
     this.router.navigate(['products-family']);
@@ -503,6 +504,7 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   backOrders() {
+    console.log("PORTO")
     this.onAdressNew = true;
     this.onPayment = false;
     this.deleteStateNext = true;
@@ -514,10 +516,29 @@ export class OrdersDetailsPage implements OnInit {
     this.tasksService.controlStepCheck2 = false;
     this.tasksService.controlStepCheckk2 = false;
 
+    // this.tasksService.controlStep1 = true;
+    // this.tasksService.controlStep2 = true;
+    // this.tasksService.controlStep3 = false;
+    // this.tasksService.controlStepCheck = true;
+    // this.tasksService.controlStepCheckk = true;
+    // this.tasksService.controlStepCheck1 = true;
+    // this.tasksService.controlStepCheckk1 = true;
+
   }
 
   backProducts(){
-    this.router.navigate(['/products-family'])
+    this.onAdress  = true;
+    this.deleteState = true;
+    this.deleteStateNext = false;
+    this.onAdressNew = false;
+    this.tasksService.controlStepCheck1 = false;
+    this.tasksService.controlStepCheckk1 = false;
+    this.tasksService.controlStep1 = true;
+    this.tasksService.controlStep2 = false;
+    this.tasksService.controlStepCheck = true;
+    this.tasksService.controlStepCheckk = true;
+    this.tasksService.controlStep = true;
+    // this.router.navigate(['/products-family'])
   }
 
 

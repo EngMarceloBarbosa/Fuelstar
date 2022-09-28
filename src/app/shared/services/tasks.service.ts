@@ -51,7 +51,7 @@ export class TasksService {
   productList: any[] = [];
   item: any;
   badge: number = 0;
-  selectedItem: any;
+  selectedItem: any = "";
   paymentMethods: PaymentMethods[];
   selectedMethod: any = "";
   checkList: string[] = [];
@@ -60,7 +60,7 @@ export class TasksService {
   validatorEmail: boolean = false;
   isSubmitted = false;
   listClassifications: any;
-  selectedList:any[]=[];
+  selectedList:any[]=[1];
   today:any
   validatorNIF:boolean = false;
   controlStep:boolean = false;

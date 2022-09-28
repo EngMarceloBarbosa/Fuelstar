@@ -30,6 +30,7 @@
 .profile {
   @extend .flex-center;
   flex-direction: column;
+  height: 100%;
   .icon-user {
     @extend .align-end;
     width: 60%;

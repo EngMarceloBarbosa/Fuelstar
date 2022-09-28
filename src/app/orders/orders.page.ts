@@ -7,6 +7,9 @@ import { TasksService } from '../shared/services/tasks.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { Item } from '../utils/models/tasks';
+import { TouchSequence } from 'selenium-webdriver';
+import { timingSafeEqual } from 'crypto';
+import { element } from 'protractor';
 
 
 
@@ -28,7 +31,7 @@ export class OrdersPage implements OnInit {
   valueId: number;
   valueIconCheck: boolean;
   searchValue: string = "";
-
+// msgAlert:boolean = false;
   msgErro: any;
   msgErroCheck: boolean = false;
   msgErroLastname: any;
@@ -39,7 +42,7 @@ export class OrdersPage implements OnInit {
   alertMessage1: boolean = false;
   turnDisabled1: boolean = true;
   turnDisabled: boolean = false;
-
+  turnOnWarning: boolean = false;
 
 
 
@@ -47,6 +50,8 @@ export class OrdersPage implements OnInit {
   constructor(private nav: NavController, private loc: Location, public formBuilder: FormBuilder, private router: Router, public tasksService: TasksService, public taskApiService: TaskApiService, private contactsTaskService: ContactsTaskService) { }
 
   async ngOnInit() {
+
+    console.log('value')
     // await this.contactsTaskService.getEntities().then(res => {
     //   console.log(res)
     //   this.tasksService.listClients = res;
@@ -54,8 +59,29 @@ export class OrdersPage implements OnInit {
     // })
     // this.tasksService.allDocumentsFilter = this.tasksService.listClients
 
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients.sort((a) => (a.firstName == "Consumidor") ? -1 : 1);
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients.map((element) => {
 
 
+
+      if(element.firstName === 'Consumidor'){
+        return {
+          ...element,
+          iconCheck : true
+        }
+      }else {
+        return {
+          ...element
+        }
+
+      }
+    })
+
+console.log(  this.tasksService.allDocumentsFilter)
+
+this.tasksService.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
+console.log(
+  this.tasksService.selectedItem)
   }
 
   selectedItemList(item: any) {
@@ -65,8 +91,15 @@ export class OrdersPage implements OnInit {
         ...element,
         iconCheck: element.id === item.id
       }
+
     });
+
     this.tasksService.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
+      if(item.iconCheck == true){
+     this.tasksService.selectedItem[0].iconCheck = false;
+     this.tasksService.selectedItem = [];
+      }
+
 
     console.log(this.tasksService.selectedItem)
   }
@@ -98,6 +131,7 @@ export class OrdersPage implements OnInit {
 
   newClientButton() {
     this.tasksService.isSubmitted = false;
+    this.turnOnWarning = false;
     this.active = false;
     // this.continue = false;
     // this.isOnActionButtons = false;
@@ -135,9 +169,10 @@ export class OrdersPage implements OnInit {
 
 
   continueButton() {
+console.log(this.tasksService.allDocumentsFilter)
     console.log('continuar 04')
-    if (this.tasksService.selectedItem == null) {
-
+    if (this.tasksService.selectedItem.length == 0 || this.tasksService.selectedItem == "")  {
+        this.turnOnWarning = true;
     } else {
       this.continue1 = false;
       this.active = true;
@@ -148,6 +183,7 @@ export class OrdersPage implements OnInit {
       this.tasksService.controlStepCheck = true;
       this.tasksService.controlStepCheckk = true;
       this.tasksService.controlStep = true;
+      this.turnOnWarning = false;
     }
 
   }
@@ -155,11 +191,16 @@ export class OrdersPage implements OnInit {
 
   continueProcess() {
     console.log('continuar 01')
+    if(this.tasksService.productList.length == 0 ){
+      // this.msgAlert = true;
+    }else  {
     this.router.navigate(['/orders-details']);
-
+    // this.msgAlert = false;
+    }
   }
 
   addProducts() {
+    // this.msgAlert = false;
     this.router.navigate(['/products']);
   }
 
@@ -169,6 +210,7 @@ export class OrdersPage implements OnInit {
     this.tasksService.controlStepCheck = false;
     this.tasksService.controlStepCheckk = false;
     this.continue1 = true;
+    // this.msgAlert = false;
   }
 
   change(event, id) {
@@ -351,7 +393,10 @@ console.log(this.tasksService.validatorNIF)
            this.contactsTaskService.getEntities().then(res => {
             console.log(res)
             this.tasksService.listClients = res;
-            console.log(    this.tasksService.listClients)
+
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients.sort((a) => (a.firstName == "Consumidor") ? -1 : 1);
+    console.log(    this.tasksService.listClients)
+
             // this.tasksService.listTasks$.next(this.listTasks);
             this.tasksService.allDocumentsFilter = this.tasksService.listClients;
           })

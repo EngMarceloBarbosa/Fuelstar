@@ -54,6 +54,7 @@
     </div>
   </div>
   <div class="box-visits">
+    <div class="boxes">
     <div class="box done">
       <div class="box-info">
         <div class="number-task">
@@ -89,8 +90,7 @@
       </div>
     </div>
   </div>
-</div>
-<div class="body-content">
+  <div class="box-type">
   <div class="title-tasks">
     <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
       >{{'App.Tab1.visitsForToday' | translate}}</nc-text
@@ -98,7 +98,7 @@
   </div>
   <div class="type-car">
     <div class="car-icon">
-      <nc-icon [size]="18" color="c-scale-8">icon_truck</nc-icon>
+      <nc-icon [size]="18" color="c-scale-8">icon_truck_orders</nc-icon>
     </div>
     <div class="name-viature">
       <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
@@ -111,9 +111,12 @@
       >
     </div>
   </div>
+</div>
+<div class="body-content">
+
 
   <nc-virtual-scroller #scroll [items]="tasksService.listTasks" >
-    <div class="card-tasks" *ngFor="let task  of scroll.viewPortItems">
+    <div class="card-tasks"  *ngFor="let task  of scroll.viewPortItems">
       <div class="box-task" (click)="selectedTask(task)" >
         <div class="icon-name-user">
           <nc-text
@@ -152,6 +155,10 @@
       </div>
     </div>
   </div>
+</div>
+
+
+</div>
 </div>
 
 <nc-action-sheet [typeASheet]="1" [showFooter]="false">

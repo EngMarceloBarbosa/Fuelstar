@@ -67,7 +67,9 @@ nc-virtual-scroller {
 
 .body-content {
   position: relative;
-  padding: 0 tbu(px(24));
+
+  height: 100%;
+  width: 100%
 }
 
 .box-visits {
@@ -78,7 +80,10 @@ nc-virtual-scroller {
   top: 35%;
   padding-right: tbu(px(24));
   padding-left: tbu(px(24));
+  display: flex;
+  flex-direction: column;
 }
+
 
 .box {
   @extend .space-between;
@@ -91,6 +96,20 @@ nc-virtual-scroller {
   &.to-do {
     background-color: var(--warning);
   }
+}
+
+.boxes{
+  display: flex;
+  justify-content: space-between;
+}
+
+.box-type{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding-top: tbu(px(5));
+  flex-direction: column;
+
 }
 
 .box-info {
@@ -110,16 +129,15 @@ nc-virtual-scroller {
 
 
 .title-tasks {
-  padding-top: tbu(px(50));
-  padding-bottom: tbu(px(12));
-  position: absolute;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 
 
 
 .type-car {
-  width: 40%;
+  width: 45%;
   @extend .space-between;
   padding-bottom: tbu(px(17));
 }
@@ -189,7 +207,7 @@ nc-virtual-scroller {
   background-color: var(--c-scale-2);
   align-self: center;
   position: absolute;
-  top: 83%;
+  top: 70%;
   height: tbu(px(70));
   width: tbu(px(70));
   right: 40%;

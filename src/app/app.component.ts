@@ -46,6 +46,8 @@ export class AppComponent {
   }
 
 
+
+
   handleBackButton() {
     const currentPage = this.router.url;
     const id = currentPage;
