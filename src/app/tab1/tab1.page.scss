@@ -1,8 +1,15 @@
 @import "./../../global.scss";
 
 nc-virtual-scroller {
-  height: calc(100vh - #{tbu(px(370))});
+  height: calc(100vh - #{tbu(px(380))});
+  ::ng-deep {
+  .scrollable-content{
+    height: 145%
+  }
 }
+}
+
+
 
 .header-menu {
   background-color: var(--secondary_dark);

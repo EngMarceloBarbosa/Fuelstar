@@ -84,6 +84,7 @@ export class TasksService {
   msgAlertReceipt: boolean = false;
   turnFreeSale: boolean = false;
   valueReceipt: any;
+  documentMethods:any;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),
@@ -281,6 +282,17 @@ this.validatorNIF = true;
   receiptClients: FormGroup = new FormGroup({
 
     valueReceipt: new FormControl('', Validators.required),
+  })
+
+
+
+  DetailsOrderFrom: FormGroup = new FormGroup({
+
+    firstNameClient: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
+    lastNameClient: new FormControl('', Validators.required),
+    paymentMethod: new FormControl('', Validators.required),
+    productsChoose: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(9)]),
+    address: new FormControl('', [Validators.required, Validators.maxLength(9)])
   })
 
 
