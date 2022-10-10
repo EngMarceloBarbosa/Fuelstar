@@ -6,12 +6,13 @@ import { Location } from '@angular/common';
 import { clients } from '../shared/models/order-list-clients';
 import { TasksService } from '../shared/services/tasks.service';
 
+
 @Component({
-  selector: 'app-receipts',
-  templateUrl: './receipts.page.html',
-  styleUrls: ['./receipts.page.scss'],
+  selector: 'app-survey',
+  templateUrl: './survey.page.html',
+  styleUrls: ['./survey.page.scss'],
 })
-export class ReceiptsPage implements OnInit {
+export class SurveyPage implements OnInit {
 
   @ViewChild('formElement', { static: false }) formElement: NgForm;
   @ViewChild('inputEmail') inputEmail: ElementRef;

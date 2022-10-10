@@ -1,7 +1,7 @@
 @import "./../../global.scss";
 
 nc-virtual-scroller {
-  height: calc(100vh - #{tbu(px(465))});
+  height: calc(100vh - #{tbu(px(370))});
 }
 
 .header-menu {
@@ -207,7 +207,7 @@ nc-virtual-scroller {
   background-color: var(--c-scale-2);
   align-self: center;
   position: absolute;
-  top: 70%;
+  top: 56%;
   height: tbu(px(70));
   width: tbu(px(70));
   right: 40%;

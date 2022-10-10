@@ -87,9 +87,12 @@ export class ProductsPage implements OnInit {
 
 
   close() {
+    if(this.tasksService.turnFreeSale == false ) {
     this.router.navigate(['orders'])
+  }else {
+    this.router.navigate(['free-sale'])
   }
-
+}
   products() {
     this.active = false;
     this.activeTest = true;

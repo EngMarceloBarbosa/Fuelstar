@@ -11,15 +11,12 @@ import { TouchSequence } from 'selenium-webdriver';
 import { timingSafeEqual } from 'crypto';
 import { element } from 'protractor';
 
-
-
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.page.html',
-  styleUrls: ['./orders.page.scss'],
+  selector: 'app-free-sale',
+  templateUrl: './free-sale.page.html',
+  styleUrls: ['./free-sale.page.scss'],
 })
-export class OrdersPage implements OnInit {
-
+export class FreeSalePage implements OnInit {
 
   tempDocuments: any;
   active: boolean = true;
@@ -208,27 +205,23 @@ console.log(this.tasksService.allDocumentsFilter)
 
 
   continueProcess() {
-
-
-    this.tasksService.turnFreeSale = false;
-    if( this.tasksService.turnFreeSale == false){
+    this.tasksService.turnFreeSale = true;
     console.log('continuar 01')
     if(this.tasksService.productList.length == 0 ){
       this.tasksService.msgAlert = true;
+      this.tasksService.turnFreeSale = true;
     }else  {
     this.router.navigate(['/orders-details']);
     this.tasksService.msgAlert = false;
     }
-  }else {
-
-  }
   }
 
   addProducts() {
     // this.msgAlert = false;
     this.router.navigate(['/products']);
-    this.tasksService.turnFreeSale = false;
+
     this.tasksService.msgAlert = false;
+    this.tasksService.turnFreeSale = true;
   }
 
   back() {

@@ -37,9 +37,14 @@ turnFocus:boolean = false;
 
   products2 = product ;
 
-  constructor( private router: Router, public tasksService: TasksService,  private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService,public itemApiService: ItemApiService, public productService:ProductService) { }
+  constructor( private router: Router, public tasksService: TasksService,  private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService,public itemApiService: ItemApiService, public productService:ProductService) {
+
+
+
+   }
 
   ngOnInit() {
+
 
 
   }
@@ -49,6 +54,7 @@ turnFocus:boolean = false;
   }
 
   back(){
+
     this.router.navigate(['products']);
 
   }
@@ -60,6 +66,8 @@ turnFocus:boolean = false;
         console.log(elem.id)
         if(elem.id == item.id){
        this.tasksService.quantity2 = elem.quantity
+      }else{
+        // this.tasksService.quantity2 = 0;
       }
 
 
@@ -72,7 +80,6 @@ turnFocus:boolean = false;
 
       // console.log(this.tasksService.quantity2)
       // this.tasksService.controlBadge = false;
-
 
   this.tasksService.item = item;
   this.router.navigate(['products-details']);
@@ -207,7 +214,8 @@ this.turnFocus = true;
 
   searchDocument($event: string) {
     console.log($event)
-    if ($event.length == 0) {
+    this.tasksService.searchDoc = $event;
+    if (this.tasksService.searchDoc.length == 0) {
       this.tasksService.listsItems = this.tasksService.listItemsByType;
     } else {
       console.log(this.tasksService.listsItems)

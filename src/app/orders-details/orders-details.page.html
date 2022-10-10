@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-  <div class="steps">
+  <div  *ngIf="!tasksService.turnFreeSale" class="steps">
     <div class="steps-details">
       <div *ngIf="tasksService.controlStep"  class="step-space-1">
         <div *ngIf="tasksService.controlStepCheck">
@@ -85,6 +85,56 @@
         <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
       </div>
       </div>
+      <div   *ngIf="!tasksService.controlStep3" class="step-space1"></div>
+      <div class="step-info">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >Payment</nc-text
+        >
+      </div>
+    </div>
+  </div>
+  <div *ngIf="tasksService.turnFreeSale" class="steps">
+    <div class="steps-details">
+      <div *ngIf="tasksService.controlStep"  class="step-space-1">
+        <div *ngIf="tasksService.controlStepCheck">
+        <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
+      </div>
+      </div>
+      <div  *ngIf="!tasksService.controlStep" class="step-space"></div>
+      <div class="step-info">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >Cliente</nc-text
+        >
+      </div>
+    </div>
+    <div class="testedivvv" *ngIf="!tasksService.controlStepCheckk">
+
+    </div>
+    <div class="testediv111" *ngIf="tasksService.controlStepCheckk">
+
+    </div>
+    <div class="steps-details">
+      <div *ngIf="tasksService.controlStep1"   class="step-space-1">
+        <div *ngIf="tasksService.controlStepCheck1">
+        <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
+      </div>
+      </div>
+      <div   *ngIf="!tasksService.controlStep1" class="step-space"></div>
+      <div class="step-info">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >Artigos</nc-text
+        >
+      </div>
+    </div>
+    <div class="testesdivv" *ngIf="!tasksService.controlStepCheckk1">
+
+    </div>
+    <div class="testesdiv11" *ngIf="tasksService.controlStepCheckk1">
+
+    </div>
+
+    <div class="steps-details">
+      <div *ngIf="tasksService.controlStep3"   class="step-space-3"></div>
       <div   *ngIf="!tasksService.controlStep3" class="step-space1"></div>
       <div class="step-info">
         <nc-text size="h7" color="c-scale-10" weight="500" font="primary"

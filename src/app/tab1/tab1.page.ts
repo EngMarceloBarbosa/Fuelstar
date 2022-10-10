@@ -12,6 +12,7 @@ import { TasksService } from '../shared/services/tasks.service';
 import { Contacts, Tasks } from '../utils/models/tasks';
 
 
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',

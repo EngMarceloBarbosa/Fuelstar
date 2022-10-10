@@ -48,6 +48,7 @@ export class ProductService {
 this.tasksService.quantity1 = this.tasksService.quantity2
 
     this.tasksService.quantity1 = 0
+
     // this.tasksService.quantityTotal = 0;
     this.tasksService.productList.map(elem => {
       console.log(elem)

@@ -9,6 +9,7 @@ import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { ProductService } from '../shared/services/product.service';
 import { throwError } from 'rxjs';
 import { PaymentMethodApiService } from '../shared/http/paymentMethods.service';
+import { triggerAsyncId } from 'async_hooks';
 
 
 @Component({
@@ -116,6 +117,8 @@ export class OrdersDetailsPage implements OnInit {
 
   continueButton() {
     console.log('CONTINNNNUAE')
+
+    if(this.tasksService.turnFreeSale == false) {
     this.onAdressNew = true;
     this.onAdress = false
     this.deleteStateNext = true;
@@ -128,6 +131,28 @@ export class OrdersDetailsPage implements OnInit {
     this.tasksService.controlStepCheckk = true;
     this.tasksService.controlStepCheck1 = true;
     this.tasksService.controlStepCheckk1 = true;
+    }else {
+      this.onAdress = false
+      this.deleteState = false;
+
+      this.onPayment = true;
+      this.finishstate = true;
+      this.deleteStateNext = false;
+      this.onAdressNew = false;
+
+
+      this.tasksService.controlStep = true;
+      this.tasksService.controlStep1 = true;
+      this.tasksService.controlStep2 = true;
+      this.tasksService.controlStep3 = true;
+      this.tasksService.controlStepCheck = true;
+      this.tasksService.controlStepCheckk = true;
+      this.tasksService.controlStepCheck1 = true;
+      this.tasksService.controlStepCheckk1 = true;
+      this.tasksService.controlStepCheck2 = true;
+      this.tasksService.controlStepCheckk2 = true;
+
+    }
   }
 
   // Continuar para os Meios de Pagamento
@@ -308,6 +333,8 @@ export class OrdersDetailsPage implements OnInit {
 
 
   clearAllButton() {
+
+    if(this.tasksService.turnFreeSale == false){
     console.log(this.tasksService.selectedList)
 
 
@@ -324,6 +351,8 @@ export class OrdersDetailsPage implements OnInit {
       this.tasksService.productList = [];
       this.tasksService.quantity2 = "";
       this.tasksService.selectedList = []
+      // this.tasksService.quantity2 = "";
+      this.tasksService.quantity2 = 0;
     }
 
 
@@ -331,7 +360,9 @@ export class OrdersDetailsPage implements OnInit {
 
 
     console.log(this.tasksService.productList)
-
+  }else {
+    this.router.navigate(['/free-sale'])
+  }
 
   }
 
@@ -376,6 +407,7 @@ export class OrdersDetailsPage implements OnInit {
 
     if (this.tasksService.productList.length == 0) {
       this.router.navigate(['/products-family'])
+      this.tasksService.quantity2 = 0;
 
     }
 
@@ -431,8 +463,9 @@ export class OrdersDetailsPage implements OnInit {
     }
   }
 
-  addMoreProducts() {
+  addMoreProducts(item) {
     this.router.navigate(['/products']);
+
   }
 
   choose(number) {
@@ -483,6 +516,7 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   back() {
+    if(this.tasksService.turnFreeSale == false){
     console.log("PORTUGAL")
     this.router.navigate(['orders']);
     // this.badges = ""
@@ -492,9 +526,19 @@ export class OrdersDetailsPage implements OnInit {
     this.tasksService.controlStep2 = false;
     this.tasksService.controlStep3 = false;
 
-
+    }else{
+      this.router.navigate(['free-sale']);
+    }
   }
   backToProducts() {
+    if(this.tasksService.turnFreeSale == false){
+    console.log("PORTUGAL-PORTO")
+    this.tasksService.productList = [];
+    console.log(this.tasksService.productList)
+    this.router.navigate(['products-family']);
+    this.deleteState = true;
+    this.clearState = false;
+  }else {
     console.log("PORTUGAL-PORTO")
     this.tasksService.productList = [];
     console.log(this.tasksService.productList)
@@ -502,8 +546,10 @@ export class OrdersDetailsPage implements OnInit {
     this.deleteState = true;
     this.clearState = false;
   }
+}
 
   backOrders() {
+    if(this.tasksService.turnFreeSale == false) {
     console.log("PORTO")
     this.onAdressNew = true;
     this.onPayment = false;
@@ -523,7 +569,21 @@ export class OrdersDetailsPage implements OnInit {
     // this.tasksService.controlStepCheckk = true;
     // this.tasksService.controlStepCheck1 = true;
     // this.tasksService.controlStepCheckk1 = true;
-
+    }else {
+      this.onPayment = false;
+      this.finishstate = false;
+      this.onAdress  = true;
+      this.deleteState = true;
+      this.tasksService.controlStepCheck1 = false;
+      this.tasksService.controlStepCheckk1 = false;
+      this.tasksService.controlStep1 = true;
+      this.tasksService.controlStepCheck = true;
+      this.tasksService.controlStepCheckk = true;
+      this.tasksService.controlStep = true;
+      this.tasksService.controlStep3 = false;
+      this.tasksService.controlStepCheck2 = false;
+      this.tasksService.controlStepCheckk2 = false;
+    }
   }
 
   backProducts(){

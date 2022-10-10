@@ -14,7 +14,9 @@ import { ItemApiService } from '../http/item-api.service';
 @Injectable({ providedIn: 'root' })
 export class TasksService {
 
+  searchDoc:any;
   allDocumentsFilter: any;
+  allDocumentsFilter1:any;
   listsItems: any;
   contactNumber: any;
   idContact: any;
@@ -41,7 +43,7 @@ export class TasksService {
   countVisits: any = [];
   countsToDo: any = [];
   quantity1: any;
-  quantity2: any;
+  quantity2: any = 1;
   listValue: any;
   listItems: Items[] = [];
   totalValueRequest: number;
@@ -71,14 +73,17 @@ export class TasksService {
   controlStepCheckk: boolean = false;
   controlStepCheckk1: boolean = false;
   controlStepCheckk2: boolean = false;
-
+  msgAlert:boolean = false;
   controlStepCheck1:boolean = false;
   controlStepCheck2:boolean = false;
   controlStepCheck3:boolean = false;
-
+  msgErrorNif:any= "Nif não Válido"
     min = '1';
   max = '1000';
   random: any;
+  msgAlertReceipt: boolean = false;
+  turnFreeSale: boolean = false;
+  valueReceipt: any;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),
@@ -260,7 +265,7 @@ this.validatorNIF = true;
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     phone: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(9)]),
-    nif: new FormControl('', Validators.required)
+    nif: new FormControl('', [Validators.required, Validators.maxLength(9)])
   })
 
   contactDetail: FormGroup = new FormGroup({
@@ -272,6 +277,11 @@ this.validatorNIF = true;
   })
 
 
+
+  receiptClients: FormGroup = new FormGroup({
+
+    valueReceipt: new FormControl('', Validators.required),
+  })
 
 
 

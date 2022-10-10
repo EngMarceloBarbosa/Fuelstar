@@ -1,3 +1,4 @@
+
 <ion-content>
   <div class="header-menu">
     <div class="title-menu">
@@ -59,21 +60,7 @@
       <div class="testesdiv1" *ngIf="tasksService.controlStepCheckk1">
 
       </div>
-      <div class="steps-details">
-        <div *ngIf="tasksService.controlStep2"   class="step-space-4"><nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon></div>
-        <div   *ngIf="!tasksService.controlStep2" class="step-space2"></div>
-        <div  class="step-info">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Address</nc-text
-          >
-        </div>
-      </div>
-       <div class="testediv" *ngIf="!tasksService.controlStepCheckk2">
 
-      </div>
-      <div class="testediv1" *ngIf="tasksService.controlStepCheckk2">
-
-      </div>
       <div class="steps-details">
         <div *ngIf="tasksService.controlStep3"   class="step-space-3"><nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon></div>
         <div   *ngIf="!tasksService.controlStep3" class="step-space1"></div>
@@ -415,6 +402,16 @@
           >
         </div>
       </div>
+      <div *ngIf="turnOnWarning"   class="msgWarning">
+        <nc-text
+        size="h7"
+        color="error"
+        weight="bolder"
+        font="primary"
+        hoverColor="c-scale-1"
+        >Selecione um cliente para continuar </nc-text
+      >
+      </div>
     </div>
   </div>
   <div class="buttons-footer" *ngIf="!active">
@@ -441,16 +438,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="turnOnWarning"   class="msgWarning">
-    <nc-text
-    size="h7"
-    color="error"
-    weight="bolder"
-    font="primary"
-    hoverColor="c-scale-1"
-    >Selecione um cliente para continuar </nc-text
-  >
-  </div>
+
   <div *ngIf="tasksService.msgAlert"  class="msgWarning">
     <nc-text
     size="h7"

@@ -1,7 +1,7 @@
 @import "./../../global.scss";
 
 nc-virtual-scroller {
-  height: calc(100vh - #{tbu(px(316))});
+  height: calc(100vh - #{tbu(px(210))});
 }
 
 ion-content {

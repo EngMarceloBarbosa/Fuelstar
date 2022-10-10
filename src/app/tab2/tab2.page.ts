@@ -46,24 +46,64 @@ export class Tab2Page {
   }
 
   select(id: number) {
-    if (id == 1) {
-      this.router.navigate(['/orders']);
+    // if (id == 1) {
+    //   this.router.navigate(['/orders']);
+    //   console.log("entrou");
+    //   this.tasksService.controlStep = true;
+    //   this.tasksService.controlStep1 = false;
+    // }
+    // if (id == 2) {
+    //   this.router.navigate(['/orders']);
+    //   console.log("entrou");
+    // }
+    // if (id == 3) {
+    //   this.router.navigate(['/orders']);
+    //   console.log("entrou");
+    // }
+    // if (id == 4) {
+    //   this.router.navigate(['/receipts']);
+    //   console.log("entrou");
+    // }
+  // }
+
+  switch (id) {
+    case 1:
+      this.router.navigate(['/free-sale']);
       console.log("entrou");
       this.tasksService.controlStep = true;
       this.tasksService.controlStep1 = false;
-    }
-    if (id == 2) {
-      this.router.navigate(['/orders']);
+
+      break;
+
+     case 2:
+
+     this.router.navigate(['/orders']);
+     console.log("entrou");
+     this.tasksService.controlStep = true;
+     this.tasksService.controlStep1 = false;
+     this.tasksService.controlStep2 = false;
+     this.tasksService.controlStepCheck2 = false;
+
+     break;
+
+     case 3:
+       this.router.navigate(['/survey']);
       console.log("entrou");
-    }
-    if (id == 3) {
-      this.router.navigate(['/orders']);
-      console.log("entrou");
-    }
-    if (id == 4) {
+      break;
+
+      case 4 :
       this.router.navigate(['/receipts']);
       console.log("entrou");
-    }
+      break;
+
+      case 5:
+
+        break;
+
+
   }
+
+
+}
 
 }

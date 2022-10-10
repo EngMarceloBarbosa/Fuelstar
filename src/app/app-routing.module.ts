@@ -58,6 +58,10 @@ const routes: Routes = [
     path: 'splash-screen',
     loadChildren: () => import('./splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
   },
+  {
+    path: 'survey',
+    loadChildren: () => import('./survey/survey.module').then( m => m.SurveyPageModule)
+  },
 
 
   // INICIALIZING APP
@@ -71,7 +75,12 @@ const routes: Routes = [
 
     pathMatch: 'full'
 
+  },  {
+    path: 'free-sale',
+    loadChildren: () => import('./free-sale/free-sale.module').then( m => m.FreeSalePageModule)
   },
+
+
 
 
 

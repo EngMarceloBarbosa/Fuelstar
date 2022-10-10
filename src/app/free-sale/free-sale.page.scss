@@ -5,7 +5,9 @@ ion-content {
 }
 
 nc-virtual-scroller {
-  height: calc(100vh - #{tbu(px(328))});
+
+  height: calc(100vh - #{tbu(px(358))});
+
 }
 
 .header-menu {
@@ -197,7 +199,6 @@ nc-input {
   padding-right: tbu(px(24));
   padding-top: tbu(px(10));
   width: 100%;
-  bottom: 0;
 }
 
 .buttons-footer {
@@ -205,9 +206,10 @@ nc-input {
   height: 11%;
   padding: tbu(px(0)) tbu(px(24));
   width: 100%;
-  padding-bottom: 25%;
+  padding-bottom: 27%;
   position: absolute;
   bottom: 0;
+
 }
 
 .add-products {
@@ -315,40 +317,40 @@ nc-input {
 
 
 .testediv11{
-  width: 25%;
+  width: 37%;
   background-color: var(--primary);
   height: 3px;
   display: flex;
   align-items: center;
   margin-right: -13px;
-  margin-left: -12px;
+  margin-left: -15px;
   margin-top: 7px;
 }
 
 .testedivv{
-  width: 25%;
+  width: 37%;
   background-color: var(--c-scale-6);
   height: 3px;
   display: flex;
   align-items: center;
   margin-right: -13px;
-  margin-left: -12px;
+  margin-left: -13px;
   margin-top: 7px;
 }
 
 .testesdiv{
-  width: 25%;
+  width: 37%;
   background-color: var(--c-scale-6);
   height: 3px;
   display: flex;
   align-items: center;
-  margin-right: -16px;
-  margin-left: -12px;
+  margin-right: -24px;
+  margin-left: -14px;
   margin-top: 7px;
 }
 
 .testesdiv1{
-  width: 25%;
+  width: 37%;
   background-color: var(--primary);
   height: 3px;
   display: flex;
@@ -358,11 +360,8 @@ nc-input {
   margin-top: tbu(px(7));
 }
 
-
-
-
 .msgWarning{
-  padding: 0 tbu(px(24))
+  padding: 0 tbu(px(14))
 }
 
 .wrapper{

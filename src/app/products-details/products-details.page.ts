@@ -8,6 +8,7 @@ import { ProductService } from '../shared/services/product.service';
 import { product } from '../shared/models/product-list';
 import { TasksService } from '../shared/services/tasks.service';
 import { ThrowStmt } from '@angular/compiler';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-products-details',
@@ -76,6 +77,12 @@ export class ProductsDetailsPage implements OnInit {
   }
 
   async addProduct(product) {
+
+    console.log(this.tasksService.quantity2)
+
+    if(this.tasksService.quantity2 > 0){
+      this.tasksService.controlBadge = true;
+    }
     this.tasksService.badge = ++this.tasksService.badge;
     console.log(this.tasksService.quantity1)
     this.tasksService.controlBadge = false;
@@ -90,15 +97,16 @@ export class ProductsDetailsPage implements OnInit {
     });
     await toast.present();
 
-
   }
 
 
   back() {
-
+    console.log(   this.tasksService.searchDoc)
+   this.tasksService.searchDoc = "";
+   console.log(   this.tasksService.searchDoc)
+   this.tasksService.listsItems = this.tasksService.listItemsByType;
     this.router.navigate(['products-family']);
     this.tasksService.quantity2 = 0;
-
 
 
 
