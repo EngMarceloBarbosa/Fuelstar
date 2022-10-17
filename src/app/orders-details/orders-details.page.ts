@@ -10,6 +10,7 @@ import { ProductService } from '../shared/services/product.service';
 import { throwError } from 'rxjs';
 import { PaymentMethodApiService } from '../shared/http/paymentMethods.service';
 import { triggerAsyncId } from 'async_hooks';
+import { timingSafeEqual } from 'crypto';
 
 
 @Component({
@@ -352,7 +353,9 @@ export class OrdersDetailsPage implements OnInit {
       this.tasksService.quantity2 = "";
       this.tasksService.selectedList = []
       // this.tasksService.quantity2 = "";
-      this.tasksService.quantity2 = 0;
+      this.tasksService.quantity2 = 1;
+      this.tasksService.quantity1 = 1;
+      this.tasksService.controlBadge = true;
     }
 
 
@@ -361,8 +364,22 @@ export class OrdersDetailsPage implements OnInit {
 
     console.log(this.tasksService.productList)
   }else {
+
+    this.tasksService.selectedList.map(element => {
+      this.tasksService.productList = this.tasksService.productList.filter(item => item.id !== element.id)
+
+    })
+    if(this.tasksService.productList.length === 0){
     this.router.navigate(['/free-sale'])
+    this.tasksService.productList = [];
+      this.tasksService.quantity2 = "";
+      this.tasksService.selectedList = []
+      // this.tasksService.quantity2 = "";
+      this.tasksService.quantity2 = 1;
+      this.tasksService.quantity1 = 1;
+      this.tasksService.controlBadge = true;
   }
+}
 
   }
 
@@ -400,15 +417,14 @@ export class OrdersDetailsPage implements OnInit {
       this.productService.totalValueOrder();
       // this.tasksService.totalValueRequest = this.tasksService.totalValueRequest - element.totalValueItem;
 
-
-
     });
 
 
     if (this.tasksService.productList.length == 0) {
       this.router.navigate(['/products-family'])
-      this.tasksService.quantity2 = 0;
-
+      this.tasksService.quantity2 = 1;
+      this.tasksService.quantity1 = 1;
+      this.tasksService.controlBadge = true;
     }
 
     // console.log(this.list)
@@ -423,7 +439,7 @@ export class OrdersDetailsPage implements OnInit {
     //   }
 
     // })
-    this.tasksService.badge = 0;
+    // this.tasksService.badge = 0;
     this.badgeOn = true;
     console.log(this.tasksService.productList);
   }

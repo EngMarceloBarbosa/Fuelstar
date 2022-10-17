@@ -647,17 +647,21 @@
 
     <div class="input-search">
       <div class="search-client">
-        <nc-input
+        <ion-textarea id="search" (ionChange)="modelChangeFn($event)"  placeholder="Notas" autofocus="true" [autoGrow]="true" (click)="getFocustxt()"
+        value="{{tasksService.listTasksById?.note}}">
+      </ion-textarea>
+
+        <!-- <nc-input
           [attr.tester]="'search-bar-current'"
           placeholder="Notas"
           [bgInputColor]="'c-scale-12'"
-          [clear]="true"
+          [clear]="false"
           [type]="'text'"
-          [size]="'medium'"
-          (onChange)="modelChangeFn($event)"
-          (ngOnChanges)="ngOnChanges($event)"
+          [size]="'large'"
+          [orientation] = "vertical"
+
         >
-        </nc-input>
+        </nc-input> -->
       </div>
     </div>
   </div>

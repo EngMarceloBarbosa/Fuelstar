@@ -18,7 +18,7 @@
           >{{'App.ProductDetails.headerTitle' | translate}}</nc-text
         >
       </div>
-      <div class="button-cart" id="notification-button" >
+      <div class="button-cart" id="notification-button">
         <div class="icon-app cart">
           <nc-icon
             [size]="18"
@@ -69,10 +69,11 @@
         <div class="quantity-products">
           <nc-stepper
             [showNumber]="true"
-            (value)="this.tasksService.quantity2"
-            [min]="0"
+            [value]="this.tasksService.quantity2"
+            [min]="1"
             [(ngModel)]="ammount"
             (click)="show(ammount)"
+
           ></nc-stepper>
         </div>
         <div class="button-add">
@@ -81,7 +82,7 @@
             color="c-scale-10"
             weight="500"
             font="primary"
-            (click)="addProduct(  this.tasksService.item)"
+            (click)="addProduct(this.tasksService.item)"
           >
             {{'App.ProductDetails.buttonAddCart' | translate}}
           </nc-text>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,10 +29,15 @@ export class DetailsClientPage implements OnInit {
   listTasksAll: any;
   NewListTest: any;
 
-  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService,) { }
+  @ViewChild('search') search : any;
+
+
+  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService,) {
+
+
+   }
 
   ngOnInit() {
-
 
     this.tasksService.infoClient$
       .subscribe(client => {
@@ -67,6 +72,10 @@ export class DetailsClientPage implements OnInit {
       console.log(this.tasksService.listTasksById.address.addressLine1, "Tarefas id")
     })
   }
+
+   getFocustxt() {
+    document.getElementById("search").focus;
+    }
 
 
   clickTab(event: any) {
@@ -115,37 +124,44 @@ export class DetailsClientPage implements OnInit {
 
   }
 
+  setFocus(): void {
+
+      this.search.setFocus();
+
+  }
+
+
+
   close() {
     this.onNotes = true;
   }
 
   done(task) {
     console.log(task)
-  //  this.tasksService.listTasks.map(ele => {
+    //  this.tasksService.listTasks.map(ele => {
 
-  //   if( ele.id == task   ) {
-  console.log( this.tasksService.checkList)
+    //   if( ele.id == task   ) {
+    console.log(this.tasksService.checkList)
 
 
-  const index = this.tasksService.checkList.findIndex(el => task === el );
+    const index = this.tasksService.checkList.findIndex(el => task === el);
 
-  console.log(index)
-    if(index > -1)
-    {
+    console.log(index)
+    if (index > -1) {
       console.log('Não dá')
     }
-      else {
-        this.tasksService.countVisits = this.tasksService.countVisits - 1;
-        this.tasksService.countsToDo = this.tasksService.countsToDo + 1;
-        console.log(task)
-        this.tasksService.checkList.push(task)
-        this.tasksService.control = true;
-        if(     this.tasksService.control == true) {
+    else {
+      this.tasksService.countVisits = this.tasksService.countVisits - 1;
+      this.tasksService.countsToDo = this.tasksService.countsToDo + 1;
+      console.log(task)
+      this.tasksService.checkList.push(task)
+      this.tasksService.control = true;
+      if (this.tasksService.control == true) {
         const box = document.getElementById('box-task-header');
         box.style.backgroundColor = 'red';
-        }
       }
-      console.log( this.tasksService.checkList)
+    }
+    console.log(this.tasksService.checkList)
 
     this.router.navigate(['tabs/tab1']);
 

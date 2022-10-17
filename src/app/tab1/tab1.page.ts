@@ -1,5 +1,4 @@
 import { Location } from '@angular/common';
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
@@ -9,7 +8,6 @@ import { TaskApiService } from '../shared/http/task-api.service';
 import { clientsTab } from '../shared/models/clients-tab1';
 import { ProductService } from '../shared/services/product.service';
 import { TasksService } from '../shared/services/tasks.service';
-import { Contacts, Tasks } from '../utils/models/tasks';
 
 
 
@@ -33,6 +31,8 @@ export class Tab1Page implements OnInit {
     }
   ];
 
+  result: string;
+
   tests = clientsTab
 
 
@@ -51,7 +51,10 @@ export class Tab1Page implements OnInit {
     public toastController: ToastController,
     public taskApiService: TaskApiService,
     public contactsTaskService: ContactsTaskService
-  ) { }
+  ) {
+
+
+   }
 
   async ngOnInit() {
 
@@ -122,9 +125,13 @@ console.log(test)
       iconHeader: 'icon_send',
       iconHeaderSize: 12,
       iconHeaderColor: 'c-scale-12',
+
     };
 
+    // const temp = document.createElement('ion-action-sheet');
+
     this.actionSheetService.open(temp);
+
   }
 
   definitions1() {
@@ -156,6 +163,7 @@ console.log(test)
       ]
     });
     await toast.present();
+
 
   }
 

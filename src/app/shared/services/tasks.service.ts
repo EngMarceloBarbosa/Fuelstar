@@ -85,6 +85,7 @@ export class TasksService {
   turnFreeSale: boolean = false;
   valueReceipt: any;
   documentMethods:any;
+
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),
@@ -202,7 +203,7 @@ export class TasksService {
 
     const listTasksByIdNew = {
       ...data,
-      note: this.notes
+      note: this.notes.detail.value
     };
     console.log(this.notes, 'NOTES A NULO ')
 

@@ -61,12 +61,20 @@ turnFocus:boolean = false;
 
   cardsClick(item){
     this.turnFocus = false;
+    console.log(this.tasksService.productList)
       this.tasksService.productList.map((elem)=> {
         console.log(item.id)
         console.log(elem.id)
-        if(elem.id == item.id){
-       this.tasksService.quantity2 = elem.quantity
+
+        const index = this.tasksService.productList.findIndex(ele => ele.id === item.id)
+        if(index >= 0 ){
+          console.log(index)
+          console.log(this.tasksService.productList)
+          this.tasksService.controlBadge = false;
+       this.tasksService.quantity2 = this.tasksService.productList[index].quantity;
       }else{
+        this.tasksService.controlBadge = true;
+        this.tasksService.quantity2 = 1
         // this.tasksService.quantity2 = 0;
       }
 

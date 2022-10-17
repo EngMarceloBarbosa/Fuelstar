@@ -5,10 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
 import { TranslateService } from '@ngx-translate/core';
 import { ProductService } from '../shared/services/product.service';
-import { product } from '../shared/models/product-list';
 import { TasksService } from '../shared/services/tasks.service';
-import { ThrowStmt } from '@angular/compiler';
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-products-details',
@@ -25,7 +22,7 @@ export class ProductsDetailsPage implements OnInit {
   loginMessagesTranslations:any;
   productsMessagesTranslations:any;
   badgeNew: number;
-  ammount = 1;
+  ammount:any;
   ammountNew:any;
 
 
@@ -39,6 +36,9 @@ export class ProductsDetailsPage implements OnInit {
 
 
   ngOnInit() {
+
+this.ammount = this.tasksService.quantity2
+
 
     this.translate.get('App').subscribe(res => {
       this.globalMessagesTranslations = res.Global;
@@ -80,7 +80,7 @@ export class ProductsDetailsPage implements OnInit {
 
     console.log(this.tasksService.quantity2)
 
-    if(this.tasksService.quantity2 > 0){
+    if(this.tasksService.quantity2 > 0 ){
       this.tasksService.controlBadge = true;
     }
     this.tasksService.badge = ++this.tasksService.badge;
@@ -89,13 +89,17 @@ export class ProductsDetailsPage implements OnInit {
     this.productService.addValueProduct(product,this.ammount);
     this.productService.totalValueOrder()
     const toast = await this.toastController.create({
-      header: 'Adicionado produto ao Carrinho',
-      message: this.tasksService.quantity1 ,
+      header: 'Adicionado '  +  this.tasksService.quantity2  +  ' produtos ao Carrinho',
+      message: 'Total : ' + this.tasksService.quantity1   +   ' produtos' ,
       position: 'top',
       color: 'light',
-      duration: 500,
+      duration: 500
+
     });
     await toast.present();
+
+
+
 
   }
 
@@ -106,7 +110,7 @@ export class ProductsDetailsPage implements OnInit {
    console.log(   this.tasksService.searchDoc)
    this.tasksService.listsItems = this.tasksService.listItemsByType;
     this.router.navigate(['products-family']);
-    this.tasksService.quantity2 = 0;
+
 
 
 
@@ -157,9 +161,11 @@ export class ProductsDetailsPage implements OnInit {
   showCart(badge: any, item) {
 
     console.log(item)
-    if (this.tasksService.controlBadge == true) {
+    if (this.tasksService.controlBadge == true ) {
 
     } else {
+
+
 
       console.log("BOAS")
       this.router.navigate(['/orders-details']);
