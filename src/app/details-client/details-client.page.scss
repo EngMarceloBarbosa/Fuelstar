@@ -320,6 +320,14 @@ nc-action-sheet {
   height: 15%;
 }
 
+.search-client{
+  height: 195px;
+    display: flex;
+    width: 100%;
+    border: 1px solid;
+    border-color: var(--c-scale-8);
+}
+
 .input-search {
   margin-top: tbu(px(24));
 }
@@ -335,3 +343,14 @@ nc-action-sheet {
   background-color: var(--c-scale-12);
   @extend .flex-center;
 }
+
+
+nc-input{
+  ::ng-deep {
+    .input-wrapper {
+      height: 227px;
+    }
+  }
+}
+
+
