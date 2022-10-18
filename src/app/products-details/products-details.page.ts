@@ -88,12 +88,13 @@ this.ammount = this.tasksService.quantity2
     this.tasksService.controlBadge = false;
     this.productService.addValueProduct(product,this.ammount);
     this.productService.totalValueOrder()
+
     const toast = await this.toastController.create({
       header: 'Adicionado '  +  this.tasksService.quantity2  +  ' produtos ao Carrinho',
       message: 'Total : ' + this.tasksService.quantity1   +   ' produtos' ,
       position: 'top',
       color: 'light',
-      duration: 500
+      duration: 1000
 
     });
     await toast.present();

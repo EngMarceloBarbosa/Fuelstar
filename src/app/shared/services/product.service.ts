@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { element } from 'protractor';
 import { TasksService } from './tasks.service';
 
 @Injectable({
@@ -26,6 +27,7 @@ export class ProductService {
     // this.quantity1 = this.quantity1 + this.quantity;
     this.tasksService.productList[index].quantity = ammount;
     this.tasksService.productList[index].totalValueItem = newElement.price * this.tasksService.productList[index].quantity;
+
   }else {
     this.tasksService.productList = [
       ...this.tasksService.productList,
@@ -33,11 +35,18 @@ export class ProductService {
         ...newElement,ammount,
         quantity:ammount,
         totalValueItem: newElement.price * ammount
+
       }
+
     ];
+
+
+
   }
+
   // this.tasksService.listProductsNew$.next(this.tasksService.productList);
   console.log(this.tasksService.productList, "1")
+
   }
 
 
@@ -53,10 +62,11 @@ this.tasksService.quantity1 = this.tasksService.quantity2
     this.tasksService.productList.map(elem => {
       console.log(elem)
       this.tasksService.totalValueRequest += elem.totalValueItem;
+
       this.tasksService.quantity1 += elem.quantity;
       console.log(this.tasksService.quantity1)
       // this.tasksService.quantityTotal += elem.quantity;
-      console.log( this.tasksService.totalValueRequest.toFixed(2));
+
 
     })
     // this.tasksService.valueTotal$.next(this.tasksService.totalValueRequest.toFixed(2));

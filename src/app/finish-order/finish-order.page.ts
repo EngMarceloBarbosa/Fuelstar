@@ -32,8 +32,9 @@ this.paymentMethodsApiService.getDocumentMethod().then(res => {
 
    async finish(){
     this.tasksService.productList = [];
-    this.tasksService.quantity1 = [];
-    this.tasksService.quantity2 = [];
+    this.tasksService.quantity1 = 1;
+    this.tasksService.quantity2 = 1;
+    this.tasksService.controlBadge = true;
     this.tasksService.selectedMethod = "";
     const toast = await this.toastController.create({
       header: 'Nova encomenda Registada',

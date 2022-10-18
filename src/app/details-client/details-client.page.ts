@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,15 +29,16 @@ export class DetailsClientPage implements OnInit {
   listTasksAll: any;
   NewListTest: any;
 
-  @ViewChild('search') search : any;
+  @ViewChild('search') myInput;
 
 
   constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService,) {
 
-
    }
 
   ngOnInit() {
+
+
 
     this.tasksService.infoClient$
       .subscribe(client => {
@@ -72,6 +73,16 @@ export class DetailsClientPage implements OnInit {
       console.log(this.tasksService.listTasksById.address.addressLine1, "Tarefas id")
     })
   }
+
+ notes() {
+
+    setTimeout(() => {
+      console.log('PASSOU')
+      this.myInput.setFocus();
+    },150);
+
+    this.onNotes = false;
+ }
 
    getFocustxt() {
     document.getElementById("search").focus;
@@ -109,9 +120,6 @@ export class DetailsClientPage implements OnInit {
     this.actionSheetService.open(temp);
   }
 
-  notes() {
-    this.onNotes = false;
-  }
 
   closeNotes() {
 
@@ -124,11 +132,6 @@ export class DetailsClientPage implements OnInit {
 
   }
 
-  setFocus(): void {
-
-      this.search.setFocus();
-
-  }
 
 
 
@@ -158,7 +161,7 @@ export class DetailsClientPage implements OnInit {
       this.tasksService.control = true;
       if (this.tasksService.control == true) {
         const box = document.getElementById('box-task-header');
-        box.style.backgroundColor = 'red';
+
       }
     }
     console.log(this.tasksService.checkList)

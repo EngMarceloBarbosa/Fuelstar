@@ -114,6 +114,7 @@ console.log(test)
     if (test.id == 2) {
       console.log("2 entrou");
     }
+
     this.router.navigate(['/details-client'])
   }
 

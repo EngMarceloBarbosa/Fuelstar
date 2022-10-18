@@ -85,6 +85,8 @@ export class TasksService {
   turnFreeSale: boolean = false;
   valueReceipt: any;
   documentMethods:any;
+  totalValueRequestPrice:any;
+  totalValueItemPrice:any;
 
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),

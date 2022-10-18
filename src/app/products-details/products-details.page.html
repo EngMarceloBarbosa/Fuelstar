@@ -52,7 +52,7 @@
             >{{tasksService.item.name}}</nc-text
           >
           <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >0,50€</nc-text
+            >{{tasksService.item.price}}€</nc-text
           >
         </div>
         <div class="icon-definitions">
@@ -73,7 +73,7 @@
             [min]="1"
             [(ngModel)]="ammount"
             (click)="show(ammount)"
-
+             type="number"
           ></nc-stepper>
         </div>
         <div class="button-add">

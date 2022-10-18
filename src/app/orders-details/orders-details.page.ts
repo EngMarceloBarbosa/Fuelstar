@@ -37,7 +37,6 @@ export class OrdersDetailsPage implements OnInit {
   name: any = "Boas"
   selectedValue: any;
   onPayment: boolean = false;
-
   productList: any[] = [];
   key: any;
   continueState: boolean = true;
@@ -526,9 +525,11 @@ export class OrdersDetailsPage implements OnInit {
       this.tasksService.productList[index].totalValueItem = this.tasksService.productList[index].price * this.tasksService.productList[index].quantity;
       this.tasksService.totalValueRequest = this.tasksService.productList[index].totalValueItem
       this.productService.totalValueOrder();
+
+
     } else {
     }
-    console.log(this.tasksService.productList)
+
   }
 
   back() {
@@ -545,22 +546,25 @@ export class OrdersDetailsPage implements OnInit {
     }else{
       this.router.navigate(['free-sale']);
     }
+    this.productService.totalValueOrder();
   }
   backToProducts() {
     if(this.tasksService.turnFreeSale == false){
     console.log("PORTUGAL-PORTO")
-    this.tasksService.productList = [];
+    // this.tasksService.productList = [];
     console.log(this.tasksService.productList)
     this.router.navigate(['products-family']);
     this.deleteState = true;
     this.clearState = false;
+    this.productService.totalValueOrder()
   }else {
     console.log("PORTUGAL-PORTO")
-    this.tasksService.productList = [];
+    // this.tasksService.productList = [];
     console.log(this.tasksService.productList)
     this.router.navigate(['products-family']);
     this.deleteState = true;
     this.clearState = false;
+    this.productService.totalValueOrder()
   }
 }
 
