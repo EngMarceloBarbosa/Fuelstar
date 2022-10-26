@@ -6,7 +6,7 @@ import { TasksService } from '../shared/services/tasks.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { Contacts, Entity, Tasks } from '../utils/models/tasks';
 import { TaskApiService } from '../shared/http/task-api.service';
-import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
+import { CallNumber } from 'capacitor-call-number';
 
 @Component({
   selector: 'app-details-client',
@@ -35,7 +35,7 @@ export class DetailsClientPage implements OnInit {
   @ViewChild('search') myInput;
 
 
-  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService,private callNumber: CallNumber) {
+  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService) {
 
    }
 
@@ -202,17 +202,15 @@ export class DetailsClientPage implements OnInit {
 
   }
 
-  callNumber1(){
-console.log('eNTORU CALL NUMBER', this.tasksService.listContacts[0]?.value)
-this.callNumber.callNumber("this.tasksService.listContacts[0]?.value", true)
-.then(res => console.log('Launched dialer!', res))
-.catch(err => console.log('Error launching dialer', err));
-
-  }
 
 
   save() {
     this.tasksService.addNotes();
     this.onNotes = true;
+  }
+
+  async call(){
+     this.tasksService.listContacts[0]?.value
+    await CallNumber.call({ number: this.tasksService.listContacts[0]?.value, bypassAppChooser: false });
   }
 }

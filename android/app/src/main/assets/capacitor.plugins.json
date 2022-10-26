@@ -14,5 +14,9 @@
 	{
 		"pkg": "@capacitor/status-bar",
 		"classpath": "com.capacitorjs.plugins.statusbar.StatusBarPlugin"
+	},
+	{
+		"pkg": "capacitor-call-number",
+		"classpath": "com.devmantosh.callnumber.CallNumber"
 	}
 ]
