@@ -70,6 +70,9 @@ export class Tab1Page implements OnInit {
     await this.taskApiService.getTasks().then(res => {
       console.log(res)
       this.tasksService.listTasks = res;
+      this.tasksService.visiteToDo = this.tasksService.listTasks
+      console.log(this.tasksService.visiteToDo)
+
       this.tasksService.countVisits  = this.tasksService.listTasks.length
       console.log(this.tasksService.countVisits)
       this.tasksService.countsToDo =  this.tasksService.listTasks.length-this.tasksService.countVisits
@@ -168,7 +171,12 @@ console.log(test)
 
   }
 
+  boxDone(){
+    this.tasksService.toDo = false
+  }
 
-
+  boxToDo(){
+    this.tasksService.toDo = true
+  }
 }
 

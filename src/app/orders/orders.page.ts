@@ -114,9 +114,10 @@ console.log(
       if(item.iconCheck == true){
      this.tasksService.selectedItem[0].iconCheck = false;
      this.tasksService.selectedItem = [];
-    }
+    }else {
+      this.turnOnWarning = false;
     this.searchClients = '';
-
+    }
       console.log(this.searchClients)
     console.log(this.tasksService.selectedItem)
   }

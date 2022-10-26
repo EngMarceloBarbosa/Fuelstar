@@ -1,5 +1,10 @@
 <ion-content>
-  <div class="header-menu">
+  <div class="container">
+
+  <div class="containerModeSearch" *ngIf="!tasksService.turnSearch">
+
+
+  <div class="header-menu" >
     <div class="title-menu">
       <div class="order-details">
         <div class="operator-name">
@@ -19,8 +24,9 @@
       </div>
     </div>
   </div>
+</div>
   <div class="body-content">
-    <div class="steps">
+    <div class="steps" *ngIf="!tasksService.turnSearch">
       <div class="steps-details">
         <div *ngIf="tasksService.controlStep" class="step-space-1">
           <div *ngIf="tasksService.controlStepCheck">
@@ -66,7 +72,7 @@
     </div>
     <div class="body-content-child">
       <div class="body-products" *ngIf="continue1">
-        <div class="buttons-client">
+        <div class="buttons-client"  *ngIf="!tasksService.turnSearch">
           <div
             class="client"
             id="client"
@@ -123,7 +129,18 @@
           </div>
         </div>
         <div class="client-container" *ngIf="active">
-          <div class="search-client">
+          <div class="search-client" (click)="search()">
+            <div class="icon-close1" *ngIf="!tasksService.turnSearch"   (click)="close1()">
+            <div    >
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+
+                >icon_close</nc-icon
+              >
+            </div>
+          </div>
             <nc-input
               [attr.tester]="'search-bar-current'"
               placeholder="{{'App.Orders.search' | translate}}"
@@ -134,6 +151,7 @@
               [type]="'text'"
               [size]="'medium'"
               (valueChange)="searchDocument($event)"
+
             >
             </nc-input>
           </div>
@@ -316,6 +334,42 @@
           </div>
         </div>
         <!-- </form> -->
+        <div *ngIf="continue1">
+          <div class="buttons-footer" *ngIf="active">
+            <div class="buttons-client">
+              <div class="client" (click)="close()">
+                <nc-text
+                  size="h6"
+                  color="c-scale-12"
+                  weight="bolder"
+                  font="primary"
+                  hoverColor="c-scale-12"
+                  >Sair</nc-text
+                >
+              </div>
+              <div class="client-1" (click)="continueButton()">
+                <nc-text
+                  size="h7"
+                  color="c-scale-1"
+                  weight="bolder"
+                  font="primary"
+                  hoverColor="c-scale-1"
+                  >{{'App.Orders.continue' | translate}}</nc-text
+                >
+              </div>
+            </div>
+            <div *ngIf="turnOnWarning" class="msgWarning">
+              <nc-text
+                size="h7"
+                color="error"
+                weight="bolder"
+                font="primary"
+                hoverColor="c-scale-1"
+                >Selecione um cliente para continuar
+              </nc-text>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -341,7 +395,7 @@
         </div>
       </div>
     </div>
-  </div>
+
   <div *ngIf="!continue1">
     <div class="buttons-footer1">
       <div class="buttons-client">
@@ -368,42 +422,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="continue1">
-    <div class="buttons-footer" *ngIf="active">
-      <div class="buttons-client">
-        <div class="client" (click)="close()">
-          <nc-text
-            size="h6"
-            color="c-scale-12"
-            weight="bolder"
-            font="primary"
-            hoverColor="c-scale-12"
-            >Sair</nc-text
-          >
-        </div>
-        <div class="client-1" (click)="continueButton()">
-          <nc-text
-            size="h7"
-            color="c-scale-1"
-            weight="bolder"
-            font="primary"
-            hoverColor="c-scale-1"
-            >{{'App.Orders.continue' | translate}}</nc-text
-          >
-        </div>
-      </div>
-      <div *ngIf="turnOnWarning" class="msgWarning">
-        <nc-text
-          size="h7"
-          color="error"
-          weight="bolder"
-          font="primary"
-          hoverColor="c-scale-1"
-          >Selecione um cliente para continuar
-        </nc-text>
-      </div>
-    </div>
-  </div>
+
   <div class="buttons-footer" *ngIf="!active">
     <div class="buttons-client">
       <div class="client" (click)="goBack()">
@@ -439,4 +458,6 @@
       >A lista de Produtos encontra-se Vazia
     </nc-text>
   </div>
+</div>
+</div>
 </ion-content>

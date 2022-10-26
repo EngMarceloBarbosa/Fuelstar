@@ -100,10 +100,17 @@ nc-virtual-scroller {
   &.done {
     background-color: var(--primary);
   }
+  // &.done:hover {
+  //   background-color: red;
+
   &.to-do {
     background-color: var(--warning);
   }
-}
+  }
+  // &.to-do:hover{
+  //   background-color: red;
+  // }
+
 
 .boxes{
   display: flex;
@@ -122,8 +129,9 @@ nc-virtual-scroller {
 .box-info {
   width: 75%;
   flex-direction: column;
-  padding: tbu(px(10)) tbu(px(5));
+  padding: tbu(px(10)) tbu(px(11));
 }
+
 
 .box-image {
   width: 55%;

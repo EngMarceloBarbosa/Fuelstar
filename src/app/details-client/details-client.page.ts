@@ -6,11 +6,14 @@ import { TasksService } from '../shared/services/tasks.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { Contacts, Entity, Tasks } from '../utils/models/tasks';
 import { TaskApiService } from '../shared/http/task-api.service';
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 
 @Component({
   selector: 'app-details-client',
   templateUrl: './details-client.page.html',
   styleUrls: ['./details-client.page.scss'],
+
+
 })
 export class DetailsClientPage implements OnInit {
 
@@ -32,11 +35,12 @@ export class DetailsClientPage implements OnInit {
   @ViewChild('search') myInput;
 
 
-  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService,) {
+  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService,private callNumber: CallNumber) {
 
    }
 
   ngOnInit() {
+
 
 
 
@@ -57,6 +61,7 @@ export class DetailsClientPage implements OnInit {
       this.tasksService.idContact = this.tasksService.listContacts[0].id
       this.tasksService.idContactId = this.tasksService.listContacts[0].contactId
       this.tasksService.idEntityId = this.tasksService.listContacts[0].entity.id
+
 
       console.log(this.tasksService.idContact)
     })
@@ -140,35 +145,72 @@ export class DetailsClientPage implements OnInit {
   }
 
   done(task) {
-    console.log(task)
-    //  this.tasksService.listTasks.map(ele => {
+    console.log(this.tasksService.visiteToDo)
 
-    //   if( ele.id == task   ) {
-    console.log(this.tasksService.checkList)
+    this.tasksService.visiteToDo = this.tasksService.visiteToDo.filter(elem => elem.id != task.id)
 
+    let index = this.tasksService.visiteEfected.findIndex(el => el.id === task.id);
 
-    const index = this.tasksService.checkList.findIndex(el => task === el);
-
-    console.log(index)
-    if (index > -1) {
-      console.log('Não dá')
+    if(index < 0) {
+      this.tasksService.visiteEfected = [...this.tasksService.visiteEfected, task]
     }
-    else {
-      this.tasksService.countVisits = this.tasksService.countVisits - 1;
-      this.tasksService.countsToDo = this.tasksService.countsToDo + 1;
-      console.log(task)
-      this.tasksService.checkList.push(task)
-      this.tasksService.control = true;
-      if (this.tasksService.control == true) {
-        const box = document.getElementById('box-task-header');
+// console.log(index)
+//      if(index > -1){
+//       this.tasksService.visiteEfected = this.tasksService.visiteEfected.splice(task)
 
-      }
-    }
-    console.log(this.tasksService.checkList)
+//      }else {
+//       this.tasksService.visiteToDo
+//      }
 
+
+
+    // console.log(task)
+    // //  this.tasksService.listTasks.map(ele => {
+
+    // //   if( ele.id == task   ) {
+    // console.log(this.tasksService.checkList)
+
+
+    // const index = this.tasksService.visiteToDo.findIndex(el => task.id === el.id);
+
+    // console.log(index)
+    // if (index > -1) {
+    //   console.log('Não dá')
+    //    this.tasksService.visiteToDo = this.tasksService.visiteToDo.splice(index, 1)
+    //    this.tasksService.visiteEfected = this.tasksService.visiteToDo.push(index, 1)
+    // }
+    // else {
+    //   this.tasksService.countVisits = this.tasksService.countVisits - 1;
+    //   this.tasksService.countsToDo = this.tasksService.countsToDo + 1;
+    //   console.log(task)
+    //   this.tasksService.checkList.push(task)
+    //   this.tasksService.control = true;
+    //   if (this.tasksService.control == true) {
+    //     const box = document.getElementById('box-task-header');
+
+    //   }
+    // }
+    // console.log(this.tasksService.checkList)
+    // console.log( this.tasksService.visiteEfected )
+    // console.log( this.tasksService.visiteToDo)
+
+    this.tasksService.countsToDo = this.tasksService.visiteEfected.length;
+    this.tasksService.countVisits =  this.tasksService.visiteToDo.length;
     this.router.navigate(['tabs/tab1']);
+    console.log([...this.tasksService.visiteEfected], "EFETUADAS")
+    console.log([...this.tasksService.visiteToDo], "POR fazer")
 
   }
+
+  callNumber1(){
+console.log('eNTORU CALL NUMBER', this.tasksService.listContacts[0]?.value)
+this.callNumber.callNumber("this.tasksService.listContacts[0]?.value", true)
+.then(res => console.log('Launched dialer!', res))
+.catch(err => console.log('Error launching dialer', err));
+
+  }
+
+
   save() {
     this.tasksService.addNotes();
     this.onNotes = true;

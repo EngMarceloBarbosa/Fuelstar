@@ -243,6 +243,13 @@ export class LoginPage implements OnInit {
 
   }
 
+  send($event: KeyboardEvent) {
+    console.log($event)
+    if($event.key === 'Enter') {
+      this.signInClick()
+    }
+}
+
 
 }
 

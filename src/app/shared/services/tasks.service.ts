@@ -51,6 +51,8 @@ export class TasksService {
   listItemsByType: Items[];
   itemSelected: any;
   productList: any[] = [];
+  visiteEfected: any[] = [];
+  visiteToDo: any[] = [];
   item: any;
   badge: number = 0;
   selectedItem: any = "";
@@ -87,7 +89,8 @@ export class TasksService {
   documentMethods:any;
   totalValueRequestPrice:any;
   totalValueItemPrice:any;
-
+  toDo: boolean = true;
+  turnSearch: boolean = false;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),

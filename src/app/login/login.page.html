@@ -46,6 +46,7 @@
               placeholder="{{'App.Login.placeholderUser' | translate}}"
               formControlName="email"
               id="inputEmail"
+
             />
           </nc-form-field>
           <span
@@ -73,6 +74,7 @@
               placeholder="{{'App.Login.placeholderPassword' | translate}}"
               id="password"
               formControlName="password"
+              (keydown.enter)="send($event)"
             />
           </nc-form-field>
         </div>

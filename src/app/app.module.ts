@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { TranslateModule, TranslateLoader, } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PipesModule } from "./shared/pipes/pipes.module";
 import { SplashScreenStateService } from './shared/services/splash-screen-state.service';
 import { SplashScreenPageModule } from './splash-screen/splash-screen.module';
 import { SplashScreenPage } from './splash-screen/splash-screen.page';
+import { DetailsClientPage } from './details-client/details-client.page';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -28,6 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     SharedModule,
     PipesModule,
+    HttpClientModule,
 
 
     TranslateModule.forRoot({
@@ -40,7 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SplashScreenStateService
+    SplashScreenStateService, DetailsClientPage
  ],
   bootstrap: [AppComponent],
 })

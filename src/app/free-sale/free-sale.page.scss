@@ -6,15 +6,20 @@ ion-content {
 
 nc-virtual-scroller {
 
-  height: calc(100vh - #{tbu(px(358))});
+  // height: calc(100vh - #{tbu(px(358))});
+  height: 52vh;
 
+}
+
+.container{
+  height: 100vh;
 }
 
 .header-menu {
   background-color: var(--c-scale-12);
   background-size: cover;
   width: 100%;
-  height: 11%;
+  height: 10vh;
   display: flex;
     align-items: center;
 }
@@ -42,9 +47,17 @@ nc-virtual-scroller {
   justify-content: flex-end;
 }
 
+.icon-close1{
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .body-content {
-  height: 70%;
+  height: 80vh;
   padding: tbu(px(24)) tbu(px(24));
+  position: absolute;
+  width: 100%;
 }
 
 .steps {
@@ -192,24 +205,35 @@ nc-input {
   }
 }
 
+.body-products{
+  height: 63vh;
+}
+
 .buttons-footer1 {
   background-color: var(--c-scale-1_bg);
-  height: 11%;
-  padding-left: tbu(px(24));
-  padding-right: tbu(px(24));
-  padding-top: tbu(px(10));
+  height: 24vh;
+  // padding-left: tbu(px(24));
+  // padding-right: tbu(px(24));
+
   width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
 }
 
 .buttons-footer {
   background-color: var(--c-scale-1_bg);
-  height: 11%;
-  padding: tbu(px(0)) tbu(px(24));
-  width: 100%;
-  padding-bottom: 27%;
-  position: absolute;
-  bottom: 0;
 
+  // padding: tbu(px(0)) tbu(px(24));
+  width: 100%;
+  // padding-bottom: 27%;
+  position: relative;
+  bottom: 0;
+display: flex;
+    flex-direction: column;
+    justify-content: end;
 }
 
 .add-products {
@@ -219,6 +243,13 @@ nc-input {
   @extend .flex-center;
   text-align: center;
   flex-direction: column;
+}
+
+.add-products1{
+  height: 49vh;
+  display: flex;
+  align-items: center;
+
 }
 
 .button-add-products {
@@ -364,6 +395,3 @@ nc-input {
   padding: 0 tbu(px(14))
 }
 
-.wrapper{
-
-}

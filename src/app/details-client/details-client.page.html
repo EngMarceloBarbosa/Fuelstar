@@ -90,7 +90,7 @@
                   >icon_edit</nc-icon
                 >
               </div>
-              <div class="phone-icon">
+              <div class="phone-icon" (click)="callNumber1()">
                 <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
                   >icon_phone</nc-icon
                 >
@@ -601,7 +601,7 @@
           </div>
         </nc-action-sheet>
       </div>
-      <div class="button-done" (click)="done(clientDetails.id)">
+      <div class="button-done" (click)="done(clientDetails)">
         <div class="icon-option">
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
             >icon_check</nc-icon

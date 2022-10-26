@@ -48,6 +48,8 @@ export class FreeSalePage implements OnInit {
 
   async ngOnInit() {
 
+    console.log(this.tasksService.turnSearch)
+
     console.log('value')
     // await this.contactsTaskService.getEntities().then(res => {
     //   console.log(res)
@@ -109,17 +111,21 @@ console.log(
 
     this.tasksService.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
       if(item.iconCheck == true){
+
      this.tasksService.selectedItem[0].iconCheck = false;
      this.tasksService.selectedItem = [];
-    }
-    this.searchClients = '';
+    }else{
 
+      this.turnOnWarning = false;
+    this.searchClients = '';
+    }
       console.log(this.searchClients)
     console.log(this.tasksService.selectedItem)
   }
 
 
   close() {
+
     this.router.navigate(['/tabs/tab2']);
     this.tasksService.isSubmitted = false;
     this.tasksService.controlStep1 = false;
@@ -130,6 +136,10 @@ console.log(
     this.tasksService.controlStepCheckk1 = false;
   }
 
+  close1(){
+    console.log('entrou')
+    this.tasksService.turnSearch = false;
+  }
 
   clientButton() {
     this.tasksService.isSubmitted = false;
@@ -277,6 +287,7 @@ console.log(this.tasksService.allDocumentsFilter)
   }
 
   searchDocument($event: string) {
+    this.tasksService.turnSearch = true;
     console.log( this.tasksService.allDocumentsFilter)
     console.log($event)
     this.searchClients = $event
@@ -296,6 +307,10 @@ console.log(this.tasksService.allDocumentsFilter)
 
 
 
+  }
+
+  search(){
+    this.tasksService.turnSearch = true;
   }
 
   async save() {
