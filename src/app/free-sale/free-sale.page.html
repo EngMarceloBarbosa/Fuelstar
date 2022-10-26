@@ -1,136 +1,132 @@
 <ion-content>
   <div class="container">
-
-  <div class="containerModeSearch" *ngIf="!tasksService.turnSearch">
-
-
-  <div class="header-menu" >
-    <div class="title-menu">
-      <div class="order-details">
-        <div class="operator-name">
-          <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-            >Order Nº {{tasksService.random}}</nc-text
-          >
-        </div>
-      </div>
-      <div class="icon-close">
-        <nc-icon
-          [size]="18"
-          color="c-scale-1"
-          hoverColor="c-scale-1"
-          (click)="close()"
-          >icon_close</nc-icon
-        >
-      </div>
-    </div>
-  </div>
-</div>
-  <div class="body-content">
-    <div class="steps" *ngIf="!tasksService.turnSearch">
-      <div class="steps-details">
-        <div *ngIf="tasksService.controlStep" class="step-space-1">
-          <div *ngIf="tasksService.controlStepCheck">
-            <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
+    <div class="header-menu">
+      <div class="title-menu">
+        <div class="order-details">
+          <div class="operator-name">
+            <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+              >Order Nº {{tasksService.random}}</nc-text
+            >
           </div>
         </div>
-        <div *ngIf="!tasksService.controlStep" class="step-space"></div>
-        <div class="step-info">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Cliente</nc-text
-          >
-        </div>
-      </div>
-      <div class="testedivv" *ngIf="!tasksService.controlStepCheckk"></div>
-      <div class="testediv11" *ngIf="tasksService.controlStepCheckk"></div>
-      <div class="steps-details">
-        <div *ngIf="tasksService.controlStep1" class="step-space-1">
-          <div *ngIf="tasksService.controlStepCheck1">
-            <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
-          </div>
-        </div>
-        <div *ngIf="!tasksService.controlStep1" class="step-space"></div>
-        <div class="step-info">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Artigos</nc-text
-          >
-        </div>
-      </div>
-      <div class="testesdiv" *ngIf="!tasksService.controlStepCheckk1"></div>
-      <div class="testesdiv1" *ngIf="tasksService.controlStepCheckk1"></div>
-
-      <div class="steps-details">
-        <div *ngIf="tasksService.controlStep3" class="step-space-3">
-          <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
-        </div>
-        <div *ngIf="!tasksService.controlStep3" class="step-space1"></div>
-        <div class="step-info">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >Payment</nc-text
+        <div class="icon-close">
+          <nc-icon
+            [size]="18"
+            color="c-scale-1"
+            hoverColor="c-scale-1"
+            (click)="close()"
+            >icon_close</nc-icon
           >
         </div>
       </div>
     </div>
-    <div class="body-content-child">
-      <div class="body-products" *ngIf="continue1">
-        <div class="buttons-client"  *ngIf="!tasksService.turnSearch">
-          <div
-            class="client"
-            id="client"
-            (click)="clientButton()"
-            [class.is-on-action-Buttons]="isOnActionButtons"
-          >
-            <div class="turnDisabled" *ngIf="turnDisabled1">
-              <nc-text
-                size="h6"
-                color="c-scale-12"
-                id="client"
-                weight="bolder"
-                font="primary"
-                >{{'App.Orders.clients' | translate}}</nc-text
-              >
-            </div>
-            <div class="turnDisabled" *ngIf="!turnDisabled1">
-              <nc-text
-                size="h6"
-                color="c-scale-10"
-                id="client"
-                weight="bolder"
-                font="primary"
-                >{{'App.Orders.clients' | translate}}</nc-text
-              >
+
+    <div class="body-content">
+      <div class="steps">
+        <div class="steps-details">
+          <div *ngIf="tasksService.controlStep" class="step-space-1">
+            <div *ngIf="tasksService.controlStepCheck">
+              <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
             </div>
           </div>
-          <div
-            class="client-new"
-            id="client-1"
-            (click)="newClientButton()"
-            [class.is-on-action-Buttons]="!isOnActionButtons"
-          >
-            <div *ngIf="turnDisabled">
-              <nc-text
-                size="h6"
-                color="c-scale-12"
-                id="client-2"
-                weight="bolder"
-                font="primary"
-                >{{'App.Orders.newClient' | translate}}</nc-text
-              >
-            </div>
-            <div *ngIf="!turnDisabled">
-              <nc-text
-                size="h6"
-                color="c-scale-10"
-                id="client-2"
-                weight="bolder"
-                font="primary"
-                >{{'App.Orders.newClient' | translate}}</nc-text
-              >
-            </div>
+          <div *ngIf="!tasksService.controlStep" class="step-space"></div>
+          <div class="step-info">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >Cliente</nc-text
+            >
           </div>
         </div>
-        <div class="client-container" *ngIf="active">
-          <div class="search-client" (click)="search()">
-            <div class="icon-close1" *ngIf="!tasksService.turnSearch"   (click)="close1()">
+        <div class="testedivv" *ngIf="!tasksService.controlStepCheckk"></div>
+        <div class="testediv11" *ngIf="tasksService.controlStepCheckk"></div>
+        <div class="steps-details">
+          <div *ngIf="tasksService.controlStep1" class="step-space-1">
+            <div *ngIf="tasksService.controlStepCheck1">
+              <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
+            </div>
+          </div>
+          <div *ngIf="!tasksService.controlStep1" class="step-space"></div>
+          <div class="step-info">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >Artigos</nc-text
+            >
+          </div>
+        </div>
+        <div class="testesdiv" *ngIf="!tasksService.controlStepCheckk1"></div>
+        <div class="testesdiv1" *ngIf="tasksService.controlStepCheckk1"></div>
+
+        <div class="steps-details">
+          <div *ngIf="tasksService.controlStep3" class="step-space-3">
+            <nc-icon color="c-scale-1" [size]="12">icon_check</nc-icon>
+          </div>
+          <div *ngIf="!tasksService.controlStep3" class="step-space1"></div>
+          <div class="step-info">
+            <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+              >Payment</nc-text
+            >
+          </div>
+        </div>
+      </div>
+      <div class="body-content-child">
+        <div class="body-products" *ngIf="continue1">
+          <div class="buttons-client">
+            <div
+              class="client"
+              id="client"
+              (click)="clientButton()"
+              [class.is-on-action-Buttons]="isOnActionButtons"
+            >
+              <div class="turnDisabled" *ngIf="turnDisabled1">
+                <nc-text
+                  size="h6"
+                  color="c-scale-12"
+                  id="client"
+                  weight="bolder"
+                  font="primary"
+                  >{{'App.Orders.clients' | translate}}</nc-text
+                >
+              </div>
+              <div class="turnDisabled" *ngIf="!turnDisabled1">
+                <nc-text
+                  size="h6"
+                  color="c-scale-10"
+                  id="client"
+                  weight="bolder"
+                  font="primary"
+                  >{{'App.Orders.clients' | translate}}</nc-text
+                >
+              </div>
+            </div>
+            <div
+              class="client-new"
+              id="client-1"
+              (click)="newClientButton()"
+              [class.is-on-action-Buttons]="!isOnActionButtons"
+            >
+              <div *ngIf="turnDisabled">
+                <nc-text
+                  size="h6"
+                  color="c-scale-12"
+                  id="client-2"
+                  weight="bolder"
+                  font="primary"
+                  >{{'App.Orders.newClient' | translate}}</nc-text
+                >
+              </div>
+              <div *ngIf="!turnDisabled">
+                <nc-text
+                  size="h6"
+                  color="c-scale-10"
+                  id="client-2"
+                  weight="bolder"
+                  font="primary"
+                  >{{'App.Orders.newClient' | translate}}</nc-text
+                >
+              </div>
+            </div>
+          </div>
+          <div class="client-container" *ngIf="active">
+            <div class="search-client">
+              <!-- <div class="icon-close1" *ngIf="!tasksService.turnSearch"   (click)="close1()">
             <div    >
               <nc-icon
                 [size]="18"
@@ -140,87 +136,89 @@
                 >icon_close</nc-icon
               >
             </div>
-          </div>
-            <nc-input
-              [attr.tester]="'search-bar-current'"
-              placeholder="{{'App.Orders.search' | translate}}"
-              [bgInputColor]="'c-scale-12'"
-              [icon]="'icon_search'"
-              [iconPosition]="'left'"
-              [clear]="true"
-              [type]="'text'"
-              [size]="'medium'"
-              (valueChange)="searchDocument($event)"
+          </div> -->
+              <nc-input
+                [attr.tester]="'search-bar-current'"
+                placeholder="{{'App.Orders.search' | translate}}"
+                [bgInputColor]="'c-scale-12'"
+                [icon]="'icon_search'"
+                [iconPosition]="'left'"
+                [clear]="true"
+                [type]="'text'"
+                [size]="'medium'"
+                (valueChange)="searchDocument($event)"
+              >
+              </nc-input>
+            </div>
 
+            <nc-virtual-scroller
+              #scroll
+              [items]="this.tasksService.allDocumentsFilter"
             >
-            </nc-input>
-          </div>
-
-          <nc-virtual-scroller
-            #scroll
-            [items]="this.tasksService.allDocumentsFilter"
-          >
-            <div
-              class="cards-clients"
-              *ngFor="let item of scroll.viewPortItems; let i = index"
-              (click)="selectedItemList(item)"
-              [class.active]="item.iconCheck === true "
-            >
-              <div class="icon-name-user">
-                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
-                  >icon_user</nc-icon
-                >
-              </div>
-              <div class="description-task">
-                <div class="name-task">
-                  <nc-text
-                    size="h7"
+              <div
+                class="cards-clients"
+                *ngFor="let item of scroll.viewPortItems; let i = index"
+                (click)="selectedItemList(item)"
+                [class.active]="item.iconCheck === true "
+              >
+                <div class="icon-name-user">
+                  <nc-icon
+                    [size]="18"
                     color="c-scale-12"
-                    weight="500"
-                    font="primary"
-                    >{{item.firstName}} {{item.lastName}}</nc-text
+                    hoverColor="c-scale-12"
+                    >icon_user</nc-icon
+                  >
+                </div>
+                <div class="description-task">
+                  <div class="name-task">
+                    <nc-text
+                      size="h7"
+                      color="c-scale-12"
+                      weight="500"
+                      font="primary"
+                      >{{item.firstName}} {{item.lastName}}</nc-text
+                    >
+                  </div>
+                </div>
+                <div class="arrow-info">
+                  <nc-icon *ngIf="item.iconCheck === true" [size]="20"
+                    >icon_check</nc-icon
                   >
                 </div>
               </div>
-              <div class="arrow-info">
-                <nc-icon *ngIf="item.iconCheck === true" [size]="20"
-                  >icon_check</nc-icon
-                >
-              </div>
-            </div>
-          </nc-virtual-scroller>
-        </div>
-        <!-- <form > -->
-        <div class="new-client-container" *ngIf="!active">
-          <div class="inputs">
-            <nc-input
-              #inputName
-              [formGroup]="tasksService.client"
-              controlName="firstName"
-              [attr.tester]="'search-bar-current'"
-              [placeholder]="'First name'"
-              [bgInputColor]="'c-scale-12'"
-              [iconPosition]="'left'"
-              [clear]="true"
-              [state]="tasksService.client.get('firstName').invalid && tasksService.isSubmitted? 'error':''"
-              [stateMessage]="'Obrigatório'"
-              [type]="'text'"
-              [size]="'medium'"
-              (onChange)="change($event,1)"
-            >
-            </nc-input>
-            <!-- <div *ngIf="tasksService.client.get('firstName').errors.maxlength">
+            </nc-virtual-scroller>
+          </div>
+          <!-- <form > -->
+          <div class="new-client-container" *ngIf="!active">
+            <div class="inputs">
+              <nc-input
+                #inputName
+                [formGroup]="tasksService.client"
+                controlName="firstName"
+                [attr.tester]="'search-bar-current'"
+                [placeholder]="'First name'"
+                [bgInputColor]="'c-scale-12'"
+                [iconPosition]="'left'"
+                [clear]="true"
+                [state]="tasksService.client.get('firstName').invalid && tasksService.isSubmitted? 'error':''"
+                [stateMessage]="'Obrigatório'"
+                [type]="'text'"
+                [size]="'medium'"
+                (onChange)="change($event,1)"
+              >
+              </nc-input>
+              <!-- <div *ngIf="tasksService.client.get('firstName').errors.maxlength">
               Name cannot be more than 30 characters long
         </div> -->
 
-            <!-- <div *ngIf="client.getRawValue('firstName').invalid && (client. getRawValue('firstName').dirty || client.getRawValue('name').touched)"
+              <!-- <div *ngIf="client.getRawValue('firstName').invalid && (client. getRawValue('firstName').dirty || client.getRawValue('name').touched)"
             class="alert alert-danger">
             <div *ngIf="client.get('firstName').errors.required">
                Name is required.
             </div>
             </div> -->
 
-            <!-- <div class="erro" *ngIf="msgErroCheck">
+              <!-- <div class="erro" *ngIf="msgErroCheck">
               <nc-text size="h7" color="error" weight="500" font="primary"
                 >{{msgErro}}</nc-text
               >
@@ -230,49 +228,49 @@
                 >{{msgErroLastname}}</nc-text
               >
             </div> -->
-            <nc-input
-              [formGroup]="tasksService.client"
-              controlName="lastName"
-              [attr.tester]="'search-bar-current'"
-              [placeholder]="'Last name'"
-              [bgInputColor]="'c-scale-12'"
-              [iconPosition]="'left'"
-              [clear]="true"
-              [state]="tasksService.client.get('lastName').invalid && tasksService.isSubmitted?'error':''"
-              [stateMessage]="'Obrigatório'"
-              [type]="'text'"
-              [size]="'medium'"
-              (onChange)="change($event,2)"
-            >
-            </nc-input>
+              <nc-input
+                [formGroup]="tasksService.client"
+                controlName="lastName"
+                [attr.tester]="'search-bar-current'"
+                [placeholder]="'Last name'"
+                [bgInputColor]="'c-scale-12'"
+                [iconPosition]="'left'"
+                [clear]="true"
+                [state]="tasksService.client.get('lastName').invalid && tasksService.isSubmitted?'error':''"
+                [stateMessage]="'Obrigatório'"
+                [type]="'text'"
+                [size]="'medium'"
+                (onChange)="change($event,2)"
+              >
+              </nc-input>
 
-            <!-- <div class="erro" *ngIf="msgErroFields">
+              <!-- <div class="erro" *ngIf="msgErroFields">
               <nc-text size="h7" color="error" weight="500" font="primary"
                 >{{msgErroLastname}}</nc-text
               >
             </div> -->
-            <nc-input
-              [formGroup]="tasksService.client"
-              controlName="nif"
-              [attr.tester]="'search-bar-current'"
-              [placeholder]="'NIF'"
-              [bgInputColor]="'c-scale-12'"
-              [iconPosition]="'left'"
-              [clear]="true"
-              [state]="tasksService.client.get('nif').invalid && tasksService.isSubmitted?'error':''"
-              [stateMessage]="'Obrigatório'"
-              [hideCross]="tasksService.client.value?.errors?.required"
-              [type]="'text'"
-              [size]="'medium'"
-              (onChange)="change($event, 3)"
-            >
-            </nc-input>
-            <div class="erro" *ngIf="this.tasksService.validatorNIF">
-              <nc-text size="h7" color="error" weight="500" font="primary"
-                >{{tasksService.msgErrorNif}}</nc-text
+              <nc-input
+                [formGroup]="tasksService.client"
+                controlName="nif"
+                [attr.tester]="'search-bar-current'"
+                [placeholder]="'NIF'"
+                [bgInputColor]="'c-scale-12'"
+                [iconPosition]="'left'"
+                [clear]="true"
+                [state]="tasksService.client.get('nif').invalid && tasksService.isSubmitted?'error':''"
+                [stateMessage]="'Obrigatório'"
+                [hideCross]="tasksService.client.value?.errors?.required"
+                [type]="'text'"
+                [size]="'medium'"
+                (onChange)="change($event, 3)"
               >
-            </div>
-            <!-- <div class="nifError" *ngIf="alertMessage1">
+              </nc-input>
+              <div class="erro" *ngIf="this.tasksService.validatorNIF">
+                <nc-text size="h7" color="error" weight="500" font="primary"
+                  >{{tasksService.msgErrorNif}}</nc-text
+                >
+              </div>
+              <!-- <div class="nifError" *ngIf="alertMessage1">
               <nc-text size="h7" color="error" weight="500" font="primary"
                 >{{alertMessage}}</nc-text
               >
@@ -283,181 +281,182 @@
                 >{{msgErroLastname}}</nc-text
               >
             </div> -->
-            <nc-input
-              [formGroup]="tasksService.client"
-              controlName="email"
-              [attr.tester]="'search-bar-current'"
-              [placeholder]="'Email'"
-              [bgInputColor]="'c-scale-12'"
-              [iconPosition]="'left'"
-              [clear]="true"
-              [state]="tasksService.client.get('email').invalid && tasksService.isSubmitted?'error':''"
-              [stateMessage]="'Obrigatório'"
-              [hideCross]="tasksService.client.value?.errors?.required"
-              [type]="'text'"
-              [size]="'medium'"
-              (onChange)="change($event, 4)"
-            >
-            </nc-input>
-            <div class="erro" *ngIf="this.tasksService.validatorEmail">
-              <nc-text size="h7" color="error" weight="500" font="primary"
-                >Email não Válido</nc-text
+              <nc-input
+                [formGroup]="tasksService.client"
+                controlName="email"
+                [attr.tester]="'search-bar-current'"
+                [placeholder]="'Email'"
+                [bgInputColor]="'c-scale-12'"
+                [iconPosition]="'left'"
+                [clear]="true"
+                [state]="tasksService.client.get('email').invalid && tasksService.isSubmitted?'error':''"
+                [stateMessage]="'Obrigatório'"
+                [hideCross]="tasksService.client.value?.errors?.required"
+                [type]="'text'"
+                [size]="'medium'"
+                (onChange)="change($event, 4)"
               >
-            </div>
-            <div class="erro" *ngIf="msgErroFields">
-              <nc-text size="h7" color="error" weight="500" font="primary"
-                >{{msgErroLastname}}</nc-text
+              </nc-input>
+              <div class="erro" *ngIf="this.tasksService.validatorEmail">
+                <nc-text size="h7" color="error" weight="500" font="primary"
+                  >Email não Válido</nc-text
+                >
+              </div>
+              <div class="erro" *ngIf="msgErroFields">
+                <nc-text size="h7" color="error" weight="500" font="primary"
+                  >{{msgErroLastname}}</nc-text
+                >
+              </div>
+              <nc-input
+                [formGroup]="tasksService.client"
+                controlName="phone"
+                [attr.tester]="'search-bar-current'"
+                [placeholder]="'Phone number'"
+                [bgInputColor]="'c-scale-12'"
+                [iconPosition]="'left'"
+                [clear]="true"
+                [state]="tasksService.client.get('phone').invalid && tasksService.isSubmitted?'error':''"
+                [stateMessage]="'Obrigatório'"
+                [type]="'number'"
+                required
+                [size]="'medium'"
+                (onChange)="change($event,5 )"
+                pattern="[0-9]"
               >
-            </div>
-            <nc-input
-              [formGroup]="tasksService.client"
-              controlName="phone"
-              [attr.tester]="'search-bar-current'"
-              [placeholder]="'Phone number'"
-              [bgInputColor]="'c-scale-12'"
-              [iconPosition]="'left'"
-              [clear]="true"
-              [state]="tasksService.client.get('phone').invalid && tasksService.isSubmitted?'error':''"
-              [stateMessage]="'Obrigatório'"
-              [type]="'number'"
-              required
-              [size]="'medium'"
-              (onChange)="change($event,5 )"
-              pattern="[0-9]"
-            >
-            </nc-input>
-            <!-- <div class="erro" *ngIf="msgErroFields">
+              </nc-input>
+              <!-- <div class="erro" *ngIf="msgErroFields">
               <nc-text size="h7" color="error" weight="500" font="primary"
                 >{{msgErroLastname}}</nc-text
               >
             </div> -->
-          </div>
-        </div>
-        <!-- </form> -->
-        <div *ngIf="continue1">
-          <div class="buttons-footer" *ngIf="active">
-            <div class="buttons-client">
-              <div class="client" (click)="close()">
-                <nc-text
-                  size="h6"
-                  color="c-scale-12"
-                  weight="bolder"
-                  font="primary"
-                  hoverColor="c-scale-12"
-                  >Sair</nc-text
-                >
+            </div>
+            <div class="buttons-footer" *ngIf="!active">
+              <div class="buttons-client">
+                <div class="client" (click)="goBack()">
+                  <nc-text
+                    size="h6"
+                    color="c-scale-12"
+                    weight="bolder"
+                    font="primary"
+                    hoverColor="c-scale-12"
+                    >Voltar</nc-text
+                  >
+                </div>
+                <div class="client-1" (click)="save()">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-1"
+                    weight="bolder"
+                    font="primary"
+                    hoverColor="c-scale-1"
+                    >Guardar</nc-text
+                  >
+                </div>
               </div>
-              <div class="client-1" (click)="continueButton()">
+            </div>
+          </div>
+          <!-- </form> -->
+          <div *ngIf="continue1">
+            <div class="buttons-footer" *ngIf="active">
+              <div class="buttons-client">
+                <div class="client" (click)="close()">
+                  <nc-text
+                    size="h6"
+                    color="c-scale-12"
+                    weight="bolder"
+                    font="primary"
+                    hoverColor="c-scale-12"
+                    >Sair</nc-text
+                  >
+                </div>
+                <div class="client-1" (click)="continueButton()">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-1"
+                    weight="bolder"
+                    font="primary"
+                    hoverColor="c-scale-1"
+                    >{{'App.Orders.continue' | translate}}</nc-text
+                  >
+                </div>
+              </div>
+              <div *ngIf="turnOnWarning" class="msgWarning">
                 <nc-text
                   size="h7"
-                  color="c-scale-1"
+                  color="error"
                   weight="bolder"
                   font="primary"
                   hoverColor="c-scale-1"
-                  >{{'App.Orders.continue' | translate}}</nc-text
-                >
+                  >Selecione um cliente para continuar
+                </nc-text>
               </div>
-            </div>
-            <div *ngIf="turnOnWarning" class="msgWarning">
-              <nc-text
-                size="h7"
-                color="error"
-                weight="bolder"
-                font="primary"
-                hoverColor="c-scale-1"
-                >Selecione um cliente para continuar
-              </nc-text>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="add-products1" *ngIf="!continue1">
-      <div class="add-products">
-        <div class="products-image">
-          <img src="/assets/img/billing and transport guides.svg" />
-        </div>
-        <div class="title-add-products">
-          <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-            >{{'App.Orders.addProducts' | translate}}</nc-text
-          >
-        </div>
-        <div class="description-add-products">
-          <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-            >{{'App.Orders.description' | translate}}</nc-text
-          >
-        </div>
-        <div class="button-add-products" (click)="addProducts()">
-          <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
-            >{{'App.Orders.addProductsMore' | translate}}</nc-text
-          >
+      <div class="add-products1" *ngIf="!continue1">
+        <div class="add-products">
+          <div class="products-image">
+            <img src="/assets/img/billing and transport guides.svg" />
+          </div>
+          <div class="title-add-products">
+            <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+              >{{'App.Orders.addProducts' | translate}}</nc-text
+            >
+          </div>
+          <div class="description-add-products">
+            <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+              >{{'App.Orders.description' | translate}}</nc-text
+            >
+          </div>
+          <div class="button-add-products" (click)="addProducts()">
+            <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+              >{{'App.Orders.addProductsMore' | translate}}</nc-text
+            >
+          </div>
         </div>
       </div>
-    </div>
 
-  <div *ngIf="!continue1">
-    <div class="buttons-footer1">
-      <div class="buttons-client">
-        <div class="client" (click)="back()">
-          <nc-text
-            size="h6"
-            color="c-scale-12"
-            weight="bolder"
-            font="primary"
-            hoverColor="c-scale-12"
-            >{{'App.Orders.back' | translate}}</nc-text
-          >
-        </div>
-        <div class="client-1" (click)="continueProcess()">
-          <nc-text
-            size="h7"
-            color="c-scale-1"
-            weight="bolder"
-            font="primary"
-            hoverColor="c-scale-1"
-            >{{'App.Orders.continue' | translate}}</nc-text
-          >
+      <div *ngIf="!continue1">
+        <div class="buttons-footer1">
+          <div class="buttons-client">
+            <div class="client" (click)="back()">
+              <nc-text
+                size="h6"
+                color="c-scale-12"
+                weight="bolder"
+                font="primary"
+                hoverColor="c-scale-12"
+                >{{'App.Orders.back' | translate}}</nc-text
+              >
+            </div>
+            <div class="client-1" (click)="continueProcess()">
+              <nc-text
+                size="h7"
+                color="c-scale-1"
+                weight="bolder"
+                font="primary"
+                hoverColor="c-scale-1"
+                >{{'App.Orders.continue' | translate}}</nc-text
+              >
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="buttons-footer" *ngIf="!active">
-    <div class="buttons-client">
-      <div class="client" (click)="goBack()">
-        <nc-text
-          size="h6"
-          color="c-scale-12"
-          weight="bolder"
-          font="primary"
-          hoverColor="c-scale-12"
-          >Voltar</nc-text
-        >
-      </div>
-      <div class="client-1" (click)="save()">
+
+
+      <div *ngIf="tasksService.msgAlert" class="msgWarning">
         <nc-text
           size="h7"
-          color="c-scale-1"
+          color="error"
           weight="bolder"
           font="primary"
           hoverColor="c-scale-1"
-          >Guardar</nc-text
-        >
+          >A lista de Produtos encontra-se Vazia
+        </nc-text>
       </div>
     </div>
   </div>
-
-  <div *ngIf="tasksService.msgAlert" class="msgWarning">
-    <nc-text
-      size="h7"
-      color="error"
-      weight="bolder"
-      font="primary"
-      hoverColor="c-scale-1"
-      >A lista de Produtos encontra-se Vazia
-    </nc-text>
-  </div>
-</div>
-</div>
 </ion-content>

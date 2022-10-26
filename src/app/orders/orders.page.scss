@@ -6,7 +6,7 @@ ion-content {
 
 nc-virtual-scroller {
   // height: calc(100vh - #{tbu(px(328))});
-  height: 52vh;
+  height: 42vh;
 }
 
 .container{
@@ -46,10 +46,13 @@ nc-virtual-scroller {
 }
 
 .body-content {
-  height: 80vh;
-  padding: tbu(px(24)) tbu(px(24));
-  position: absolute;
-  width: 100%;
+  height: 90vh;
+    padding: 24px 24px;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .steps {
@@ -219,7 +222,7 @@ nc-input {
 
 .buttons-footer {
   background-color: var(--c-scale-1_bg);
-  height: 16vh;
+  height: 20vh;
   // padding: tbu(px(0)) tbu(px(24));
   width: 100%;
   // padding-bottom: 27%;
@@ -227,7 +230,7 @@ nc-input {
   bottom: 0;
 display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: center;
 }
 
 .add-products {
@@ -258,8 +261,8 @@ display: flex;
 
 .products-image {
   img {
-    width: tbu(px(183));
-    height: tbu(px(219));
+    width: 20vh;
+    height: 24vh;
   }
 }
 
