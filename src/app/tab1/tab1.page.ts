@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
@@ -8,6 +8,7 @@ import { TaskApiService } from '../shared/http/task-api.service';
 import { clientsTab } from '../shared/models/clients-tab1';
 import { ProductService } from '../shared/services/product.service';
 import { TasksService } from '../shared/services/tasks.service';
+import { Geolocation } from '@capacitor/geolocation';
 
 
 
@@ -31,10 +32,11 @@ export class Tab1Page implements OnInit {
     }
   ];
 
+  visits: any = "Visitas para hoje"
+
   result: string;
 
   tests = clientsTab
-
 
   globalMessagesTranslations: any;
   loginMessagesTranslations: any;
@@ -172,11 +174,24 @@ console.log(test)
   }
 
   boxDone(){
+    this.visits = "Visitas efectuadas"
     this.tasksService.toDo = false
   }
 
   boxToDo(){
+    this.visits = "Visitas para hoje"
     this.tasksService.toDo = true
   }
+
+  async localization(){
+
+      let  coordinates = await Geolocation.getCurrentPosition();
+
+      console.log('Current position:', coordinates);
+
+  }
+
+
+
 }
 
