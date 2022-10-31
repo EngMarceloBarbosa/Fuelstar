@@ -54,13 +54,19 @@ export class DetailsClientPage implements OnInit {
     //  this.listTasksAll = listTasks
     // })
 
+    console.log(this.clientDetails)
+
 
     this.contactsTaskService.getContactById(this.clientDetails.entity.id).then(res => {
       console.log('resultado', res)
       this.tasksService.listContacts = res;
+      console.log(this.tasksService.listContacts[0].id)
       this.tasksService.idContact = this.tasksService.listContacts[0].id
       this.tasksService.idContactId = this.tasksService.listContacts[0].contactId
       this.tasksService.idEntityId = this.tasksService.listContacts[0].entity.id
+
+
+
 
 
       console.log(this.tasksService.idContact)
@@ -146,6 +152,7 @@ export class DetailsClientPage implements OnInit {
 
   done(task) {
     console.log(this.tasksService.visiteToDo)
+    console.log(task)
 
     this.tasksService.visiteToDo = this.tasksService.visiteToDo.filter(elem => elem.id != task.id)
 

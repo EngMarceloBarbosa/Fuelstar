@@ -99,8 +99,6 @@ console.log(this.tasksService.contactNumber);
     if (this.tasksService.contactDetail.invalid) {
       this.tasksService.isSubmitted = true;
       }
-
-
     this.tasksService.validateEmail(this.tasksService.email);
 console.log(this.tasksService.contactNumber.length )
 console.log(this.tasksService.validatorEmail)

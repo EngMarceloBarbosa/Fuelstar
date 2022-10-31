@@ -1,6 +1,7 @@
 import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
+import { TasksService } from '../shared/services/tasks.service';
 
 @Component({
   selector: 'app-settings',
@@ -28,7 +29,7 @@ export class SettingsPage implements OnInit {
     console.log(window.scrollY);
   }
 
-  constructor( private router: Router, private alertService: AlertService) { }
+  constructor( private router: Router, private alertService: AlertService, public tasksService:TasksService) { }
 
   ngOnInit() {
   }
@@ -57,6 +58,7 @@ export class SettingsPage implements OnInit {
         this.exitApp();
       },
     };
+    this.tasksService.visiteEfected = []
     this.alertService.open(temp);
 
   }
