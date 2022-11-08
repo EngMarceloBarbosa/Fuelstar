@@ -1,24 +1,22 @@
-import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab1Page } from './tab1.page';
 import { SharedModule } from '../shared/shared.module';
+import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { GoogleMapsPageRoutingModule } from './google-maps-routing.module';
 
-
-import { Tab1PageRoutingModule } from './tab1-routing.module';
-
+import { GoogleMapsPage } from './google-maps.page';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
-    IonicModule,
     CommonModule,
     FormsModule,
-    Tab1PageRoutingModule,
+    IonicModule,
+    GoogleMapsPageRoutingModule,
     SharedModule
   ],
-  declarations: [Tab1Page]
+  declarations: [GoogleMapsPage]
 })
-export class Tab1PageModule {}
+export class GoogleMapsPageModule {}

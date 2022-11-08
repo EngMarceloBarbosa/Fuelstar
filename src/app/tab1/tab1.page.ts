@@ -37,7 +37,6 @@ export class Tab1Page implements OnInit {
   result: string;
 
   tests = clientsTab
-
   globalMessagesTranslations: any;
   loginMessagesTranslations: any;
   productsMessagesTranslations: any;
@@ -75,7 +74,7 @@ export class Tab1Page implements OnInit {
       this.tasksService.visiteToDo = this.tasksService.listTasks
       console.log(this.tasksService.visiteToDo)
 
-      this.tasksService.countVisits  = this.tasksService.listTasks.length
+      this.tasksService.countVisits  = this.tasksService.visiteToDo.length
       console.log(this.tasksService.countVisits)
       this.tasksService.countsToDo =  this.tasksService.listTasks.length-this.tasksService.countVisits
 
@@ -90,9 +89,13 @@ export class Tab1Page implements OnInit {
     // this.tasksService.listTasksById = res
     // console.log(this.tasksService.listTasksById);
     // } )
-
-
+    this.registration();
   }
+
+
+ngAfterViewInit(){
+
+}
 
 
      randomNumber(min, max) {
@@ -183,14 +186,22 @@ console.log(test)
     this.tasksService.toDo = true
   }
 
-  async localization(){
 
-      let  coordinates = await Geolocation.getCurrentPosition();
 
-      console.log('Current position:', coordinates);
+  localization(){
+
+    this.router.navigate(['/google-maps'])
+
 
   }
 
+
+  registration(){
+    this.tasksService.visiteToDo =  this.tasksService.listTasks.filter((res) => res.item.name == '01-01-AA')
+    this.tasksService.countVisits = this.tasksService.visiteToDo.length
+    console.log(this.tasksService.listTasks)
+
+  }
 
 
 }

@@ -91,6 +91,8 @@ export class TasksService {
   totalValueItemPrice:any;
   toDo: boolean = true;
   turnSearch: boolean = false;
+  latitude: any;
+  longitude:any;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),

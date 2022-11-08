@@ -5,6 +5,7 @@ export interface Tasks {
   id: string;
   address: Address;
   entity: Entity;
+  item: Items;
 
 
 }
@@ -113,6 +114,8 @@ export class DocumentInstances {
   documentInstanceNumber: string;
   documentInstanceDate: string;
 }
+
+
 
 export interface IdentityDocuments {
   entity: Entity;

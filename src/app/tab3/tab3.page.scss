@@ -1,7 +1,14 @@
 @import "./../../global.scss";
 
+
+.main-container{
+height: 100vh;
+width: 100%;
+background-color: var(--c-scale-1_bg);
+}
 .container {
   margin-top: tbu(px(40));
+  background-color: var(--c-scale-1_bg);
   height: 100%;
   margin-left: tbu(px(24));
   margin-right: tbu(px(24));

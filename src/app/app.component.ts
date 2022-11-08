@@ -3,12 +3,13 @@ import { Globals } from '@nc-angular/library-mobile.stg';
 import { TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
 import { SplashScreenStateService } from './shared/services/splash-screen-state.service';
 import { BackButtonEvent } from '@ionic/core';
-
+import { Location } from '@angular/common';
 import { BackButtonService } from './shared/services/backButton.service';
-import { IonRouterOutlet, Platform } from '@ionic/angular';
+import { AlertController, IonRouterOutlet, Platform } from '@ionic/angular';
 import { App } from '@capacitor/app';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -21,10 +22,12 @@ export class AppComponent {
 
   allow: boolean = false;
 
-  constructor(private globals: Globals, private translate: TranslateService, private splashScreenStateService: SplashScreenStateService, public backButtonService: BackButtonService, private platform: Platform,
+  constructor(private globals: Globals, private translate: TranslateService, private splashScreenStateService: SplashScreenStateService, public backButtonService: BackButtonService, private platform: Platform, private location: Location,
 
-    public router: Router
+    public router: Router,
+    private alertService: AlertController
   ) {
+
 
     this.translate.addLangs(['en_GB', 'fr_FR', 'pt_PT', 'es_EN', 'al_DL']);
     this.translate.setDefaultLang('pt_PT');
@@ -50,10 +53,23 @@ export class AppComponent {
 
   handleBackButton() {
     const currentPage = this.router.url;
-    const id = currentPage;
     return this.router.navigate([currentPage]);
 
   }
 
+
+  // async backButtonEvent(){
+  //   this.platform.backButton.subscribeWithPriority(10, () => {
+  //     this.backButtonAlert();
+  //   })
+
+  // }
+
+  // async backButtonAlert(){
+  //   const alert = await this.alertService.create({
+  //     message: 'Ypu just pressed the BAck Button'
+  //   })
+  //   await alert.present();
+  // }
 
 }

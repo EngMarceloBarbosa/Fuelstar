@@ -62,6 +62,14 @@ const routes: Routes = [
     path: 'survey',
     loadChildren: () => import('./survey/survey.module').then( m => m.SurveyPageModule)
   },
+  {
+    path: 'free-sale',
+    loadChildren: () => import('./free-sale/free-sale.module').then( m => m.FreeSalePageModule)
+  },
+  {
+    path: 'google-maps',
+    loadChildren: () => import('./google-maps/google-maps.module').then( m => m.GoogleMapsPageModule)
+  },
 
 
   // INICIALIZING APP
@@ -75,9 +83,6 @@ const routes: Routes = [
 
     pathMatch: 'full'
 
-  },  {
-    path: 'free-sale',
-    loadChildren: () => import('./free-sale/free-sale.module').then( m => m.FreeSalePageModule)
   },
 
 
