@@ -519,6 +519,10 @@ console.log(this.tasksService.validatorNIF)
 
   }
 
+  gotoNextField(nextElement) {
+  nextElement.focus();
+}
+
 
 
 

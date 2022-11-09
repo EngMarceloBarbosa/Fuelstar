@@ -205,30 +205,32 @@
                 [type]="'text'"
                 [size]="'medium'"
                 (onChange)="change($event,1)"
+                (keydown.enter)="gotoNextField(inputLastname)"
               >
               </nc-input>
               <!-- <div *ngIf="tasksService.client.get('firstName').errors.maxlength">
-              Name cannot be more than 30 characters long
-        </div> -->
+                Name cannot be more than 30 characters long
+          </div> -->
 
               <!-- <div *ngIf="client.getRawValue('firstName').invalid && (client. getRawValue('firstName').dirty || client.getRawValue('name').touched)"
-            class="alert alert-danger">
-            <div *ngIf="client.get('firstName').errors.required">
-               Name is required.
-            </div>
-            </div> -->
+              class="alert alert-danger">
+              <div *ngIf="client.get('firstName').errors.required">
+                 Name is required.
+              </div>
+              </div> -->
 
               <!-- <div class="erro" *ngIf="msgErroCheck">
-              <nc-text size="h7" color="error" weight="500" font="primary"
-                >{{msgErro}}</nc-text
-              >
-            </div>
-            <div class="erro" *ngIf="msgErroFields">
-              <nc-text size="h7" color="error" weight="500" font="primary"
-                >{{msgErroLastname}}</nc-text
-              >
-            </div> -->
+                <nc-text size="h7" color="error" weight="500" font="primary"
+                  >{{msgErro}}</nc-text
+                >
+              </div>
+              <div class="erro" *ngIf="msgErroFields">
+                <nc-text size="h7" color="error" weight="500" font="primary"
+                  >{{msgErroLastname}}</nc-text
+                >
+              </div> -->
               <nc-input
+                #inputLastname
                 [formGroup]="tasksService.client"
                 controlName="lastName"
                 [attr.tester]="'search-bar-current'"
@@ -241,15 +243,17 @@
                 [type]="'text'"
                 [size]="'medium'"
                 (onChange)="change($event,2)"
+                (keydown.enter)="gotoNextField(nif)"
               >
               </nc-input>
 
               <!-- <div class="erro" *ngIf="msgErroFields">
-              <nc-text size="h7" color="error" weight="500" font="primary"
-                >{{msgErroLastname}}</nc-text
-              >
-            </div> -->
+                <nc-text size="h7" color="error" weight="500" font="primary"
+                  >{{msgErroLastname}}</nc-text
+                >
+              </div> -->
               <nc-input
+                #nif
                 [formGroup]="tasksService.client"
                 controlName="nif"
                 [attr.tester]="'search-bar-current'"
@@ -263,6 +267,7 @@
                 [type]="'text'"
                 [size]="'medium'"
                 (onChange)="change($event, 3)"
+                (keydown.enter)="gotoNextField(email)"
               >
               </nc-input>
               <div class="erro" *ngIf="this.tasksService.validatorNIF">
@@ -271,17 +276,18 @@
                 >
               </div>
               <!-- <div class="nifError" *ngIf="alertMessage1">
-              <nc-text size="h7" color="error" weight="500" font="primary"
-                >{{alertMessage}}</nc-text
-              >
-            </div>
+                <nc-text size="h7" color="error" weight="500" font="primary"
+                  >{{alertMessage}}</nc-text
+                >
+              </div>
 
-            <div class="erro" *ngIf="msgErroFields">
-              <nc-text size="h7" color="error" weight="500" font="primary"
-                >{{msgErroLastname}}</nc-text
-              >
-            </div> -->
+              <div class="erro" *ngIf="msgErroFields">
+                <nc-text size="h7" color="error" weight="500" font="primary"
+                  >{{msgErroLastname}}</nc-text
+                >
+              </div> -->
               <nc-input
+                #email
                 [formGroup]="tasksService.client"
                 controlName="email"
                 [attr.tester]="'search-bar-current'"
@@ -295,6 +301,7 @@
                 [type]="'text'"
                 [size]="'medium'"
                 (onChange)="change($event, 4)"
+                (keydown.enter)="gotoNextField(phone)"
               >
               </nc-input>
               <div class="erro" *ngIf="this.tasksService.validatorEmail">
@@ -308,6 +315,7 @@
                 >
               </div>
               <nc-input
+                #phone
                 [formGroup]="tasksService.client"
                 controlName="phone"
                 [attr.tester]="'search-bar-current'"
@@ -322,13 +330,14 @@
                 [size]="'medium'"
                 (onChange)="change($event,5 )"
                 pattern="[0-9]"
+                (keyup)="save($event)"
               >
               </nc-input>
               <!-- <div class="erro" *ngIf="msgErroFields">
-              <nc-text size="h7" color="error" weight="500" font="primary"
-                >{{msgErroLastname}}</nc-text
-              >
-            </div> -->
+                <nc-text size="h7" color="error" weight="500" font="primary"
+                  >{{msgErroLastname}}</nc-text
+                >
+              </div> -->
             </div>
             <div class="buttons-footer" *ngIf="!active">
               <div class="buttons-client">
@@ -444,8 +453,6 @@
           </div>
         </div>
       </div>
-
-
 
       <div *ngIf="tasksService.msgAlert" class="msgWarning">
         <nc-text

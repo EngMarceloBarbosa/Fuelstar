@@ -25,6 +25,8 @@ export class TasksService {
   value: any;
   phoneContact: any;
   listTasks: Tasks[];
+  listTasks1: Tasks[];
+  listTasksItemId:any;
   quantityTotal: any;
   listClients: Entity[] = [];
   listContacts: Contacts[] = [];

@@ -71,6 +71,9 @@ export class Tab1Page implements OnInit {
     await this.taskApiService.getTasks().then(res => {
       console.log(res)
       this.tasksService.listTasks = res;
+      // this.tasksService.listTasks.forEach((task) => {
+      //   this.tasksService.listTasksItemId = task.item.id
+      // } )
       this.tasksService.visiteToDo = this.tasksService.listTasks
       console.log(this.tasksService.visiteToDo)
 
@@ -80,6 +83,13 @@ export class Tab1Page implements OnInit {
 
 
       // this.tasksService.listTasks$.next(this.listTasks);
+    })
+
+
+    await this.taskApiService.getTasksItemId().then(res => {
+      this.tasksService.listTasks1 = res;
+      console.log(this.tasksService.listTasks1)
+
     })
 
     this.randomNumber(1, 1000);
