@@ -8,7 +8,7 @@ import { TaskApiService } from '../shared/http/task-api.service';
 import { clientsTab } from '../shared/models/clients-tab1';
 import { ProductService } from '../shared/services/product.service';
 import { TasksService } from '../shared/services/tasks.service';
-import { Geolocation } from '@capacitor/geolocation';
+
 
 
 
@@ -18,6 +18,14 @@ import { Geolocation } from '@capacitor/geolocation';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+
+
+  @ViewChild('toDO', {static:false}) toDo
+
+
+
+  cardHeight = 0;
+  cardHeight1 = 0;
 
   name: string = "Jimmy Smyth";
 
@@ -51,7 +59,8 @@ export class Tab1Page implements OnInit {
     private productService: ProductService,
     public toastController: ToastController,
     public taskApiService: TaskApiService,
-    public contactsTaskService: ContactsTaskService
+    public contactsTaskService: ContactsTaskService,
+    private element: ElementRef
   ) {
 
 
@@ -92,6 +101,7 @@ export class Tab1Page implements OnInit {
 
     })
 
+
     this.randomNumber(1, 1000);
 
 
@@ -100,6 +110,17 @@ export class Tab1Page implements OnInit {
     // console.log(this.tasksService.listTasksById);
     // } )
     this.registration();
+    setTimeout(() => {
+      const virtualScroller = this.element.nativeElement.querySelector('.toDO nc-virtual-scroller')
+      const scrollable = virtualScroller.querySelector('.scrollable-content')
+      this.cardHeight = this.tasksService.listTasks.length * 44;
+      this.cardHeight1 = this.tasksService.listTasks.length * 8.3;
+      virtualScroller.style.height = `${40}vh`;
+      scrollable.style.height = `${this.cardHeight}px`;
+
+
+    }, 300);
+
   }
 
 
@@ -207,10 +228,9 @@ console.log(test)
 
 
   registration(){
-    this.tasksService.visiteToDo =  this.tasksService.listTasks.filter((res) => res.item.name == '01-01-AA')
-    this.tasksService.countVisits = this.tasksService.visiteToDo.length
+    this.tasksService.visiteToDo = this.tasksService.listTasks1
+    this.tasksService.countVisits = this.tasksService.listTasks1.length
     console.log(this.tasksService.listTasks)
-
   }
 
 

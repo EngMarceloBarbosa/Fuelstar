@@ -95,6 +95,8 @@ export class TasksService {
   turnSearch: boolean = false;
   latitude: any;
   longitude:any;
+  entityId: any;
+  roleId: any;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),

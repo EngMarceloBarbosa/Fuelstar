@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginApiService } from '../shared/http/login-api.service';
 import { LoadingController } from '@ionic/angular';
+import { CoreEnvironment } from '@angular/compiler/src/compiler_facade_interface';
+import { TasksService } from '../shared/services/tasks.service';
 
 
 
@@ -34,16 +36,20 @@ export class LoginPage implements OnInit {
   event:any;
   toggleValue:any;
   checked:any;
+
   constructor(private router: Router,
     private loginApiService: LoginApiService,
     private alertService: AlertService,
     public formBuilder: FormBuilder,
     public translate: TranslateService,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    public tasksService: TasksService
   ) {
   }
 
   ngOnInit() {
+
+
 
     this.translate.get('App').subscribe(res => {
       this.globalMessagesTranslations = res.Global;
@@ -71,6 +77,7 @@ export class LoginPage implements OnInit {
           // Validators.minLength(6)
         ]]
     });
+
   }
 
 
@@ -147,7 +154,11 @@ export class LoginPage implements OnInit {
       this.router.navigate(["/tabs/tab1"]);
       environment.token = res.accessToken;
 
+
+      this.parseJwt();
+
     })
+
       .catch((error: HttpErrorResponse) => {
 
         if (error.status === 401) {
@@ -248,6 +259,56 @@ export class LoginPage implements OnInit {
     if($event.key === 'Enter') {
       this.signInClick()
     }
+}
+
+   parseJwt() {
+
+  var base64Url = environment.token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+console.log(jsonPayload)
+
+ const obj = JSON.parse(jsonPayload);
+ const obj1 = JSON.parse(obj.unique_name)
+ this.tasksService.entityId = obj1.user.entity.id
+ this.tasksService.roleId = "00000000-0000-0000-0000-000000000002"
+console.log(this.tasksService.entityId)
+console.log(obj1)
+console.log(this.tasksService.roleId)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

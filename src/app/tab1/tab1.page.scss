@@ -1,14 +1,30 @@
 @import "./../../global.scss";
 
+// nc-virtual-scroller {
+//   height: calc(100vh - #{tbu(px(380))});
+//   ::ng-deep {
+//   .scrollable-content{
+//     height: 145%
+
+//   }
+// }
+// }
+
 nc-virtual-scroller {
-  height: calc(100vh - #{tbu(px(380))});
+  // height: calc(100vh - #{tbu(px(380))});
   ::ng-deep {
   .scrollable-content{
-    height: 145%
+    max-height: none;
+
   }
 }
 }
 
+// nc-virtual-scroller {
+//   height: calc(100vh - #{tbu(px(50))});
+
+
+// }
 
 
 .header-menu {

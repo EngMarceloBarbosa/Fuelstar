@@ -37,12 +37,9 @@ export class DetailsClientPage implements OnInit {
 
   constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService) {
 
-   }
+  }
 
   ngOnInit() {
-
-
-
 
     this.tasksService.infoClient$
       .subscribe(client => {
@@ -65,10 +62,6 @@ export class DetailsClientPage implements OnInit {
       this.tasksService.idContactId = this.tasksService.listContacts[0].contactId
       this.tasksService.idEntityId = this.tasksService.listContacts[0].entity.id
 
-
-
-
-
       console.log(this.tasksService.idContact)
     })
 
@@ -85,19 +78,19 @@ export class DetailsClientPage implements OnInit {
     })
   }
 
- notes() {
+  notes() {
 
     setTimeout(() => {
       console.log('PASSOU')
       this.myInput.setFocus();
-    },150);
+    }, 150);
 
     this.onNotes = false;
- }
+  }
 
-   getFocustxt() {
+  getFocustxt() {
     document.getElementById("search").focus;
-    }
+  }
 
 
   clickTab(event: any) {
@@ -143,9 +136,6 @@ export class DetailsClientPage implements OnInit {
 
   }
 
-
-
-
   close() {
     this.onNotes = true;
   }
@@ -158,16 +148,16 @@ export class DetailsClientPage implements OnInit {
 
     let index = this.tasksService.visiteEfected.findIndex(el => el.id === task.id);
 
-    if(index < 0) {
+    if (index < 0) {
       this.tasksService.visiteEfected = [...this.tasksService.visiteEfected, task]
     }
-// console.log(index)
-//      if(index > -1){
-//       this.tasksService.visiteEfected = this.tasksService.visiteEfected.splice(task)
+    // console.log(index)
+    //      if(index > -1){
+    //       this.tasksService.visiteEfected = this.tasksService.visiteEfected.splice(task)
 
-//      }else {
-//       this.tasksService.visiteToDo
-//      }
+    //      }else {
+    //       this.tasksService.visiteToDo
+    //      }
 
 
 
@@ -202,7 +192,7 @@ export class DetailsClientPage implements OnInit {
     // console.log( this.tasksService.visiteToDo)
 
     this.tasksService.countsToDo = this.tasksService.visiteEfected.length;
-    this.tasksService.countVisits =  this.tasksService.visiteToDo.length;
+    this.tasksService.countVisits = this.tasksService.visiteToDo.length;
     this.router.navigate(['tabs/tab1']);
     console.log([...this.tasksService.visiteEfected], "EFETUADAS")
     console.log([...this.tasksService.visiteToDo], "POR fazer")
@@ -216,8 +206,8 @@ export class DetailsClientPage implements OnInit {
     this.onNotes = true;
   }
 
-  async call(){
-     this.tasksService.listContacts[0]?.value
+  async call() {
+    this.tasksService.listContacts[0]?.value
     await CallNumber.call({ number: this.tasksService.listContacts[0]?.value, bypassAppChooser: false });
   }
 }

@@ -30,7 +30,7 @@ export class TaskApiService {
       console.log(this.tasksService.listTasks[0].item.id)
     // this.loadingService.loader();
     return this.http
-      .get<any>(`${environment.api}/api/Thebox/Bullets/Instances?ItemId=${this.tasksService.listTasks[0].item.id}`, {
+      .get<any>(`${environment.api}/api/Thebox/Bullets/Instances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}`, {
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,

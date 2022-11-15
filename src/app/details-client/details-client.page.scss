@@ -9,8 +9,8 @@ nc-virtual-scroller {
   background-color: var(--c-scale-12);
   height: 13%;
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {
@@ -18,9 +18,9 @@ nc-virtual-scroller {
   padding-right: tbu(px(24));
   padding-top: tbu(px(24));
   display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .card-tasks {
@@ -121,7 +121,6 @@ nc-virtual-scroller {
   background-color: green;
 }
 
-
 .light-red {
   width: 100%;
   height: 100%;
@@ -141,7 +140,6 @@ nc-virtual-scroller {
   border-radius: 21%;
   background-color: orange;
 }
-
 
 .container-first-column {
   padding-top: tbu(px(14));
@@ -320,12 +318,12 @@ nc-action-sheet {
   height: 15%;
 }
 
-.search-client{
+.search-client {
   height: 195px;
-    display: flex;
-    width: 100%;
-    border: 1px solid;
-    border-color: var(--c-scale-8);
+  display: flex;
+  width: 100%;
+  border: 1px solid;
+  border-color: var(--c-scale-8);
 }
 
 .input-search {
@@ -344,13 +342,10 @@ nc-action-sheet {
   @extend .flex-center;
 }
 
-
-nc-input{
+nc-input {
   ::ng-deep {
     .input-wrapper {
       height: 227px;
     }
   }
 }
-
-

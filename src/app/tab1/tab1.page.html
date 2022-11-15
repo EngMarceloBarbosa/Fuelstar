@@ -117,9 +117,9 @@
 </div>
 <div class="body-content">
 
-<div class="toDO"  *ngIf="tasksService.toDo">
-<nc-virtual-scroller #scroll [items]="tasksService.visiteToDo" >
-  <div class="card-tasks"  *ngFor="let task  of scroll.viewPortItems">
+<div class="toDO" #toDo  *ngIf="tasksService.toDo" >
+<nc-virtual-scroller #scroll [items]="tasksService.visiteToDo"   >
+  <div class="card-tasks"  *ngFor="let task  of scroll.viewPortItems"  >
     <div class="box-task" (click)="selectedTask(task)" >
       <div class="icon-name-user">
         <nc-text
