@@ -140,7 +140,7 @@ export class DetailsClientPage implements OnInit {
     this.onNotes = true;
   }
 
-  done(task) {
+     done(task) {
     console.log(this.tasksService.visiteToDo)
     console.log(task)
 
@@ -191,11 +191,22 @@ export class DetailsClientPage implements OnInit {
     // console.log( this.tasksService.visiteEfected )
     // console.log( this.tasksService.visiteToDo)
 
+    console.log(this.tasksService.listTasks1[0].item.name, 'EEEENTTTRRROOU')
     this.tasksService.countsToDo = this.tasksService.visiteEfected.length;
     this.tasksService.countVisits = this.tasksService.visiteToDo.length;
+
+    if(this.tasksService.visiteToDo.length === 0){
+      this.tasksService.turnMsgAlertTask = true;
+      this.tasksService.msgAlertTasks = "Não existe mais tarefas"
+    }else {
+      this.tasksService.turnMsgAlertTask = false;
+    }
+
+
     this.router.navigate(['tabs/tab1']);
     console.log([...this.tasksService.visiteEfected], "EFETUADAS")
     console.log([...this.tasksService.visiteToDo], "POR fazer")
+
 
   }
 

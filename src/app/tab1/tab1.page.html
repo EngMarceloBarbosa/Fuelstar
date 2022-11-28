@@ -18,7 +18,7 @@
   <div class="operation-details">
     <div class="operator-name">
       <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-        >{{name}}</nc-text
+        >{{tasksService.entityName}} {{tasksService.entityLastname}}</nc-text
       >
     </div>
     <div class="operator-position">
@@ -53,11 +53,11 @@
       </div>
     </div>
   </div>
-
 </div>
 <div class="box-visits">
   <div class="boxes">
-  <div class="box done" (click)="boxDone()">
+    <!-- [ngStyle]="{'background-color': tasksService.toDo === false ? '' : 'var(--c-scale-8)' }" -->
+  <div class="box done"    (click)="boxDone()" >
     <div class="box-info">
       <div class="number-task">
         <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
@@ -74,7 +74,8 @@
       <img src="./../../assets/img/image_tasks_done.svg" />
     </div>
   </div>
-  <div class="box to-do" (click)="boxToDo()">
+  <!-- [class.notSelected]="!tasksService.toDo"  -->
+  <div class="box to-do" (click)="boxToDo()"   >
     <div class="box-info">
       <div class="number-task">
         <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
@@ -108,17 +109,17 @@
       >{{'App.Tab1.vehicle' | translate}}
     </nc-text>
   </div>
-  <div class="matri-viature"  *ngFor="let item of tasksService.visiteToDo">
+  <div class="matri-viature"  *ngFor="let registration of tasksService.listTasks1">
     <nc-text size="h8" color="c-scale-9" weight="500" font="primary"
-      >| {{tasksService.visiteToDo[0].item.name}}</nc-text
+      >| {{registration.item.name}}</nc-text
     >
   </div>
 </div>
 </div>
 <div class="body-content">
 
-<div class="toDO" #toDo  *ngIf="tasksService.toDo" >
-<nc-virtual-scroller #scroll [items]="tasksService.visiteToDo"   >
+<div class="toDO" #toDo  *ngIf="this.tasksService.toDo" >
+<nc-virtual-scroller #scroll [items]="this.tasksService.visiteToDo"   >
   <div class="card-tasks"  *ngFor="let task  of scroll.viewPortItems"  >
     <div class="box-task" (click)="selectedTask(task)" >
       <div class="icon-name-user">
@@ -148,9 +149,12 @@
       </div>
     </div>
   </div>
+  <div class="msgTasks" *ngIf="tasksService.turnMsgAlertTask">
+    <nc-text size="h4" color="c-scale-12" weight="500" font="primary">{{tasksService.msgAlertTasks}}</nc-text>
+  </div>
 </nc-virtual-scroller>
 </div>
-<div class="did"  *ngIf="!tasksService.toDo">
+<div class="toDO" #toDo   *ngIf="!this.tasksService.toDo">
 <nc-virtual-scroller #scroll [items]="tasksService.visiteEfected" >
   <div class="card-tasks"  *ngFor="let task  of scroll.viewPortItems">
     <div class="box-task" (click)="selectedTask(task)" >
@@ -180,6 +184,9 @@
         <div class="light-bar"></div>
       </div>
     </div>
+  </div>
+  <div class="msgTasks" *ngIf="tasksService.turnMsgAlertTask">
+    <nc-text size="h4" color="c-scale-12" weight="500" font="primary">{{tasksService.msgAlertTasks}}</nc-text>
   </div>
 </nc-virtual-scroller>
 </div>

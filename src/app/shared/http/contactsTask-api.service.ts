@@ -46,6 +46,21 @@ export class ContactsTaskService {
 
   }
 
+  getEntitiesClients() {
+
+    // this.loadingService.loader();
+    return this.http
+      .get<any>(`${environment.api}/api/Hollo/Entities?classificationIds=00000000-0005-0000-0000-000000000106`, {
+        headers: new HttpHeaders({
+          "content-type": "application/json",
+          Authorization: "Bearer " + environment.token,
+        })
+      })
+      .pipe()
+      .toPromise();
+
+  }
+
 verifyNif(form: FormData){
 
 

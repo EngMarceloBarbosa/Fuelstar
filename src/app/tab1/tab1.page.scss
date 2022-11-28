@@ -13,19 +13,17 @@
 nc-virtual-scroller {
   // height: calc(100vh - #{tbu(px(380))});
   ::ng-deep {
-  .scrollable-content{
-    max-height: none;
+    .scrollable-content {
+      max-height: none;
 
+    }
   }
-}
 }
 
 // nc-virtual-scroller {
 //   height: calc(100vh - #{tbu(px(50))});
 
-
 // }
-
 
 .header-menu {
   background-color: var(--secondary_dark);
@@ -68,8 +66,6 @@ nc-virtual-scroller {
   padding-left: tbu(px(24));
   padding-right: tbu(px(24));
 
-
-
   .date {
     width: 60%;
     display: flex;
@@ -93,7 +89,7 @@ nc-virtual-scroller {
   position: relative;
 
   height: 100%;
-  width: 100%
+  width: 100%;
 }
 
 .box-visits {
@@ -106,44 +102,46 @@ nc-virtual-scroller {
   padding-left: tbu(px(24));
   display: flex;
   flex-direction: column;
-  background-color: var(--c-scale-1)
-
+  background-color: var(--c-scale-1);
 }
-
 
 .box {
   @extend .space-between;
   width: 48%;
+  // height: tbu(px(95));
   height: tbu(px(80));
   border-radius: tbu(px(5));
+  // transition: height 800ms;
   &.done {
     background-color: var(--primary);
   }
   // &.done:hover {
   //   background-color: red;
-
+  // }
   &.to-do {
     background-color: var(--warning);
   }
-  }
-  // &.to-do:hover{
+  // &.notSelected {
+  //   // background-color: var(--c-scale-8);
+  //   height: tbu(px(80));
+  // }
+  // &.to-do:hover {
   //   background-color: red;
   // }
+}
 
-
-.boxes{
+.boxes {
   display: flex;
   justify-content: space-between;
   z-index: 3;
 }
 
-.box-type{
+.box-type {
   display: flex;
   justify-content: flex-start;
   width: 100%;
   padding-top: tbu(px(5));
   flex-direction: column;
-
 }
 
 .box-info {
@@ -151,7 +149,6 @@ nc-virtual-scroller {
   flex-direction: column;
   padding: tbu(px(10)) tbu(px(11));
 }
-
 
 .box-image {
   width: 55%;
@@ -162,14 +159,10 @@ nc-virtual-scroller {
   }
 }
 
-
 .title-tasks {
   padding-top: 10px;
   padding-bottom: 5px;
 }
-
-
-
 
 .type-car {
   width: 45%;
@@ -177,10 +170,9 @@ nc-virtual-scroller {
   padding-bottom: tbu(px(17));
 }
 
-
 .card-tasks {
   width: 100%;
-@extend .align-center;
+  @extend .align-center;
   height: tbu(px(60));
   padding-top: tbu(px(13));
   padding-bottom: tbu(px(11));
@@ -222,7 +214,6 @@ nc-virtual-scroller {
   background-color: var(--c-scale-5);
 }
 
-
 .icon-name-user {
   display: flex;
   align-items: center;
@@ -233,8 +224,6 @@ nc-virtual-scroller {
   width: 11%;
   background-color: var(--c-scale-1);
 }
-
-
 
 .arrow-main {
   display: flex;
@@ -303,4 +292,9 @@ nc-action-sheet {
   display: flex;
   align-items: center;
   width: 5%;
+}
+
+.msgTasks{
+  padding-top: 27%;
+    padding-left: 12%;
 }

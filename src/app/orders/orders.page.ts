@@ -54,11 +54,11 @@ export class OrdersPage implements OnInit {
     console.log('value')
     // await this.contactsTaskService.getEntities().then(res => {
     //   console.log(res)
-    //   this.tasksService.listClients = res;
+    //   this.tasksService.listClients1 = res;
     //   // this.tasksService.listTasks$.next(this.listTasks);
     // })
-    // this.tasksService.allDocumentsFilter = this.tasksService.listClients
-this.tasksService.listClients = this.tasksService.listClients.map((element) => {
+    // this.tasksService.allDocumentsFilter = this.tasksService.listClients1
+this.tasksService.listClients1 = this.tasksService.listClients1.map((element) => {
   if(element.id === '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61'){
     return {
       ...element,
@@ -72,8 +72,8 @@ this.tasksService.listClients = this.tasksService.listClients.map((element) => {
   }
 })
 
-    this.tasksService.allDocumentsFilter = this.tasksService.listClients.sort((a) => (a.id == '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61') ? -1 : 1);
-    this.tasksService.allDocumentsFilter = this.tasksService.listClients.map((element) => {
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients1.sort((a) => (a.id == '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61') ? -1 : 1);
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients1.map((element) => {
 
 
 
@@ -92,7 +92,7 @@ this.tasksService.listClients = this.tasksService.listClients.map((element) => {
 
 
 console.log(  this.tasksService.allDocumentsFilter)
-console.log(this.tasksService.listClients)
+console.log(this.tasksService.listClients1)
 
 this.tasksService.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
 console.log(
@@ -101,7 +101,7 @@ console.log(
 
   selectedItemList(item: any) {
 
-    this.tasksService.allDocumentsFilter = this.tasksService.listClients.map((element) => {
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients1.map((element) => {
       return {
         ...element,
         iconCheck: element.id === item.id
@@ -195,7 +195,7 @@ console.log(this.tasksService.allDocumentsFilter)
 
       this.continue1 = false;
       this.active = true;
-      console.log(this.tasksService.listClients);
+      console.log(this.tasksService.listClients1);
       this.tasksService.controlStepCheck1 = false;
       this.tasksService.controlStepCheckk1 = false;
       this.tasksService.controlStep1 = true;
@@ -289,12 +289,12 @@ console.log(this.tasksService.allDocumentsFilter)
     console.log($event)
     this.searchClients = $event
     if ($event.length == 0) {
-      this.tasksService.allDocumentsFilter = this.tasksService.listClients;
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients1;
     } else {
-      this.tasksService.allDocumentsFilter = this.tasksService.listClients;
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients1;
       console.log(   this.tasksService.allDocumentsFilter)
-      console.log(this.tasksService.listClients)
-      this.tasksService.allDocumentsFilter = this.tasksService.listClients.filter(
+      console.log(this.tasksService.listClients1)
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients1.filter(
         doc =>
           doc.firstName?.trim().toLowerCase().includes($event.trim().toLowerCase()) ||
           doc.lastName?.trim().toLowerCase().includes($event.trim().toLowerCase())
@@ -434,18 +434,18 @@ console.log(this.tasksService.validatorNIF)
         console.log(this.tasksService.verifyEntity.length)
         this.contactsTaskService.addClient(form).then(res => {
           // console.log(res)
-          // this.tasksService.listClients = res;
+          // this.tasksService.listClients1 = res;
 
 
-           this.contactsTaskService.getEntities().then(res => {
+           this.contactsTaskService.getEntitiesClients().then(res => {
             console.log(res)
-            this.tasksService.listClients = res;
+            this.tasksService.listClients1 = res;
 
-    this.tasksService.allDocumentsFilter = this.tasksService.listClients.sort((a) => (a.firstName == '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61') ? -1 : 1);
-    console.log(    this.tasksService.listClients)
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients1.sort((a) => (a.firstName == '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61') ? -1 : 1);
+    console.log(    this.tasksService.listClients1)
 
             // this.tasksService.listTasks$.next(this.listTasks);
-            this.tasksService.allDocumentsFilter = this.tasksService.listClients;
+            this.tasksService.allDocumentsFilter = this.tasksService.listClients1;
           })
 
           console.log(this.tasksService.list)
@@ -475,7 +475,7 @@ console.log(this.tasksService.validatorNIF)
 
     }
     // if (this.tasksService.croudGroup) {
-    //   // this.tasksService.listClients.push(form)
+    //   // this.tasksService.listClients1.push(form)
     // }
 
     arr = [];
@@ -484,21 +484,21 @@ console.log(this.tasksService.validatorNIF)
   async clean() {
     await this.contactsTaskService.deleteClient(this.tasksService.selectedItem[0].id).then(res => {
       console.log(res)
-      this.tasksService.listClients = res;
+      this.tasksService.listClients1 = res;
 
-      console.log(this.tasksService.listClients)
+      console.log(this.tasksService.listClients1)
       this.tasksService.selectedItem = [];
 
       console.log(this.tasksService.listEntitys, "entidades")
     })
 
 
-    await this.contactsTaskService.getEntities().then(res => {
+    await this.contactsTaskService.getEntitiesClients().then(res => {
       console.log(res)
-      this.tasksService.listClients = res;
+      this.tasksService.listClients1 = res;
       // this.tasksService.listTasks$.next(this.listTasks);
     })
-    this.tasksService.allDocumentsFilter = this.tasksService.listClients;
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients1;
 
   }
 

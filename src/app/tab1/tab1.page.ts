@@ -20,10 +20,9 @@ import { TasksService } from '../shared/services/tasks.service';
 export class Tab1Page implements OnInit {
 
 
-  @ViewChild('toDO', {static:false}) toDo
+  @ViewChild('toDO', {static:true}) toDo
 
-
-
+  check = true;
   cardHeight = 0;
   cardHeight1 = 0;
 
@@ -64,63 +63,59 @@ export class Tab1Page implements OnInit {
   ) {
 
 
+
    }
 
   async ngOnInit() {
 
+
+console.log(this.tasksService.toDo)
       await this.contactsTaskService.getEntities().then(res => {
         console.log(res)
         this.tasksService.listClients = res;
-        // this.tasksService.listTasks$.next(this.listTasks);
+      })
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients
+
+
+      await this.contactsTaskService.getEntitiesClients().then(res => {
+        console.log(res)
+        this.tasksService.listClients1 = res;
+        console.log(   this.tasksService.listClients1)
       })
       this.tasksService.allDocumentsFilter = this.tasksService.listClients
 
 
 
-    await this.taskApiService.getTasks().then(res => {
-      console.log(res)
-      this.tasksService.listTasks = res;
-      // this.tasksService.listTasks.forEach((task) => {
-      //   this.tasksService.listTasksItemId = task.item.id
-      // } )
-      this.tasksService.visiteToDo = this.tasksService.listTasks
-      console.log(this.tasksService.visiteToDo)
 
-      this.tasksService.countVisits  = this.tasksService.visiteToDo.length
-      console.log(this.tasksService.countVisits)
-      this.tasksService.countsToDo =  this.tasksService.listTasks.length-this.tasksService.countVisits
+    // await this.taskApiService.getTasks().then(res => {
+    //   console.log(res)
+    //   this.tasksService.listTasks = res;
+    //   console.log(this.tasksService.visiteToDo)
 
-
-      // this.tasksService.listTasks$.next(this.listTasks);
-    })
+    //   this.tasksService.countVisits  = this.tasksService.visiteToDo.length
+    //   console.log(this.tasksService.countVisits)
+    //   this.tasksService.countsToDo =  this.tasksService.listTasks.length-this.tasksService.countVisits
+    // })
 
 
     await this.taskApiService.getTasksItemId().then(res => {
       this.tasksService.listTasks1 = res;
+      this.tasksService.visiteToDo = this.tasksService.listTasks1;
       console.log(this.tasksService.listTasks1)
+      this.tasksService.countVisits  = this.tasksService.visiteToDo.length
+      console.log(this.tasksService.countVisits)
+      this.tasksService.countsToDo =  this.tasksService.listTasks1.length-this.tasksService.countVisits
+
 
     })
 
 
     this.randomNumber(1, 1000);
-
-
-    // this.contactsTaskService.getNoteById().then(res => {
-    // this.tasksService.listTasksById = res
-    // console.log(this.tasksService.listTasksById);
-    // } )
+    this.virtualScroller();
     this.registration();
-    setTimeout(() => {
-      const virtualScroller = this.element.nativeElement.querySelector('.toDO nc-virtual-scroller')
-      const scrollable = virtualScroller.querySelector('.scrollable-content')
-      this.cardHeight = this.tasksService.listTasks.length * 44;
-      this.cardHeight1 = this.tasksService.listTasks.length * 8.3;
-      virtualScroller.style.height = `${40}vh`;
-      scrollable.style.height = `${this.cardHeight}px`;
 
-
-    }, 300);
-
+    console.log(this.tasksService.visiteToDo)
+    console.log(this.tasksService.visiteEfected)
   }
 
 
@@ -168,8 +163,6 @@ console.log(test)
 
     };
 
-    // const temp = document.createElement('ion-action-sheet');
-
     this.actionSheetService.open(temp);
 
   }
@@ -208,13 +201,35 @@ console.log(test)
   }
 
   boxDone(){
+
     this.visits = "Visitas efectuadas"
     this.tasksService.toDo = false
+    console.log(this.tasksService.toDo)
+    if(this.tasksService.visiteEfected.length === 0){
+      this.tasksService.turnMsgAlertTask = true;
+      this.tasksService.msgAlertTasks = "Ainda não se encontram tarefas concluídas"
+    }else {
+      this.tasksService.turnMsgAlertTask = false;
+    }
+
+   this.virtualScroller();
+
   }
 
   boxToDo(){
     this.visits = "Visitas para hoje"
     this.tasksService.toDo = true
+    console.log(this.tasksService.toDo)
+
+    if(this.tasksService.visiteToDo.length === 0){
+      this.tasksService.turnMsgAlertTask = true;
+      this.tasksService.msgAlertTasks = "Não existe mais tarefas"
+    }else {
+      this.tasksService.turnMsgAlertTask = false;
+    }
+
+    this.virtualScroller();
+
   }
 
 
@@ -233,6 +248,18 @@ console.log(test)
     console.log(this.tasksService.listTasks)
   }
 
+  virtualScroller(){
+     setTimeout(() => {
+      const virtualScroller = this.element.nativeElement.querySelector('.toDO nc-virtual-scroller')
+      const scrollable = virtualScroller.querySelector('.scrollable-content')
+      this.cardHeight = this.tasksService.listTasks1.length * 44;
+      this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
+      virtualScroller.style.height = `${40}vh`;
+      scrollable.style.height = `${this.cardHeight}px`;
+
+
+    }, 1);
+  }
 
 }
 

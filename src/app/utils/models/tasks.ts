@@ -77,6 +77,7 @@ export class Entity {
   updateDate: string;
   image?: string;
   iconCheck: boolean;
+
 }
 
 export class Address {
@@ -157,6 +158,17 @@ export class Task {
   startDate: string;
   endDate: string;
   entity: Entity;
+}
+export class Classification {
+  id: string;
+  firstName: string;
+  lastName: string;
+  alias: string;
+  countryId: string;
+  countryName: string;
+  vatNumber: string;
+  mainContact:string;
+  email:string;
 }
 
 export class Instance {

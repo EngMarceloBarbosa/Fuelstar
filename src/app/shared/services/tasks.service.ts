@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
-import { Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, PaymentMethods, Tasks } from 'src/app/utils/models/tasks';
+import { Classification, Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, PaymentMethods, Tasks } from 'src/app/utils/models/tasks';
 import { ItemApiService } from '../http/item-api.service';
 
 
@@ -29,6 +29,7 @@ export class TasksService {
   listTasksItemId:any;
   quantityTotal: any;
   listClients: Entity[] = [];
+  listClients1: Classification[] = [];
   listContacts: Contacts[] = [];
   listEntitys: Entity = null;
   listTasksById: Instance;
@@ -97,6 +98,11 @@ export class TasksService {
   longitude:any;
   entityId: any;
   roleId: any;
+  entityName:any;
+  entityLastname:any;
+
+  turnMsgAlertTask = false;
+  msgAlertTasks:any;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),
@@ -311,6 +317,7 @@ this.validatorNIF = true;
 
 
   //
+
 
 
 

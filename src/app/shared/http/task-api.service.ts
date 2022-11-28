@@ -27,7 +27,7 @@ export class TaskApiService {
   }
 
   getTasksItemId() {
-      console.log(this.tasksService.listTasks[0].item.id)
+
     // this.loadingService.loader();
     return this.http
       .get<any>(`${environment.api}/api/Thebox/Bullets/Instances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}`, {

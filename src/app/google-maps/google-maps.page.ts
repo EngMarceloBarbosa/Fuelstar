@@ -84,6 +84,15 @@ export class GoogleMapsPage implements OnInit {
         },
         title: 'localização atual',
         snippet: 'melhor local'
+      },
+      {
+
+        coordinate: {
+          lat: this.tasksService.latitude,
+          lng: this.tasksService.longitude,
+        },
+        title: 'localização atual',
+        snippet: 'melhor local'
       }
     ];
     await this.newMap.addMarkers(markers);

@@ -33,9 +33,9 @@ export class LoginPage implements OnInit {
   alunos = [];
   globalMessagesTranslations: any;
   loginMessagesTranslations: any;
-  event:any;
-  toggleValue:any;
-  checked:any;
+  event: any;
+  toggleValue: any;
+  checked: any;
 
   constructor(private router: Router,
     private loginApiService: LoginApiService,
@@ -123,26 +123,9 @@ export class LoginPage implements OnInit {
   /**
    * Sign In button Click
    */
-   async signInClick() {
+  async signInClick() {
 
-
-  //  {
-  //   const loading = await this.loadingController.create({
-  //     message: 'loading',
-  //     duration: 3000
-  //   });
-  //   await loading.present();
-
-  //   const { role, data } = await loading.onDidDismiss();
-
-  //   console.log('Loading dismissed!');
-  // }
-
-
-  this.presentLoadingWithOptions();
-
-
-    // this.loading = 'loading';
+    this.presentLoadingWithOptions();
 
     const authentication = {
       username: this.email.value,
@@ -154,8 +137,14 @@ export class LoginPage implements OnInit {
       this.router.navigate(["/tabs/tab1"]);
       environment.token = res.accessToken;
 
+      if (authentication.username === 'Admin') {
+        console.log('entrou')
+        this.tasksService.entityId = "00000000-0000-0000-0000-000000000001"
+        this.tasksService.roleId = "00000000-0000-0000-0000-000000000001"
+      } else {
 
-      this.parseJwt();
+        this.parseJwt();
+      }
 
     })
 
@@ -188,8 +177,9 @@ export class LoginPage implements OnInit {
             this.form.reset();
           });
         } else {
-
+          console.log(error, 'ERRO')
           const temp: ModalMessageModel = {
+
             showTip: false,
             title: this.alertMessagesTranslations.titleInternalServerFailed,
             description: this.alertMessagesTranslations.descriptionInternalServerFailed,
@@ -203,6 +193,7 @@ export class LoginPage implements OnInit {
             rightButtonText: this.alertMessagesTranslations.rigthButtonTryAgain,
             rightButtonTesterProperty: 'clickTryAgain',
             rightButtonColor: 'c-scale-12',
+
             rightButtonCallback: () => {
               this.router.navigate(['/login']);
             }
@@ -218,7 +209,7 @@ export class LoginPage implements OnInit {
   }
 
 
-  switch(){
+  switch() {
     const temp: ModalMessageModel = {
       showTip: false,
       title: "Começar Turno ?",
@@ -227,7 +218,7 @@ export class LoginPage implements OnInit {
       leftButtonSize: "small",
       leftButtonType: "text",
       leftButtonText: "Cancel",
-      showMiddleButton:false,
+      showMiddleButton: false,
       rightButtonSize: "small",
       rightButtonType: "text",
       rightButtonText: "Start",
@@ -248,40 +239,40 @@ export class LoginPage implements OnInit {
   }
 
 
-  toggle($event){
+  toggle($event) {
     console.log($event)
-        this.checked = $event
+    this.checked = $event
 
   }
 
   send($event: KeyboardEvent) {
     console.log($event)
-    if($event.key === 'Enter') {
+    if ($event.key === 'Enter') {
       this.signInClick()
     }
-}
+  }
 
-   parseJwt() {
+  parseJwt() {
 
-  var base64Url = environment.token.split('.')[1];
-  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+
+
+    var base64Url = environment.token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
-console.log(jsonPayload)
+    }).join(''));
+    console.log(jsonPayload)
 
- const obj = JSON.parse(jsonPayload);
- const obj1 = JSON.parse(obj.unique_name)
- this.tasksService.entityId = obj1.user.entity.id
- this.tasksService.roleId = "00000000-0000-0000-0000-000000000002"
-console.log(this.tasksService.entityId)
-console.log(obj1)
-console.log(this.tasksService.roleId)
+    const obj = JSON.parse(jsonPayload);
+    const obj1 = JSON.parse(obj.unique_name)
+    this.tasksService.entityId = obj1.user.entity.id
+    this.tasksService.entityName = obj1.user.entity.firstName
+    this.tasksService.entityLastname = obj1.user.entity.lastName
 
-
-
-
-
+    this.tasksService.roleId = "00000000-0000-0000-0000-000000000002"
+    console.log(this.tasksService.entityId)
+    console.log(obj1)
+    console.log(this.tasksService.roleId)
 
 
 
@@ -309,7 +300,12 @@ console.log(this.tasksService.roleId)
 
 
 
-}
+
+
+
+
+
+  }
 
 
 }
