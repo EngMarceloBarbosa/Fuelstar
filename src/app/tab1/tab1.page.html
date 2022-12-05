@@ -1,3 +1,6 @@
+
+<ion-content>
+  <div class="container-master">
 <div class="header-menu">
   <div class="title-menu">
     <div class="title-main-menu">
@@ -54,155 +57,407 @@
     </div>
   </div>
 </div>
-<div class="box-visits">
-  <div class="boxes">
-    <!-- [ngStyle]="{'background-color': tasksService.toDo === false ? '' : 'var(--c-scale-8)' }" -->
-  <div class="box done"    (click)="boxDone()" >
-    <div class="box-info">
-      <div class="number-task">
-        <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
-          >{{tasksService.countsToDo}}</nc-text
-        >
-      </div>
-      <div class="box-text-visits-done">
-        <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-          >{{'App.Tab1.visitsDone' | translate}}</nc-text
-        >
-      </div>
-    </div>
-    <div class="box-image">
-      <img src="./../../assets/img/image_tasks_done.svg" />
-    </div>
-  </div>
-  <!-- [class.notSelected]="!tasksService.toDo"  -->
-  <div class="box to-do" (click)="boxToDo()"   >
-    <div class="box-info">
-      <div class="number-task">
-        <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
-          >{{tasksService.countVisits}}</nc-text
-        >
-      </div>
-      <div class="box-text-visits-done">
 
-        <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-          >{{'App.Tab1.visitsTodo' | translate}}</nc-text
-        >
-      </div>
-    </div>
-    <div class="box-image">
-      <img src="./../../assets/img/images_tasks_todo.svg" />
-    </div>
-  </div>
-</div>
-<div class="box-type">
-<div class="title-tasks">
-  <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-    >{{this.visits}}</nc-text
-  >
-</div>
-<div class="type-car">
-  <div class="car-icon">
-    <nc-icon [size]="18" color="c-scale-8">icon_truck_orders</nc-icon>
-  </div>
-  <div class="name-viature">
-    <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
-      >{{'App.Tab1.vehicle' | translate}}
-    </nc-text>
-  </div>
-  <div class="matri-viature"  *ngFor="let registration of tasksService.listTasks1">
-    <nc-text size="h8" color="c-scale-9" weight="500" font="primary"
-      >| {{registration.item.name}}</nc-text
-    >
-  </div>
-</div>
-</div>
-<div class="body-content">
 
-<div class="toDO" #toDo  *ngIf="this.tasksService.toDo" >
-<nc-virtual-scroller #scroll [items]="this.tasksService.visiteToDo"   >
-  <div class="card-tasks"  *ngFor="let task  of scroll.viewPortItems"  >
-    <div class="box-task" (click)="selectedTask(task)" >
-      <div class="icon-name-user">
-        <nc-text
-          id="icon-user"
-          size="h7"
-          color="c-scale-10"
-          weight="500"
-          font="primary"
-          >{{task.entity.firstName | prefix}}{{task.entity.lastName | prefix}}</nc-text
-        >
+<div class="container-slides">
+
+<ion-slides pager="true" [options]="slideOpts" (touchmove)="ionSlideTouchStart($event)">
+
+  <ion-slide >
+  <div class="box-visits">
+
+      <!-- [ngStyle]="{'background-color': tasksService.toDo === false ? '' : 'var(--c-scale-8)' }" -->
+      <!-- <div class="box done" (click)="boxDone()">
+        <div class="box-info">
+          <div class="number-task">
+            <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+              >{{tasksService.countsToDo}}</nc-text
+            >
+          </div>
+          <div class="box-text-visits-done">
+            <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+              >{{'App.Tab1.visitsDone' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="box-image">
+          <img src="./../../assets/img/image_tasks_done.svg" />
+        </div>
+      </div> -->
+      <!-- [class.notSelected]="!tasksService.toDo"  -->
+      <div class="boxes">
+      <div class="box to-do" >
+        <div class="box-info">
+          <div class="number-task">
+            <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+              >{{tasksService.countVisits}}</nc-text
+            >
+          </div>
+          <div class="box-text-visits-done">
+            <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+              >{{'App.Tab1.visitsTodo' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="box-image">
+          <img src="./../../assets/img/images_tasks_todo.svg" />
+        </div>
       </div>
-      <div class="description-task">
-        <div class="name-task">
-          <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-            >{{task.entity.firstName}} {{task.entity.lastName}}</nc-text
+    </div>
+    <div class="box-type">
+      <div class="title-tasks">
+        <div class="titles-task">
+          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            >Filtrar por</nc-text
           >
         </div>
-        <div class="localization-task">
-          <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-            >{{task.address.cityName}}</nc-text
+        <div class="type-operation" (click)="operationType()">
+          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            >Operation Type</nc-text
           >
         </div>
       </div>
-      <div class="bar-task">
-        <div class="light-bar"></div>
-      </div>
-    </div>
-  </div>
-  <div class="msgTasks" *ngIf="tasksService.turnMsgAlertTask">
-    <nc-text size="h4" color="c-scale-12" weight="500" font="primary">{{tasksService.msgAlertTasks}}</nc-text>
-  </div>
-</nc-virtual-scroller>
-</div>
-<div class="toDO" #toDo   *ngIf="!this.tasksService.toDo">
-<nc-virtual-scroller #scroll [items]="tasksService.visiteEfected" >
-  <div class="card-tasks"  *ngFor="let task  of scroll.viewPortItems">
-    <div class="box-task" (click)="selectedTask(task)" >
-      <div class="icon-name-user">
-        <nc-text
-          id="icon-user"
-          size="h7"
-          color="c-scale-10"
-          weight="500"
-          font="primary"
-          >{{task.entity.firstName | prefix}}{{task.entity.lastName | prefix}}</nc-text
+      <div class="type-car">
+        <div class="car-icon">
+          <nc-icon [size]="18" color="c-scale-8">icon_truck_orders</nc-icon>
+        </div>
+        <div class="name-viature">
+          <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
+            >{{'App.Tab1.vehicle' | translate}}
+          </nc-text>
+        </div>
+        <div
+          class="matri-viature"
+          *ngFor="let registration of tasksService.listTasks1"
         >
-      </div>
-      <div class="description-task">
-        <div class="name-task">
-          <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-            >{{task.entity.firstName}} {{task.entity.lastName}}</nc-text
-          >
-        </div>
-        <div class="localization-task">
-          <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-            >{{task.address.cityName}}</nc-text
+          <nc-text size="h8" color="c-scale-9" weight="500" font="primary"
+            >| {{registration.item.name}}</nc-text
           >
         </div>
       </div>
-      <div class="bar-task">
-        <div class="light-bar"></div>
+    </div>
+    <div class="body-content">
+      <div class="toDO" #toDo *ngIf="this.tasksService.toDo">
+        <nc-virtual-scroller #scroll [items]="this.tasksService.visiteToDo">
+          <div class="card-tasks" *ngFor="let task  of scroll.viewPortItems">
+            <div class="box-task" (click)="selectedTask(task)">
+              <div class="icon-name-user">
+                <nc-text
+                  id="icon-user"
+                  size="h7"
+                  color="c-scale-10"
+                  weight="500"
+                  font="primary"
+                  >{{task.entity.firstName | prefix}}{{task.entity.lastName |
+                  prefix}}</nc-text
+                >
+              </div>
+              <div class="description-task">
+                <div class="name-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="500"
+                    font="primary"
+                    >{{task.entity.firstName}} {{task.entity.lastName}}</nc-text
+                  >
+                </div>
+                <div class="container-task">
+                  <div class="operation-type">
+                    <nc-text
+                    size="h8"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >Encomenda</nc-text
+                  >
+                  </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >{{task.address.cityName}}</nc-text
+                  >
+                </div>
+
+              </div>
+              </div>
+              <div class="bar-task">
+                <div class="light-bar"></div>
+              </div>
+            </div>
+          </div>
+          <div class="msgTasks" *ngIf="tasksService.turnMsgAlertTask">
+            <nc-text size="h4" color="c-scale-12" weight="500" font="primary"
+              >{{tasksService.msgAlertTasks}}</nc-text
+            >
+          </div>
+        </nc-virtual-scroller>
+      </div>
+      <!-- <div class="toDO" #toDo *ngIf="!this.tasksService.toDo">
+        <nc-virtual-scroller #scroll [items]="tasksService.visiteEfected">
+          <div class="card-tasks" *ngFor="let task  of scroll.viewPortItems">
+            <div class="box-task" (click)="selectedTask(task)">
+              <div class="icon-name-user">
+                <nc-text
+                  id="icon-user"
+                  size="h7"
+                  color="c-scale-10"
+                  weight="500"
+                  font="primary"
+                  >{{task.entity.firstName | prefix}}{{task.entity.lastName |
+                  prefix}}</nc-text
+                >
+              </div>
+              <div class="description-task">
+                <div class="name-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="500"
+                    font="primary"
+                    >{{task.entity.firstName}} {{task.entity.lastName}}</nc-text
+                  >
+                </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >{{task.address.cityName}}</nc-text
+                  >
+                </div>
+              </div>
+              <div class="bar-task">
+                <div class="light-bar"></div>
+              </div>
+            </div>
+          </div>
+          <div class="msgTasks" *ngIf="tasksService.turnMsgAlertTask">
+            <nc-text size="h4" color="c-scale-12" weight="500" font="primary"
+              >{{tasksService.msgAlertTasks}}</nc-text
+            >
+          </div>
+        </nc-virtual-scroller>
+      </div> -->
+      <div class="arrow-main" (click)="definitions()">
+        <div class="arrow">
+          <div class="arrow-sub">
+            <nc-icon [size]="18" color="--success" hoverColor="c-scale-12"
+              >icon_send</nc-icon
+            >
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="msgTasks" *ngIf="tasksService.turnMsgAlertTask">
-    <nc-text size="h4" color="c-scale-12" weight="500" font="primary">{{tasksService.msgAlertTasks}}</nc-text>
-  </div>
-</nc-virtual-scroller>
-</div>
-<div class="arrow-main" (click)="definitions()">
-  <div class="arrow">
-    <div class="arrow-sub">
-      <nc-icon [size]="18" color="--success" hoverColor="c-scale-12"
-        >icon_send</nc-icon
-      >
+
+</ion-slide>
+
+
+<ion-slide>
+
+  <div class="box-visits">
+    <div class="boxes">
+      <!-- [ngStyle]="{'background-color': tasksService.toDo === false ? '' : 'var(--c-scale-8)' }" -->
+      <div class="box done" >
+        <div class="box-info">
+          <div class="number-task">
+            <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+              >{{tasksService.countsToDo}}</nc-text
+            >
+          </div>
+          <div class="box-text-visits-done">
+            <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+              >{{'App.Tab1.visitsDone' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="box-image">
+          <img src="./../../assets/img/image_tasks_done.svg" />
+        </div>
+      </div>
+      <!-- [class.notSelected]="!tasksService.toDo"  -->
+      <!-- <div class="box to-do" (click)="boxToDo()">
+        <div class="box-info">
+          <div class="number-task">
+            <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+              >{{tasksService.countVisits}}</nc-text
+            >
+          </div>
+          <div class="box-text-visits-done">
+            <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+              >{{'App.Tab1.visitsTodo' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="box-image">
+          <img src="./../../assets/img/images_tasks_todo.svg" />
+        </div>
+      </div> -->
+    </div>
+    <div class="box-type">
+      <div class="title-tasks">
+        <div class="titles-task">
+          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            >{{this.visits}}</nc-text
+          >
+        </div>
+        <!-- <div class="type-operation" (click)="operationType()">
+          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+            >Operation Type</nc-text
+          >
+        </div> -->
+      </div>
+      <div class="type-car">
+        <div class="car-icon">
+          <nc-icon [size]="18" color="c-scale-8">icon_truck_orders</nc-icon>
+        </div>
+        <div class="name-viature">
+          <nc-text size="h8" color="c-scale-8" weight="500" font="primary"
+            >{{'App.Tab1.vehicle' | translate}}
+          </nc-text>
+        </div>
+        <div
+          class="matri-viature"
+          *ngFor="let registration of tasksService.listTasks1"
+        >
+          <nc-text size="h8" color="c-scale-9" weight="500" font="primary"
+            >| {{registration.item.name}}</nc-text
+          >
+        </div>
+      </div>
+    </div>
+    <div class="body-content">
+      <div class="toDO1" #toDo1 *ngIf="this.tasksService.toDo">
+        <nc-virtual-scroller #scroll [items]="this.tasksService.visiteEfected">
+          <div class="card-tasks" *ngFor="let task  of scroll.viewPortItems">
+            <div class="box-task" (click)="selectedTask(task)">
+              <div class="icon-name-user">
+                <nc-text
+                  id="icon-user"
+                  size="h7"
+                  color="c-scale-10"
+                  weight="500"
+                  font="primary"
+                  >{{task.entity.firstName | prefix}}{{task.entity.lastName |
+                  prefix}}</nc-text
+                >
+              </div>
+              <div class="description-task">
+                <div class="name-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="500"
+                    font="primary"
+                    >{{task.entity.firstName}} {{task.entity.lastName}}</nc-text
+                  >
+                </div>
+                <div class="container-task">
+                  <div class="operation-type">
+                    <nc-text
+                    size="h8"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >Encomenda</nc-text
+                  >
+                  </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >{{task.address.cityName}}</nc-text
+                  >
+                </div>
+
+              </div>
+              </div>
+              <div class="bar-task">
+                <div class="light-bar"></div>
+              </div>
+            </div>
+          </div>
+          <div class="msgTasks" *ngIf="tasksService.turnMsgAlertTask1">
+            <nc-text size="h4" color="c-scale-12" weight="500" font="primary"
+              >{{tasksService.msgAlertTasks1}}</nc-text
+            >
+          </div>
+        </nc-virtual-scroller>
+      </div>
+      <!-- <div class="toDO" #toDo *ngIf="!this.tasksService.toDo">
+        <nc-virtual-scroller #scroll [items]="tasksService.visiteEfected">
+          <div class="card-tasks" *ngFor="let task  of scroll.viewPortItems">
+            <div class="box-task" (click)="selectedTask(task)">
+              <div class="icon-name-user">
+                <nc-text
+                  id="icon-user"
+                  size="h7"
+                  color="c-scale-10"
+                  weight="500"
+                  font="primary"
+                  >{{task.entity.firstName | prefix}}{{task.entity.lastName |
+                  prefix}}</nc-text
+                >
+              </div>
+              <div class="description-task">
+                <div class="name-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-12"
+                    weight="500"
+                    font="primary"
+                    >{{task.entity.firstName}} {{task.entity.lastName}}</nc-text
+                  >
+                </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-10"
+                    weight="500"
+                    font="primary"
+                    >{{task.address.cityName}}</nc-text
+                  >
+                </div>
+              </div>
+              <div class="bar-task">
+                <div class="light-bar"></div>
+              </div>
+            </div>
+          </div>
+          <div class="msgTasks" *ngIf="tasksService.turnMsgAlertTask">
+            <nc-text size="h4" color="c-scale-12" weight="500" font="primary"
+              >{{tasksService.msgAlertTasks}}</nc-text
+            >
+          </div>
+        </nc-virtual-scroller>
+      </div> -->
+      <div class="arrow-main" (click)="definitions()">
+        <div class="arrow">
+          <div class="arrow-sub">
+            <nc-icon [size]="18" color="--success" hoverColor="c-scale-12"
+              >icon_send</nc-icon
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
+</ion-slide>
+
+
+</ion-slides>
 
 
 </div>
+
+
 <nc-action-sheet [typeASheet]="1" [showFooter]="false">
   <div class="action-sheet-body">
     <div class="content-options">
@@ -260,3 +515,107 @@
     </div>
   </div>
 </nc-action-sheet>
+
+<!-- <nc-action-sheet [typeASheet]="1" [showFooter]="false">
+  <div class="action-sheet-body">
+    <div class="content-options">
+      <div class="container-options">
+        <div class="description-options">
+          <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+            >ESCOLHA O TIPO DE OPERAÇÃO EU DESEJA REALIZAR</nc-text
+          >
+        </div>
+      </div>
+      <div class="type-actions">
+        <div class="option">
+          <div class="icon-app">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1"
+              >icon_shop_car</nc-icon
+            >
+          </div>
+          <div class="title-price">
+            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+              >Venda</nc-text
+            >
+          </div>
+          <div class="right-icon">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+              >icon_big_arrow-right</nc-icon
+            >
+          </div>
+        </div>
+        <div class="option">
+          <div class="icon-app">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1"
+              >icon_truck_orders</nc-icon
+            >
+          </div>
+          <div class="title-price">
+            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+              >Encomenda</nc-text
+            >
+          </div>
+          <div class="right-icon">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+              >icon_big_arrow-right</nc-icon
+            >
+          </div>
+        </div>
+        <div class="option">
+          <div class="icon-app">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1">
+              icon_order_return</nc-icon
+            >
+          </div>
+          <div class="title-price">
+            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+              >Levantamento</nc-text
+            >
+          </div>
+          <div class="right-icon">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+              >icon_big_arrow-right</nc-icon
+            >
+          </div>
+        </div>
+        <div class="option">
+          <div class="icon-app">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1">
+              icon_payment</nc-icon
+            >
+          </div>
+          <div class="title-price">
+            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+              >Recebimento</nc-text
+            >
+          </div>
+          <div class="right-icon">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+              >icon_big_arrow-right</nc-icon
+            >
+          </div>
+        </div>
+        <div class="option">
+          <div class="icon-app">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1">
+              icon_undo</nc-icon
+            >
+          </div>
+          <div class="title-price">
+            <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
+              >Devolução</nc-text
+            >
+          </div>
+          <div class="right-icon">
+            <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+              >icon_big_arrow-right</nc-icon
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nc-action-sheet> -->
+</div>
+</ion-content>
+

@@ -53,6 +53,7 @@
     "plugin": "^0.3.3",
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.6.0",
+    "swiper": "^6.7.5",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },

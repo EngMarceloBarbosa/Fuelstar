@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 import { SharedModule } from '../shared/shared.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import {SwiperModule} from 'swiper/angular'
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 
@@ -17,7 +17,8 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     CommonModule,
     FormsModule,
     Tab1PageRoutingModule,
-    SharedModule
+    SharedModule,
+    SwiperModule,
   ],
   declarations: [Tab1Page]
 })

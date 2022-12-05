@@ -141,6 +141,8 @@ export class DetailsClientPage implements OnInit {
   }
 
      done(task) {
+
+
     console.log(this.tasksService.visiteToDo)
     console.log(task)
 
@@ -200,6 +202,14 @@ export class DetailsClientPage implements OnInit {
       this.tasksService.msgAlertTasks = "Não existe mais tarefas"
     }else {
       this.tasksService.turnMsgAlertTask = false;
+    }
+
+
+    if(this.tasksService.visiteEfected.length === 0){
+      this.tasksService.turnMsgAlertTask1 = true;
+      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
+    }else {
+      this.tasksService.turnMsgAlertTask1 = false;
     }
 
 

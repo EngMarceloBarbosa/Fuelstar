@@ -102,7 +102,9 @@ export class TasksService {
   entityLastname:any;
 
   turnMsgAlertTask = false;
+  turnMsgAlertTask1 = false;
   msgAlertTasks:any;
+  msgAlertTasks1:any;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),

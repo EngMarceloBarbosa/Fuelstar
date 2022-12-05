@@ -61,6 +61,9 @@ export class SettingsPage implements OnInit {
     this.tasksService.visiteEfected = []
     this.alertService.open(temp);
 
+
+    this.tasksService.turnMsgAlertTask = false;
+    this.tasksService.turnMsgAlertTask1 = false;
   }
 
   exitApp(){

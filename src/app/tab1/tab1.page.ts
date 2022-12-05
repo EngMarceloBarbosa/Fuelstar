@@ -1,8 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController, ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
+import { SwiperComponent } from 'swiper/angular';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { clientsTab } from '../shared/models/clients-tab1';
@@ -17,10 +18,15 @@ import { TasksService } from '../shared/services/tasks.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page implements OnInit {
+export class Tab1Page implements OnInit, AfterContentChecked {
 
 
   @ViewChild('toDO', {static:true}) toDo
+  @ViewChild('toDO1', {static:true}) toDo1
+  @ViewChild('swiper') swiper:SwiperComponent;
+
+
+
 
   check = true;
   cardHeight = 0;
@@ -49,6 +55,12 @@ export class Tab1Page implements OnInit {
   productsMessagesTranslations: any;
 
 
+  slideOpts = {
+    initialSlide: 0,
+    speed: 300
+  };
+
+
   constructor(
     private router: Router,
     private nav: NavController,
@@ -66,7 +78,22 @@ export class Tab1Page implements OnInit {
 
    }
 
+
+   ngAfterContentChecked(): void {
+       if(this.swiper) {
+        this.swiper.updateSwiper({});
+       }
+   }
+
   async ngOnInit() {
+
+    if(this.tasksService.visiteEfected.length === 0){
+      this.tasksService.turnMsgAlertTask1 = true;
+      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
+    }else {
+      this.tasksService.turnMsgAlertTask1 = false;
+    }
+
 
 
 console.log(this.tasksService.toDo)
@@ -250,16 +277,74 @@ console.log(test)
 
   virtualScroller(){
      setTimeout(() => {
+
+
+
       const virtualScroller = this.element.nativeElement.querySelector('.toDO nc-virtual-scroller')
       const scrollable = virtualScroller.querySelector('.scrollable-content')
       this.cardHeight = this.tasksService.listTasks1.length * 44;
       this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
-      virtualScroller.style.height = `${40}vh`;
+      virtualScroller.style.height = `${33}vh`;
       scrollable.style.height = `${this.cardHeight}px`;
 
 
+      console.log(    scrollable.style.height)
+      console.log(    virtualScroller.style.height )
+
     }, 1);
+
   }
+
+  operationType(){
+
+  //   const temp1: ActionSheetModel = {
+  //   titleText: "OPÇÕES",
+  //   titleTextColor: 'c-scale-12',
+  //   titleTextSize: 'large',
+  //   iconHeader: 'icon_options',
+  //   iconHeaderSize: 16,
+  //   iconHeaderColor: 'c-scale-12',
+  //   rightButtonShow: true,
+  //   rightButtonText: 'Aplicar filtros',
+  //   rightButtonColor: 'primary',
+
+  // };
+
+  // this.actionSheetService.open(temp1);
+
+  }
+
+
+  ionSlideTouchStart(event){
+    console.log(event)
+
+
+    this.virtualScroller1();
+
+
+
+  }
+
+
+  virtualScroller1(){
+    setTimeout(() => {
+
+
+
+     const virtualScroller = this.element.nativeElement.querySelector('.toDO1 nc-virtual-scroller')
+     const scrollable = virtualScroller.querySelector('.scrollable-content')
+     this.cardHeight = this.tasksService.listTasks1.length * 44;
+     this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
+     virtualScroller.style.height = `${33}vh`;
+     scrollable.style.height = `${this.cardHeight}px`;
+
+
+     console.log(    scrollable.style.height)
+     console.log(    virtualScroller.style.height )
+
+   }, 1);
+
+ }
 
 }
 
