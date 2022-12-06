@@ -79,10 +79,10 @@ export class GoogleMapsPage implements OnInit {
       {
 
         coordinate: {
-          lat: this.tasksService.latitude,
-          lng: this.tasksService.longitude,
+          lat: 41.44310359430382,
+          lng:-8.294370288568537
         },
-        title: 'localização atual',
+        title: 'destino',
         snippet: 'melhor local'
       },
       {
@@ -101,6 +101,8 @@ export class GoogleMapsPage implements OnInit {
       console.log(marker)
     })
   }
+
+
 
 
 
