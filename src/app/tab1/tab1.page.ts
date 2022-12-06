@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, ToastController } from '@ionic/angular';
+import { IonSlides, NavController, ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
 import { SwiperComponent } from 'swiper/angular';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
@@ -24,10 +25,10 @@ export class Tab1Page implements OnInit, AfterContentChecked {
   @ViewChild('toDO', {static:true}) toDo
   @ViewChild('toDO1', {static:true}) toDo1
   @ViewChild('swiper') swiper:SwiperComponent;
+  @ViewChild('slide', {static:false}) slide:IonSlides
 
-
-
-
+  positionSlide: any = 0;
+  change = false;
   check = true;
   cardHeight = 0;
   cardHeight1 = 0;
@@ -86,6 +87,9 @@ export class Tab1Page implements OnInit, AfterContentChecked {
    }
 
   async ngOnInit() {
+
+    console.log(this.positionSlide)
+
 
     if(this.tasksService.visiteEfected.length === 0){
       this.tasksService.turnMsgAlertTask1 = true;
@@ -180,6 +184,7 @@ console.log(test)
   }
 
   definitions() {
+
     const temp: ActionSheetModel = {
       titleText: "TRAJETO",
       titleTextColor: 'c-scale-12',
@@ -187,11 +192,8 @@ console.log(test)
       iconHeader: 'icon_send',
       iconHeaderSize: 12,
       iconHeaderColor: 'c-scale-12',
-
     };
-
     this.actionSheetService.open(temp);
-
   }
 
   definitions1() {
@@ -286,10 +288,8 @@ console.log(test)
       this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
       virtualScroller.style.height = `${33}vh`;
       scrollable.style.height = `${this.cardHeight}px`;
-
-
       console.log(    scrollable.style.height)
-      console.log(    virtualScroller.style.height )
+      console.log(    virtualScroller.style.height)
 
     }, 1);
 
@@ -315,15 +315,62 @@ console.log(test)
   }
 
 
-  ionSlideTouchStart(event){
-    console.log(event)
+  // slideChange(event){
 
 
+
+
+  // }
+
+
+  slideChanged(){
+    console.log(this.positionSlide)
+    this.slide.getActiveIndex().then(index => {
+      console.log(index)
+
+  this.positionSlide = index
+
+    })
+    console.log(this.change)
     this.virtualScroller1();
 
 
 
+
+
+          if(this.positionSlide == 0){
+            this.change = true;
+          }
+          if(this.positionSlide == 1){
+            this.change = false;
+          }
+
+
+
   }
+
+
+
+
+
+
+
+  // slideChanged1(){
+
+  //   this.slides.nativeElement.getActiveIndex().then(index => {
+  //     console.log(index);
+  //  });
+
+
+
+  // }
+
+
+
+  // ionSlideTransitionStart(){
+  //   this.change = false;
+  // }
+
 
 
   virtualScroller1(){

@@ -231,4 +231,8 @@ export class DetailsClientPage implements OnInit {
     this.tasksService.listContacts[0]?.value
     await CallNumber.call({ number: this.tasksService.listContacts[0]?.value, bypassAppChooser: false });
   }
+
+  locationMaps(){
+    this.router.navigate(['/google-maps'])
+  }
 }

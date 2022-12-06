@@ -61,7 +61,7 @@
 
 <div class="container-slides">
 
-<ion-slides pager="true" [options]="slideOpts" (touchmove)="ionSlideTouchStart($event)">
+<ion-slides  #slide pager="false" [options]="slideOpts"  (ionSlideWillChange)="slideChanged()" >
 
   <ion-slide >
   <div class="box-visits">
@@ -86,7 +86,24 @@
       </div> -->
       <!-- [class.notSelected]="!tasksService.toDo"  -->
       <div class="boxes">
-      <div class="box to-do" >
+      <div class="box to-do1"  *ngIf="change" >
+        <div class="box-info">
+          <div class="number-task">
+            <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+              >{{tasksService.countVisits}}</nc-text
+            >
+          </div>
+          <div class="box-text-visits-done">
+            <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+              >{{'App.Tab1.visitsTodo' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="box-image">
+          <img src="./../../assets/img/images_tasks_todo.svg" />
+        </div>
+      </div>
+      <div class="box to-do" *ngIf="!change" >
         <div class="box-info">
           <div class="number-task">
             <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
@@ -260,10 +277,10 @@
 
 <ion-slide>
 
-  <div class="box-visits">
+  <div class="box-visits" >
     <div class="boxes">
       <!-- [ngStyle]="{'background-color': tasksService.toDo === false ? '' : 'var(--c-scale-8)' }" -->
-      <div class="box done" >
+      <div class="box done" *ngIf="change" >
         <div class="box-info">
           <div class="number-task">
             <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
@@ -280,6 +297,25 @@
           <img src="./../../assets/img/image_tasks_done.svg" />
         </div>
       </div>
+      <div class="div" *ngIf="!change">
+      <div class="box done1"  >
+        <div class="box-info">
+          <div class="number-task">
+            <nc-text size="h4" color="c-scale-1" weight="500" font="primary"
+              >{{tasksService.countsToDo}}</nc-text
+            >
+          </div>
+          <div class="box-text-visits-done">
+            <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+              >{{'App.Tab1.visitsDone' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="box-image">
+          <img src="./../../assets/img/image_tasks_done.svg" />
+        </div>
+      </div>
+    </div>
       <!-- [class.notSelected]="!tasksService.toDo"  -->
       <!-- <div class="box to-do" (click)="boxToDo()">
         <div class="box-info">

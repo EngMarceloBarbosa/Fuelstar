@@ -114,13 +114,15 @@ nc-virtual-scroller {
   position: absolute;
   box-sizing: content-box;
   top: 35%;
-  padding-right: tbu(px(24));
-  padding-left: tbu(px(24));
+  margin-right: tbu(px(24));
+  margin-left: tbu(px(24));
   display: flex;
   flex-direction: column;
-  background-color: var(--c-scale-1);
-  width: 90%;
+  background-color: white;
+  width: 86%;
 }
+
+
 
 .box {
   @extend .space-between;
@@ -131,14 +133,35 @@ nc-virtual-scroller {
   // transition: height 800ms;
   &.done {
     background-color: var(--primary);
-    width: 100%;
+    width: 93%;
+
+    margin-left: 22px;
+
+
   }
+  &.done1 {
+    background-color: var(--primary);
+    width: 156%;
+    transform:translateX(-49px);
+    height: 70px;
+    margin-top: 5px;
+    opacity: 0.85;
+  }
+
   // &.done:hover {
   //   background-color: red;
   // }
   &.to-do {
     background-color: var(--warning);
+    width: 93%;
+  }
+  &.to-do1 {
+    background-color: var(--warning);
     width: 100%;
+    transform:translateX(49px);
+    height: 70px;
+    margin-top: 5px;
+    opacity: 0.9;
   }
 
   // &.notSelected {
