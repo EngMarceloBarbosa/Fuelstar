@@ -449,163 +449,7 @@
             Opções
           </nc-text>
         </div>
-        <nc-action-sheet [typeASheet]="1" [showFooter]="false">
-          <div class="action-sheet-body">
-            <div class="content-options">
-              <div class="container-options">
-                <div class="description-options">
-                  <nc-text
-                    size="h8"
-                    color="c-scale-10"
-                    weight="500"
-                    font="primary"
-                    >ESCOLHA O TIPO DE OPERAÇÃO EU DESEJA REALIZAR</nc-text
-                  >
-                </div>
-              </div>
-              <div class="type-actions">
-                <div class="option">
-                  <div class="icon-app">
-                    <nc-icon
-                      [size]="18"
-                      color="c-scale-12"
-                      hoverColor="c-scale-1"
-                      >icon_shop_car</nc-icon
-                    >
-                  </div>
-                  <div class="title-price">
-                    <nc-text
-                      size="h7"
-                      color="c-scale-10"
-                      weight="bold"
-                      font="primary"
-                      >Venda</nc-text
-                    >
-                  </div>
-                  <div class="right-icon">
-                    <nc-icon
-                      [size]="18"
-                      color="c-scale-12"
-                      hoverColor="c-scale-12"
-                      >icon_big_arrow-right</nc-icon
-                    >
-                  </div>
-                </div>
-                <div class="option">
-                  <div class="icon-app">
-                    <nc-icon
-                      [size]="18"
-                      color="c-scale-12"
-                      hoverColor="c-scale-1"
-                      >icon_truck_orders</nc-icon
-                    >
-                  </div>
-                  <div class="title-price">
-                    <nc-text
-                      size="h7"
-                      color="c-scale-10"
-                      weight="bold"
-                      font="primary"
-                      >Encomenda</nc-text
-                    >
-                  </div>
-                  <div class="right-icon">
-                    <nc-icon
-                      [size]="18"
-                      color="c-scale-12"
-                      hoverColor="c-scale-12"
-                      >icon_big_arrow-right</nc-icon
-                    >
-                  </div>
-                </div>
-                <div class="option">
-                  <div class="icon-app">
-                    <nc-icon
-                      [size]="18"
-                      color="c-scale-12"
-                      hoverColor="c-scale-1"
-                    >
-                      icon_order_return</nc-icon
-                    >
-                  </div>
-                  <div class="title-price">
-                    <nc-text
-                      size="h7"
-                      color="c-scale-10"
-                      weight="bold"
-                      font="primary"
-                      >Levantamento</nc-text
-                    >
-                  </div>
-                  <div class="right-icon">
-                    <nc-icon
-                      [size]="18"
-                      color="c-scale-12"
-                      hoverColor="c-scale-12"
-                      >icon_big_arrow-right</nc-icon
-                    >
-                  </div>
-                </div>
-                <div class="option">
-                  <div class="icon-app">
-                    <nc-icon
-                      [size]="18"
-                      color="c-scale-12"
-                      hoverColor="c-scale-1"
-                    >
-                      icon_payment</nc-icon
-                    >
-                  </div>
-                  <div class="title-price">
-                    <nc-text
-                      size="h7"
-                      color="c-scale-10"
-                      weight="bold"
-                      font="primary"
-                      >Recebimento</nc-text
-                    >
-                  </div>
-                  <div class="right-icon">
-                    <nc-icon
-                      [size]="18"
-                      color="c-scale-12"
-                      hoverColor="c-scale-12"
-                      >icon_big_arrow-right</nc-icon
-                    >
-                  </div>
-                </div>
-                <div class="option">
-                  <div class="icon-app">
-                    <nc-icon
-                      [size]="18"
-                      color="c-scale-12"
-                      hoverColor="c-scale-1"
-                    >
-                      icon_undo</nc-icon
-                    >
-                  </div>
-                  <div class="title-price">
-                    <nc-text
-                      size="h7"
-                      color="c-scale-10"
-                      weight="bold"
-                      font="primary"
-                      >Devolução</nc-text
-                    >
-                  </div>
-                  <div class="right-icon">
-                    <nc-icon
-                      [size]="18"
-                      color="c-scale-12"
-                      hoverColor="c-scale-12"
-                      >icon_big_arrow-right</nc-icon
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nc-action-sheet>
+
       </div>
       <div class="button-done" (click)="done(clientDetails)">
         <div class="icon-option">
@@ -621,6 +465,163 @@
       </div>
     </div>
   </div>
+  <nc-action-sheet [typeASheet]="1" [showFooter]="false">
+    <div class="action-sheet-body">
+      <div class="content-options">
+        <div class="container-options">
+          <div class="description-options">
+            <nc-text
+              size="h8"
+              color="c-scale-10"
+              weight="500"
+              font="primary"
+              >ESCOLHA O TIPO DE OPERAÇÃO EU DESEJA REALIZAR</nc-text
+            >
+          </div>
+        </div>
+        <div class="type-actions">
+          <div class="option">
+            <div class="icon-app" >
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+                >icon_shop_car</nc-icon
+              >
+            </div>
+            <div class="title-price">
+              <nc-text
+                size="h7"
+                color="c-scale-10"
+                weight="bold"
+                font="primary"
+                >Venda</nc-text
+              >
+            </div>
+            <div class="right-icon" (click)="freeSale()">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+                >icon_big_arrow-right</nc-icon
+              >
+            </div>
+          </div>
+          <div class="option">
+            <div class="icon-app">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+                >icon_truck_orders</nc-icon
+              >
+            </div>
+            <div class="title-price">
+              <nc-text
+                size="h7"
+                color="c-scale-10"
+                weight="bold"
+                font="primary"
+                >Encomenda</nc-text
+              >
+            </div>
+            <div class="right-icon">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+                >icon_big_arrow-right</nc-icon
+              >
+            </div>
+          </div>
+          <div class="option">
+            <div class="icon-app">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+              >
+                icon_order_return</nc-icon
+              >
+            </div>
+            <div class="title-price">
+              <nc-text
+                size="h7"
+                color="c-scale-10"
+                weight="bold"
+                font="primary"
+                >Levantamento</nc-text
+              >
+            </div>
+            <div class="right-icon">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+                >icon_big_arrow-right</nc-icon
+              >
+            </div>
+          </div>
+          <div class="option">
+            <div class="icon-app">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+              >
+                icon_payment</nc-icon
+              >
+            </div>
+            <div class="title-price">
+              <nc-text
+                size="h7"
+                color="c-scale-10"
+                weight="bold"
+                font="primary"
+                >Recebimento</nc-text
+              >
+            </div>
+            <div class="right-icon">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+                >icon_big_arrow-right</nc-icon
+              >
+            </div>
+          </div>
+          <div class="option">
+            <div class="icon-app">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+              >
+                icon_undo</nc-icon
+              >
+            </div>
+            <div class="title-price">
+              <nc-text
+                size="h7"
+                color="c-scale-10"
+                weight="bold"
+                font="primary"
+                >Devolução</nc-text
+              >
+            </div>
+            <div class="right-icon">
+              <nc-icon
+                [size]="18"
+                color="c-scale-12"
+                hoverColor="c-scale-12"
+                >icon_big_arrow-right</nc-icon
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nc-action-sheet>
   <!-- </div> -->
 </ion-content>
 

@@ -279,12 +279,12 @@ nc-action-sheet {
 }
 
 .icon-app {
-  width: 12%;
+  width: 15%;
 }
-.icon-app:hover {
-  background-color: var(--primary);
-  color: var(--c-scale-1);
-}
+// .icon-app:hover {
+//   background-color: var(--primary);
+//   color: var(--c-scale-1);
+// }
 
 .title-price {
   @extend .align-center;

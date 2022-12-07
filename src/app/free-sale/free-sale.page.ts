@@ -6,10 +6,6 @@ import { Router } from '@angular/router';
 import { TasksService } from '../shared/services/tasks.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
-import { Item } from '../utils/models/tasks';
-import { TouchSequence } from 'selenium-webdriver';
-import { timingSafeEqual } from 'crypto';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-free-sale',

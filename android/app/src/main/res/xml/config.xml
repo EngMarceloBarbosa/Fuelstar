@@ -6,6 +6,10 @@
     <param name="android-package" value="mx.ferreyra.callnumber.CFCallNumber"/>
   </feature>
 
+  <feature name="NativeGeocoder">
+    <param name="android-package" value="cordova.plugin.nativegeocoder.NativeGeocoder"/>
+  </feature>
+
   
   <preference name="LottieFullScreen" value="true" />
 </widget>

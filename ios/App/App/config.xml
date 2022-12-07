@@ -6,6 +6,10 @@
     <param name="ios-package" value="CFCallNumber"/>
   </feature>
 
+  <feature name="NativeGeocoder">
+    <param name="ios-package" value="NativeGeocoder"/>
+  </feature>
+
   
   <preference name="LottieFullScreen" value="true" />
 </widget>

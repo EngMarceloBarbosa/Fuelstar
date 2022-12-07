@@ -235,4 +235,8 @@ export class DetailsClientPage implements OnInit {
   locationMaps(){
     this.router.navigate(['/google-maps'])
   }
+
+  freeSale(){
+    this.router.navigate(['/free-sale'])
+  }
 }
