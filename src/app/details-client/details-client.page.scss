@@ -4,6 +4,11 @@ nc-virtual-scroller {
   height: calc(100vh - 200px);
 }
 
+ion-content{
+  background-color: white;
+}
+
+
 .header-container {
   width: 100%;
   background-color: var(--c-scale-12);
@@ -262,6 +267,9 @@ nc-action-sheet {
     .action-sheet.animation {
       height: 65%;
     }
+    .action-sheet--body {
+      height: 100%;
+    }
   }
 }
 
@@ -312,10 +320,12 @@ nc-action-sheet {
   padding-right: tbu(px(24));
   padding-top: tbu(px(35));
   height: 85%;
+  background-color: white;
 }
 
 .body-container {
   height: 15%;
+  background-color: white;
 }
 
 .search-client {

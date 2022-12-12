@@ -18,6 +18,8 @@ import { CallNumber } from 'capacitor-call-number';
 export class DetailsClientPage implements OnInit {
 
 
+  @ViewChild('action3', { static: false }) action3
+
 
   globalMessagesTranslations: any;
   loginMessagesTranslations: any;
@@ -121,7 +123,7 @@ export class DetailsClientPage implements OnInit {
 
     };
 
-    this.actionSheetService.open(temp);
+    this.action3.open(temp);
   }
 
 

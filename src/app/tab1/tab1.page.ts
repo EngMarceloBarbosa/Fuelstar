@@ -22,17 +22,21 @@ import { TasksService } from '../shared/services/tasks.service';
 export class Tab1Page implements OnInit, AfterContentChecked {
 
 
-  @ViewChild('toDO', {static:true}) toDo
-  @ViewChild('toDO1', {static:true}) toDo1
-  @ViewChild('swiper') swiper:SwiperComponent;
-  @ViewChild('slide', {static:false}) slide:IonSlides
+  @ViewChild('toDO', { static: true }) toDo
+  @ViewChild('toDO1', { static: true }) toDo1
+  @ViewChild('action1', { static: false }) action1
+  @ViewChild('action2', { static: false }) action2
+  @ViewChild('swiper') swiper: SwiperComponent;
+  @ViewChild('slide', { static: false }) slide: IonSlides
+  @ViewChild('action1') input: ElementRef;
+
 
   positionSlide: any = 0;
   change = false;
   check = true;
   cardHeight = 0;
   cardHeight1 = 0;
-
+  turnAction = false;
   name: string = "Jimmy Smyth";
 
   position: any[] = [
@@ -77,43 +81,43 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
 
-   }
+  }
 
 
-   ngAfterContentChecked(): void {
-       if(this.swiper) {
-        this.swiper.updateSwiper({});
-       }
-   }
+  ngAfterContentChecked(): void {
+    if (this.swiper) {
+      this.swiper.updateSwiper({});
+    }
+  }
 
   async ngOnInit() {
 
     console.log(this.positionSlide)
 
 
-    if(this.tasksService.visiteEfected.length === 0){
+    if (this.tasksService.visiteEfected.length === 0) {
       this.tasksService.turnMsgAlertTask1 = true;
       this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
-    }else {
+    } else {
       this.tasksService.turnMsgAlertTask1 = false;
     }
 
 
 
-console.log(this.tasksService.toDo)
-      await this.contactsTaskService.getEntities().then(res => {
-        console.log(res)
-        this.tasksService.listClients = res;
-      })
-      this.tasksService.allDocumentsFilter = this.tasksService.listClients
+    console.log(this.tasksService.toDo)
+    await this.contactsTaskService.getEntities().then(res => {
+      console.log(res)
+      this.tasksService.listClients = res;
+    })
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients
 
 
-      await this.contactsTaskService.getEntitiesClients().then(res => {
-        console.log(res)
-        this.tasksService.listClients1 = res;
-        console.log(   this.tasksService.listClients1)
-      })
-      this.tasksService.allDocumentsFilter = this.tasksService.listClients
+    await this.contactsTaskService.getEntitiesClients().then(res => {
+      console.log(res)
+      this.tasksService.listClients1 = res;
+      console.log(this.tasksService.listClients1)
+    })
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients
 
 
 
@@ -133,9 +137,9 @@ console.log(this.tasksService.toDo)
       this.tasksService.listTasks1 = res;
       this.tasksService.visiteToDo = this.tasksService.listTasks1;
       console.log(this.tasksService.listTasks1)
-      this.tasksService.countVisits  = this.tasksService.visiteToDo.length
+      this.tasksService.countVisits = this.tasksService.visiteToDo.length
       console.log(this.tasksService.countVisits)
-      this.tasksService.countsToDo =  this.tasksService.listTasks1.length-this.tasksService.countVisits
+      this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
 
 
     })
@@ -150,14 +154,15 @@ console.log(this.tasksService.toDo)
   }
 
 
-ngAfterViewInit(){
+  ngAfterViewInit() {
+    console.log(this.input)
+    // console.log(this.input1)
+  }
 
-}
 
-
-     randomNumber(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max)
+  randomNumber(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max)
     this.tasksService.random = Math.floor(Math.random() * (max - min)) + min;
     console.log(this.tasksService.random)
   }
@@ -170,7 +175,7 @@ ngAfterViewInit(){
   }
 
   selectedTask(test: any) {
-console.log(test)
+    console.log(test)
     if (test.id) {
       this.tasksService.infoClient$.next(test);
       console.log(test);
@@ -185,6 +190,9 @@ console.log(test)
 
   definitions() {
 
+    this.turnAction = false;
+
+    console.log(this.input)
     const temp: ActionSheetModel = {
       titleText: "TRAJETO",
       titleTextColor: 'c-scale-12',
@@ -193,7 +201,11 @@ console.log(test)
       iconHeaderSize: 12,
       iconHeaderColor: 'c-scale-12',
     };
-    this.actionSheetService.open(temp);
+    // this.actionSheetService.open(temp);
+    this.action1?.open(temp);
+    console.log(this.action1)
+    console.log(this.input)
+
   }
 
   definitions1() {
@@ -229,31 +241,31 @@ console.log(test)
 
   }
 
-  boxDone(){
+  boxDone() {
 
     this.visits = "Visitas efectuadas"
     this.tasksService.toDo = false
     console.log(this.tasksService.toDo)
-    if(this.tasksService.visiteEfected.length === 0){
+    if (this.tasksService.visiteEfected.length === 0) {
       this.tasksService.turnMsgAlertTask = true;
       this.tasksService.msgAlertTasks = "Ainda não se encontram tarefas concluídas"
-    }else {
+    } else {
       this.tasksService.turnMsgAlertTask = false;
     }
 
-   this.virtualScroller();
+    this.virtualScroller();
 
   }
 
-  boxToDo(){
+  boxToDo() {
     this.visits = "Visitas para hoje"
     this.tasksService.toDo = true
     console.log(this.tasksService.toDo)
 
-    if(this.tasksService.visiteToDo.length === 0){
+    if (this.tasksService.visiteToDo.length === 0) {
       this.tasksService.turnMsgAlertTask = true;
       this.tasksService.msgAlertTasks = "Não existe mais tarefas"
-    }else {
+    } else {
       this.tasksService.turnMsgAlertTask = false;
     }
 
@@ -263,7 +275,7 @@ console.log(test)
 
 
 
-  localization(){
+  localization() {
 
     this.router.navigate(['/google-maps'])
 
@@ -271,14 +283,14 @@ console.log(test)
   }
 
 
-  registration(){
+  registration() {
     this.tasksService.visiteToDo = this.tasksService.listTasks1
     this.tasksService.countVisits = this.tasksService.listTasks1.length
     console.log(this.tasksService.listTasks)
   }
 
-  virtualScroller(){
-     setTimeout(() => {
+  virtualScroller() {
+    setTimeout(() => {
 
 
 
@@ -288,30 +300,31 @@ console.log(test)
       this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
       virtualScroller.style.height = `${33}vh`;
       scrollable.style.height = `${this.cardHeight}px`;
-      console.log(    scrollable.style.height)
-      console.log(    virtualScroller.style.height)
+      console.log(scrollable.style.height)
+      console.log(virtualScroller.style.height)
 
     }, 1);
 
   }
 
-  operationType(){
+  operationType() {
 
-  //   const temp1: ActionSheetModel = {
-  //   titleText: "OPÇÕES",
-  //   titleTextColor: 'c-scale-12',
-  //   titleTextSize: 'large',
-  //   iconHeader: 'icon_options',
-  //   iconHeaderSize: 16,
-  //   iconHeaderColor: 'c-scale-12',
-  //   rightButtonShow: true,
-  //   rightButtonText: 'Aplicar filtros',
-  //   rightButtonColor: 'primary',
+    this.turnAction = true;
+    const temp1: ActionSheetModel = {
+      titleText: "FILTER BY",
+      titleTextColor: 'c-scale-12',
+      titleTextSize: 'large',
+      iconHeader: 'icon_options',
+      iconHeaderSize: 16,
+      iconHeaderColor: 'c-scale-12',
+      rightButtonShow: true,
+      rightButtonText: 'Aplicar filtros',
+      rightButtonColor: 'primary',
 
-  // };
+    };
 
-  // this.actionSheetService.open(temp1);
-
+    // this.actionSheetService.open(temp1);
+    this.action2?.open(temp1);
   }
 
 
@@ -323,12 +336,12 @@ console.log(test)
   // }
 
 
-  slideChanged(){
+  slideChanged() {
     console.log(this.positionSlide)
     this.slide.getActiveIndex().then(index => {
       console.log(index)
 
-  this.positionSlide = index
+      this.positionSlide = index
 
     })
     console.log(this.change)
@@ -338,12 +351,12 @@ console.log(test)
 
 
 
-          if(this.positionSlide == 0){
-            this.change = true;
-          }
-          if(this.positionSlide == 1){
-            this.change = false;
-          }
+    if (this.positionSlide == 0) {
+      this.change = true;
+    }
+    if (this.positionSlide == 1) {
+      this.change = false;
+    }
 
 
 
@@ -373,25 +386,23 @@ console.log(test)
 
 
 
-  virtualScroller1(){
+  virtualScroller1() {
     setTimeout(() => {
 
+      const virtualScroller = this.element.nativeElement.querySelector('.toDO1 nc-virtual-scroller')
+      const scrollable = virtualScroller.querySelector('.scrollable-content')
+      this.cardHeight = this.tasksService.listTasks1.length * 44;
+      this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
+      virtualScroller.style.height = `${33}vh`;
+      scrollable.style.height = `${this.cardHeight}px`;
 
 
-     const virtualScroller = this.element.nativeElement.querySelector('.toDO1 nc-virtual-scroller')
-     const scrollable = virtualScroller.querySelector('.scrollable-content')
-     this.cardHeight = this.tasksService.listTasks1.length * 44;
-     this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
-     virtualScroller.style.height = `${33}vh`;
-     scrollable.style.height = `${this.cardHeight}px`;
+      console.log(scrollable.style.height)
+      console.log(virtualScroller.style.height)
 
+    }, 1);
 
-     console.log(    scrollable.style.height)
-     console.log(    virtualScroller.style.height )
-
-   }, 1);
-
- }
+  }
 
 }
 
