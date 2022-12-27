@@ -4,11 +4,16 @@ import { StringifyOptions } from "querystring";
 export interface Tasks {
   id: string;
   address: Address;
+  bulletName: string;
   entity: Entity;
   item: Items;
+  currentStatus:CurrentStatus[];
+
 
 
 }
+
+
 
 export interface Items {
   children: Children[];
@@ -177,6 +182,7 @@ export class Instance {
   description: string;
   note: string;
   bulletId: string;
+  currentStatus: CurrentStatus[];
   bulletName: string;
   isImportant: boolean;
   projectId: string;
@@ -193,10 +199,49 @@ export class Instance {
 
 }
 
+export class TypesState {
+  bulletTypeName: string;
+  inicialStatusType: number;
+  inicialStatusName: string;
+  id: string;
+  bulletTypeId:string;
+  name: string;
+  description: string;
+  note: string;
+  initialStatusId: string;
+  currentStatus:CurrentStatus[];
+}
+
+export class CurrentStatus{
+  id: string;
+  name:string;
+  type:number;
+}
+
+
 export class DocumentInstancesPatch {
   documentInstanceId: string;
   documentType: number;
 }
+
+
+
+export class SubTypesState{
+  entityRoles: string;
+  tags: string;
+  statusFlows:StatusFlows[];
+}
+
+export class StatusFlows{
+  originStatusName:string;
+  originStatusType:number;
+  destinyStatusName:string;
+  destinyStatusType: number;
+  originStatusId: string;
+  destinyStatusId: string;
+
+}
+
 
 export class InstancePatch {
 

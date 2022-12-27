@@ -9,6 +9,7 @@ import { AlertController, IonRouterOutlet, Platform } from '@ionic/angular';
 import { App } from '@capacitor/app';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { TasksService } from './shared/services/tasks.service';
 
 
 @Component({
@@ -25,8 +26,42 @@ export class AppComponent {
   constructor(private globals: Globals, private translate: TranslateService, private splashScreenStateService: SplashScreenStateService, public backButtonService: BackButtonService, private platform: Platform, private location: Location,
 
     public router: Router,
-    private alertService: AlertController
+    private alertService: AlertController,
+    public tasksService:TasksService
   ) {
+
+
+    this.platform.ready().then(()=>{
+      this.platform.backButton.subscribeWithPriority
+      (999999, ()=> {
+ const url = this.router['routerState'].snapshot.url;
+ console.log(url)
+if(url == "/free-sale" && this.tasksService.continue1 == false){
+  this.tasksService.continue1 = true;
+  this.location.back();
+}
+
+ if(url != "/login"){
+
+  this.location.back();
+
+ }else {
+  App.exitApp();
+ }
+      })
+    })
+
+    // App.addListener('backButton', () =>
+    // {
+    //   if (this.location.isCurrentPathEqualTo('/login'))
+    //   {
+    //     navigator['app'].exitApp();
+    //   }
+    //   else
+    //   {
+    //     this.location.back();
+    //   }
+    // });
 
 
     this.translate.addLangs(['en_GB', 'fr_FR', 'pt_PT', 'es_EN', 'al_DL']);
@@ -40,22 +75,18 @@ export class AppComponent {
       this.splashScreenStateService.stop();
     }, 5000);
 
-    this.platform.backButton.subscribeWithPriority(-1, () => {
-      if (!this.routerOutlet.canGoBack()) {
-        this.handleBackButton();
-        App.exitApp();
-      }
-    });
-  }
-
-
-
-
-  handleBackButton() {
-    const currentPage = this.router.url;
-    return this.router.navigate([currentPage]);
+    // this.platform.backButton.subscribeWithPriority(-1, () => {
+    //   if (!this.routerOutlet.canGoBack()) {
+    //     // this.tasksService.handleBackButton();
+    //     App.exitApp();
+    //   }
+    // });
 
   }
+
+
+
+
 
 
   // async backButtonEvent(){

@@ -50,7 +50,6 @@ export class LoginPage implements OnInit {
   ngOnInit() {
 
 
-
     this.translate.get('App').subscribe(res => {
       this.globalMessagesTranslations = res.Global;
       this.loginMessagesTranslations = res.Login;

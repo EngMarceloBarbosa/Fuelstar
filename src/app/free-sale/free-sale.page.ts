@@ -16,7 +16,7 @@ export class FreeSalePage implements OnInit {
 
   tempDocuments: any;
   active: boolean = true;
-  continue1: boolean = true;
+
   iconCheck: boolean = false;
   isOnActionButtons: boolean = true;
   valueIcon: string;
@@ -195,7 +195,7 @@ console.log(this.tasksService.allDocumentsFilter)
         this.turnOnWarning = true;
     } else {
 
-      this.continue1 = false;
+      this.tasksService.continue1 = false;
       this.active = true;
       console.log(this.tasksService.listClients1);
       this.tasksService.controlStepCheck1 = false;
@@ -235,7 +235,7 @@ console.log(this.tasksService.allDocumentsFilter)
     this.tasksService.controlStep = true;
     this.tasksService.controlStepCheck = false;
     this.tasksService.controlStepCheckk = false;
-    this.continue1 = true;
+    this.tasksService.continue1 = true;
     this.tasksService.msgAlert = false;
   }
 

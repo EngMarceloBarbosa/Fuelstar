@@ -97,20 +97,20 @@ verifyNif(form: FormData){
 
   }
 
-  getAddressById(clientDetails) {
-   console.log(clientDetails)
-    // this.loadingService.loader();
-    return this.http
-      .get<any>(`${environment.api}/api/Thebox/Bullets/Instances/${clientDetails}`, {
-        headers: new HttpHeaders({
-          "content-type": "application/json",
-          Authorization: "Bearer " + environment.token,
-        })
-      })
-      .pipe()
-      .toPromise();
+  // getAddressById(clientDetails) {
+  //  console.log(clientDetails)
+  //   // this.loadingService.loader();
+  //   return this.http
+  //     .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${clientDetails}`, {
+  //       headers: new HttpHeaders({
+  //         "content-type": "application/json",
+  //         Authorization: "Bearer " + environment.token,
+  //       })
+  //     })
+  //     .pipe()
+  //     .toPromise();
 
-  }
+  // }
 
 
   getEntityHeader(entityId) {
@@ -158,6 +158,34 @@ verifyNif(form: FormData){
       .toPromise();
   }
 
+  putNotesInstanceSheets(listTasksById, selectedTask) {
+    console.log('value', selectedTask);
+    return this.http
+      .patch<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${selectedTask.id}/Tasks/${selectedTask.bulletId}`,  (listTasksById), {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + environment.token,
+          'Content-type': 'application/json',
+          'accept': '*/*'
+        })
+      })
+      .pipe()
+      .toPromise();
+  }
+
+  putNotesInstanceSheetsPost(taskMain) {
+    console.log('value', taskMain);
+    return this.http
+      .post<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${taskMain.instanceId}/Tasks`,  (taskMain), {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + environment.token,
+          'Content-type': 'application/json',
+          'accept': '*/*'
+        })
+      })
+      .pipe()
+      .toPromise();
+  }
+
 
   deleteClient(entityId){
     console.log(entityId)
@@ -184,6 +212,62 @@ verifyNif(form: FormData){
       .pipe()
       .toPromise();
   }
+
+  putSuspend(task) {
+    console.log('tarefa SUSPENSA', task);
+    return this.http
+      .patch<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${task.instanceId}/Status`, JSON.stringify(task),{
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + environment.token,
+          'Content-type': 'application/json',
+          'accept': '*/*'
+        })
+      })
+      .pipe()
+      .toPromise();
+    }
+
+    putExecuted(task) {
+      console.log('tarefa SUSPENSA', task);
+      return this.http
+        .patch<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${task.instanceId}/Status`, JSON.stringify(task),{
+          headers: new HttpHeaders({
+            Authorization: "Bearer " + environment.token,
+            'Content-type': 'application/json',
+            'accept': '*/*'
+          })
+        })
+        .pipe()
+        .toPromise();
+      }
+
+  putCancelled(task) {
+    console.log('tarefa SUSPENSA', task);
+    return this.http
+      .patch<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${task.instanceId}/Status`, JSON.stringify(task),{
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + environment.token,
+          'Content-type': 'application/json',
+          'accept': '*/*'
+        })
+      })
+      .pipe()
+      .toPromise();
+    }
+  putFinalized(task) {
+    console.log('tarefa SUSPENSA', task);
+    return this.http
+      .patch<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${task.instanceId}/Status`, JSON.stringify(task),{
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + environment.token,
+          'Content-type': 'application/json',
+          'accept': '*/*'
+        })
+      })
+      .pipe()
+      .toPromise();
+    }
+
 
 
 

@@ -16,10 +16,10 @@ import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@aw
 export class GoogleMapsPage implements OnInit {
 
 
- options: NativeGeocoderOptions = {
+  options: NativeGeocoderOptions = {
     useLocale: true,
     maxResults: 5
-};
+  };
 
 
 
@@ -38,7 +38,7 @@ export class GoogleMapsPage implements OnInit {
 
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
 
     this.createMap();
   }
@@ -51,43 +51,44 @@ export class GoogleMapsPage implements OnInit {
 
 
   async createMap() {
-console.log(this.tasksService.listTasksById?.address.addressLine1)
-  await this.nativeGeocoder.forwardGeocode('Travessa Oneca Mendes', this.options)
-    .then(async (result: NativeGeocoderResult[]) => { console.log('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude)
-    console.log(result[0])
-    this.tasksService.latitude = result[0].latitude
-    this.tasksService.longitude = result[0].longitude
-    console.log(   this.tasksService.latitude,  this.tasksService.longitude , 'coordenadas' )
+    console.log(this.tasksService.listTasksById?.address.addressLine1)
+    await this.nativeGeocoder.forwardGeocode(this.tasksService.listTasksById?.address.postalCode, this.options)
+      .then(async (result: NativeGeocoderResult[]) => {
+        console.log('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude)
+        console.log(result[0])
+        this.tasksService.latitude = result[0].latitude
+        this.tasksService.longitude = result[0].longitude
+        console.log(this.tasksService.latitude, this.tasksService.longitude, 'coordenadas')
 
 
-    console.log(this.tasksService.latitude)
-    console.log(  this.tasksService.longitude)
+        console.log(this.tasksService.latitude)
+        console.log(this.tasksService.longitude)
 
-    // let coordinates = await Geolocation.getCurrentPosition();
-    // this.tasksService.latitude = coordinates.coords.latitude
-    // this.tasksService.longitude = coordinates.coords.longitude
-    console.log(this.tasksService.latitude)
-    console.log(this.tasksService.longitude)
-    this.newMap = await GoogleMap.create({
-      id: 'my-map', // Unique identifier for this map instance
-      element: this.mapRef.nativeElement, // reference to the capacitor-google-map element
-      apiKey: environment.apiKey, // Your Google Maps API Key
-      config: {
-        center: {
-          // The initial position to be rendered by the map
-          lat: this.tasksService.latitude,
-          lng: this.tasksService.longitude,
-        },
-        zoom: 3, // The initial zoom level to be rendered by the map
-      },
-    });
-    this.addMarkers();
-    console.log(this.newMap);
+        // let coordinates = await Geolocation.getCurrentPosition();
+        // this.tasksService.latitude = coordinates.coords.latitude
+        // this.tasksService.longitude = coordinates.coords.longitude
+        console.log(this.tasksService.latitude)
+        console.log(this.tasksService.longitude)
+        this.newMap = await GoogleMap.create({
+          id: 'my-map', // Unique identifier for this map instance
+          element: this.mapRef.nativeElement, // reference to the capacitor-google-map element
+          apiKey: environment.apiKey, // Your Google Maps API Key
+          config: {
+            center: {
+              // The initial position to be rendered by the map
+              lat: this.tasksService.latitude,
+              lng: this.tasksService.longitude,
+            },
+            zoom: 3, // The initial zoom level to be rendered by the map
+          },
+        });
+        this.addMarkers();
+        console.log(this.newMap);
 
 
 
-  })
-    .catch((error: any) => console.log(error));
+      })
+      .catch((error: any) => console.log(error));
 
 
     // setTimeout(async () => {
@@ -103,7 +104,7 @@ console.log(this.tasksService.listTasksById?.address.addressLine1)
 
         coordinate: {
           lat: 41.44310359430382,
-          lng:-8.294370288568537
+          lng: -8.294370288568537
         },
         title: 'destino',
         snippet: 'melhor local'

@@ -4,8 +4,10 @@ import { BehaviorSubject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
-import { Classification, Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, PaymentMethods, Tasks } from 'src/app/utils/models/tasks';
+import { Classification, Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, PaymentMethods, StatusFlows, SubTypesState, Tasks, TypesState } from 'src/app/utils/models/tasks';
 import { ItemApiService } from '../http/item-api.service';
+import { Router } from '@angular/router';
+import { TaskApiService } from '../http/task-api.service';
 
 
 
@@ -26,6 +28,10 @@ export class TasksService {
   phoneContact: any;
   listTasks: Tasks[];
   listTasks1: Tasks[];
+  listTasks2: Tasks[];
+  listTasksFinalized: Tasks[] = [];
+  listTasksSuspended: Tasks[];
+  listTasksCancelled: Tasks[];
   listTasksItemId:any;
   quantityTotal: any;
   listClients: Entity[] = [];
@@ -56,6 +62,8 @@ export class TasksService {
   productList: any[] = [];
   visiteEfected: any[] = [];
   visiteToDo: any[] = [];
+  visiteToDo1: any[] = [];
+  test: any[]=[];
   item: any;
   badge: number = 0;
   selectedItem: any = "";
@@ -82,6 +90,8 @@ export class TasksService {
   controlStepCheck1:boolean = false;
   controlStepCheck2:boolean = false;
   controlStepCheck3:boolean = false;
+  // turnColor = false;
+  turnColorOrange = false;
   msgErrorNif:any= "Nif não Válido"
     min = '1';
   max = '1000';
@@ -100,11 +110,20 @@ export class TasksService {
   roleId: any;
   entityName:any;
   entityLastname:any;
-
+  operation:any ="Operation Type"
   turnMsgAlertTask = false;
   turnMsgAlertTask1 = false;
   msgAlertTasks:any;
   msgAlertTasks1:any;
+  continue1: boolean = true;
+  typesState: TypesState[];
+  typesStatesBullets:SubTypesState[];
+  instanceId: any;
+  typesStateIntance:TypesState;
+  turnColor = false;
+  turnButton = false;
+  finalized = false;
+  selectedTask: any = [];
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),
@@ -114,7 +133,7 @@ export class TasksService {
   // }
   // )
 
-  constructor(private http: HttpClient, private contactApiService: ContactsTaskService, public itemApiService: ItemApiService) {
+  constructor(private http: HttpClient, private contactApiService: ContactsTaskService, public itemApiService: ItemApiService,  public router: Router) {
 
 
   const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -178,6 +197,67 @@ export class TasksService {
     )
   }
 
+  putTaskExecuted(){
+
+    var task = {
+      statusId: "23d91faf-d13d-42b0-902b-2de5d49a31ee",
+      note: null,
+      instanceId: this.instanceId
+    }
+
+    console.log(task)
+    this.contactApiService.putExecuted(task).then(() =>
+    console.log(task, 'em execução')
+    )
+  }
+
+
+
+
+  putTaskSuspend(){
+
+  var task = {
+    statusId: "00bba7ce-f90b-4ebb-9478-777376f78e93",
+    note: null,
+    instanceId: this.instanceId
+  }
+
+  console.log(task)
+  this.contactApiService.putSuspend(task).then(() =>
+  console.log(task, 'suspenso')
+  )
+}
+
+
+putTaskFinalize(){
+
+  var task = {
+    statusId: "e6875497-3ad4-4121-b3aa-4efde5d12fb1",
+    note: null,
+    instanceId: this.instanceId
+  }
+
+  console.log(task)
+  this.contactApiService.putFinalized(task).then(() =>
+  console.log(task,  'finalizado')
+  )
+}
+
+putTaskCancelled(){
+
+  var task = {
+    statusId: "7d555330-4228-45b8-87a3-1f8c905284fe",
+    note: null,
+    instanceId: this.instanceId
+  }
+
+  console.log(task)
+  this.contactApiService.putCancelled(task).then(() =>
+  console.log(task,  'Cancelado')
+  )
+}
+
+
   getImageItems() {
 
     // var proImage = new Image();
@@ -218,21 +298,36 @@ export class TasksService {
 
 
     console.log(this.listTasksById, "DATA")
-    let data: InstancePatch = new InstancePatch(this.listTasksById);
+    console.log(this.notes)
+    // let data: InstancePatch = new InstancePatch(this.selectedTask);
 
-    const listTasksByIdNew = {
-      ...data,
-      note: this.notes.detail.value
+    // const listTasksByIdNew = {
+    //   note: this.notes.detail.value,
+    //   date: "2022-12-27T11:08:28.098Z"
+      // ...data,
+    // };
+    const taskMain = {
+      note: this.notes.detail.value,
+      instanceId: this.selectedTask.id,
+      entityId: this.selectedTask.entity.id,
+      date: "2022-12-27T11:08:28.098Z"
+      // ...data,
     };
     console.log(this.notes, 'NOTES A NULO ')
 
     // this.listTasksById.note = this.notes;
-    console.log(data, listTasksByIdNew, "DATA")
-    this.contactApiService.putNotesInstance(listTasksByIdNew, this.listTasksById.id).then(() =>
-      this.listTasksById.note = listTasksByIdNew.note
+    // console.log( listTasksByIdNew, "DATA")
+    // this.contactApiService.putNotesInstanceSheets(listTasksByIdNew, this.selectedTask).then(() =>
+    //   this.selectedTask.note = listTasksByIdNew.note
+    // )
+
+    this.contactApiService.putNotesInstanceSheetsPost(taskMain).then(() =>
+    this.selectedTask.note = taskMain.note
     )
+
+
     console.log(this.notes);
-    console.log(listTasksByIdNew, ' LISTA NOVA');
+    // console.log(listTasksByIdNew, ' LISTA NOVA');
   }
 
   validateNIF(nif: string) {
@@ -316,6 +411,25 @@ this.validatorNIF = true;
   })
 
 
+
+  getColor(id) {
+    // console.log(id, '2')
+    switch (id) {
+      case '23d91faf-d13d-42b0-902b-2de5d49a31ee':
+        return 'orange';
+      case '28b097a1-2834-4c9f-b1c6-6b2f316401af':
+        return 'green';
+    }
+  }
+
+
+  // handleBackButton() {
+  //   console.log('entrou no back')
+  //   const currentPage = this.router.url;
+  //   console.log(currentPage, 'Pagina');
+  //   return this.router.navigate([currentPage]);
+
+  // }
 
 
   //

@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
+import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { TranslateService } from '@ngx-translate/core';
 import { TasksService } from '../shared/services/tasks.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
@@ -34,16 +34,20 @@ export class DetailsClientPage implements OnInit {
   listTasksAll: any;
   NewListTest: any;
 
+
   @ViewChild('search') myInput;
 
 
-  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService) {
+  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService) {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
 
-    this.tasksService.infoClient$
+
+
+
+   await  this.tasksService.infoClient$
       .subscribe(client => {
         this.clientDetails = client;
       })
@@ -67,16 +71,24 @@ export class DetailsClientPage implements OnInit {
       console.log(this.tasksService.idContact)
     })
 
-    this.contactsTaskService.getEntityHeader(this.clientDetails.entity.id).then(res => {
+   await this.contactsTaskService.getEntityHeader(this.clientDetails.entity.id).then(res => {
       console.log('resultado', res)
       this.tasksService.listEntitys = res;
       console.log(this.tasksService.listEntitys, "entidades")
     })
 
-    this.contactsTaskService.getAddressById(this.clientDetails.id).then(res => {
-      console.log(res, 'Nota')
-      this.tasksService.listTasksById = res;
-      console.log(this.tasksService.listTasksById.address.addressLine1, "Tarefas id")
+  // await  this.contactsTaskService.getAddressById(this.clientDetails.id).then(res => {
+  //     console.log(res, 'Nota')
+  //     this.tasksService.listTasksById = res;
+  //     console.log(this.tasksService.listTasksById.address.addressLine1, "Tarefas id")
+  //   })
+
+    console.log(this.tasksService.listTasksById)
+   await this.taskApiService.getTypesBulletsStateTask(this.tasksService.selectedTask.bulletId).then(res => {
+      this.tasksService.typesStatesBullets = res
+      console.log(this.tasksService.typesStatesBullets, 'Subestados dos Tipos de estado')
+
+
     })
   }
 
@@ -104,10 +116,95 @@ export class DetailsClientPage implements OnInit {
     this.router.navigate(["/edit-contact"])
   }
 
-  cancel() {
-    this.router.navigate(["/tabs/tab1"]);
+  cancel(){
+    this.router.navigate(["tabs/tab1"]);
     this.tasksService.notes = "";
   }
+
+  cancelTask() {
+    // this.router.navigate(["/tabs/tab1"]);
+    const temp: ModalMessageModel = {
+      showTip: false,
+      title: "Quer continuar ?",
+      description: "Ao continuar vai cancelar a tarefa",
+      state: "warning",
+      leftButtonSize: "small",
+      leftButtonType: "text",
+      leftButtonText: "Voltar",
+      showMiddleButton:false,
+      rightButtonSize: "small",
+      rightButtonType: "text",
+      rightButtonText: "Cancelar",
+      rightButtonTesterProperty: "clickLeaveApp",
+      rightButtonColor: "c-scale-12",
+      rightButtonCallback: () => {
+        this.cancelled();
+      },
+    };
+    this.alertService.open(temp);
+
+
+    this.tasksService.notes = "";
+  }
+
+  async cancelled(){
+
+   await  this.tasksService.putTaskCancelled();
+   await  this.taskApiService.getTypesStateTask();
+
+    if (this.tasksService.listTasksFinalized.length === 0) {
+      this.tasksService.turnMsgAlertTask1 = true;
+      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
+    } else {
+      this.tasksService.turnMsgAlertTask1 = false;
+    }
+
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      this.tasksService.listTasks2 = res;
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+      this.tasksService.listTasks1 = res;
+      // this.tasksService.visiteToDo = this.tasksService.listTasks1
+      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
+      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(      this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
+      // console.log(this.tasksService.countVisits)
+      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
+
+
+    })
+
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+    console.log(this.tasksService.visiteToDo, 'lista final')
+
+
+    console.log(this.tasksService.visiteToDo)
+    console.log(this.tasksService.listTasks1)
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+    console.log(this.tasksService.visiteToDo, 'pq0')
+    this.tasksService.getColor(this.tasksService.selectedTask.id);
+
+
+    this.router.navigate(['/tabs/tab1']);
+
+  }
+
 
   options() {
     const temp: ActionSheetModel = {
@@ -142,7 +239,7 @@ export class DetailsClientPage implements OnInit {
     this.onNotes = true;
   }
 
-     done(task) {
+  done(task) {
 
 
     console.log(this.tasksService.visiteToDo)
@@ -155,6 +252,7 @@ export class DetailsClientPage implements OnInit {
     if (index < 0) {
       this.tasksService.visiteEfected = [...this.tasksService.visiteEfected, task]
     }
+
     // console.log(index)
     //      if(index > -1){
     //       this.tasksService.visiteEfected = this.tasksService.visiteEfected.splice(task)
@@ -195,27 +293,28 @@ export class DetailsClientPage implements OnInit {
     // console.log( this.tasksService.visiteEfected )
     // console.log( this.tasksService.visiteToDo)
 
-    console.log(this.tasksService.listTasks1[0].item.name, 'EEEENTTTRRROOU')
-    this.tasksService.countsToDo = this.tasksService.visiteEfected.length;
-    this.tasksService.countVisits = this.tasksService.visiteToDo.length;
+    // console.log(this.tasksService.listTasks1[0].item.name, 'EEEENTTTRRROOU')
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
 
-    if(this.tasksService.visiteToDo.length === 0){
+
+    if (this.tasksService.visiteToDo.length === 0) {
       this.tasksService.turnMsgAlertTask = true;
       this.tasksService.msgAlertTasks = "Não existe mais tarefas"
-    }else {
+    } else {
       this.tasksService.turnMsgAlertTask = false;
     }
 
 
-    if(this.tasksService.visiteEfected.length === 0){
+    if (this.tasksService.visiteEfected.length === 0) {
       this.tasksService.turnMsgAlertTask1 = true;
       this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
-    }else {
+    } else {
       this.tasksService.turnMsgAlertTask1 = false;
     }
 
 
-    this.router.navigate(['tabs/tab1']);
+    this.router.navigate(['/tabs/tab1']);
     console.log([...this.tasksService.visiteEfected], "EFETUADAS")
     console.log([...this.tasksService.visiteToDo], "POR fazer")
 
@@ -234,11 +333,180 @@ export class DetailsClientPage implements OnInit {
     await CallNumber.call({ number: this.tasksService.listContacts[0]?.value, bypassAppChooser: false });
   }
 
-  locationMaps(){
+  locationMaps() {
     this.router.navigate(['/google-maps'])
   }
 
-  freeSale(){
+  freeSale() {
     this.router.navigate(['/free-sale'])
+  }
+
+  initial(){
+
+
+
+  }
+
+    async suspend(){
+   await  this.tasksService.putTaskSuspend();
+   await  this.taskApiService.getTypesStateTask();
+
+
+   await this.taskApiService.getTasksItemIdExecuted().then(res => {
+    this.tasksService.listTasks2 = res;
+    console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+  })
+
+  await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+    this.tasksService.listTasks1 = res;
+    // this.tasksService.visiteToDo = this.tasksService.listTasks1
+    // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
+    // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+    // console.log(      this.tasksService.visiteToDo)
+    console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+    // this.tasksService.countVisits = this.tasksService.visiteToDo.length
+    // console.log(this.tasksService.countVisits)
+    // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
+
+
+  })
+
+  this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+  console.log(this.tasksService.visiteToDo, 'lista final')
+
+
+  console.log(this.tasksService.visiteToDo)
+  console.log(this.tasksService.listTasks1)
+  this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+  console.log(this.tasksService.countVisits)
+
+  this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+  console.log(this.tasksService.visiteToDo, 'pq0')
+  this.tasksService.getColor(this.tasksService.selectedTask.id);
+
+  this.router.navigate(["/tabs/tab1"]);
+
+  }
+
+  async executed(){
+    this.tasksService.turnButton = true;
+    console.log(this.tasksService.turnButton)
+   await  this.tasksService.putTaskExecuted();
+   await this.taskApiService.getTypesStateTask();
+    console.log(this.tasksService.selectedTask.id)
+
+
+        await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      this.tasksService.listTasks2 = res;
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+      this.tasksService.listTasks1 = res;
+      // this.tasksService.visiteToDo = this.tasksService.listTasks1
+      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
+      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(      this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
+      // console.log(this.tasksService.countVisits)
+      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
+
+
+    })
+
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+    console.log(this.tasksService.visiteToDo, 'lista final')
+
+
+    console.log(this.tasksService.visiteToDo)
+    console.log(this.tasksService.listTasks1)
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+    console.log(this.tasksService.visiteToDo, 'pq0')
+    this.tasksService.getColor(this.tasksService.selectedTask.id);
+
+    this.router.navigate(["/tabs/tab1"]);
+  }
+
+  async finalized(){
+
+
+    await this.tasksService.putTaskFinalize();
+    await this.taskApiService.getTypesStateTask();
+
+    if (this.tasksService.listTasksFinalized.length === 0) {
+      this.tasksService.turnMsgAlertTask1 = true;
+      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
+    } else {
+      this.tasksService.turnMsgAlertTask1 = false;
+    }
+
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+
+
+        await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      this.tasksService.listTasks2 = res;
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+      this.tasksService.listTasks1 = res;
+      // this.tasksService.visiteToDo = this.tasksService.listTasks1
+      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
+      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(      this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
+      // console.log(this.tasksService.countVisits)
+      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdFinalized().then(res => {
+      this.tasksService.listTasksFinalized = res;
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    })
+
+
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+    console.log(this.tasksService.visiteToDo, 'lista final')
+
+
+    console.log(this.tasksService.visiteToDo)
+    console.log(this.tasksService.listTasks1)
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+    console.log(this.tasksService.visiteToDo, 'pq0')
+    this.tasksService.getColor(this.tasksService.selectedTask.id);
+
+    this.router.navigate(["/tabs/tab1"]);
+
+
+
+    this.router.navigate(['/tabs/tab1']);
+
   }
 }

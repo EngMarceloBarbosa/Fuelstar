@@ -1,174 +1,172 @@
-
-  <div class="header-menu">
-    <div class="title-menu">
-      <div class="operation-details">
-        <div class="operator-name">
-          <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-            >{{name}}</nc-text
-          >
-        </div>
-        <div class="operator-position">
-          <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
-            >{{'App.Tab2.operator' | translate}}</nc-text
-          >
-        </div>
+<div class="header-menu">
+  <div class="title-menu">
+    <div class="operation-details">
+      <div class="operator-name">
+        <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+          >{{name}}</nc-text
+        >
       </div>
-      <div class="icon-cart">
-        <nc-icon
-          [size]="18"
-          color="c-scale-1"
-          hoverColor="c-scale-1"
-          (click)="definitions()"
-          >icon_configurations</nc-icon
+      <div class="operator-position">
+        <nc-text size="h7" color="c-scale-10" weight="500" font="primary"
+          >{{'App.Tab2.operator' | translate}}</nc-text
         >
       </div>
     </div>
-    <div class="operation-info">
-      <div class="Title-info">
-        <nc-text size="h2" color="c-scale-1" weight="bold" font="primary"
-          >{{'App.Tab2.operations' | translate}}</nc-text
-        >
-      </div>
-      <div class="choice-operation">
-        <nc-text size="h4" color="c-scale-1" weight="regular" font="primary"
-          >{{'App.Tab2.choiceOperation' | translate}}</nc-text
-        >
-      </div>
+    <div class="icon-cart">
+      <nc-icon
+        [size]="18"
+        color="c-scale-1"
+        hoverColor="c-scale-1"
+        (click)="definitions()"
+        >icon_configurations</nc-icon
+      >
     </div>
   </div>
-
-  <div class="body-content">
-    <nc-virtual-scroller #scroll [items]="tests">
-      <div class="card-types" (click)="select(1)">
-        <div class="box-task">
-          <div class="icon-name-user">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-              >icon_shop_car</nc-icon
-            >
-          </div>
-          <div class="description-task">
-            <div class="name-task">
-              <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-                >{{'App.Tab2.freeSale' | translate}}</nc-text
-              >
-            </div>
-            <div class="localization-task">
-              <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-                >{{'App.Tab2.startNew' | translate}}</nc-text
-              >
-            </div>
-          </div>
-          <div class="arrow-info">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-10"
-              >icon_big_arrow-right</nc-icon
-            >
-          </div>
-        </div>
-      </div>
-      <div class="card-types" (click)="select(2)">
-        <div class="box-task">
-          <div class="icon-name-user">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1">
-              icon_truck_orders</nc-icon
-            >
-          </div>
-          <div class="description-task">
-            <div class="name-task">
-              <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-                >{{'App.Tab2.orderFrom' | translate}}</nc-text
-              >
-            </div>
-            <div class="localization-task">
-              <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-                >{{'App.Tab2.startNew' | translate}}</nc-text
-              >
-            </div>
-          </div>
-          <div class="arrow-info">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-              >icon_big_arrow-right</nc-icon
-            >
-          </div>
-        </div>
-      </div>
-      <div class="card-types" (click)="select(3)">
-        <div class="box-task">
-          <div class="icon-name-user">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1">
-              icon_order_return</nc-icon
-            >
-          </div>
-          <div class="description-task">
-            <div class="name-task">
-              <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-                >{{'App.Tab2.survey' | translate}}</nc-text
-              >
-            </div>
-            <div class="localization-task">
-              <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-                >{{'App.Tab2.startNew' | translate}}</nc-text
-              >
-            </div>
-          </div>
-          <div class="arrow-info">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-              >icon_big_arrow-right</nc-icon
-            >
-          </div>
-        </div>
-      </div>
-      <div class="card-types" (click)="select(4)">
-        <div class="box-task">
-          <div class="icon-name-user">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1">
-              icon_payment
-            </nc-icon>
-          </div>
-          <div class="description-task">
-            <div class="name-task">
-              <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-                >{{'App.Tab2.receiving' | translate}}</nc-text
-              >
-            </div>
-            <div class="localization-task">
-              <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-                >{{'App.Tab2.startNew' | translate}}</nc-text
-              >
-            </div>
-          </div>
-          <div class="arrow-info">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-              >icon_big_arrow-right</nc-icon
-            >
-          </div>
-        </div>
-      </div>
-      <div class="card-types" (click)="select(5)">
-        <div class="box-task">
-          <div class="icon-name-user">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-              >icon_undo</nc-icon
-            >
-          </div>
-          <div class="description-task">
-            <div class="name-task">
-              <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-                >{{'App.Tab2.return' | translate}}</nc-text
-              >
-            </div>
-            <div class="localization-task">
-              <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-                >{{'App.Tab2.startNew' | translate}}</nc-text
-              >
-            </div>
-          </div>
-          <div class="arrow-info">
-            <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
-              >icon_big_arrow-right</nc-icon
-            >
-          </div>
-        </div>
-      </div>
-    </nc-virtual-scroller>
+  <div class="operation-info">
+    <div class="Title-info">
+      <nc-text size="h2" color="c-scale-1" weight="bold" font="primary"
+        >{{'App.Tab2.operations' | translate}}</nc-text
+      >
+    </div>
+    <div class="choice-operation">
+      <nc-text size="h4" color="c-scale-1" weight="regular" font="primary"
+        >{{'App.Tab2.choiceOperation' | translate}}</nc-text
+      >
+    </div>
   </div>
+</div>
 
+<div class="body-content">
+  <nc-virtual-scroller #scroll [items]="tests">
+    <div class="card-types" (click)="select(1)">
+      <div class="box-task">
+        <div class="icon-name-user">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+            >icon_shop_car</nc-icon
+          >
+        </div>
+        <div class="description-task">
+          <div class="name-task">
+            <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+              >{{'App.Tab2.freeSale' | translate}}</nc-text
+            >
+          </div>
+          <div class="localization-task">
+            <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+              >{{'App.Tab2.startNew' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="arrow-info">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-10"
+            >icon_big_arrow-right</nc-icon
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card-types" (click)="select(2)">
+      <div class="box-task">
+        <div class="icon-name-user">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1">
+            icon_truck_orders</nc-icon
+          >
+        </div>
+        <div class="description-task">
+          <div class="name-task">
+            <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+              >{{'App.Tab2.orderFrom' | translate}}</nc-text
+            >
+          </div>
+          <div class="localization-task">
+            <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+              >{{'App.Tab2.startNew' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="arrow-info">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+            >icon_big_arrow-right</nc-icon
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card-types" (click)="select(3)">
+      <div class="box-task">
+        <div class="icon-name-user">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1">
+            icon_order_return</nc-icon
+          >
+        </div>
+        <div class="description-task">
+          <div class="name-task">
+            <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+              >{{'App.Tab2.survey' | translate}}</nc-text
+            >
+          </div>
+          <div class="localization-task">
+            <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+              >{{'App.Tab2.startNew' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="arrow-info">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+            >icon_big_arrow-right</nc-icon
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card-types" (click)="select(4)">
+      <div class="box-task">
+        <div class="icon-name-user">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1">
+            icon_payment
+          </nc-icon>
+        </div>
+        <div class="description-task">
+          <div class="name-task">
+            <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+              >{{'App.Tab2.receiving' | translate}}</nc-text
+            >
+          </div>
+          <div class="localization-task">
+            <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+              >{{'App.Tab2.startNew' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="arrow-info">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+            >icon_big_arrow-right</nc-icon
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card-types" (click)="select(5)">
+      <div class="box-task">
+        <div class="icon-name-user">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+            >icon_undo</nc-icon
+          >
+        </div>
+        <div class="description-task">
+          <div class="name-task">
+            <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
+              >{{'App.Tab2.return' | translate}}</nc-text
+            >
+          </div>
+          <div class="localization-task">
+            <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+              >{{'App.Tab2.startNew' | translate}}</nc-text
+            >
+          </div>
+        </div>
+        <div class="arrow-info">
+          <nc-icon [size]="18" color="c-scale-10" hoverColor="c-scale-1"
+            >icon_big_arrow-right</nc-icon
+          >
+        </div>
+      </div>
+    </div>
+  </nc-virtual-scroller>
+</div>

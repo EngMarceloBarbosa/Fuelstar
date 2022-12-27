@@ -18,4 +18,4 @@ import { DetailsClientPage } from './details-client.page';
   ],
   declarations: [DetailsClientPage]
 })
-export class DetailsClientPageModule {}
+export class DetailsClientPageModule { }

@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonSlides, NavController, ToastController } from '@ionic/angular';
@@ -23,6 +23,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
   @ViewChild('toDO', { static: true }) toDo
+  @ViewChild('light-bar', { static: true }) color
   @ViewChild('toDO1', { static: true }) toDo1
   @ViewChild('action1', { static: false }) action1
   @ViewChild('action2', { static: false }) action2
@@ -51,7 +52,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
   ];
 
   visits: any = "Visitas para hoje"
-
+  addTrimmer: boolean = true;
   result: string;
 
   tests = clientsTab
@@ -81,6 +82,9 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
 
+
+
+
   }
 
 
@@ -92,15 +96,16 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
   async ngOnInit() {
 
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+
+
+    // this.tasksService.handleBackButton();
+
     console.log(this.positionSlide)
-
-
-    if (this.tasksService.visiteEfected.length === 0) {
-      this.tasksService.turnMsgAlertTask1 = true;
-      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
-    } else {
-      this.tasksService.turnMsgAlertTask1 = false;
-    }
 
 
 
@@ -122,6 +127,11 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
 
+
+
+
+
+
     // await this.taskApiService.getTasks().then(res => {
     //   console.log(res)
     //   this.tasksService.listTasks = res;
@@ -133,23 +143,137 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     // })
 
 
-    await this.taskApiService.getTasksItemId().then(res => {
+    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
       this.tasksService.listTasks1 = res;
-      this.tasksService.visiteToDo = this.tasksService.listTasks1;
-      console.log(this.tasksService.listTasks1)
-      this.tasksService.countVisits = this.tasksService.visiteToDo.length
-      console.log(this.tasksService.countVisits)
-      this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
+      // this.tasksService.visiteToDo = this.tasksService.listTasks1
+      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
+      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(      this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
+      // console.log(this.tasksService.countVisits)
+      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
+
+
+    })
+    // LISTA PARA BUSCAR OS DE ESTADO EM EXECUÇÃO
+
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      this.tasksService.listTasks2 = res;
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
 
 
     })
 
+    await this.taskApiService.getTasksItemIdSuspend().then(res => {
+      this.tasksService.listTasksSuspended = res;
+      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdCancelled().then(res => {
+      this.tasksService.listTasksCancelled = res;
+      console.log(this.tasksService.listTasksCancelled, 'Tarefas canceladas')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdFinalized().then(res => {
+      this.tasksService.listTasksFinalized = res;
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    })
+
+
+
+    await this.taskApiService.getTypesStateTask().then(res => {
+      console.log(res)
+      this.tasksService.typesState = res;
+      // console.log(      this.tasksService.listTasks1)
+      // console.log(  this.tasksService.typesState[].initialStatusId, 'tyPESTATE')
+      //       this.tasksService.visiteToDo = this.tasksService.listTasks1.filter(res => res.currentStatus)
+      //       console.log(this.tasksService.visiteToDo, '1')
+      //       this.tasksService.visiteToDo = this.tasksService.visiteToDo.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(  this.tasksService.visiteToDo , '2')
+      // this.tasksService.typesState  =  this.tasksService.listTasks1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // this.tasksService.typesState = res;
+      // console.log(this.tasksService.typesState, 'Atribuido, typestate')
+
+
+
+
+      // console.log(this.tasksService.listTasksById)
+      // this.tasksService.typesState = this.tasksService.listTasksById.currentStatus.filter(res => res.id = "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      console.log(this.tasksService.typesState)
+      console.log(this.tasksService.typesState, 'Tipos de estado')
+    })
+
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+    console.log(this.tasksService.visiteToDo, 'lista final')
+
+
+    console.log(this.tasksService.visiteToDo)
+    console.log(this.tasksService.listTasks1)
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+    console.log(this.tasksService.visiteToDo, 'pq0')
+
+    // this.tasksService.test = this.tasksService.visiteToDo.map((res) => res.currentStatus)
+    // console.log(this.tasksService.test)
+    // this.tasksService.test = this.tasksService.test.map((res) => {
+    //   console.log(res.id)
+    //   if (res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af") {
+
+    //     // document.documentElement.style.setProperty('.light-bar', 'red')
+
+    //     // console.log('entrou')
+    //     // this.tasksService.turnColor = true;
+    //   }
+
+    //   if (res.id == "23d91faf-d13d-42b0-902b-2de5d49a31ee") {
+    //     // document.getElementById("myH2").style.color = "##6495ED"
+    //     // this.tasksService.turnColor = false;
+    //   }
+    // })
+
+
+    // console.log(this.tasksService.turnColor, 'atribudo')
+    // console.log(this.tasksService.turnColorOrange, 'execução ')
 
     this.randomNumber(1, 1000);
     this.virtualScroller();
     this.registration();
 
-    console.log(this.tasksService.visiteToDo)
+
+    if (this.tasksService.listTasksFinalized.length === 0) {
+      this.tasksService.turnMsgAlertTask1 = true;
+      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
+    } else {
+      this.tasksService.turnMsgAlertTask1 = false;
+    }
+
+    if (this.tasksService.visiteToDo.length === 0) {
+      this.tasksService.turnMsgAlertTask = true;
+      this.tasksService.msgAlertTasks = "Não existe Tarefas"
+    } else {
+      this.tasksService.turnMsgAlertTask = false;
+    }
+
+
+
+
+
+    console.log(this.tasksService.countVisits, 'visitas feitas')
+    console.log(this.tasksService.countsToDo, 'visitas por fazer ')
+
+    console.log(this.tasksService.visiteToDo, 'pq')
     console.log(this.tasksService.visiteEfected)
   }
 
@@ -175,8 +299,27 @@ export class Tab1Page implements OnInit, AfterContentChecked {
   }
 
   selectedTask(test: any) {
+    this.tasksService.instanceId = test.id
+    this.tasksService.selectedTask = test
+    console.log(this.tasksService.instanceId, 'instanceID')
     console.log(test)
     if (test.id) {
+      // TAREFAS ATRIBUIDAS
+      if (test.currentStatus.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af") {
+        this.tasksService.turnButton = false;
+        this.tasksService.finalized = true;
+      }
+      // TAREFAS EM EXECUÇÃO
+      if (test.currentStatus.id == "23d91faf-d13d-42b0-902b-2de5d49a31ee") {
+        this.tasksService.turnButton = true;
+        this.tasksService.finalized = true;
+      }
+
+      // TAREFAS FINALIZADAS
+      if (test.currentStatus.id == "e6875497-3ad4-4121-b3aa-4efde5d12fb1") {
+        this.tasksService.turnButton = true;
+        this.tasksService.finalized = false;
+      }
       this.tasksService.infoClient$.next(test);
       console.log(test);
       console.log("1 entrou");
@@ -284,8 +427,8 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
   registration() {
-    this.tasksService.visiteToDo = this.tasksService.listTasks1
-    this.tasksService.countVisits = this.tasksService.listTasks1.length
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
     console.log(this.tasksService.listTasks)
   }
 
@@ -296,9 +439,9 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
       const virtualScroller = this.element.nativeElement.querySelector('.toDO nc-virtual-scroller')
       const scrollable = virtualScroller.querySelector('.scrollable-content')
-      this.cardHeight = this.tasksService.listTasks1.length * 44;
-      this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
-      virtualScroller.style.height = `${33}vh`;
+      this.cardHeight = this.tasksService.visiteToDo.length * 44;
+      this.cardHeight1 = this.tasksService.visiteToDo.length * 8.3;
+      virtualScroller.style.height = `${43}vh`;
       scrollable.style.height = `${this.cardHeight}px`;
       console.log(scrollable.style.height)
       console.log(virtualScroller.style.height)
@@ -368,6 +511,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
 
+
   // slideChanged1(){
 
   //   this.slides.nativeElement.getActiveIndex().then(index => {
@@ -393,7 +537,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
       const scrollable = virtualScroller.querySelector('.scrollable-content')
       this.cardHeight = this.tasksService.listTasks1.length * 44;
       this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
-      virtualScroller.style.height = `${33}vh`;
+      virtualScroller.style.height = `${43}vh`;
       scrollable.style.height = `${this.cardHeight}px`;
 
 
@@ -403,6 +547,75 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     }, 1);
 
   }
+
+  filter(id) {
+    if (id == 1) {
+      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2).filter(res => res.bulletName == "Entregas");
+      console.log(this.tasksService.visiteToDo)
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.filter(res => res.bulletName == "Entregas");
+      this.tasksService.countVisits = this.tasksService.visiteEfected.length
+      this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+      this.tasksService.operation = "Entregas"
+      if (this.tasksService.visiteEfected.length === 0) {
+        this.tasksService.turnMsgAlertTask1 = true;
+        this.tasksService.msgAlertTasks1 = "Ainda não se encontram Entregas concluídas"
+      } else {
+        this.tasksService.turnMsgAlertTask1 = false;
+      }
+
+      if (this.tasksService.visiteToDo.length === 0) {
+        this.tasksService.turnMsgAlertTask = true;
+        this.tasksService.msgAlertTasks = "Não existe Entregas por fazer"
+      } else {
+        this.tasksService.turnMsgAlertTask = false;
+      }
+
+
+
+      this.action2.onClickCloseButton();
+    }
+    if (id == 2) {
+      console.log(this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1)
+      console.log(this.tasksService.listTasksFinalized)
+      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2).filter(res => res.bulletName == "Incidências");
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.filter(res => res.bulletName == "Incidências");
+      console.log(this.tasksService.visiteToDo)
+      this.tasksService.operation = "Incidências"
+      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+      this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+      console.log(this.tasksService.visiteToDo)
+      if (this.tasksService.visiteEfected.length === 0) {
+        this.tasksService.turnMsgAlertTask1 = true;
+        this.tasksService.msgAlertTasks1 = "Ainda não se encontram incidências concluídas"
+      } else {
+        this.tasksService.turnMsgAlertTask1 = false;
+      }
+
+      if (this.tasksService.visiteToDo.length === 0) {
+        this.tasksService.turnMsgAlertTask = true;
+        this.tasksService.msgAlertTasks = "Não existe Incidências por fazer"
+      } else {
+        this.tasksService.turnMsgAlertTask = false;
+      }
+
+      this.action2.onClickCloseButton();
+    }
+    if (id == 3) {
+      this.tasksService.operation = "Tarefas"
+      this.action2.onClickCloseButton();
+    }
+    if (id == 4) {
+      this.tasksService.operation = "Recebimentos"
+      this.action2.onClickCloseButton();
+    }
+    if (id == 5) {
+      this.tasksService.operation = "Devoluções"
+      this.action2.onClickCloseButton();
+    }
+  }
+
+
 
 }
 

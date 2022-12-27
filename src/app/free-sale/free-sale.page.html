@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="body-content-child">
-        <div class="body-products" *ngIf="continue1">
+        <div class="body-products" *ngIf="tasksService.continue1">
           <div class="buttons-client">
             <div
               class="client"
@@ -365,7 +365,7 @@
             </div>
           </div>
           <!-- </form> -->
-          <div *ngIf="continue1">
+          <div *ngIf="tasksService.continue1">
             <div class="buttons-footer" *ngIf="active">
               <div class="buttons-client">
                 <div class="client" (click)="close()">
@@ -404,7 +404,7 @@
         </div>
       </div>
 
-      <div class="add-products1" *ngIf="!continue1">
+      <div class="add-products1" *ngIf="!tasksService.continue1">
         <div class="add-products">
           <div class="products-image">
             <img src="/assets/img/billing and transport guides.svg" />
@@ -427,7 +427,7 @@
         </div>
       </div>
 
-      <div *ngIf="!continue1">
+      <div *ngIf="!tasksService.continue1">
         <div class="buttons-footer1">
           <div class="buttons-client">
             <div class="client" (click)="back()">

@@ -17,7 +17,8 @@
               weight="500"
               font="primary"
               >{{clientDetails.entity.firstName |
-              prefix}}{{clientDetails.entity.lastName | prefix}}</nc-text
+              prefix}} {{clientDetails.entity.lastName |
+                prefix}}</nc-text
             >
           </div>
           <div class="description-task">
@@ -115,7 +116,7 @@
                     color="c-scale-8"
                     weight="500"
                     font="primary"
-                    >Adress</nc-text
+                    >Address</nc-text
                   >
                 </div>
                 <div class="localization-task">
@@ -124,7 +125,7 @@
                     color="c-scale-11"
                     weight="500"
                     font="primary"
-                    >{{tasksService.listTasksById?.address.addressLine1}}</nc-text
+                    >{{tasksService.selectedTask.address.addressLine1}}, {{tasksService.selectedTask.address.cityName}}, {{tasksService.selectedTask.address.postalCode}}</nc-text
                   >
                 </div>
               </div>
@@ -134,7 +135,7 @@
                 >
               </div>
             </div>
-            <div class="box-task">
+            <div class="box-task1">
               <div class="icon-name-user1" >
                 <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                   >icon_content</nc-icon
@@ -148,6 +149,38 @@
                     weight="500"
                     font="primary"
                     >Notes</nc-text
+                  >
+                </div>
+                <div class="localization-task">
+                  <nc-text
+                    size="h7"
+                    color="c-scale-9ks"
+                    weight="500"
+                    font="primary"
+                    >{{tasksService.selectedTask.note}}</nc-text
+                  >
+                </div>
+              </div>
+              <div class="arrow-info1" >
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+                  >icon_content</nc-icon
+                >
+              </div>
+            </div>
+            <div class="box-task1">
+              <div class="icon-name-user1" >
+                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+                  >icon_content</nc-icon
+                >
+              </div>
+              <div class="description-task1">
+                <div class="name-task">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-8"
+                    weight="500"
+                    font="primary"
+                    >Ficha de Trabalho</nc-text
                   >
                 </div>
                 <div class="localization-task">
@@ -431,27 +464,27 @@
     </div>
   </div>
 
-  <div class="footer-client">
-    <div class="button-cancel" (click)="cancel()">
+  <div class="footer-client" *ngIf="tasksService.finalized">
+    <div class="button-cancel" (click)="cancelTask()">
       <nc-text size="h7" color="error" weight="bold" font="primary">
         Cancel visit
       </nc-text>
     </div>
-    <div class="buttons">
-      <div class="button-options" (click)="options()">
-        <div class="icon-option">
+    <div class="buttons" *ngIf="tasksService.turnButton">
+      <div class="button-options" (click)="suspend()">
+        <!-- <div class="icon-option">
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
             >icon_plus</nc-icon
           >
-        </div>
+        </div> -->
         <div class="text-option">
           <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
-            Opções
+            Suspender
           </nc-text>
         </div>
 
       </div>
-      <div class="button-done" (click)="done(clientDetails)">
+      <div class="button-done" (click)="finalized()">
         <div class="icon-option">
           <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
             >icon_check</nc-icon
@@ -459,7 +492,16 @@
         </div>
         <div class="text-option">
           <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
-            Done
+            Finalizar
+          </nc-text>
+        </div>
+      </div>
+    </div>
+    <div class="buttons-inicial"  *ngIf="!tasksService.turnButton" >
+      <div class="button-inicial" (click)="executed(clientDetails)">
+        <div class="text-option">
+          <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
+           INICIAR
           </nc-text>
         </div>
       </div>
