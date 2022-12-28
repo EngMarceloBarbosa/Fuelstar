@@ -157,13 +157,7 @@ export class Tags {
   tagName: string;
 }
 
-export class Task {
-  id: string;
-  note: string;
-  startDate: string;
-  endDate: string;
-  entity: Entity;
-}
+
 export class Classification {
   id: string;
   firstName: string;
@@ -176,7 +170,7 @@ export class Classification {
   email:string;
 }
 
-export class Instance {
+export interface Instance {
   id: string;
   name: string;
   description: string;
@@ -194,10 +188,31 @@ export class Instance {
   documentInstances: DocumentInstances[];
   entityRoles: EntityRoles[];
   tags: Tags[];
-  taks: Task;
-
+  tasks: Task[];
+  statusHistory : StatusHistory[];
 
 }
+
+export class Task {
+  id: string;
+  note: string;
+  startDate: string;
+  endDate: string;
+  entity: Entity;
+}
+
+
+
+
+export class StatusHistory {
+  id:string;
+  note:string;
+  statusId: string;
+  statusName:string;
+  statusStartDate:string;
+  statusType: number;
+}
+
 
 export class TypesState {
   bulletTypeName: string;

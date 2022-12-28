@@ -394,3 +394,41 @@ nc-input {
     }
   }
 }
+
+.container-post{
+  display: flex;
+  flex-direction: column;
+
+  transform: translateY(-17px);
+
+}
+
+.post{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+
+
+#text-note{
+  display: list-item;
+  margin-top: 5px;
+  margin-bottom: 6px;
+  text-decoration: underline;
+}
+
+#text-note:hover{
+  color: blue;
+}
+
+.name-task-post{
+  margin-bottom: tbu(px(10));
+    display: flex;
+    align-items: center;
+    height: 29%;
+}
+
+.localization-task-post{
+  display: list-item;
+}

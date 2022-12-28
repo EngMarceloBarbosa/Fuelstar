@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
-import { Classification, Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, PaymentMethods, StatusFlows, SubTypesState, Tasks, TypesState } from 'src/app/utils/models/tasks';
+import { Classification, Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, PaymentMethods, StatusFlows, SubTypesState, Task, Tasks, TypesState } from 'src/app/utils/models/tasks';
 import { ItemApiService } from '../http/item-api.service';
 import { Router } from '@angular/router';
 import { TaskApiService } from '../http/task-api.service';
@@ -77,6 +77,7 @@ export class TasksService {
   listClassifications: any;
   selectedList:any[]=[1];
   today:any
+  time: any;
   validatorNIF:boolean = false;
   controlStep:boolean = false;
   controlStep1:boolean = false;
@@ -124,6 +125,12 @@ export class TasksService {
   turnButton = false;
   finalized = false;
   selectedTask: any = [];
+  loginUser: any = "" ;
+  notesTask: any = [];
+  notesTasks: any = [];
+  postNotes: any = "";
+  totalTime:any;
+  selectedPost:any;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),
@@ -141,11 +148,24 @@ export class TasksService {
 ];
 
    this.today = new Date();
-  var dd = String(this.today.getDate()).padStart(2, '0');
+   this.time = new Date();
+   this.totalTime = new Date();
+  var dd = String(this.today.getDate()+ 3 ).padStart(2, '0');
   var yyyy = this.today.getFullYear();
+  var hours = String(this.time.getHours()).padStart(2, '0')
+  var minutes = String(this.time.getMinutes()).padStart(2, '0');
+  var seconds = String(this.time.getSeconds()).padStart(2, '0');
+  var ms = String(this.time.getMilliseconds()).padStart(3, '0');
+  var month = String(this.time.getMonth() + 1).padStart(2, '0') ;
+
+  console.log(hours, 'horas')
 
   this.today = dd + '/' + monthNames[this.today.getMonth()] + '/' + yyyy;
+  this.time = hours + '-' + minutes + '-' + seconds
+
+   this.totalTime = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + '.'+ ms +'Z'
   console.log(this.today)
+  console.log(this.time)
    }
 
   // public listTasks(id: string) {
@@ -279,7 +299,23 @@ putTaskCancelled(){
   }
 
 
-  addNotes() {
+  async addNotes(task) {
+
+    await this.contactApiService.getNotesInstance(this.selectedTask).then((res) =>
+    // console.log(res)
+    this.notesTask = res
+    )
+
+    console.log(this.notesTask, 'NOTAS DOS POSTS')
+    console.log(this.notesTask.id)
+    // console.log(this.notesTask.tasks[0].note)
+
+
+
+   await  this.notesTask.tasks.map((res)=> {
+     this.notesTasks = res
+  })
+// con
 
     // this.listTasksById1 = new InstancePatch();
     // this.listTasksById
@@ -306,11 +342,16 @@ putTaskCancelled(){
     //   date: "2022-12-27T11:08:28.098Z"
       // ...data,
     // };
+
+
+console.log(this.selectedTask.id)
+
     const taskMain = {
       note: this.notes.detail.value,
       instanceId: this.selectedTask.id,
-      entityId: this.selectedTask.entity.id,
-      date: "2022-12-27T11:08:28.098Z"
+      entityId: task.entity.id,
+      id:  task.id,
+      date: this.totalTime
       // ...data,
     };
     console.log(this.notes, 'NOTES A NULO ')
@@ -321,14 +362,70 @@ putTaskCancelled(){
     //   this.selectedTask.note = listTasksByIdNew.note
     // )
 
+   await this.contactApiService.editNotesInstanceSheets(taskMain).then(() =>
+    this.selectedTask.note = taskMain.note
+    )
+
+    console.log(this.notes);
+
+    await this.contactApiService.getNotesInstance(this.selectedTask).then((res) =>
+    // console.log(res)
+    this.notesTask = res
+    )
+
+    console.log(this.notesTask)
+
+    console.log(this.notesTask, 'NOTAS DOS POSTS')
+    console.log(this.notesTask.id)
+    // console.log(this.notesTask.tasks[0].note)
+
+
+
+   await  this.notesTask.tasks.map((res)=> {
+     this.notesTasks = res
+  })
+// console.log.notesTasks.note)
+  console.log(this.notesTasks, 'Notas das TASKS' )
+
+    // console.log(listTasksByIdNew, ' LISTA NOVA');
+  }
+
+  async putNotes() {
+
+    const taskMain = {
+      note: this.postNotes.detail.value,
+      instanceId: this.selectedTask.id,
+      entityId: this.selectedTask.entity.id,
+      id: this.notesTasks.id,
+      date: this.totalTime
+      // ...data,
+    };
+    console.log(this.notes, 'NOTES A NULO ')
+
     this.contactApiService.putNotesInstanceSheetsPost(taskMain).then(() =>
     this.selectedTask.note = taskMain.note
     )
 
-
     console.log(this.notes);
-    // console.log(listTasksByIdNew, ' LISTA NOVA');
+
+    await this.contactApiService.getNotesInstance(this.selectedTask).then((res) =>
+    // console.log(res)
+    this.notesTask = res
+    )
+
+    this.notesTask.tasks.map((res) => {
+      this.notesTasks = res
+    })
+console.log(this.notesTasks)
+    console.log(    this.notesTask)
+
+
   }
+
+
+
+
+
 
   validateNIF(nif: string) {
     const validationSets = {
@@ -418,7 +515,7 @@ this.validatorNIF = true;
       case '23d91faf-d13d-42b0-902b-2de5d49a31ee':
         return 'orange';
       case '28b097a1-2834-4c9f-b1c6-6b2f316401af':
-        return 'green';
+        return '#00FFEF';
     }
   }
 

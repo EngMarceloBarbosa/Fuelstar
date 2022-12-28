@@ -33,12 +33,13 @@ export class DetailsClientPage implements OnInit {
   entityId: Entity;
   listTasksAll: any;
   NewListTest: any;
+  listAll: any;
 
 
   @ViewChild('search') myInput;
 
 
-  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService) {
+  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService, public contactApiService: ContactsTaskService) {
 
   }
 
@@ -47,7 +48,7 @@ export class DetailsClientPage implements OnInit {
 
 
 
-   await  this.tasksService.infoClient$
+    await this.tasksService.infoClient$
       .subscribe(client => {
         this.clientDetails = client;
       })
@@ -71,25 +72,59 @@ export class DetailsClientPage implements OnInit {
       console.log(this.tasksService.idContact)
     })
 
-   await this.contactsTaskService.getEntityHeader(this.clientDetails.entity.id).then(res => {
+    await this.contactsTaskService.getEntityHeader(this.clientDetails.entity.id).then(res => {
       console.log('resultado', res)
       this.tasksService.listEntitys = res;
       console.log(this.tasksService.listEntitys, "entidades")
     })
 
-  // await  this.contactsTaskService.getAddressById(this.clientDetails.id).then(res => {
-  //     console.log(res, 'Nota')
-  //     this.tasksService.listTasksById = res;
-  //     console.log(this.tasksService.listTasksById.address.addressLine1, "Tarefas id")
-  //   })
+    // await  this.contactsTaskService.getAddressById(this.clientDetails.id).then(res => {
+    //     console.log(res, 'Nota')
+    //     this.tasksService.listTasksById = res;
+    //     console.log(this.tasksService.listTasksById.address.addressLine1, "Tarefas id")
+    //   })
 
     console.log(this.tasksService.listTasksById)
-   await this.taskApiService.getTypesBulletsStateTask(this.tasksService.selectedTask.bulletId).then(res => {
+    await this.taskApiService.getTypesBulletsStateTask(this.tasksService.selectedTask.bulletId).then(res => {
       this.tasksService.typesStatesBullets = res
       console.log(this.tasksService.typesStatesBullets, 'Subestados dos Tipos de estado')
 
 
     })
+
+    await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then((res) => {
+      // console.log(res)
+      this.tasksService.notesTask = res
+      console.log(this.tasksService.notesTask)
+      this.tasksService.notesTask.tasks
+      console.log(   this.tasksService.notesTask.tasks
+        )
+
+    })
+
+      // await this.tasksService.notesTask.map((res) => {
+      //   this.tasksService.notesTasks = res
+      //   console.log(this.tasksService.notesTasks)
+      // })
+
+
+
+
+
+    console.log(this.tasksService.notesTask.tasks?.[0]?.note)
+
+    console.log(this.tasksService.notesTask, 'NOTAS DOS POSTS')
+    console.log(this.tasksService.notesTask.id)
+    // console.log(this.notesTask.tasks[0].note)
+
+
+
+
+
+
+
+
+
   }
 
   notes() {
@@ -116,7 +151,7 @@ export class DetailsClientPage implements OnInit {
     this.router.navigate(["/edit-contact"])
   }
 
-  cancel(){
+  cancel() {
     this.router.navigate(["tabs/tab1"]);
     this.tasksService.notes = "";
   }
@@ -131,7 +166,7 @@ export class DetailsClientPage implements OnInit {
       leftButtonSize: "small",
       leftButtonType: "text",
       leftButtonText: "Voltar",
-      showMiddleButton:false,
+      showMiddleButton: false,
       rightButtonSize: "small",
       rightButtonType: "text",
       rightButtonText: "Cancelar",
@@ -147,10 +182,10 @@ export class DetailsClientPage implements OnInit {
     this.tasksService.notes = "";
   }
 
-  async cancelled(){
+  async cancelled() {
 
-   await  this.tasksService.putTaskCancelled();
-   await  this.taskApiService.getTypesStateTask();
+    await this.tasksService.putTaskCancelled();
+    await this.taskApiService.getTypesStateTask();
 
     if (this.tasksService.listTasksFinalized.length === 0) {
       this.tasksService.turnMsgAlertTask1 = true;
@@ -321,10 +356,24 @@ export class DetailsClientPage implements OnInit {
 
   }
 
+  postNote() {
+    this.router.navigate(["/post-notes"])
+
+  }
+
+  editPost(task){
+    console.log(task)
+    this.tasksService.selectedPost = task
+    this.onNotes = false;
+
+    console.log(this.tasksService.selectedTask.id)
+  }
+
 
 
   save() {
-    this.tasksService.addNotes();
+    console.log(this.tasksService.selectedPost)
+    this.tasksService.addNotes(this.tasksService.selectedPost);
     this.onNotes = true;
   }
 
@@ -341,65 +390,65 @@ export class DetailsClientPage implements OnInit {
     this.router.navigate(['/free-sale'])
   }
 
-  initial(){
+  initial() {
 
 
 
   }
 
-    async suspend(){
-   await  this.tasksService.putTaskSuspend();
-   await  this.taskApiService.getTypesStateTask();
+  async suspend() {
+    await this.tasksService.putTaskSuspend();
+    await this.taskApiService.getTypesStateTask();
 
 
-   await this.taskApiService.getTasksItemIdExecuted().then(res => {
-    this.tasksService.listTasks2 = res;
-    console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      this.tasksService.listTasks2 = res;
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
 
 
-  })
+    })
 
-  await this.taskApiService.getTasksItemIdAtribuited().then(res => {
-    this.tasksService.listTasks1 = res;
-    // this.tasksService.visiteToDo = this.tasksService.listTasks1
-    // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
-    // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
-    // console.log(      this.tasksService.visiteToDo)
-    console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
-    // this.tasksService.countVisits = this.tasksService.visiteToDo.length
-    // console.log(this.tasksService.countVisits)
-    // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
-
-
-  })
-
-  this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
-  console.log(this.tasksService.visiteToDo, 'lista final')
+    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+      this.tasksService.listTasks1 = res;
+      // this.tasksService.visiteToDo = this.tasksService.listTasks1
+      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
+      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(      this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
+      // console.log(this.tasksService.countVisits)
+      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
 
 
-  console.log(this.tasksService.visiteToDo)
-  console.log(this.tasksService.listTasks1)
-  this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+    })
 
-  console.log(this.tasksService.countVisits)
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+    console.log(this.tasksService.visiteToDo, 'lista final')
 
-  this.tasksService.countsToDo = this.tasksService.visiteToDo.length
-  console.log(this.tasksService.visiteToDo, 'pq0')
-  this.tasksService.getColor(this.tasksService.selectedTask.id);
 
-  this.router.navigate(["/tabs/tab1"]);
+    console.log(this.tasksService.visiteToDo)
+    console.log(this.tasksService.listTasks1)
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+    console.log(this.tasksService.visiteToDo, 'pq0')
+    this.tasksService.getColor(this.tasksService.selectedTask.id);
+
+    this.router.navigate(["/tabs/tab1"]);
 
   }
 
-  async executed(){
+  async executed() {
     this.tasksService.turnButton = true;
     console.log(this.tasksService.turnButton)
-   await  this.tasksService.putTaskExecuted();
-   await this.taskApiService.getTypesStateTask();
+    await this.tasksService.putTaskExecuted();
+    await this.taskApiService.getTypesStateTask();
     console.log(this.tasksService.selectedTask.id)
 
 
-        await this.taskApiService.getTasksItemIdExecuted().then(res => {
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
       this.tasksService.listTasks2 = res;
       console.log(this.tasksService.listTasks2, 'Tarefas em execução')
 
@@ -437,7 +486,7 @@ export class DetailsClientPage implements OnInit {
     this.router.navigate(["/tabs/tab1"]);
   }
 
-  async finalized(){
+  async finalized() {
 
 
     await this.tasksService.putTaskFinalize();
@@ -457,7 +506,7 @@ export class DetailsClientPage implements OnInit {
     this.tasksService.countsToDo = this.tasksService.visiteToDo.length
 
 
-        await this.taskApiService.getTasksItemIdExecuted().then(res => {
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
       this.tasksService.listTasks2 = res;
       console.log(this.tasksService.listTasks2, 'Tarefas em execução')
 
@@ -509,4 +558,7 @@ export class DetailsClientPage implements OnInit {
     this.router.navigate(['/tabs/tab1']);
 
   }
+
+
+
 }

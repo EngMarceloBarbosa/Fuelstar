@@ -1,0 +1,71 @@
+<div class="notes">
+  <div class="header-notes">
+    <div class="box-task">
+      <div class="left-icon">
+        <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-1"
+          >icon_phone</nc-icon
+        >
+      </div>
+      <div class="description-task1">
+        <div class="name-task">
+          <nc-text size="h7" color="c-scale-12" weight="bold" font="primary"
+            >Criar POSTS</nc-text
+          >
+        </div>
+        <div class="localization-task">
+          <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
+            >Escreva uma ou mais posts sobre a tarefa</nc-text
+          >
+        </div>
+      </div>
+      <div class="right-icon-notes" (click)="close()">
+        <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
+          >icon_close</nc-icon
+        >
+      </div>
+    </div>
+
+    <div class="input-search">
+      <div class="search-client" >
+        <ion-textarea  #search (ionChange)="modelChangeFn($event)"  placeholder="Posts" autofocus="true" [autoGrow]="true"
+        value="">
+      </ion-textarea>
+
+        <!-- <nc-input
+          [attr.tester]="'search-bar-current'"
+          placeholder="Notas"
+          [bgInputColor]="'c-scale-12'"
+          [clear]="false"
+          [type]="'text'"
+          [size]="'large'"
+          [orientation] = "vertical"
+
+        >
+        </nc-input> -->
+      </div>
+
+
+
+    <div class="box-post">
+      <div class="title">
+   <nc-text size="h4" color="c-scale-12" weight="bold" font="primary">Lista de Posts</nc-text>
+      </div>
+      <nc-text *ngFor="let task of this.tasksService.notesTask.tasks" size="h6" color="c-scale-12" weight="500" font="primary">{{task.note}}</nc-text>
+    </div>
+  </div>
+  </div>
+  <div class="body-container">
+    <div class="footer">
+      <div class="button-footer" (click)="save()">
+        <nc-text
+          size="h7"
+          hoverColor="c-scale-1"
+          color="c-scale-1"
+          weight="500"
+          font="primary"
+          >Criar</nc-text
+        >
+      </div>
+    </div>
+  </div>
+</div>

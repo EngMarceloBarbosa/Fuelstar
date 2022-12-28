@@ -22,6 +22,7 @@ export class OrdersDetailsPage implements OnInit {
 
   value1 = new Date();
   value2 = new Date();
+  value3 = new Date();
   listProducts: any[] = [];
   onAdress: boolean = true;
   apllyFilterButtonDisabled: boolean = true;

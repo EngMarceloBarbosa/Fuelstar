@@ -96,6 +96,8 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
   async ngOnInit() {
 
+    console.log(this.tasksService.time)
+    console.log(this.tasksService.totalTime)
     this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
     console.log(this.tasksService.countVisits)

@@ -144,6 +144,8 @@ verifyNif(form: FormData){
   }
 
 
+
+
   putNotesInstance(listTasksById, instanceId) {
     console.log('value', instanceId);
     return this.http
@@ -158,10 +160,26 @@ verifyNif(form: FormData){
       .toPromise();
   }
 
-  putNotesInstanceSheets(listTasksById, selectedTask) {
-    console.log('value', selectedTask);
+
+  getNotesInstance(instanceId) {
+    console.log('value', instanceId);
     return this.http
-      .patch<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${selectedTask.id}/Tasks/${selectedTask.bulletId}`,  (listTasksById), {
+      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${instanceId.id}`, {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + environment.token,
+          'Content-type': 'application/json',
+          'accept': '*/*'
+        })
+      })
+      .pipe()
+      .toPromise();
+  }
+
+
+  editNotesInstanceSheets(taskMain) {
+    console.log('value', taskMain);
+    return this.http
+      .patch<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${taskMain.instanceId}/Tasks/${taskMain.id}`,  (taskMain), {
         headers: new HttpHeaders({
           Authorization: "Bearer " + environment.token,
           'Content-type': 'application/json',

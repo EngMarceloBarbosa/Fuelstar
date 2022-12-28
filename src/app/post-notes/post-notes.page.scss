@@ -1,0 +1,129 @@
+@import "./../../global.scss";
+
+
+.box-task {
+  display: flex;
+  width: 100%;
+  margin-bottom: tbu(px(24));
+}
+
+.box-task1 {
+  display: flex;
+  width: 100%;
+  height: tbu(px(120));
+}
+
+.left-icon {
+  width: 10%;
+  @extend .align-center;
+}
+
+.container {
+  margin-left: tbu(px(24));
+  margin-right: tbu(px(24));
+  margin-top: tbu(px(27));
+}
+
+.icon-name-user {
+  @extend .align-center;
+  height: tbu(px(35));
+  border-radius: 90%;
+  width: 11%;
+  background-color: var(--c-scale-12);
+}
+
+.name-task{
+  width: tbu(px(242));
+  display: flex
+}
+
+.localization-task{
+  width: 90%;
+}
+
+.description-task {
+  display: flex;
+  flex-direction: column;
+  width: 67%;
+  padding-left: tbu(px(15));
+  padding-right: tbu(px(50));
+}
+
+.description-task1 {
+  display: flex;
+  flex-direction: column;
+  width: 78%;
+  padding-left: tbu(px(15));
+}
+
+.notes {
+  height: 100%;
+}
+
+.right-icon-notes {
+  display: flex;
+  justify-content: flex-end;
+  width: 11%;
+}
+
+.header-notes {
+  padding-left: tbu(px(24));
+  padding-right: tbu(px(24));
+  padding-top: tbu(px(35));
+  height: 85%;
+  background-color: white;
+}
+
+.body-container {
+  height: 15%;
+  background-color: white;
+}
+
+.search-client {
+  height: 195px;
+  display: flex;
+  width: 100%;
+  border: 1px solid;
+  border-color: var(--c-scale-8);
+}
+
+.input-search {
+  margin-top: tbu(px(24));
+  height: 65vh;
+}
+
+.footer {
+  margin-left: tbu(px(24));
+  margin-right: tbu(px(24));
+}
+
+.button-footer {
+  height: tbu(px(48));
+  width: 100%;
+  background-color: var(--c-scale-12);
+  @extend .flex-center;
+}
+
+nc-input {
+  ::ng-deep {
+    .input-wrapper {
+      height: 227px;
+    }
+  }
+}
+
+.box-post{
+  height:40vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.title{
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+  margin-bottom: tbu(px(10));
+  margin-top: tbu(px(32));
+}

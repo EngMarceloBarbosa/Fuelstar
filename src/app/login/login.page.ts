@@ -145,6 +145,8 @@ export class LoginPage implements OnInit {
         this.parseJwt();
       }
 
+      this.tasksService.loginUser = authentication
+
     })
 
       .catch((error: HttpErrorResponse) => {

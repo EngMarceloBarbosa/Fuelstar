@@ -70,6 +70,10 @@ const routes: Routes = [
     path: 'google-maps',
     loadChildren: () => import('./google-maps/google-maps.module').then( m => m.GoogleMapsPageModule)
   },
+  {
+    path: 'post-notes',
+    loadChildren: () => import('./post-notes/post-notes.module').then( m => m.PostNotesPageModule)
+  },
 
 
   // INICIALIZING APP
@@ -84,6 +88,7 @@ const routes: Routes = [
     pathMatch: 'full'
 
   },
+
 
 
 
