@@ -47,7 +47,7 @@
       [tabBarUnderlineStyle]="{borderColor: 'var(--c-scale-12)'}"
       [tabBarInactiveTextColor]="'var(--c-scale-8)'"
     >
-      <nc-tab-pane [attr.tester]="'click-tab'" title="Detail info">
+      <nc-tab-pane [attr.tester]="'click-tab'" title="Mais detalhes">
         <div>
           <div class="container">
             <div class="box-task">
@@ -239,8 +239,8 @@
           </div>
         </div>
       </nc-tab-pane>
-      <nc-tab-pane [attr.tester]="'click-tab'" title="Documents">
-        <div class="container-documents">
+      <nc-tab-pane [attr.tester]="'click-tab'" title="Documentos">
+        <div class="container-documents" *ngIf="turnDocuments">
           <div class="boxes-documents">
             <div class="box-document">
               <div class="container-light">
@@ -430,6 +430,9 @@
             </div>
           </div>
         </div>
+        <div class="warning-documents" *ngIf="!turnDocuments">
+          <nc-text size="h6" color="c-scale-10" weight="bold" font="primary"> Não existem Documentos Associados</nc-text>
+        </div>
       </nc-tab-pane>
     </nc-tabs>
     <div class="notes" *ngIf="!onNotes">
@@ -449,7 +452,7 @@
                     color="c-scale-12"
                     weight="bold"
                     font="primary"
-                    >Notas</nc-text
+                    >Editar Notas</nc-text
                   >
                 </div>
                 <div class="localization-task">

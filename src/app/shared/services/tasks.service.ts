@@ -143,29 +143,7 @@ export class TasksService {
   constructor(private http: HttpClient, private contactApiService: ContactsTaskService, public itemApiService: ItemApiService,  public router: Router) {
 
 
-  const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
 
-   this.today = new Date();
-   this.time = new Date();
-   this.totalTime = new Date();
-  var dd = String(this.today.getDate()+ 3 ).padStart(2, '0');
-  var yyyy = this.today.getFullYear();
-  var hours = String(this.time.getHours()).padStart(2, '0')
-  var minutes = String(this.time.getMinutes()).padStart(2, '0');
-  var seconds = String(this.time.getSeconds()).padStart(2, '0');
-  var ms = String(this.time.getMilliseconds()).padStart(3, '0');
-  var month = String(this.time.getMonth() + 1).padStart(2, '0') ;
-
-  console.log(hours, 'horas')
-
-  this.today = dd + '/' + monthNames[this.today.getMonth()] + '/' + yyyy;
-  this.time = hours + '-' + minutes + '-' + seconds
-
-   this.totalTime = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + '.'+ ms +'Z'
-  console.log(this.today)
-  console.log(this.time)
    }
 
   // public listTasks(id: string) {
@@ -201,6 +179,32 @@ export class TasksService {
   badgeEmpty$ = new BehaviorSubject<any>('');
   value$ = new BehaviorSubject<any>('');
   contact$ = new BehaviorSubject<any>('');
+
+timeHours(){
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+   this.today = new Date();
+   this.time = new Date();
+   this.totalTime = new Date();
+  var dd = String(this.today.getDate()).padStart(2, '0');
+  var yyyy = this.today.getFullYear();
+  var hours = String(this.time.getHours()).padStart(2, '0')
+  var minutes = String(this.time.getMinutes()).padStart(2, '0');
+  var seconds = String(this.time.getSeconds()).padStart(2, '0');
+  var ms = String(this.time.getMilliseconds()).padStart(3, '0');
+  var month = String(this.time.getMonth() + 1).padStart(2, '0') ;
+
+  console.log(hours, 'horas')
+
+  this.today = dd + '/' + monthNames[this.today.getMonth()] + '/' + yyyy;
+  this.time = hours + '-' + minutes + '-' + seconds
+
+   this.totalTime = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + '.'+ ms +'Z'
+  console.log(this.today)
+  console.log(this.time)
+}
 
 
   putPhoneNumber() {
@@ -392,17 +396,18 @@ console.log(this.selectedTask.id)
 
   async putNotes() {
 
+    console.log(this.totalTime)
+
     const taskMain = {
       note: this.postNotes.detail.value,
       instanceId: this.selectedTask.id,
       entityId: this.selectedTask.entity.id,
-      id: this.notesTasks.id,
       date: this.totalTime
       // ...data,
     };
     console.log(this.notes, 'NOTES A NULO ')
 
-    this.contactApiService.putNotesInstanceSheetsPost(taskMain).then(() =>
+    await this.contactApiService.putNotesInstanceSheetsPost(taskMain).then(() =>
     this.selectedTask.note = taskMain.note
     )
 
@@ -413,7 +418,7 @@ console.log(this.selectedTask.id)
     this.notesTask = res
     )
 
-    this.notesTask.tasks.map((res) => {
+   await  this.notesTask.tasks.map((res) => {
       this.notesTasks = res
     })
 console.log(this.notesTasks)

@@ -49,6 +49,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
 
+    this.tasksService.timeHours();
+
 
     this.translate.get('App').subscribe(res => {
       this.globalMessagesTranslations = res.Global;

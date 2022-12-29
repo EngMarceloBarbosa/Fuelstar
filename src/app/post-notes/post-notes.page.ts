@@ -32,7 +32,9 @@ export class PostNotesPage implements OnInit {
   }
 
   save(){
+    this.tasksService.timeHours();
     this.tasksService.putNotes();
+    this.tasksService.postNotes.detail.value = ""
   }
 
 }

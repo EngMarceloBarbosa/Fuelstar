@@ -34,7 +34,7 @@ export class DetailsClientPage implements OnInit {
   listTasksAll: any;
   NewListTest: any;
   listAll: any;
-
+  turnDocuments = false;
 
   @ViewChild('search') myInput;
 
@@ -173,7 +173,7 @@ export class DetailsClientPage implements OnInit {
       rightButtonTesterProperty: "clickLeaveApp",
       rightButtonColor: "c-scale-12",
       rightButtonCallback: () => {
-        this.cancelled();
+        this.buttonCancelled();
       },
     };
     this.alertService.open(temp);
@@ -182,7 +182,7 @@ export class DetailsClientPage implements OnInit {
     this.tasksService.notes = "";
   }
 
-  async cancelled() {
+  async buttonCancelled() {
 
     await this.tasksService.putTaskCancelled();
     await this.taskApiService.getTypesStateTask();
@@ -372,6 +372,7 @@ export class DetailsClientPage implements OnInit {
 
 
   save() {
+    this.tasksService.timeHours();
     console.log(this.tasksService.selectedPost)
     this.tasksService.addNotes(this.tasksService.selectedPost);
     this.onNotes = true;
@@ -397,6 +398,33 @@ export class DetailsClientPage implements OnInit {
   }
 
   async suspend() {
+    // this.router.navigate(["/tabs/tab1"]);
+    const temp: ModalMessageModel = {
+      showTip: false,
+      title: "Quer continuar ?",
+      description: "Ao continuar vai suspender a tarefa",
+      state: "warning",
+      leftButtonSize: "small",
+      leftButtonType: "text",
+      leftButtonText: "Voltar",
+      showMiddleButton: false,
+      rightButtonSize: "small",
+      rightButtonType: "text",
+      rightButtonText: "Suspender",
+      rightButtonTesterProperty: "clickLeaveApp",
+      rightButtonColor: "c-scale-12",
+      rightButtonCallback: () => {
+        this.buttonSuspend();
+      },
+    };
+    this.alertService.open(temp);
+
+
+    this.tasksService.notes = "";
+  }
+
+
+ async buttonSuspend() {
     await this.tasksService.putTaskSuspend();
     await this.taskApiService.getTypesStateTask();
 
@@ -438,9 +466,38 @@ export class DetailsClientPage implements OnInit {
 
     this.router.navigate(["/tabs/tab1"]);
 
+
+
+}
+  async executed() {
+
+    const temp: ModalMessageModel = {
+      showTip: false,
+      title: "Quer continuar ?",
+      description: "Ao continuar vai iniciar a tarefa",
+      state: "warning",
+      leftButtonSize: "small",
+      leftButtonType: "text",
+      leftButtonText: "Voltar",
+      showMiddleButton: false,
+      rightButtonSize: "small",
+      rightButtonType: "text",
+      rightButtonText: "Iniciar",
+      rightButtonTesterProperty: "clickLeaveApp",
+      rightButtonColor: "c-scale-12",
+      rightButtonCallback: () => {
+        this.buttonExecuted();
+      },
+    };
+    this.alertService.open(temp);
+
+
+    this.tasksService.notes = "";
+
   }
 
-  async executed() {
+  async buttonExecuted(){
+
     this.tasksService.turnButton = true;
     console.log(this.tasksService.turnButton)
     await this.tasksService.putTaskExecuted();
@@ -484,10 +541,39 @@ export class DetailsClientPage implements OnInit {
     this.tasksService.getColor(this.tasksService.selectedTask.id);
 
     this.router.navigate(["/tabs/tab1"]);
-  }
+
+}
 
   async finalized() {
 
+    const temp: ModalMessageModel = {
+      showTip: false,
+      title: "Quer continuar ?",
+      description: "Ao continuar vai finalizar a tarefa",
+      state: "warning",
+      leftButtonSize: "small",
+      leftButtonType: "text",
+      leftButtonText: "Voltar",
+      showMiddleButton: false,
+      rightButtonSize: "small",
+      rightButtonType: "text",
+      rightButtonText: "Finalizar",
+      rightButtonTesterProperty: "clickLeaveApp",
+      rightButtonColor: "c-scale-12",
+      rightButtonCallback: () => {
+        this.buttonFinalized();
+      },
+    };
+    this.alertService.open(temp);
+
+
+    this.tasksService.notes = "";
+
+  }
+
+
+
+  async buttonFinalized() {
 
     await this.tasksService.putTaskFinalize();
     await this.taskApiService.getTypesStateTask();
