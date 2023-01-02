@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonSlides, NavController, ToastController } from '@ionic/angular';
+import { IonSlides, LoadingController, NavController, ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
 import { SwiperComponent } from 'swiper/angular';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
@@ -77,7 +77,8 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     public toastController: ToastController,
     public taskApiService: TaskApiService,
     public contactsTaskService: ContactsTaskService,
-    private element: ElementRef
+    private element: ElementRef,
+    public loadingController: LoadingController,
   ) {
 
 
@@ -95,6 +96,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
   }
 
   async ngOnInit() {
+
 
     console.log(this.tasksService.time)
     console.log(this.tasksService.totalTime)
@@ -251,6 +253,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
     this.randomNumber(1, 1000);
     this.virtualScroller();
+    this.virtualScroller1();
     this.registration();
 
 
@@ -277,10 +280,14 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
     console.log(this.tasksService.visiteToDo, 'pq')
     console.log(this.tasksService.visiteEfected)
+
+
+
   }
 
 
   ngAfterViewInit() {
+
     console.log(this.input)
     // console.log(this.input1)
   }
@@ -300,6 +307,20 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     this.router.navigate(['/']);
   }
 
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'circular',
+      duration: 1500,
+      message: 'Please wait...',
+      translucent: false,
+      cssClass: 'custom-class custom-loading'
+
+    });
+
+    return await loading.present();
+  }
+
+
   selectedTask(test: any) {
     this.tasksService.instanceId = test.id
     this.tasksService.selectedTask = test
@@ -310,17 +331,25 @@ export class Tab1Page implements OnInit, AfterContentChecked {
       if (test.currentStatus.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af") {
         this.tasksService.turnButton = false;
         this.tasksService.finalized = true;
+        // this.tasksService.turnCreatePost = true;
+        // this.tasksService.turnEditPost = true;
+
       }
       // TAREFAS EM EXECUÇÃO
       if (test.currentStatus.id == "23d91faf-d13d-42b0-902b-2de5d49a31ee") {
         this.tasksService.turnButton = true;
         this.tasksService.finalized = true;
+        // this.tasksService.turnCreatePost = true;
+        // this.tasksService.turnEditPost = true;
+
       }
 
       // TAREFAS FINALIZADAS
       if (test.currentStatus.id == "e6875497-3ad4-4121-b3aa-4efde5d12fb1") {
         this.tasksService.turnButton = true;
         this.tasksService.finalized = false;
+        // this.tasksService.turnCreatePost = false;
+        // this.tasksService.turnEditPost = false;
       }
       this.tasksService.infoClient$.next(test);
       console.log(test);
@@ -329,6 +358,8 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     if (test.id == 2) {
       console.log("2 entrou");
     }
+
+    // this.presentLoadingWithOptions();
 
     this.router.navigate(['/details-client'])
   }
@@ -421,7 +452,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
   localization() {
-
+    this.tasksService.turnAllSpots = true;
     this.router.navigate(['/google-maps'])
 
 
@@ -482,6 +513,10 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
   slideChanged() {
+
+
+    this.virtualScroller1();
+
     console.log(this.positionSlide)
     this.slide.getActiveIndex().then(index => {
       console.log(index)
@@ -490,7 +525,6 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
     })
     console.log(this.change)
-    this.virtualScroller1();
 
 
 

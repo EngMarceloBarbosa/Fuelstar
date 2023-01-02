@@ -30,26 +30,34 @@ export class AppComponent {
     public tasksService:TasksService
   ) {
 
+        this.platform.backButton.subscribeWithPriority(-1, () => {
+      if (!this.routerOutlet.canGoBack()) {
+        // this.tasksService.handleBackButton();
+        App.exitApp();
+      }
+    });
 
-    this.platform.ready().then(()=>{
-      this.platform.backButton.subscribeWithPriority
-      (999999, ()=> {
- const url = this.router['routerState'].snapshot.url;
- console.log(url)
-if(url == "/free-sale" && this.tasksService.continue1 == false){
-  this.tasksService.continue1 = true;
-  this.location.back();
-}
 
- if(url != "/login"){
 
-  this.location.back();
+//     this.platform.ready().then(()=>{
+//       this.platform.backButton.subscribeWithPriority
+//       (999999, ()=> {
+//  const url = this.router['routerState'].snapshot.url;
+//  console.log(url)
+// if(url == "/free-sale" && this.tasksService.continue1 == false){
+//   this.tasksService.continue1 = true;
+//   this.location.back();
+// }
 
- }else {
-  App.exitApp();
- }
-      })
-    })
+//  if(url != "/login"){
+
+//   this.location.back();
+
+//  }else {
+//   App.exitApp();
+//  }
+//       })
+//     })
 
     // App.addListener('backButton', () =>
     // {
@@ -70,10 +78,11 @@ if(url == "/free-sale" && this.tasksService.continue1 == false){
     this.globals.imagePath = `./assets/images/`;
   }
 
-  ngOnInit(): void {
+
+    ngOnInit(): void {
     setTimeout(() => {
       this.splashScreenStateService.stop();
-    }, 5000);
+    }, 4000);
 
     // this.platform.backButton.subscribeWithPriority(-1, () => {
     //   if (!this.routerOutlet.canGoBack()) {
@@ -83,6 +92,7 @@ if(url == "/free-sale" && this.tasksService.continue1 == false){
     // });
 
   }
+
 
 
 

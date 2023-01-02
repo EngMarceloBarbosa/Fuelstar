@@ -131,6 +131,12 @@ export class TasksService {
   postNotes: any = "";
   totalTime:any;
   selectedPost:any;
+  turnMessageCreate = false;
+  turnMessageCreateEdit = false;
+  msgWarningExecuted = false;
+  turnAllSpots = false;
+  // turnCreatePost = false;
+  // turnEditPost= false;
   //   newClientForm: FormGroup =  new FormGroup({
   //   firstName: new FormControl(this.valueFirstName),
   //   lastName: new FormControl(null),
@@ -523,6 +529,7 @@ this.validatorNIF = true;
         return '#00FFEF';
     }
   }
+
 
 
   // handleBackButton() {

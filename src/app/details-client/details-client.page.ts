@@ -37,9 +37,11 @@ export class DetailsClientPage implements OnInit {
   turnDocuments = false;
 
   @ViewChild('search') myInput;
-
+  showContent = true;
 
   constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService, public contactApiService: ContactsTaskService) {
+
+
 
   }
 
@@ -61,7 +63,7 @@ export class DetailsClientPage implements OnInit {
     console.log(this.clientDetails)
 
 
-    this.contactsTaskService.getContactById(this.clientDetails.entity.id).then(res => {
+   await this.contactsTaskService.getContactById(this.clientDetails.entity.id).then(res => {
       console.log('resultado', res)
       this.tasksService.listContacts = res;
       console.log(this.tasksService.listContacts[0].id)
@@ -154,6 +156,7 @@ export class DetailsClientPage implements OnInit {
   cancel() {
     this.router.navigate(["tabs/tab1"]);
     this.tasksService.notes = "";
+    this.tasksService.msgWarningExecuted  = false;
   }
 
   cancelTask() {
@@ -238,7 +241,12 @@ export class DetailsClientPage implements OnInit {
 
     this.router.navigate(['/tabs/tab1']);
 
+
+
+
   }
+
+
 
 
   options() {
@@ -272,6 +280,7 @@ export class DetailsClientPage implements OnInit {
 
   close() {
     this.onNotes = true;
+    this.tasksService.turnMessageCreateEdit = false;
   }
 
   done(task) {
@@ -371,11 +380,21 @@ export class DetailsClientPage implements OnInit {
 
 
 
-  save() {
-    this.tasksService.timeHours();
-    console.log(this.tasksService.selectedPost)
-    this.tasksService.addNotes(this.tasksService.selectedPost);
-    this.onNotes = true;
+  save(task) {
+
+
+    if(task.currentStatus.id == "e6875497-3ad4-4121-b3aa-4efde5d12fb1"){
+      return this.tasksService.turnMessageCreateEdit = true;
+    }else {
+      this.tasksService.timeHours();
+      console.log(this.tasksService.selectedPost)
+      this.tasksService.addNotes(this.tasksService.selectedPost);
+      this.onNotes = true;
+    }
+
+
+
+
   }
 
   async call() {
@@ -384,6 +403,7 @@ export class DetailsClientPage implements OnInit {
   }
 
   locationMaps() {
+
     this.router.navigate(['/google-maps'])
   }
 
@@ -498,6 +518,8 @@ export class DetailsClientPage implements OnInit {
 
   async buttonExecuted(){
 
+    if(this.tasksService.listTasks2.length === 0 ) {
+
     this.tasksService.turnButton = true;
     console.log(this.tasksService.turnButton)
     await this.tasksService.putTaskExecuted();
@@ -541,7 +563,9 @@ export class DetailsClientPage implements OnInit {
     this.tasksService.getColor(this.tasksService.selectedTask.id);
 
     this.router.navigate(["/tabs/tab1"]);
-
+  }else {
+  return this.tasksService.msgWarningExecuted = true;
+  }
 }
 
   async finalized() {

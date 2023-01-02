@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginApiService } from '../shared/http/login-api.service';
 import { LoadingController } from '@ionic/angular';
-import { CoreEnvironment } from '@angular/compiler/src/compiler_facade_interface';
 import { TasksService } from '../shared/services/tasks.service';
 
 
@@ -133,6 +132,7 @@ export class LoginPage implements OnInit {
       password: this.password.value,
       productId: '00000000-0000-0000-0000-000000000003'
     };
+
 
     this.loginApiService.getLogin(authentication).then(res => {
       this.router.navigate(["/tabs/tab1"]);

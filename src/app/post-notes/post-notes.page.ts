@@ -13,6 +13,8 @@ import { TasksService } from '../shared/services/tasks.service';
 })
 export class PostNotesPage implements OnInit {
 
+
+
   constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService, public contactApiService: ContactsTaskService) {
 
   }
@@ -28,13 +30,24 @@ export class PostNotesPage implements OnInit {
 
 
   close() {
+    this.tasksService.turnMessageCreate = false;
     this.router.navigate(["/details-client"])
+
   }
 
-  save(){
+  save(task){
+
+    console.log(task)
+    console.log(task.currentStatus.id)
+
+  if(task.currentStatus.id == "e6875497-3ad4-4121-b3aa-4efde5d12fb1"){
+    return this.tasksService.turnMessageCreate = true;
+  }else {
     this.tasksService.timeHours();
     this.tasksService.putNotes();
     this.tasksService.postNotes.detail.value = ""
+    console.log('PODE SER ')
+  }
   }
 
 }

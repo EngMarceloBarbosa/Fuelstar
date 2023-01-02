@@ -102,6 +102,14 @@ ion-content {
   padding-left: tbu(px(15));
 }
 
+.description-task2 {
+  display: flex;
+  flex-direction: column;
+  width: 93%;
+  padding-left: tbu(px(15));
+  transform: translateY(10px);
+}
+
 .container-documents {
   padding: tbu(px(24));
 }
@@ -385,6 +393,7 @@ nc-action-sheet {
   width: 100%;
   background-color: var(--c-scale-12);
   @extend .flex-center;
+  border-radius: 4px;
 }
 
 nc-input {
@@ -398,8 +407,6 @@ nc-input {
 .container-post {
   display: flex;
   flex-direction: column;
-
-  transform: translateY(-17px);
 }
 
 .post {
@@ -408,12 +415,37 @@ nc-input {
   justify-content: center;
   padding-bottom: 5px;
 }
+.localization-task-post {
+  display: flex;
+  flex-direction: row;
+  width: 96%;
+  justify-content: space-between;
+  margin-top: -5px;
+  counter-increment: css-counter 1;
+  // white-space: nowrap;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  // text-align: right;
+}
+
+.localization-task-post::before {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  content: counter(css-counter);
+}
 
 #text-note {
   display: list-item;
   margin-top: 5px;
   margin-bottom: 6px;
-  text-decoration: underline;
+  // text-decoration: underline;
+  width: 77%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  margin-left: -20px
 }
 
 #text-note:hover {
@@ -421,14 +453,17 @@ nc-input {
 }
 
 .name-task-post {
-  margin-bottom: tbu(px(10));
   display: flex;
   align-items: center;
   height: 29%;
+  // transform: translateX(-15px);
 }
 
-.localization-task-post {
-  display: list-item;
+.arrow-info2 {
+  @extend .align-center;
+  width: 11%;
+  margin-top: 5px;
+  margin-bottom: 6px;
 }
 
 .warning-documents {
@@ -438,3 +473,43 @@ nc-input {
   height: 64vh;
   padding: 20px;
 }
+
+.msgWarning {
+  padding: tbu(px(5)) tbu(px(14));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// EXEMPLO DE UM READ MORE -------------------------------------------
+
+
+// .container-new{
+//   display: flex;
+//   flex-direction: row;
+//   width: 100%;
+
+// }
+
+// .new{
+//   width: 80%;
+//   display: flex;
+// }
+
+// .expanded {
+//   max-height: 35px;
+//   overflow: hidden;
+// }
+
+// .button-read{
+//   width: 24%;
+//   height: 90%;
+//   background-color: black;
+//   border-radius: 3px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+
+// FIM DO EXEMPLO   ---------------------------------------

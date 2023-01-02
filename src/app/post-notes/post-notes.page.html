@@ -1,3 +1,4 @@
+<ion-content>
 <div class="notes">
   <div class="header-notes">
     <div class="box-task">
@@ -27,8 +28,8 @@
 
     <div class="input-search">
       <div class="search-client" >
-        <ion-textarea  #search (ionChange)="modelChangeFn($event)"  placeholder="Posts" autofocus="true" [autoGrow]="true"
-        value="">
+        <ion-textarea  #search (ionChange)="modelChangeFn($event)"  placeholder="Posts" autofocus="false" [autoGrow]="true"
+        value="" minlength="1" maxlength="344">
       </ion-textarea>
 
         <!-- <nc-input
@@ -50,22 +51,34 @@
       <div class="title">
    <nc-text size="h4" color="c-scale-12" weight="bold" font="primary">Lista de Posts</nc-text>
       </div>
-      <nc-text *ngFor="let task of this.tasksService.notesTask.tasks" size="h6" color="c-scale-12" weight="500" font="primary">{{task.note}}</nc-text>
-    </div>
-  </div>
-  </div>
-  <div class="body-container">
-    <div class="footer">
-      <div class="button-footer" (click)="save()">
-        <nc-text
-          size="h7"
-          hoverColor="c-scale-1"
-          color="c-scale-1"
-          weight="500"
-          font="primary"
-          >Criar</nc-text
-        >
+      <nc-text id="edit-post-text" *ngFor="let task of this.tasksService.notesTask.tasks" size="h6" color="c-scale-12" weight="500" font="primary">{{task.note}}</nc-text>
+      <div class="body-container">
+        <div class="footer">
+          <div class="button-footer" (click)="save(tasksService.selectedTask)">
+            <nc-text
+              size="h7"
+              hoverColor="c-scale-1"
+              color="c-scale-1"
+              weight="500"
+              font="primary"
+              >Criar</nc-text
+            >
+          </div>
+          <div *ngIf="tasksService.turnMessageCreate"  class="msgWarning">
+            <nc-text
+              size="h7"
+              color="error"
+              weight="bolder"
+              font="primary"
+              hoverColor="c-scale-1"
+              >A tarefa já se encontra finalizada
+            </nc-text>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  </div>
+
 </div>
+</ion-content>
