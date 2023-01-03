@@ -47,6 +47,7 @@ export class PostNotesPage implements OnInit {
     this.tasksService.putNotes();
     this.tasksService.postNotes.detail.value = ""
     console.log('PODE SER ')
+    this.router.navigate(['/details-client'])
   }
   }
 

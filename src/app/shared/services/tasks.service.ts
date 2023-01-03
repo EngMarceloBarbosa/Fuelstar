@@ -135,6 +135,9 @@ export class TasksService {
   turnMessageCreateEdit = false;
   msgWarningExecuted = false;
   turnAllSpots = false;
+  loginValues: any;
+  listDateTest: any[] = [];
+  listDateTest1: any[];
   // turnCreatePost = false;
   // turnEditPost= false;
   //   newClientForm: FormGroup =  new FormGroup({

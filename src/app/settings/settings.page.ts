@@ -69,6 +69,7 @@ export class SettingsPage implements OnInit {
   exitApp(){
     this.tasksService.loginUser.username =""
     this.tasksService.loginUser.password =""
+    this.tasksService.loginValues.reset();
     this.router.navigate(['/']);
 
     console.log(this.tasksService.loginUser.password, 'PASSWORD')

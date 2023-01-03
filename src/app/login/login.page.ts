@@ -78,6 +78,9 @@ export class LoginPage implements OnInit {
         ]]
     });
 
+
+    this.tasksService.loginValues = this.form
+
   }
 
 
@@ -177,7 +180,7 @@ export class LoginPage implements OnInit {
           this.alertService.open(temp);
           setTimeout(() => {
             // this.loading = 'SingIn';
-            this.form.reset();
+            // this.form.reset();
           });
         } else {
           console.log(error, 'ERRO')

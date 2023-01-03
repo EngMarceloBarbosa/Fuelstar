@@ -13,7 +13,6 @@ import { TasksService } from '../shared/services/tasks.service';
 
 
 
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -87,6 +86,197 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
   }
+
+  handleRefresh(event) {
+    setTimeout(async () => {
+      console.log(this.tasksService.time)
+    console.log(this.tasksService.totalTime)
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+
+
+    // this.tasksService.handleBackButton();
+
+    console.log(this.positionSlide)
+
+
+
+    console.log(this.tasksService.toDo)
+    await this.contactsTaskService.getEntities().then(res => {
+      console.log(res)
+      this.tasksService.listClients = res;
+    })
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients
+
+
+    await this.contactsTaskService.getEntitiesClients().then(res => {
+      console.log(res)
+      this.tasksService.listClients1 = res;
+      console.log(this.tasksService.listClients1)
+    })
+    this.tasksService.allDocumentsFilter = this.tasksService.listClients
+
+
+
+
+
+
+
+
+
+    // await this.taskApiService.getTasks().then(res => {
+    //   console.log(res)
+    //   this.tasksService.listTasks = res;
+    //   console.log(this.tasksService.visiteToDo)
+
+    //   this.tasksService.countVisits  = this.tasksService.visiteToDo.length
+    //   console.log(this.tasksService.countVisits)
+    //   this.tasksService.countsToDo =  this.tasksService.listTasks.length-this.tasksService.countVisits
+    // })
+
+
+    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+      this.tasksService.listTasks1 = res;
+      // this.tasksService.visiteToDo = this.tasksService.listTasks1
+      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
+      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(      this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
+      // console.log(this.tasksService.countVisits)
+      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
+
+
+    })
+    // LISTA PARA BUSCAR OS DE ESTADO EM EXECUÇÃO
+
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      this.tasksService.listTasks2 = res;
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdSuspend().then(res => {
+      this.tasksService.listTasksSuspended = res;
+      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdCancelled().then(res => {
+      this.tasksService.listTasksCancelled = res;
+      console.log(this.tasksService.listTasksCancelled, 'Tarefas canceladas')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdFinalized().then(res => {
+      this.tasksService.listTasksFinalized = res;
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    })
+
+
+
+    await this.taskApiService.getTypesStateTask().then(res => {
+      console.log(res)
+      this.tasksService.typesState = res;
+      // console.log(      this.tasksService.listTasks1)
+      // console.log(  this.tasksService.typesState[].initialStatusId, 'tyPESTATE')
+      //       this.tasksService.visiteToDo = this.tasksService.listTasks1.filter(res => res.currentStatus)
+      //       console.log(this.tasksService.visiteToDo, '1')
+      //       this.tasksService.visiteToDo = this.tasksService.visiteToDo.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(  this.tasksService.visiteToDo , '2')
+      // this.tasksService.typesState  =  this.tasksService.listTasks1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // this.tasksService.typesState = res;
+      // console.log(this.tasksService.typesState, 'Atribuido, typestate')
+
+
+
+
+      // console.log(this.tasksService.listTasksById)
+      // this.tasksService.typesState = this.tasksService.listTasksById.currentStatus.filter(res => res.id = "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      console.log(this.tasksService.typesState)
+      console.log(this.tasksService.typesState, 'Tipos de estado')
+    })
+
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+    console.log(this.tasksService.visiteToDo, 'lista final')
+
+
+    console.log(this.tasksService.visiteToDo)
+    console.log(this.tasksService.listTasks1)
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+    console.log(this.tasksService.visiteToDo, 'pq0')
+
+    // this.tasksService.test = this.tasksService.visiteToDo.map((res) => res.currentStatus)
+    // console.log(this.tasksService.test)
+    // this.tasksService.test = this.tasksService.test.map((res) => {
+    //   console.log(res.id)
+    //   if (res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af") {
+
+    //     // document.documentElement.style.setProperty('.light-bar', 'red')
+
+    //     // console.log('entrou')
+    //     // this.tasksService.turnColor = true;
+    //   }
+
+    //   if (res.id == "23d91faf-d13d-42b0-902b-2de5d49a31ee") {
+    //     // document.getElementById("myH2").style.color = "##6495ED"
+    //     // this.tasksService.turnColor = false;
+    //   }
+    // })
+
+
+    // console.log(this.tasksService.turnColor, 'atribudo')
+    // console.log(this.tasksService.turnColorOrange, 'execução ')
+
+    this.randomNumber(1, 1000);
+    this.virtualScroller();
+    this.virtualScroller1();
+    this.registration();
+
+
+    if (this.tasksService.listTasksFinalized.length === 0) {
+      this.tasksService.turnMsgAlertTask1 = true;
+      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
+    } else {
+      this.tasksService.turnMsgAlertTask1 = false;
+    }
+
+    if (this.tasksService.visiteToDo.length === 0) {
+      this.tasksService.turnMsgAlertTask = true;
+      this.tasksService.msgAlertTasks = "Não existe Tarefas"
+    } else {
+      this.tasksService.turnMsgAlertTask = false;
+    }
+
+
+
+
+
+    console.log(this.tasksService.countVisits, 'visitas feitas')
+    console.log(this.tasksService.countsToDo, 'visitas por fazer ')
+
+    console.log(this.tasksService.visiteToDo, 'pq')
+    console.log(this.tasksService.visiteEfected)
+
+
+
+      event.target.complete();
+    }, 2000);
+  };
 
 
   ngAfterContentChecked(): void {
