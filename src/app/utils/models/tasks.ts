@@ -8,6 +8,10 @@ export interface Tasks {
   entity: Entity;
   item: Items;
   currentStatus:CurrentStatus[];
+  estimatedEndDate: string;
+  estimatedStartDate : string;
+
+
 
 
 

@@ -56,7 +56,8 @@ ion-content {
 .box-task1 {
   display: flex;
   width: 100%;
-  height: tbu(px(120));
+  margin-bottom: 20px;
+  // height: tbu(px(120));
 }
 
 .left-icon {
@@ -421,7 +422,7 @@ nc-input {
   width: 96%;
   justify-content: space-between;
   margin-top: -5px;
-  counter-increment: css-counter 1;
+  // counter-increment: css-counter 1;
   // white-space: nowrap;
   // overflow: hidden;
   // text-overflow: ellipsis;
@@ -432,20 +433,20 @@ nc-input {
   display: flex;
   align-items: center;
   font-weight: bold;
-  content: counter(css-counter);
+  // content: counter(css-counter);
 }
 
 #text-note {
   display: list-item;
-  margin-top: 5px;
+  margin-top: 8px;
   margin-bottom: 6px;
   // text-decoration: underline;
-  width: 77%;
+  width: 81%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
-  margin-left: -20px
+  margin-left: tbu(px(-1))
 }
 
 #text-note:hover {
@@ -464,6 +465,11 @@ nc-input {
   width: 11%;
   margin-top: 5px;
   margin-bottom: 6px;
+
+  align-items: center;
+  display: flex;
+  justify-content: end;
+
 }
 
 .warning-documents {

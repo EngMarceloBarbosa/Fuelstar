@@ -29,7 +29,7 @@ export class TasksService {
   listTasks: Tasks[];
   listTasks1: Tasks[];
   listTasks2: Tasks[];
-  listTasksFinalized: Tasks[] = [];
+  listTasksFinalized: Instance[] = [];
   listTasksSuspended: Tasks[];
   listTasksCancelled: Tasks[];
   listTasksItemId:any;
@@ -78,6 +78,7 @@ export class TasksService {
   selectedList:any[]=[1];
   today:any
   time: any;
+  timeNew:any;
   validatorNIF:boolean = false;
   controlStep:boolean = false;
   controlStep1:boolean = false;
@@ -123,6 +124,7 @@ export class TasksService {
   typesStateIntance:TypesState;
   turnColor = false;
   turnButton = false;
+  turnButtonExecuted = false;
   finalized = false;
   selectedTask: any = [];
   loginUser: any = "" ;
@@ -136,8 +138,11 @@ export class TasksService {
   msgWarningExecuted = false;
   turnAllSpots = false;
   loginValues: any;
-  listDateTest: any[] = [];
+  listDateTest: any[];
   listDateTest1: any[];
+  valueDate:any;
+  updateTask : any = [];
+  turnButtonResume =  false;
   // turnCreatePost = false;
   // turnEditPost= false;
   //   newClientForm: FormGroup =  new FormGroup({
@@ -197,6 +202,7 @@ timeHours(){
    this.today = new Date();
    this.time = new Date();
    this.totalTime = new Date();
+   this.timeNew = new Date();
   var dd = String(this.today.getDate()).padStart(2, '0');
   var yyyy = this.today.getFullYear();
   var hours = String(this.time.getHours()).padStart(2, '0')
@@ -208,11 +214,13 @@ timeHours(){
   console.log(hours, 'horas')
 
   this.today = dd + '/' + monthNames[this.today.getMonth()] + '/' + yyyy;
-  this.time = hours + '-' + minutes + '-' + seconds
+  this.time = hours + '-' + minutes + '-' + seconds;
+  this.timeNew = yyyy  + '-' + month  + '-' + dd
 
    this.totalTime = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + '.'+ ms +'Z'
   console.log(this.today)
   console.log(this.time)
+  console.log(this.timeNew)
 }
 
 
@@ -359,6 +367,8 @@ putTaskCancelled(){
 
 console.log(this.selectedTask.id)
 
+
+
     const taskMain = {
       note: this.notes.detail.value,
       instanceId: this.selectedTask.id,
@@ -380,6 +390,7 @@ console.log(this.selectedTask.id)
     )
 
     console.log(this.notes);
+
 
     await this.contactApiService.getNotesInstance(this.selectedTask).then((res) =>
     // console.log(res)
@@ -530,6 +541,8 @@ this.validatorNIF = true;
         return 'orange';
       case '28b097a1-2834-4c9f-b1c6-6b2f316401af':
         return '#00FFEF';
+      case '00bba7ce-f90b-4ebb-9478-777376f78e93':
+        return 'red';
     }
   }
 

@@ -29,7 +29,7 @@
               >
             </div>
             <div class="localization-task">
-              <nc-text size="h8" color="c-scale-1" weight="500" font="primary"
+              <nc-text size="h8" color="c-scale-6" weight="500" font="primary"
                 >{{clientDetails.description}}</nc-text
               >
             </div>
@@ -195,7 +195,7 @@
                     weight="500"
                     font="primary"
 
-                  >{{'-  '+ task.note}}</span
+                  >{{task.note}}</span
                   >
 
                   <div class="arrow-info2"   (click)="editPost(task)" >
@@ -533,11 +533,28 @@
         </div>
       </div>
     </div>
-    <div class="buttons-inicial"  *ngIf="!tasksService.turnButton" >
-      <div class="button-inicial" (click)="executed(clientDetails)">
+    <div class="buttons" *ngIf="tasksService.turnButtonResume">
+      <div class="button-options" (click)="resume(clientDetails)">
+        <!-- <div class="icon-option">
+          <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+            >icon_plus</nc-icon
+          >
+        </div> -->
+        <div class="text-option" >
+          <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
+            Retomar
+          </nc-text>
+        </div>
+      </div>
+      <div class="button-done" (click)="finalized()">
+        <div class="icon-option">
+          <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+            >icon_check</nc-icon
+          >
+        </div>
         <div class="text-option">
           <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
-           INICIAR
+            Finalizar
           </nc-text>
         </div>
       </div>
@@ -549,9 +566,20 @@
         weight="bolder"
         font="primary"
         hoverColor="c-scale-1"
-        >Finalize a outra Tarefa Primeiro
+        >Retome a Tarefa Primeiro para Finalizar
       </nc-text>
     </div>
+    <div class="buttons-inicial"  *ngIf="tasksService.turnButtonExecuted" >
+      <div class="button-inicial" (click)="executed(clientDetails)">
+        <div class="text-option">
+          <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
+           INICIAR
+          </nc-text>
+        </div>
+      </div>
+    </div>
+
+
   </div>
   <nc-action-sheet #action3  [typeASheet]="1" [showFooter]="false">
     <div class="action-sheet-body">
@@ -742,7 +770,7 @@
 
     <div class="input-search">
       <div class="search-client">
-        <ion-textarea #search (ionChange)="modelChangeFn ($event)"  placeholder="Notas" autofocus="false" [autoGrow]="true" minlength="1" maxlength="344"
+        <ion-textarea #search (ionChange)="modelChangeFn($event)"           (keydown.enter)="send($event)"  placeholder="Notas" autofocus="false" [autoGrow]="true" minlength="1" maxlength="344"
         value="{{ this.tasksService.selectedPost.note}}"  >
       </ion-textarea>
 

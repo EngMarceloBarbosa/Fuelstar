@@ -35,6 +35,8 @@ export class PostNotesPage implements OnInit {
 
   }
 
+
+
   save(task){
 
     console.log(task)
@@ -50,5 +52,13 @@ export class PostNotesPage implements OnInit {
     this.router.navigate(['/details-client'])
   }
   }
+
+  send($event: KeyboardEvent){
+    console.log($event)
+    if ($event.key === 'Enter') {
+      this.save(this.tasksService.selectedTask)
+    }
+  }
+
 
 }

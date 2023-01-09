@@ -10,6 +10,7 @@ export const environment = {
   // api: 'http://192.168.56.1:9601,',
   // api: 'http://192.168.1.6:9601',
   // api:'http://172.18.192.1:9601',
+  // api: 'http://stgapi.fuelstarplus.com',
   api: 'http://api.fuelstarplus.com',
   token: ''
 };

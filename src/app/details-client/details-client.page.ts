@@ -65,6 +65,9 @@ export class DetailsClientPage implements OnInit {
 
    await this.contactsTaskService.getContactById(this.clientDetails.entity.id).then(res => {
       console.log('resultado', res)
+      if(res.length == 0){
+        return;
+      }else {
       this.tasksService.listContacts = res;
       console.log(this.tasksService.listContacts[0].id)
       this.tasksService.idContact = this.tasksService.listContacts[0].id
@@ -72,6 +75,7 @@ export class DetailsClientPage implements OnInit {
       this.tasksService.idEntityId = this.tasksService.listContacts[0].entity.id
 
       console.log(this.tasksService.idContact)
+      }
     })
 
     await this.contactsTaskService.getEntityHeader(this.clientDetails.entity.id).then(res => {
@@ -114,7 +118,7 @@ export class DetailsClientPage implements OnInit {
 
 
     console.log(this.tasksService.notesTask.tasks?.[0]?.note)
-
+console.log(this.tasksService.selectedTask, 'TASK SELECIONADA')
     console.log(this.tasksService.notesTask, 'NOTAS DOS POSTS')
     console.log(this.tasksService.notesTask.id)
     // console.log(this.notesTask.tasks[0].note)
@@ -157,6 +161,7 @@ export class DetailsClientPage implements OnInit {
     this.router.navigate(["tabs/tab1"]);
     this.tasksService.notes = "";
     this.tasksService.msgWarningExecuted  = false;
+
   }
 
   cancelTask() {
@@ -204,14 +209,18 @@ export class DetailsClientPage implements OnInit {
     this.tasksService.countsToDo = this.tasksService.visiteToDo.length
 
     await this.taskApiService.getTasksItemIdExecuted().then(res => {
-      this.tasksService.listTasks2 = res;
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
+      // this.tasksService.listTasks2 = res;
       console.log(this.tasksService.listTasks2, 'Tarefas em execução')
 
 
     })
 
     await this.taskApiService.getTasksItemIdAtribuited().then(res => {
-      this.tasksService.listTasks1 = res;
+      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
+      // this.tasksService.listTasks1 = res;
       // this.tasksService.visiteToDo = this.tasksService.listTasks1
       // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
       // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
@@ -224,7 +233,17 @@ export class DetailsClientPage implements OnInit {
 
     })
 
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+    await this.taskApiService.getTasksItemIdSuspend().then(res => {
+
+      // this.tasksService.listTasksSuspended = res;
+      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
+
+      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+    })
+
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2 ,  this.tasksService.listTasksSuspended)
     console.log(this.tasksService.visiteToDo, 'lista final')
 
 
@@ -449,15 +468,30 @@ export class DetailsClientPage implements OnInit {
     await this.taskApiService.getTypesStateTask();
 
 
+    await this.taskApiService.getTasksItemIdSuspend().then(res => {
+
+      // this.tasksService.listTasksSuspended = res;
+      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
+
+      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+    })
+
+
     await this.taskApiService.getTasksItemIdExecuted().then(res => {
-      this.tasksService.listTasks2 = res;
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
+      // this.tasksService.listTasks2 = res;
       console.log(this.tasksService.listTasks2, 'Tarefas em execução')
 
 
     })
 
     await this.taskApiService.getTasksItemIdAtribuited().then(res => {
-      this.tasksService.listTasks1 = res;
+      // this.tasksService.listTasks1 = res;
+      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
       // this.tasksService.visiteToDo = this.tasksService.listTasks1
       // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
       // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
@@ -469,8 +503,19 @@ export class DetailsClientPage implements OnInit {
 
 
     })
+    await this.taskApiService.getTasksItemIdSuspend().then(res => {
 
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+      // this.tasksService.listTasksSuspended = res;
+      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
+
+      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+    })
+
+
+
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2,  this.tasksService.listTasksSuspended)
     console.log(this.tasksService.visiteToDo, 'lista final')
 
 
@@ -483,7 +528,7 @@ export class DetailsClientPage implements OnInit {
     this.tasksService.countsToDo = this.tasksService.visiteToDo.length
     console.log(this.tasksService.visiteToDo, 'pq0')
     this.tasksService.getColor(this.tasksService.selectedTask.id);
-
+    this.tasksService.msgWarningExecuted = false;
     this.router.navigate(["/tabs/tab1"]);
 
 
@@ -518,24 +563,19 @@ export class DetailsClientPage implements OnInit {
 
   async buttonExecuted(){
 
-    if(this.tasksService.listTasks2.length === 0 ) {
+    // if(this.tasksService.listTasks2.length === 0 ) {
 
-    this.tasksService.turnButton = true;
+    // this.tasksService.turnButton = true;
     console.log(this.tasksService.turnButton)
     await this.tasksService.putTaskExecuted();
     await this.taskApiService.getTypesStateTask();
     console.log(this.tasksService.selectedTask.id)
 
 
-    await this.taskApiService.getTasksItemIdExecuted().then(res => {
-      this.tasksService.listTasks2 = res;
-      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
-
-
-    })
-
     await this.taskApiService.getTasksItemIdAtribuited().then(res => {
-      this.tasksService.listTasks1 = res;
+      // this.tasksService.listTasks1 = res;
+      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
       // this.tasksService.visiteToDo = this.tasksService.listTasks1
       // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
       // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
@@ -548,7 +588,28 @@ export class DetailsClientPage implements OnInit {
 
     })
 
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
+      // this.tasksService.listTasks2 = res;
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+    })
+
+
+    await this.taskApiService.getTasksItemIdSuspend().then(res => {
+
+      // this.tasksService.listTasksSuspended = res;
+      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
+
+      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+    })
+
+     this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2,  this.tasksService.listTasksSuspended)
     console.log(this.tasksService.visiteToDo, 'lista final')
 
 
@@ -563,9 +624,116 @@ export class DetailsClientPage implements OnInit {
     this.tasksService.getColor(this.tasksService.selectedTask.id);
 
     this.router.navigate(["/tabs/tab1"]);
-  }else {
-  return this.tasksService.msgWarningExecuted = true;
-  }
+  // }
+  // else {
+  // return this.tasksService.msgWarningExecuted = true;
+  // }
+}
+
+
+async resume() {
+
+  const temp: ModalMessageModel = {
+    showTip: false,
+    title: "Quer retomar ?",
+    description: "Ao continuar vai retomar a tarefa",
+    state: "warning",
+    leftButtonSize: "small",
+    leftButtonType: "text",
+    leftButtonText: "Voltar",
+    showMiddleButton: false,
+    rightButtonSize: "small",
+    rightButtonType: "text",
+    rightButtonText: "Retomar",
+    rightButtonTesterProperty: "clickLeaveApp",
+    rightButtonColor: "c-scale-12",
+    rightButtonCallback: () => {
+      this.buttonResume();
+    },
+  };
+  this.alertService.open(temp);
+
+
+  this.tasksService.notes = "";
+
+}
+
+async buttonResume(){
+  // if(this.tasksService.listTasks2.length === 0 ) {
+
+    // this.tasksService.turnButtonResume = true;
+    console.log(this.tasksService.turnButton)
+    await this.tasksService.putTaskExecuted();
+    await this.taskApiService.getTypesStateTask();
+    console.log(this.tasksService.selectedTask.id)
+
+
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
+      // this.tasksService.listTasks2 = res;
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+      // this.tasksService.listTasks1 = res;
+      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
+      // this.tasksService.visiteToDo = this.tasksService.listTasks1
+      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
+      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(      this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
+      // console.log(this.tasksService.countVisits)
+      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
+
+
+    })
+
+
+    await this.taskApiService.getTasksItemIdSuspend().then(res => {
+
+      // this.tasksService.listTasksSuspended = res;
+      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
+
+      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+    })
+
+
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
+      // this.tasksService.listTasks2 = res;
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+    })
+
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended)
+    console.log(this.tasksService.visiteToDo, 'lista final')
+
+
+    console.log(this.tasksService.visiteToDo)
+    console.log(this.tasksService.listTasks1)
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+    console.log(this.tasksService.visiteToDo, 'pq0')
+    this.tasksService.getColor(this.tasksService.selectedTask.id);
+    this.tasksService.msgWarningExecuted = false;
+
+    this.router.navigate(["/tabs/tab1"]);
+  // }
+  // else {
+  // return this.tasksService.msgWarningExecuted = true;
+  // }
 }
 
   async finalized() {
@@ -599,15 +767,54 @@ export class DetailsClientPage implements OnInit {
 
   async buttonFinalized() {
 
+    if(this.tasksService.selectedTask.currentStatus.id == "00bba7ce-f90b-4ebb-9478-777376f78e93"){
+      this.tasksService.msgWarningExecuted = true;
+    }else {
+
     await this.tasksService.putTaskFinalize();
+
+
+
+
+//     const updateTask = {
+
+//       ...this.tasksService.notesTask,
+//       estimatedEndDate: this.tasksService.totalTime
+//     }
+// console.log(this.tasksService.notesTask, 'COPIA DA LISTA')
+//     console.log(updateTask, 'LISTA MANDADA ')
+//     console.log(this.tasksService.notesTask.id, 'ID DA LISTA ')
+
+//     await this.taskApiService.updateTasksItemIdFinalized(this.tasksService.notesTask.id, updateTask ).then(res => {
+//       this.tasksService.updateTask = res;
+//     console.log( this.tasksService.updateTask, 'UPDATE TASK SELECIONADA')
+//     } )
+
+//     await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then(res => {
+//       this.tasksService.notesTask = res;
+//       console.log( this.tasksService.notesTask, 'versão atualizada')
+//     })
+//     await this.taskApiService.getTasksItemIdFinalized().then(res => {
+//       // this.tasksService.listTasksFinalized = res;
+//       this.tasksService.listTasksFinalized = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew )
+
+
+//       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+//       this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+//       this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+//       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+//     })
+
+
+
+
+
+
+
+
     await this.taskApiService.getTypesStateTask();
 
-    if (this.tasksService.listTasksFinalized.length === 0) {
-      this.tasksService.turnMsgAlertTask1 = true;
-      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
-    } else {
-      this.tasksService.turnMsgAlertTask1 = false;
-    }
 
     this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
@@ -616,15 +823,22 @@ export class DetailsClientPage implements OnInit {
     this.tasksService.countsToDo = this.tasksService.visiteToDo.length
 
 
+
+
+
     await this.taskApiService.getTasksItemIdExecuted().then(res => {
-      this.tasksService.listTasks2 = res;
+      // this.tasksService.listTasks2 = res;
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
       console.log(this.tasksService.listTasks2, 'Tarefas em execução')
 
 
     })
 
     await this.taskApiService.getTasksItemIdAtribuited().then(res => {
-      this.tasksService.listTasks1 = res;
+      // this.tasksService.listTasks1 = res;
+      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
       // this.tasksService.visiteToDo = this.tasksService.listTasks1
       // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
       // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
@@ -636,9 +850,21 @@ export class DetailsClientPage implements OnInit {
 
 
     })
+    await this.taskApiService.getTasksItemIdSuspend().then(res => {
+
+      // this.tasksService.listTasksSuspended = res;
+      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
+
+      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+    })
 
     await this.taskApiService.getTasksItemIdFinalized().then(res => {
       this.tasksService.listTasksFinalized = res;
+      console.log(this.tasksService.listTasksFinalized)
+      this.tasksService.listTasksFinalized = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew )
+
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
       this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
       this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
@@ -647,7 +873,8 @@ export class DetailsClientPage implements OnInit {
     })
 
 
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2)
+
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2,  this.tasksService.listTasksSuspended)
     console.log(this.tasksService.visiteToDo, 'lista final')
 
 
@@ -661,13 +888,25 @@ export class DetailsClientPage implements OnInit {
     console.log(this.tasksService.visiteToDo, 'pq0')
     this.tasksService.getColor(this.tasksService.selectedTask.id);
 
+        if (this.tasksService.listTasksFinalized.length === 0) {
+      this.tasksService.turnMsgAlertTask1 = true;
+      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
+    } else {
+      this.tasksService.turnMsgAlertTask1 = false;
+    }
+    this.tasksService.msgWarningExecuted = false;
+
     this.router.navigate(["/tabs/tab1"]);
 
-
-
-    this.router.navigate(['/tabs/tab1']);
-
   }
+}
+
+send($event: KeyboardEvent){
+  console.log($event)
+  if ($event.key === 'Enter') {
+    this.save(this.tasksService.selectedTask)
+  }
+}
 
 
 

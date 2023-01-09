@@ -52,7 +52,7 @@ export class GoogleMapsPage implements OnInit {
 
   async createMap() {
     console.log(this.tasksService.selectedTask?.address.addressLine1);
-    await this.nativeGeocoder.forwardGeocode(this.tasksService.selectedTask?.address.postalCode, this.options)
+    await this.nativeGeocoder.forwardGeocode(this.tasksService.selectedTask?.address.addressLine1 + this.tasksService.selectedTask?.address.addressLine2 + this.tasksService.selectedTask?.address.cityName, this.options)
       .then(async (result: NativeGeocoderResult[]) => {
         console.log('The coordinates are latitude=' + result[0].latitude + ' and longitude=' + result[0].longitude)
         console.log(result[0])
@@ -100,15 +100,15 @@ export class GoogleMapsPage implements OnInit {
 
   async addMarkers() {
     const markers: Marker[] = [
-      {
+      // {
 
-        coordinate: {
-          lat: 41.44310359430382,
-          lng: -8.294370288568537
-        },
-        title: 'destino',
-        snippet: 'melhor local'
-      },
+      //   coordinate: {
+      //     lat: 41.44310359430382,
+      //     lng: -8.294370288568537
+      //   },
+      //   title: 'destino',
+      //   snippet: 'melhor local'
+      // },
       {
 
         coordinate: {
