@@ -4,7 +4,7 @@ import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel }
 import { TranslateService } from '@ngx-translate/core';
 import { TasksService } from '../shared/services/tasks.service';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
-import { Contacts, Entity, Tasks } from '../utils/models/tasks';
+import { Contacts, Entity, InstancePatch, Tasks } from '../utils/models/tasks';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { CallNumber } from 'capacitor-call-number';
 
@@ -128,6 +128,8 @@ console.log(this.tasksService.selectedTask, 'TASK SELECIONADA')
 
 
 
+// this.tasksService.notesTasks1 =  this.tasksService.notesTask;
+console.log(this.tasksService.notesTasks , 'NOTAS TASK 1')
 
 
 
@@ -158,10 +160,15 @@ console.log(this.tasksService.selectedTask, 'TASK SELECIONADA')
   }
 
   cancel() {
+
+    console.log(this.tasksService.turnTab3, 'estado do turnTab3')
+    if(this.tasksService.turnTab3 == true){
+      this.router.navigate(["tabs/tab3"]);
+    }else{
     this.router.navigate(["tabs/tab1"]);
     this.tasksService.notes = "";
     this.tasksService.msgWarningExecuted  = false;
-
+    }
   }
 
   cancelTask() {
@@ -572,6 +579,8 @@ console.log(this.tasksService.selectedTask, 'TASK SELECIONADA')
     console.log(this.tasksService.selectedTask.id)
 
 
+
+
     await this.taskApiService.getTasksItemIdAtribuited().then(res => {
       // this.tasksService.listTasks1 = res;
       this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
@@ -605,6 +614,22 @@ console.log(this.tasksService.selectedTask, 'TASK SELECIONADA')
       this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
 
       console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+      // this.tasksService.listTasks1 = res;
+      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
+      // this.tasksService.visiteToDo = this.tasksService.listTasks1
+      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
+      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(      this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
+      // console.log(this.tasksService.countVisits)
+      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
 
 
     })
@@ -766,45 +791,87 @@ async buttonResume(){
 
 
   async buttonFinalized() {
+    console.log(JSON.parse(JSON.stringify(this.tasksService.notesTask)));
+    let data: InstancePatch = new InstancePatch(this.tasksService.notesTask);
+    console.log(data, 'lista data')
 
     if(this.tasksService.selectedTask.currentStatus.id == "00bba7ce-f90b-4ebb-9478-777376f78e93"){
       this.tasksService.msgWarningExecuted = true;
     }else {
+      console.log(data, 'lista data')
 
     await this.tasksService.putTaskFinalize();
 
+    // const updateTask2 = [{
+
+    //  entityRoleId: this.tasksService.notesTask.entityRoles[1].entityRoleId,
+    //   isParticipant: this.tasksService.notesTask.entityRoles[1].isParticipant,
+    //   isMain: this.tasksService.notesTask.entityRoles[1].isMain,
+    //   entityRoleName: this.tasksService.notesTask.entityRoles[1].entity.id,
+    // }]
+    // const updateTask3 = {
+    //   documentInstances1: this.tasksService.selectedTask.id,
+    //   documentType: '0'
+    // }
+
+    // const updateTask1 = {
+
+    //   name: this.tasksService.selectedTask.name,
+    //   description: this.tasksService.selectedTask.description,
+    //   note:this.tasksService.selectedTask.note,
+    //   isImportant: this.tasksService.selectedTask.isImportant,
+    //   projectId:this.tasksService.selectedTask.projectId,
+    //   itemId: this.tasksService.selectedTask.item,
+    //   address: this.tasksService.selectedTask.address,
+    //   documentInstances1: updateTask3,
+    //   entities: updateTask2,
+    //   tags:null,
+    //   estimatedStartDate: this.tasksService.selectedTask.estimatedStartDate,
+    //   startDate: this.tasksService.selectedTask.startDate,
+    //   estimatedEndDate: this.tasksService.totalTime,
+    //   endDate : this.tasksService.selectedTask.endDate,
+    //   formInstances: null
+    // }
+
+// console.log(updateTask1)
+
+const updateTaskPatch = {
+...data,
+endDate: this.tasksService.totalTime
+}
 
 
+    // const updateTask = {
 
-//     const updateTask = {
+    //   estimatedStartDate:this.tasksService.notesTask.estimatedStartDate,
+    //   startDate:this.tasksService.notesTask.estimatedStartDate,
+    //   endDate:this.tasksService.totalTime,
+    //   estimatedEndDate: this.tasksService.notesTask.estimatedEndDate
+    // }
+console.log(this.tasksService.notesTask, 'COPIA DA LISTA')
+    console.log(updateTaskPatch, 'LISTA MANDADA ')
+    console.log(this.tasksService.notesTask.id, 'ID DA LISTA ')
 
-//       ...this.tasksService.notesTask,
-//       estimatedEndDate: this.tasksService.totalTime
-//     }
-// console.log(this.tasksService.notesTask, 'COPIA DA LISTA')
-//     console.log(updateTask, 'LISTA MANDADA ')
-//     console.log(this.tasksService.notesTask.id, 'ID DA LISTA ')
+    await this.taskApiService.updateTasksItemIdFinalized(this.tasksService.notesTask.id, updateTaskPatch ).then(res => {
+      this.tasksService.updateTask = res;
+    console.log( this.tasksService.updateTask, 'UPDATE TASK SELECIONADA')
+    } )
 
-//     await this.taskApiService.updateTasksItemIdFinalized(this.tasksService.notesTask.id, updateTask ).then(res => {
-//       this.tasksService.updateTask = res;
-//     console.log( this.tasksService.updateTask, 'UPDATE TASK SELECIONADA')
-//     } )
-
-//     await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then(res => {
-//       this.tasksService.notesTask = res;
-//       console.log( this.tasksService.notesTask, 'versão atualizada')
-//     })
-//     await this.taskApiService.getTasksItemIdFinalized().then(res => {
-//       // this.tasksService.listTasksFinalized = res;
-//       this.tasksService.listTasksFinalized = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew )
+    await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then(res => {
+      this.tasksService.notesTask = res;
+      console.log( this.tasksService.notesTask, 'versão atualizada')
+    })
+    await this.taskApiService.getTasksItemIdFinalized().then(res => {
+      this.tasksService.listTasksFinalized = res;
+      this.tasksService.listTasksFinalized = res.filter(res => res.endDate ?? null == this.tasksService.timeNew  )
 
 
-//       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-//       this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
-//       this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
-//       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-//     })
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    })
 
 
 
@@ -863,13 +930,22 @@ async buttonResume(){
     await this.taskApiService.getTasksItemIdFinalized().then(res => {
       this.tasksService.listTasksFinalized = res;
       console.log(this.tasksService.listTasksFinalized)
-      this.tasksService.listTasksFinalized = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew )
+      this.tasksService.listTasksFinalized = res.filter( res => res.endDate ?? null == this.tasksService.timeNew )
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
       this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
       this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    })
+
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      // this.tasksService.listTasks2 = res;
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew  )
+
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
     })
 
 
@@ -887,6 +963,15 @@ async buttonResume(){
     this.tasksService.countsToDo = this.tasksService.visiteToDo.length
     console.log(this.tasksService.visiteToDo, 'pq0')
     this.tasksService.getColor(this.tasksService.selectedTask.id);
+
+
+    if (this.tasksService.visiteToDo.length === 0) {
+      this.tasksService.turnMsgAlertTask = true;
+      this.tasksService.msgAlertTasks = "Não existe Tarefas"
+    } else {
+      this.tasksService.turnMsgAlertTask = false;
+    }
+
 
         if (this.tasksService.listTasksFinalized.length === 0) {
       this.tasksService.turnMsgAlertTask1 = true;

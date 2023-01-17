@@ -70,6 +70,22 @@ export class TaskApiService {
 
   }
 
+  updateTasksItemIdFinalizedDates(instanceId, updateTask) {
+
+    // this.loadingService.loader();
+    return this.http
+      .patch<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${instanceId}/Dates`,  JSON.stringify(updateTask),  {
+        headers: new HttpHeaders({
+          "content-type": "application/json",
+          Authorization: "Bearer " + environment.token,
+        })
+      })
+      .pipe()
+      .toPromise();
+
+  }
+
+
   updateTasksItemIdFinalized(instanceId, updateTask) {
 
     // this.loadingService.loader();
@@ -84,6 +100,8 @@ export class TaskApiService {
       .toPromise();
 
   }
+
+
 
 
   getTasksItemIdSuspend() {

@@ -79,9 +79,13 @@ const routes: Routes = [
   // INICIALIZING APP
 
 
+
   {
 
     path: '',
+
+    // redirectTo: localStorage.getItem('data') > localStorage.getItem('dataToday')
+    // ? 'tabs/tab1' : 'login',
 
     redirectTo: 'login',
 

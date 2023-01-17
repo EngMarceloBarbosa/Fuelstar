@@ -186,7 +186,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
     await this.taskApiService.getTasksItemIdFinalized().then(res => {
       // this.tasksService.listTasksFinalized = res;
-      this.tasksService.listTasksFinalized = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew )
+      this.tasksService.listTasksFinalized = res.filter(res => res.endDate ?? null == this.tasksService.timeNew  )
 
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
@@ -304,6 +304,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
 
+
     console.log(this.tasksService.time)
     console.log(this.tasksService.totalTime)
     this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
@@ -401,7 +402,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     await this.taskApiService.getTasksItemIdFinalized().then(res => {
       this.tasksService.listTasksFinalized = res;
       console.log(this.tasksService.listTasksFinalized)
-      this.tasksService.listTasksFinalized = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew )
+      this.tasksService.listTasksFinalized = res.filter(res => res.endDate ?? null == this.tasksService.timeNew )
 
       // this.tasksService.listTasksFinalized = res.filter(res => res.estimatedEndDate.substring(0,10) == this.tasksService.timeNew || res.estimatedEndDate != null )
       // this.tasksService.listTasksFinalized = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || this.tasksService.notesTask.statusHistory.filter(res => res.statusStartDate == "this.tasksService.timeNew") )
@@ -598,7 +599,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     }
 
     // this.presentLoadingWithOptions();
-
+    this.tasksService.turnTab3 = false;
     this.router.navigate(['/details-client'])
   }
 
@@ -811,7 +812,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
       const scrollable = virtualScroller.querySelector('.scrollable-content')
       this.cardHeight = this.tasksService.listTasks1.length * 44;
       this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
-      virtualScroller.style.height = `${43}vh`;
+      virtualScroller.style.height = `${45}vh`;
       scrollable.style.height = `${this.cardHeight}px`;
 
 

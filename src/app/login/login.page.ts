@@ -35,6 +35,7 @@ export class LoginPage implements OnInit {
   event: any;
   toggleValue: any;
   checked: any;
+  Datasave: any;
 
   constructor(private router: Router,
     private loginApiService: LoginApiService,
@@ -140,6 +141,14 @@ export class LoginPage implements OnInit {
     this.loginApiService.getLogin(authentication).then(res => {
       this.router.navigate(["/tabs/tab1"]);
       environment.token = res.accessToken;
+     console.log(res)
+     localStorage.setItem('data', res.expirationDate)
+     localStorage.setItem('dataToday', this.tasksService.timeNew )
+     this.tasksService.dataSave = localStorage.getItem('data');
+     this.tasksService.dataSave1 = localStorage.getItem('dataToday');
+
+    //  this.tasksService.dataSave = this.tasksService.dataSave
+
 
       if (authentication.username === 'Admin') {
         console.log('entrou')
@@ -147,7 +156,7 @@ export class LoginPage implements OnInit {
         this.tasksService.roleId = "00000000-0000-0000-0000-000000000001"
       } else {
 
-        this.parseJwt();
+        this.tasksService.parseJwt();
       }
 
       this.tasksService.loginUser = authentication
@@ -258,60 +267,8 @@ export class LoginPage implements OnInit {
     }
   }
 
-  parseJwt() {
 
 
-
-    var base64Url = environment.token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    console.log(jsonPayload)
-
-    const obj = JSON.parse(jsonPayload);
-    const obj1 = JSON.parse(obj.unique_name)
-    this.tasksService.entityId = obj1.user.entity.id
-    this.tasksService.entityName = obj1.user.entity.firstName
-    this.tasksService.entityLastname = obj1.user.entity.lastName
-
-    this.tasksService.roleId = "00000000-0000-0000-0000-000000000002"
-    console.log(this.tasksService.entityId)
-    console.log(obj1)
-    console.log(this.tasksService.roleId)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  }
 
 
 }

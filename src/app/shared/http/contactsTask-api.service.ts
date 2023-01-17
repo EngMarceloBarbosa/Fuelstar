@@ -190,6 +190,21 @@ verifyNif(form: FormData){
       .toPromise();
   }
 
+  editNotesInstanceSheetsPut(taskMain1) {
+    console.log('value', taskMain1);
+    return this.http
+      .put<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${taskMain1.instanceId}/Tasks`,  (taskMain1), {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + environment.token,
+          'Content-type': 'application/json',
+          'accept': '*/*'
+        })
+      })
+      .pipe()
+      .toPromise();
+  }
+
+
 
   putNotesInstanceSheetsPost(taskMain) {
     console.log('value', taskMain);

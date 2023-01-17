@@ -9,6 +9,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { FilterServiceService } from '../shared/filter-service.service';
+import { TaskApiService } from '../shared/http/task-api.service';
 import { clientsTab } from '../shared/models/clients-tab1';
 import { TasksService } from "../shared/services/tasks.service";
 import { Tasks } from '../utils/models/tab2';
@@ -38,10 +39,10 @@ isOnActionButtons2: boolean = false;
 isOnActionButtons3: boolean = false;
 selectedFilter: number = 0;
 translateStrings:any;
-
+searchTask:any;
 listBoxes1: any[] = [{
 }];
-
+dateInstance:any;
 
 tests = clientsTab
 
@@ -49,13 +50,36 @@ tests = clientsTab
 
 
 
-constructor(private router: Router, private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService , public tasksService: TasksService ) {
+constructor(private router: Router, private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService , public tasksService: TasksService, public taskApiService: TaskApiService ) {
 }
 
 
-ngOnInit() {
+async ngOnInit() {
 
 
+
+      await this.taskApiService.getTasksItemIdFinalized().then(res => {
+        this.tasksService.listTasksFinalizedHistory  = res;
+
+
+        // this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory;
+
+      // this.tasksService.listTasksFinalizedHistory
+      console.log(  this.tasksService.listTasksFinalizedHistory, 'HISTÓRICO DAS TAREFAS')
+
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    })
+
+
+    this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory;
+
+
+    console.log(this.tasksService.listTasksFinalizedHistory1)
 }
 
   filterClick(){
@@ -187,5 +211,91 @@ if (
 handleApplyFilter(){
 this.router.navigate(['/tabs/tab4'])
 }
+
+
+filterByData($event: string){
+console.log(  this.tasksService.listTasksFinalizedHistory1
+  )  // this.tasksService.turnSearch = true;
+  // console.log( this.tasksService.allDocumentsFilter)
+  console.log($event)
+  this.searchTask = $event
+  if ($event.length == 0) {
+   this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory;
+  } else {
+    this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory;
+    // console.log(   this.tasksService.allDocumentsFilter)
+    // console.log(this.tasksService.listClients1)
+    this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory.filter(
+      doc =>
+        doc.endDate?.trim().toLowerCase().includes($event.trim().toLowerCase()) ||
+        doc.entity.firstName?.trim().toLowerCase().includes($event.trim().toLowerCase())
+        );
+
+      }
+
+      console.log(  this.tasksService.listTasksFinalizedHistory1  , '1'      )
+      console.log(  this.tasksService.listTasksFinalizedHistory  , '0'    )
+
+
+}
+
+selectedTask(test: any) {
+  this.tasksService.turnTab3 = true
+  this.tasksService.msgWarningExecuted = false;
+  this.tasksService.instanceId = test.id
+  this.tasksService.selectedTask = test
+  console.log(this.tasksService.instanceId, 'instanceID')
+  console.log(test)
+  if (test.id) {
+    // TAREFAS ATRIBUIDAS
+    if (test.currentStatus.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af") {
+      this.tasksService.turnButtonExecuted = true;
+      this.tasksService.turnButton = false;
+      this.tasksService.turnButtonResume = false;
+      this.tasksService.finalized = true;
+      // this.tasksService.turnCreatePost = true;
+      // this.tasksService.turnEditPost = true;
+
+    }
+    // TAREFAS EM EXECUÇÃO
+    if (test.currentStatus.id == "23d91faf-d13d-42b0-902b-2de5d49a31ee") {
+      this.tasksService.turnButton = true;
+      this.tasksService.turnButtonExecuted = false;
+      this.tasksService.turnButtonResume = false;
+      this.tasksService.finalized = true;
+      // this.tasksService.turnCreatePost = true;
+      // this.tasksService.turnEditPost = true;
+
+    }
+    // TAREFAS SUSPENSAS
+    if(test.currentStatus.id == "00bba7ce-f90b-4ebb-9478-777376f78e93") {
+      this.tasksService.turnButtonResume = true;
+      this.tasksService.turnButton = false;
+      this.tasksService.turnButtonExecuted = false;
+      this.tasksService.finalized = true;
+
+    }
+
+    // TAREFAS FINALIZADAS
+    if (test.currentStatus.id == "e6875497-3ad4-4121-b3aa-4efde5d12fb1") {
+      this.tasksService.turnButton = false;
+      this.tasksService.finalized = false;
+      // this.tasksService.turnCreatePost = false;
+      // this.tasksService.turnEditPost = false;
+    }
+    this.tasksService.infoClient$.next(test);
+    console.log(test);
+    console.log("1 entrou");
+  }
+  if (test.id == 2) {
+    console.log("2 entrou");
+  }
+
+  // this.presentLoadingWithOptions();
+
+  this.router.navigate(['/details-client'])
+}
+
+
 
 }

@@ -125,6 +125,10 @@ export class DocumentInstances {
   documentInstanceDate: string;
 }
 
+export class DocumentsInstances1{
+  documentInstanceId : string;
+  documentType: number;
+}
 
 
 export interface IdentityDocuments {
@@ -154,6 +158,29 @@ export class EntityRolesPatch {
   isMain: boolean;
   entityId: string;
 
+}
+
+export class FormInstances {
+  formInstances :string;
+}
+
+
+export class InstanceNotes {
+  name: string;
+  description: string;
+  note: string;
+  isImportant: boolean;
+  projectId: string;
+  itemId: string;
+  address:Address;
+  documentInstances1: DocumentsInstances1[];
+  entities : EntityRolesPatch[];
+   tags: Tags[];
+   estimatedStartDate: string;
+   startDate: string;
+   estimatedEndDate: string;
+    endDate:string;
+    formInstances : FormInstances[];
 }
 
 export class Tags {
@@ -190,6 +217,10 @@ export interface Instance {
   item: Item;
   creationDate: string;
   documentInstances: DocumentInstances[];
+  estimatedStartDate: string;
+  estimatedEndDate:string;
+  startDate:string;
+  endDate:string;
   entityRoles: EntityRoles[];
   tags: Tags[];
   tasks: Task[];
@@ -274,7 +305,11 @@ export class InstancePatch {
   documentInstances: DocumentInstancesPatch[];
   entities: EntityRolesPatch[];
   tags: Tags[];
-
+  bulletName?: string;
+  estimatedStartDate:string;
+  startDate:string;
+  estimatedEndDate: string;
+  endDate:string;
   constructor(instance: Instance) {
 
     this.name = instance.name ?? null;
@@ -284,13 +319,17 @@ export class InstancePatch {
     this.projectId = instance.projectId ?? null;
     this.itemId = instance.item?.id ?? null;
     this.address = instance.address;
-    this.documentInstances = instance.documentInstances.map(elem => {
+    this.estimatedStartDate = instance.estimatedStartDate;
+    this.estimatedEndDate = instance.estimatedEndDate;
+    this.startDate = instance.startDate;
+    this.endDate = instance.endDate;
+    this.documentInstances = (instance.documentInstances ?? []).map(elem => {
       return {
         documentInstanceId: elem.documentInstanceId,
         documentType: elem.documentType
       }
-    });
-    this.entities = instance.entityRoles.map(elem => {
+    }) ;
+    this.entities = (instance.entityRoles ?? []).map(elem => {
       return {
         entityRoleId: elem.entityRoleId,
         isParticipant: elem.isParticipant,
@@ -298,7 +337,7 @@ export class InstancePatch {
         entityId: elem.entity.id
       }
     });
-    this.tags = instance.tags != null ? instance.tags.map(elem => {
+    this.tags = instance.tags != null ? (instance.tags ?? []).map(elem => {
       return {
         tagId: elem.tagId,
         tagName: elem.tagName

@@ -1,26 +1,145 @@
-<div class="main-container">
+<ion-content>
+<!-- <div class="main-container"> -->
 <div class="container">
+
 <div class="header-stats">
   <div class="container-header">
   <div class="title-header">
+    <nc-text size="h3" color="c-scale-12" weight="bold" font="primary"
+    >Consultar Histórico</nc-text
+  >
+  <div class="subtitle-header">
     <nc-text size="h7" color="c-scale-8" weight="500" font="primary"
-    >Balance</nc-text
+    >Histórico das tarefas Finalizadas</nc-text
   >
   </div>
-  <div class="total-price-header">
-    <nc-text size="h3" color="c-scale-12" weight="bold" font="primary"
-    >900,00€</nc-text
-  >
   </div>
 
+
+
   </div>
-  <div class="icon-filter">
+  <div class="icon-filter" >
     <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
               >icon_filter</nc-icon
             >
   </div>
 </div>
-<div class="body-container">
+
+  <!-- <div class="icon-close1" *ngIf="!tasksService.turnSearch"   (click)="close1()">
+<div    >
+  <nc-icon
+    [size]="18"
+    color="c-scale-12"
+    hoverColor="c-scale-12"
+
+    >icon_close</nc-icon
+  >
+</div>
+</div> -->
+
+
+<!-- <div class="body-history"> -->
+  <div class="date-input">
+  <nc-input
+  [attr.tester]="'search-bar-current'"
+  placeholder="Pesquise pelo Dia e Nome"
+  [bgInputColor]="'c-scale-12'"
+  [icon]="'icon_search'"
+  [iconPosition]="'left'"
+  [clear]="false"
+  [type]="'text'"
+  [size]="'medium'"
+  (valueChange)="filterByData($event)"
+>
+</nc-input>
+
+</div>
+  <div class="toDO" >
+    <nc-virtual-scroller
+      #scroll
+      [items]="this.tasksService.listTasksFinalizedHistory1 "
+    >
+    <div class="container-taskHistory" *ngFor="let task  of scroll.viewPortItems">
+      <div class="date-history">
+        <nc-text
+        id="icon-user"
+        size="h8"
+        color="c-scale-12"
+        weight="bold"
+        font="primary"
+        >{{this.dateInstance}}</nc-text
+      >
+      </div>
+      <div
+        class="card-tasks"
+
+      >
+        <div class="box-task" (click)="selectedTask(task)">
+          <div class="icon-name-user">
+            <nc-text
+              id="icon-user"
+              size="h7"
+              color="c-scale-10"
+              weight="500"
+              font="primary"
+              >{{task.entity.firstName |
+              prefix}}{{task.entity.lastName | prefix}}</nc-text
+            >
+          </div>
+          <div class="description-task">
+            <div class="name-task">
+              <span
+
+                size="h7"
+                color="c-scale-12"
+                weight="500"
+                font="primary"
+                >{{task.entity.firstName}}
+                {{task.entity.lastName}}</span
+              >
+            </div>
+            <div class="container-task">
+              <div class="operation-type">
+                <span
+                  size="h8"
+                  color="c-scale-10"
+                  weight="500"
+                  font="primary"
+                  >{{task.name}}</span
+                >
+              </div>
+              <div class="localization-task">
+                <span
+                  size="h8"
+                  color="c-scale-10"
+                  weight="500"
+                  font="primary"
+                  >{{task.address.cityName}}</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="bar-task" >
+            <div  class="light-bar" [ngStyle]="{'background-color': tasksService.getColor(task.currentStatus.id)}" ></div>
+            <!-- <div  class="light-bar1" *ngIf="!tasksService.turnColor" ></div> -->
+            <!-- <div class="light-bar1" *ngIf="turnColorOrange"></div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    </nc-virtual-scroller>
+  </div>
+</div>
+
+<!-- </div> -->
+
+<!-- </div> -->
+
+</ion-content>
+
+
+
+<!-- <div class="body-container">
   <div class="title-container">
     <div class="icon-calendar">
       <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
@@ -94,16 +213,13 @@
 
 
   </div>
-</div>
+</div> -->
 
 
 
 
 
 
-</div>
-
-</div>
 
 <!-- <ion-header [translucent]="true">
   <ion-toolbar>

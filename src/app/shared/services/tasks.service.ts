@@ -4,10 +4,11 @@ import { BehaviorSubject } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsTab } from '../models/clients-tab1';
 import { ContactsTaskService } from '../http/contactsTask-api.service';
-import { Classification, Contacts, Entity, IdentityDocuments, Instance, InstancePatch, Items, PaymentMethods, StatusFlows, SubTypesState, Task, Tasks, TypesState } from 'src/app/utils/models/tasks';
+import { Classification, Contacts, Entity, IdentityDocuments, Instance, InstanceNotes, InstancePatch, Items, PaymentMethods, StatusFlows, SubTypesState, Task, Tasks, TypesState } from 'src/app/utils/models/tasks';
 import { ItemApiService } from '../http/item-api.service';
 import { Router } from '@angular/router';
 import { TaskApiService } from '../http/task-api.service';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -30,6 +31,8 @@ export class TasksService {
   listTasks1: Tasks[];
   listTasks2: Tasks[];
   listTasksFinalized: Instance[] = [];
+  listTasksFinalizedHistory : Instance[] = [];
+  listTasksFinalizedHistory1: any;
   listTasksSuspended: Tasks[];
   listTasksCancelled: Tasks[];
   listTasksItemId:any;
@@ -130,6 +133,7 @@ export class TasksService {
   loginUser: any = "" ;
   notesTask: any = [];
   notesTasks: any = [];
+
   postNotes: any = "";
   totalTime:any;
   selectedPost:any;
@@ -143,6 +147,11 @@ export class TasksService {
   valueDate:any;
   updateTask : any = [];
   turnButtonResume =  false;
+  dataSave :any = "";
+  dataSave1: any = "";
+turnTab3 = false;
+listEstimatedStart: any;
+listTasksFinalizedHistory3:any;
   // turnCreatePost = false;
   // turnEditPost= false;
   //   newClientForm: FormGroup =  new FormGroup({
@@ -221,7 +230,41 @@ timeHours(){
   console.log(this.today)
   console.log(this.time)
   console.log(this.timeNew)
+
+
+////// TESTES PARA SAIR E CONTINUAR A LOGAR ///////////////////////////////////7
+
+
+  // this.dataSave = localStorage.getItem('data');
+  // this.dataSave1 = localStorage.getItem('dataToday');
+  // console.log(this.dataSave, '21')
+  // console.log(this.dataSave1, '34')
+
+
+  // if(this.dataSave > this.dataSave1){
+  //   console.log('true')
+  //   console.log('entrou Menu')
+  //   this.router.navigate(["/tabs/tab1"])
+  // }else{
+  //   this.router.navigate(["/login"])
+  //   console.log('entrou LOGIN')
+
+  // }
+
+
+
+
+  // console.log(this.dataSave.substring(0,10, '3'))
+  console.log(this.dataSave, '2');
+  console.log(this.dataSave1, '3')
+
+
+
+
+
 }
+
+
 
 
   putPhoneNumber() {
@@ -338,7 +381,9 @@ putTaskCancelled(){
   })
 // con
 
-    // this.listTasksById1 = new InstancePatch();
+    this.notesTask = new InstancePatch(this.selectedTask);
+
+    console.log(this.notesTask, ' TASK 1')
     // this.listTasksById
     // this.listTasksById1.name = this.listTasksById.name;ks
 
@@ -377,7 +422,24 @@ console.log(this.selectedTask.id)
       date: this.totalTime
       // ...data,
     };
-    console.log(this.notes, 'NOTES A NULO ')
+
+    // PARA POR QUANDO A ROTA DO STAGING FOR ATUALIZADA -------------------------------
+
+    // const taskMain1 = {
+    //   entityId:  task.entity.id,
+    //   id: task.id,
+    //   startDate: task.estimatedStartDate,
+    //   endDate: this.totalTime,
+    //   note: this.notes.detail.value,
+    // };
+    // console.log(this.notes, 'NOTES A NULO ')
+
+    // await this.contactApiService.editNotesInstanceSheetsPut(taskMain1).then(() =>
+    //  this.selectedTask.note = taskMain1.note
+    //  )
+
+// ACABA AQUI ------------------------------------------------------------------------------
+
 
     // this.listTasksById.note = this.notes;
     // console.log( listTasksByIdNew, "DATA")
@@ -388,6 +450,7 @@ console.log(this.selectedTask.id)
    await this.contactApiService.editNotesInstanceSheets(taskMain).then(() =>
     this.selectedTask.note = taskMain.note
     )
+
 
     console.log(this.notes);
 
@@ -415,6 +478,26 @@ console.log(this.selectedTask.id)
   }
 
   async putNotes() {
+
+
+
+    // PARA POR QUANDO A ROTA DO STAGING FOR ATUALIZADA -------------------------------
+
+    // const taskMain1 = {
+    //   entityId:  task.entity.id,
+    //   id: task.id,
+    //   startDate: task.estimatedStartDate,
+    //   endDate: this.totalTime,
+    //   note: this.notes.detail.value,
+    // };
+    // console.log(this.notes, 'NOTES A NULO ')
+
+    // await this.contactApiService.editNotesInstanceSheetsPut(taskMain1).then(() =>
+    //  this.selectedTask.note = taskMain1.note
+    //  )
+
+// ACABA AQUI ------------------------------------------------------------------------------
+
 
     console.log(this.totalTime)
 
@@ -544,6 +627,31 @@ this.validatorNIF = true;
       case '00bba7ce-f90b-4ebb-9478-777376f78e93':
         return 'red';
     }
+  }
+
+  parseJwt() {
+
+
+
+    var base64Url = environment.token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    console.log(jsonPayload)
+
+    const obj = JSON.parse(jsonPayload);
+    const obj1 = JSON.parse(obj.unique_name)
+    this.entityId = obj1.user.entity.id
+    this.entityName = obj1.user.entity.firstName
+    this.entityLastname = obj1.user.entity.lastName
+
+    this.roleId = "00000000-0000-0000-0000-000000000002"
+    console.log(this.entityId)
+    console.log(obj1)
+    console.log(this.roleId)
+
+
   }
 
 

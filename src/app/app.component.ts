@@ -10,6 +10,7 @@ import { App } from '@capacitor/app';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { TasksService } from './shared/services/tasks.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -30,12 +31,36 @@ export class AppComponent {
     public tasksService:TasksService
   ) {
 
+
+
+
+
+
+
+    // console.log(this.tasksService.dataSave, '2');
+    // console.log(this.tasksService.timeNew, )
+
+    // if(this.tasksService.dataSave.substring(0,10) >= this.tasksService.timeNew && this.tasksService.dataSave != "" ){
+    //   console.log('entrou Menu')
+    //   this.router.navigate(["/tabs/tab1"])
+    // }else{
+    //   this.router.navigate(["/login"])
+    //   console.log('entrou LOGIN')
+
+    // }
+
+
         this.platform.backButton.subscribeWithPriority(-1, () => {
       if (!this.routerOutlet.canGoBack()) {
+        if(this.routerOutlet)
         // this.tasksService.handleBackButton();
         App.exitApp();
       }
     });
+
+
+
+
 
 
 
@@ -69,7 +94,9 @@ export class AppComponent {
     //   {
     //     this.location.back();
     //   }
-    // });
+    // });´~
+
+
 
 
     this.translate.addLangs(['en_GB', 'fr_FR', 'pt_PT', 'es_EN', 'al_DL']);
@@ -79,7 +106,12 @@ export class AppComponent {
   }
 
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+
+
+
+
+
     setTimeout(() => {
       this.splashScreenStateService.stop();
     }, 4000);
@@ -91,8 +123,10 @@ export class AppComponent {
     //   }
     // });
 
-  }
 
+
+
+  }
 
 
 
