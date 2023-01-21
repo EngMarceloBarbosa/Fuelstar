@@ -81,6 +81,7 @@ export class TasksService {
   selectedList:any[]=[1];
   today:any
   time: any;
+  totalTimeZ:any;
   timeNew:any;
   validatorNIF:boolean = false;
   controlStep:boolean = false;
@@ -211,6 +212,7 @@ timeHours(){
    this.today = new Date();
    this.time = new Date();
    this.totalTime = new Date();
+   this.totalTimeZ = new Date();
    this.timeNew = new Date();
   var dd = String(this.today.getDate()).padStart(2, '0');
   var yyyy = this.today.getFullYear();
@@ -227,6 +229,7 @@ timeHours(){
   this.timeNew = yyyy  + '-' + month  + '-' + dd
 
    this.totalTime = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + '.'+ ms +'Z'
+   this.totalTimeZ = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + '.'+ ms
   console.log(this.today)
   console.log(this.time)
   console.log(this.timeNew)

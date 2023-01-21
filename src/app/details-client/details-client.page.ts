@@ -634,6 +634,15 @@ console.log(this.tasksService.notesTasks , 'NOTAS TASK 1')
 
     })
 
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
+
+      // this.tasksService.listTasks2 = res;
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+    })
+
      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2,  this.tasksService.listTasksSuspended)
     console.log(this.tasksService.visiteToDo, 'lista final')
 
@@ -788,6 +797,10 @@ async buttonResume(){
 
   }
 
+  // buttonFinalizedForms(){
+  //   this.router.navigate(["/forms"]);
+  // }
+
 
 
   async buttonFinalized() {
@@ -863,7 +876,7 @@ console.log(this.tasksService.notesTask, 'COPIA DA LISTA')
     })
     await this.taskApiService.getTasksItemIdFinalized().then(res => {
       this.tasksService.listTasksFinalized = res;
-      this.tasksService.listTasksFinalized = res.filter(res => res.endDate ?? null == this.tasksService.timeNew  )
+      this.tasksService.listTasksFinalized = res.filter(res => res.endDate !==  null && res.endDate.substring(0,10) == this.tasksService.timeNew  )
 
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
@@ -930,7 +943,7 @@ console.log(this.tasksService.notesTask, 'COPIA DA LISTA')
     await this.taskApiService.getTasksItemIdFinalized().then(res => {
       this.tasksService.listTasksFinalized = res;
       console.log(this.tasksService.listTasksFinalized)
-      this.tasksService.listTasksFinalized = res.filter( res => res.endDate ?? null == this.tasksService.timeNew )
+      this.tasksService.listTasksFinalized = res.filter( res => res.endDate !==  null && res.endDate.substring(0,10) == this.tasksService.timeNew  )
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
       this.tasksService.visiteEfected = this.tasksService.listTasksFinalized

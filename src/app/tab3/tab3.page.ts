@@ -53,6 +53,37 @@ tests = clientsTab
 constructor(private router: Router, private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService , public tasksService: TasksService, public taskApiService: TaskApiService ) {
 }
 
+handleRefresh(event) {
+  setTimeout(async () => {
+
+    await this.taskApiService.getTasksItemIdFinalized().then(res => {
+      this.tasksService.listTasksFinalizedHistory  = res;
+
+
+      // this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory;
+
+    // this.tasksService.listTasksFinalizedHistory
+    console.log(  this.tasksService.listTasksFinalizedHistory, 'HISTÓRICO DAS TAREFAS')
+
+
+    console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+  })
+
+
+  this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory;
+
+
+  console.log(this.tasksService.listTasksFinalizedHistory1)
+
+
+    event.target.complete();
+  }, 2000);
+};
+
 
 async ngOnInit() {
 

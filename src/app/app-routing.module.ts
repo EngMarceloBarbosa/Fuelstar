@@ -91,7 +91,11 @@ const routes: Routes = [
 
     pathMatch: 'full'
 
+  },  {
+    path: 'forms',
+    loadChildren: () => import('./forms/forms.module').then( m => m.FormsPageModule)
   },
+
 
 
 

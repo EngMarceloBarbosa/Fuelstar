@@ -186,7 +186,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
     await this.taskApiService.getTasksItemIdFinalized().then(res => {
       // this.tasksService.listTasksFinalized = res;
-      this.tasksService.listTasksFinalized = res.filter(res => res.endDate ?? null == this.tasksService.timeNew  )
+      this.tasksService.listTasksFinalized = res.filter(res => res.endDate !==  null && res.endDate.substring(0,10) == this.tasksService.timeNew  )
 
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
@@ -401,9 +401,10 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
     await this.taskApiService.getTasksItemIdFinalized().then(res => {
       this.tasksService.listTasksFinalized = res;
+      console.log(this.tasksService.timeNew)
       console.log(this.tasksService.listTasksFinalized)
-      this.tasksService.listTasksFinalized = res.filter(res => res.endDate ?? null == this.tasksService.timeNew )
-
+      this.tasksService.listTasksFinalized = res.filter(res => res.endDate !==  null && res.endDate.substring(0,10) == this.tasksService.timeNew )
+console.log(res)
       // this.tasksService.listTasksFinalized = res.filter(res => res.estimatedEndDate.substring(0,10) == this.tasksService.timeNew || res.estimatedEndDate != null )
       // this.tasksService.listTasksFinalized = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || this.tasksService.notesTask.statusHistory.filter(res => res.statusStartDate == "this.tasksService.timeNew") )
 
