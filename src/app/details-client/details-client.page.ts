@@ -36,6 +36,7 @@ export class DetailsClientPage implements OnInit {
   listAll: any;
   turnDocuments = false;
 
+
   @ViewChild('search') myInput;
   showContent = true;
 
@@ -264,6 +265,22 @@ console.log(this.tasksService.notesTasks , 'NOTAS TASK 1')
     console.log(this.tasksService.visiteToDo, 'pq0')
     this.tasksService.getColor(this.tasksService.selectedTask.id);
 
+    if (this.tasksService.visiteToDo.length === 0) {
+      this.tasksService.turnMsgAlertTask = true;
+      this.tasksService.msgAlertTasks = "Não existe mais tarefas"
+    } else {
+      this.tasksService.turnMsgAlertTask = false;
+    }
+
+
+    if (this.tasksService.visiteEfected.length === 0) {
+      this.tasksService.turnMsgAlertTask1 = true;
+      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
+    } else {
+      this.tasksService.turnMsgAlertTask1 = false;
+    }
+
+
 
     this.router.navigate(['/tabs/tab1']);
 
@@ -298,11 +315,7 @@ console.log(this.tasksService.notesTasks , 'NOTAS TASK 1')
   }
 
 
-  modelChangeFn(e) {
-    this.tasksService.notes = e;
-    console.log(this.tasksService.notes);
 
-  }
 
   close() {
     this.onNotes = true;
@@ -787,7 +800,7 @@ async buttonResume(){
       rightButtonTesterProperty: "clickLeaveApp",
       rightButtonColor: "c-scale-12",
       rightButtonCallback: () => {
-        this.buttonFinalized();
+        this.buttonFinalizedForms();
       },
     };
     this.alertService.open(temp);
@@ -797,9 +810,9 @@ async buttonResume(){
 
   }
 
-  // buttonFinalizedForms(){
-  //   this.router.navigate(["/forms"]);
-  // }
+  buttonFinalizedForms(){
+    this.router.navigate(["/forms"]);
+  }
 
 
 
@@ -1005,6 +1018,7 @@ send($event: KeyboardEvent){
     this.save(this.tasksService.selectedTask)
   }
 }
+
 
 
 

@@ -52,7 +52,9 @@
     "cordova": "^11.0.0",
     "cordova-plugin-nativegeocoder": "^3.4.1",
     "cordova-plugin-splashscreen": "^6.0.2",
+    "date-fns": "^2.29.3",
     "ionic-5-version": "^1.0.0",
+    "ionic-stepper": "^1.1.0",
     "perfect-scrollbar": "^1.5.5",
     "plugin": "^0.3.3",
     "resize-observer-polyfill": "^1.5.1",
@@ -71,6 +73,7 @@
     "@angular/compiler": "~12.1.1",
     "@angular/compiler-cli": "~12.1.1",
     "@angular/language-service": "~12.0.1",
+    "@capacitor/cli": "latest",
     "@ionic/angular-toolkit": "^4.0.0",
     "@ionic/lab": "3.2.10",
     "@types/jasmine": "~3.6.0",
@@ -92,8 +95,7 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
-    "typescript": "~4.2.4",
-    "@capacitor/cli": "latest"
+    "typescript": "~4.2.4"
   },
   "description": "An Ionic project"
 }

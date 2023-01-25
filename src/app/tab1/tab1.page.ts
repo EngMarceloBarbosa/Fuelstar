@@ -294,6 +294,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
   };
 
 
+
   ngAfterContentChecked(): void {
     if (this.swiper) {
       this.swiper.updateSwiper({});
