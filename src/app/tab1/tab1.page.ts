@@ -185,7 +185,9 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     })
 
     await this.taskApiService.getTasksItemIdFinalized().then(res => {
+      console.log(res)
       // this.tasksService.listTasksFinalized = res;
+
       this.tasksService.listTasksFinalized = res.filter(res => res.endDate !==  null && res.endDate.substring(0,10) == this.tasksService.timeNew  )
 
 
@@ -293,7 +295,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     }, 2000);
   };
 
-
+  ionViewWillEnter() {}
 
   ngAfterContentChecked(): void {
     if (this.swiper) {

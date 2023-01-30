@@ -219,7 +219,7 @@ timeHours(){
   var hours = String(this.time.getHours()).padStart(2, '0')
   var minutes = String(this.time.getMinutes()).padStart(2, '0');
   var seconds = String(this.time.getSeconds()).padStart(2, '0');
-  var ms = String(this.time.getMilliseconds()).padStart(3, '0');
+  var ms = String(this.time.getMilliseconds()).padStart(2, '0').substring(0,2);
   var month = String(this.time.getMonth() + 1).padStart(2, '0') ;
 
   console.log(hours, 'horas')
@@ -228,12 +228,12 @@ timeHours(){
   this.time = hours + '-' + minutes + '-' + seconds;
   this.timeNew = yyyy  + '-' + month  + '-' + dd
 
-   this.totalTime = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + '.'+ ms +'Z'
-   this.totalTimeZ = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + '.'+ ms
+   this.totalTime = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + ':'+ ms +'Z'
+   this.totalTimeZ = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + ':'+ ms
   console.log(this.today)
   console.log(this.time)
   console.log(this.timeNew)
-
+console.log(this.totalTimeZ)
 
 ////// TESTES PARA SAIR E CONTINUAR A LOGAR ///////////////////////////////////7
 
@@ -316,7 +316,7 @@ timeHours(){
 }
 
 
-putTaskFinalize(){
+async  putTaskFinalize(){
 
   var task = {
     statusId: "e6875497-3ad4-4121-b3aa-4efde5d12fb1",
@@ -325,7 +325,7 @@ putTaskFinalize(){
   }
 
   console.log(task)
-  this.contactApiService.putFinalized(task).then(() =>
+  await this.contactApiService.putFinalized(task).then(() =>
   console.log(task,  'finalizado')
   )
 }

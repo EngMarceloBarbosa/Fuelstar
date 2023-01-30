@@ -40,13 +40,21 @@
         </provider>
 <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDHDxHwApmfnAEkEEoegI-mESqztSufcCc"/>
 
+
+
     </application>
+
+     <queries>
+    <package android:name="com.google.android.apps.maps" />
+  </queries>
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
 

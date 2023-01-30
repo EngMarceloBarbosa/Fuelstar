@@ -36,7 +36,8 @@ export class LoginPage implements OnInit {
   toggleValue: any;
   checked: any;
   Datasave: any;
-
+  i: number ;
+  j:number ;
   constructor(private router: Router,
     private loginApiService: LoginApiService,
     private alertService: AlertService,
@@ -48,6 +49,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+
 
     this.tasksService.timeHours();
 

@@ -480,6 +480,13 @@ type-actions {
 nc-input{
   width: 100%;
 }
+
+.ellipsis {
+  width: 69px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 // .filter-header,
 // nc-virtual-scroller {
 //   height: calc(100vh - 200px);

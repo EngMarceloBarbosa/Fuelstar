@@ -5,7 +5,9 @@
   display: flex;
   flex-direction: row;
   margin-left: 24px;
+
 }
+
 
 .container-main{
   width: 100%;
@@ -23,7 +25,7 @@ ion-title{
 
 .stepper-container {
   display: flex;
-  height: 8vh;
+  height: 63px;
   margin-top: 15px;
   margin-bottom: 13px;
   .step {
@@ -84,9 +86,9 @@ ion-title{
 
 .info-container-0 {
   display: flex;
-  height: 65vh;
+  height: 63vh;
   width: 100%;
-  padding: 24px;
+  padding: 6px 24px 24px 24px;
   .input {
     display: flex;
     flex-direction: column;
@@ -145,6 +147,14 @@ ion-title{
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 48px;
+}
+
+.container-materials-1{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 ion-textarea {
@@ -164,3 +174,62 @@ ion-textarea {
   margin-top: 10px;
 }
 
+.signPad{
+  border: 1px dashed;
+  margin: auto;
+  margin-top: 5px;
+}
+
+
+canvas {
+  border: 3px dashed gray;
+  width: 100%;
+}
+
+.button-1{
+  width:  84px;
+  height: 25px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-2{
+  width: 84px;
+  height: 25px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-3{
+  width: 84px;
+  height: 25px;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container-page {
+  background-color: white;
+}
+
+
+.container-main-stepper{
+  background-color: white;
+}
+
+.container-footer{
+  background-color: white;
+}

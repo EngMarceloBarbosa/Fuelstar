@@ -14,33 +14,33 @@
     </div>
   </ion-toolbar>
 </ion-header>
-<div class="stepper-container text-center">
-  <div
-    class="step"
-    *ngFor="let step of steps; let i = index"
-    [ngClass]="{'active': i <= currentStep }"
-  >
-    <div class="step-icon-container">
-      <div class="container-bar d-flex justify-content-center">
-        <div
-          class="step-connector completed"
-          *ngIf="i < steps.length - 1"
-          [ngClass]="{'hidden': i > currentStep-1 }"
-        ></div>
-        <div class="container-labels d-flex justify-content-center">
+<div class="container-main-stepper">
+  <div class="stepper-container text-center" style="background-color: white">
+    <div
+      class="step"
+      *ngFor="let step of steps; let i = index"
+      [ngClass]="{'active': i <= currentStep }"
+    >
+      <div class="step-icon-container">
+        <div class="container-bar d-flex justify-content-center">
           <div
-            class="step-icon"
-            [ngClass]="{'filled': i <= currentStep }"
+            class="step-connector completed"
+            *ngIf="i < steps.length - 1"
+            [ngClass]="{'hidden': i > currentStep-1 }"
           ></div>
-          <div class="step-label">{{ step.label }}</div>
+          <div class="container-labels d-flex justify-content-center">
+            <div
+              class="step-icon"
+              [ngClass]="{'filled': i <= currentStep }"
+            ></div>
+            <div class="step-label">{{ step.label }}</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <ion-content>
-
   <div class="info-container-0">
     <div class="container-main">
       <form [formGroup]="dateFormsStep1">
@@ -68,79 +68,82 @@
               formControlName="type"
               placeholder="Interna ou Externa"
               [(ngModel)]="sureOption"
+              (ionChange)="onSelectChange2()"
             >
               <ion-select-option value="Interna">Interna</ion-select-option>
               <ion-select-option value="Externa">Externa</ion-select-option>
             </ion-select>
           </ion-item>
-          <div class="deslocation">
-            <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
-              >Deslocação</nc-text
-            >
-          </div>
-          <ion-item>
-            <ion-label>Data de Inicio:</ion-label>
-            <ion-datetime
-              displayFormat="DD/MM/YYYY HH:mm"
-              pickerFormat="DD/MM/YYYY HH:mm"
-              formControlName="startDate"
-              [(ngModel)]="startDate"
-            ></ion-datetime>
-            <ion-icon
-              name="calendar"
-              slot="end"
-              (click)="startPicker.open()"
-            ></ion-icon>
-          </ion-item>
+          <div class="container-deslocation" *ngIf="showDeslocation">
+            <div class="deslocation">
+              <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
+                >Deslocação</nc-text
+              >
+            </div>
+            <ion-item>
+              <ion-label>Data de Inicio:</ion-label>
+              <ion-datetime
+                displayFormat="DD/MM/YYYY HH:mm"
+                pickerFormat="DD/MM/YYYY HH:mm"
+                formControlName="startDate"
+                [(ngModel)]="startDate"
+              ></ion-datetime>
+              <ion-icon
+                name="calendar"
+                slot="end"
+                (click)="startPicker.open()"
+              ></ion-icon>
+            </ion-item>
 
-          <ion-item>
-            <ion-label>Data do Fim:</ion-label>
-            <ion-datetime
-              displayFormat="DD/MM/YYYY HH:mm"
-              pickerFormat="DD/MM/YYYY HH:mm"
-              formControlName="endDate"
-              [(ngModel)]="endDate"
-              [min]="startDate"
-            ></ion-datetime>
-            <ion-icon
-              name="calendar"
-              slot="end"
-              (click)="endPicker.open()"
-            ></ion-icon>
-          </ion-item>
-          <ion-item>
-            <ion-label>De: </ion-label>
-            <ion-input
-              formControlName="departure"
-              type="text"
-              placeholder=" De onde"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Para:</ion-label>
-            <ion-input
-              formControlName="destination"
-              type="text"
-              placeholder=" Para onde"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Km:</ion-label>
-            <ion-input
-              formControlName="kilometers"
-              type="number"
-              placeholder=" Insira os Km"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Matrícula:</ion-label>
-            <ion-input
-              formControlName="registration"
-              class="registration-input"
-              type="text"
-              placeholder="Insira a Matricula"
-            ></ion-input>
-          </ion-item>
+            <ion-item>
+              <ion-label>Data do Fim:</ion-label>
+              <ion-datetime
+                displayFormat="DD/MM/YYYY HH:mm"
+                pickerFormat="DD/MM/YYYY HH:mm"
+                formControlName="endDate"
+                [(ngModel)]="endDate"
+                [min]="startDate"
+              ></ion-datetime>
+              <ion-icon
+                name="calendar"
+                slot="end"
+                (click)="endPicker.open()"
+              ></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-label>De: </ion-label>
+              <ion-input
+                formControlName="departure"
+                type="text"
+                placeholder=" De onde"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Para:</ion-label>
+              <ion-input
+                formControlName="destination"
+                type="text"
+                placeholder=" Para onde"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Km:</ion-label>
+              <ion-input
+                formControlName="kilometers"
+                type="number"
+                placeholder=" Insira os Km"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Matrícula:</ion-label>
+              <ion-input
+                formControlName="registration"
+                class="registration-input"
+                type="text"
+                placeholder="Insira a Matricula"
+              ></ion-input>
+            </ion-item>
+          </div>
           <div *ngIf="submitted">
             <p style="color: red">Preencha os campos todos</p>
           </div>
@@ -155,7 +158,9 @@
           </div>
 
           <ion-item>
-            <ion-label  style="font-weight: 300;">Trabalho foi Finalizado?</ion-label>
+            <ion-label style="font-weight: 300"
+              >Trabalho foi Finalizado?</ion-label
+            >
             <ion-select
               formControlName="sure"
               placeholder="Sim ou Não"
@@ -167,11 +172,14 @@
             </ion-select>
           </ion-item>
           <ion-item *ngIf="showReason">
-            <ion-label  style="font-weight:300;">Porque?</ion-label>
-            <ion-input formControlName="reason"  placeholder="justifique"></ion-input>
+            <ion-label style="font-weight: 300">Porque?</ion-label>
+            <ion-input
+              formControlName="reason"
+              placeholder="justifique"
+            ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label  style="font-weight: 300;">Pedido ao OVM?</ion-label>
+            <ion-label style="font-weight: 300">Pedido ao OVM?</ion-label>
             <ion-select
               formControlName="sureOVM"
               placeholder="Sim ou Não"
@@ -182,9 +190,12 @@
               <ion-select-option value="no">Não</ion-select-option>
             </ion-select>
           </ion-item>
-             <ion-item *ngIf="showReasonOvm">
-            <ion-label style="font-weight: 300;" >Porque?</ion-label>
-            <ion-input formControlName="reasonOVM" placeholder="justifique"></ion-input>
+          <ion-item *ngIf="showReasonOvm">
+            <ion-label style="font-weight: 300">Porque?</ion-label>
+            <ion-input
+              formControlName="reasonOVM"
+              placeholder="justifique"
+            ></ion-input>
           </ion-item>
           <div class="workSheet">
             <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
@@ -221,79 +232,198 @@
               (click)="endPicker.open()"
             ></ion-icon>
           </ion-item>
+
+          <ion-button style="margin-top: 15px" (click)="selectImages()"
+            >Anexar imagens</ion-button
+          >
+          <ion-grid>
+            <ion-row *ngFor="let row of rows; let i = index">
+              <ion-col *ngFor="let image of row; let j = index">
+                <ion-img [src]="image"></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </div>
-
-
       </form>
       <form [formGroup]="dateFormsStep2">
         <div class="container-step2" *ngIf="currentStep === 1">
-
-            <div class="container-materials">
-            <ion-label style="margin-bottom: 5px;font-weight: bold;" >Materiais Aplicados</ion-label>
+          <div class="container-materials-1">
+            <ion-label style="margin-bottom: 5px; font-weight: bold"
+              >Materiais Aplicados</ion-label
+            >
 
             <div class="materials">
-              <ion-textarea   #search formControlName="materials" (ionChange)="modelChangeFn($event)"   placeholder="Insira os materias aplicados" autofocus="false" [autoGrow]="true"
-              value="" minlength="1" maxlength="230">
-            </ion-textarea>
+              <ion-textarea
+                #search
+                formControlName="materials"
+                (ionChange)="modelChangeFn($event)"
+                placeholder="Insira os materias aplicados"
+                autofocus="false"
+                [autoGrow]="true"
+                value=""
+                minlength="1"
+                maxlength="230"
+              >
+              </ion-textarea>
             </div>
           </div>
 
-            <div class="container-materials">
-            <ion-label style="margin-top: 10px; font-weight: bold;">Anomalias encontradas</ion-label>
+          <div class="container-materials-1">
+            <ion-label style="margin-top: 10px; font-weight: bold"
+              >Anomalias encontradas</ion-label
+            >
 
             <div class="materials">
-              <ion-textarea   #search formControlName="anomalias" (ionChange)="modelChangeFn1($event)"   placeholder="Insira a anomalia encontrada " autofocus="false" [autoGrow]="true"
-              value="" minlength="1" maxlength="230">
-            </ion-textarea>
+              <ion-textarea
+                #search
+                formControlName="anomalias"
+                (ionChange)="modelChangeFn1($event)"
+                placeholder="Insira a anomalia encontrada "
+                autofocus="false"
+                [autoGrow]="true"
+                value=""
+                minlength="1"
+                maxlength="230"
+              >
+              </ion-textarea>
             </div>
           </div>
-            <div class="container-materials">
-            <ion-label style="margin-top: 10px; font-weight: bold;">Trabalho Efetuado</ion-label>
+          <div class="container-materials-1">
+            <ion-label style="margin-top: 10px; font-weight: bold"
+              >Trabalho Efetuado</ion-label
+            >
 
             <div class="materials">
-              <ion-textarea   #search formControlName="trabalho" (ionChange)="modelChangeFn2($event)"   placeholder="Insira o trabalho efetuado " autofocus="false" [autoGrow]="true"
-              value="" minlength="1" maxlength="230">
-            </ion-textarea>
+              <ion-textarea
+                #search
+                formControlName="trabalho"
+                (ionChange)="modelChangeFn2($event)"
+                placeholder="Insira o trabalho efetuado "
+                autofocus="false"
+                [autoGrow]="true"
+                value=""
+                minlength="1"
+                maxlength="230"
+              >
+              </ion-textarea>
             </div>
           </div>
-
         </div>
         <!-- <ion-button (click)="onSubmit()" expand="block">Submit</ion-button> -->
       </form>
       <form [formGroup]="dateFormsStep4">
         <div class="container-step4" *ngIf="currentStep === 3">
           <div class="container-materials">
-            <ion-label style="margin-bottom: 5px;font-weight: bold;" >Assinaturas</ion-label>
-
-            <div class="materials">
+            <ion-label
+              style="margin-bottom: 5px; font-weight: bold; text-align: center"
+              >Assinatura do Cliente</ion-label
+            >
+            <div class="signPad">
+              <signature-pad
+                #signature1
+                [options]="signaturePadOptions"
+                (ionChange)="drawStart()"
+                (ionChange)="drawComplete()"
+              ></signature-pad>
+              <!-- <div class="materials">
               <ion-textarea   #search formControlName="signatures"    placeholder="Assinaturas" autofocus="false" [autoGrow]="true"
               value="" minlength="1" maxlength="230">
             </ion-textarea>
+            </div> -->
             </div>
+            <ion-grid>
+              <ion-row style="text-align: end">
+                <ion-col col-6>
+                  <div
+                    class="button-2"
+                    div
+                    full
+                    color="danger"
+                    (click)="drawClear()"
+                  >
+                    Apagar
+                  </div>
+                </ion-col>
+                <ion-col col-6>
+                  <div
+                    class="button-3"
+                    button
+                    full
+                    color="secondary"
+                    (click)="drawComplete()"
+                  >
+                    Guardar
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </div>
-
+          <div class="container-materials">
+            <ion-label
+              style="margin-bottom: 5px; font-weight: bold; text-align: center"
+              >Assinatura do Técnico</ion-label
+            >
+            <div class="signPad">
+              <signature-pad
+                #signature2
+                [options]="signaturePadOptions"
+                (ionChange)="drawStart1()"
+                (ionChange)="drawComplete1()"
+              ></signature-pad>
+              <!-- <div class="materials">
+              <ion-textarea   #search formControlName="signatures"    placeholder="Assinaturas" autofocus="false" [autoGrow]="true"
+              value="" minlength="1" maxlength="230">
+            </ion-textarea>
+            </div> -->
+            </div>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-6>
+                  <div
+                    class="button-2"
+                    div
+                    full
+                    color="danger"
+                    (click)="drawClear1()"
+                  >
+                    Apagar
+                  </div>
+                </ion-col>
+                <ion-col col-6>
+                  <div
+                    class="button-3"
+                    button
+                    full
+                    color="secondary"
+                    (click)="drawComplete1()"
+                  >
+                    Guardar
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
         </div>
-
-
       </form>
     </div>
   </div>
-
 </ion-content>
-<div class="stepper-navigation">
-  <ion-button
-    (click)="previous()"
-    class="previous"
-    [disabled]="currentStep === 0"
-    style="color: white"
-    color="red"
-    >Anterior</ion-button
-  >
-  <ion-button
-    (click)="next()"
-    class="next"
-    [disabled]="currentStep === steps.length "
-    style="color: white"
-    >Seguinte</ion-button
-  >
+<div class="container-footer">
+  <div class="stepper-navigation" style="background-color: white">
+    <ion-button
+      (click)="previous()"
+      class="previous"
+      [disabled]="currentStep === 0"
+      style="color: white"
+      color="red"
+      >Anterior</ion-button
+    >
+    <ion-button
+      (click)="next()"
+      class="next"
+      [disabled]="currentStep === steps.length "
+      style="color: white"
+      >Seguinte</ion-button
+    >
+  </div>
 </div>

@@ -30,7 +30,7 @@ export class TaskApiService {
 
     // this.loadingService.loader();
     return this.http
-      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}&CurrentStatusFilterMode=1&CurrentStatusId=28b097a1-2834-4c9f-b1c6-6b2f316401af`, {
+      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}&CurrentStatusFilterMode=1&CurrentStatus=28b097a1-2834-4c9f-b1c6-6b2f316401af`, {
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,
@@ -45,7 +45,7 @@ export class TaskApiService {
 
     // this.loadingService.loader();
     return this.http
-      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}&CurrentStatusFilterMode=1&CurrentStatusId=23d91faf-d13d-42b0-902b-2de5d49a31ee`, {
+      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}&CurrentStatusFilterMode=1&CurrentStatus=23d91faf-d13d-42b0-902b-2de5d49a31ee`, {
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,
@@ -59,7 +59,7 @@ export class TaskApiService {
 
     // this.loadingService.loader();
     return this.http
-      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}&CurrentStatusFilterMode=1&CurrentStatusId=e6875497-3ad4-4121-b3aa-4efde5d12fb1`, {
+      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}&CurrentStatusFilterMode=1&CurrentStatus=e6875497-3ad4-4121-b3aa-4efde5d12fb1`, {
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,
@@ -86,20 +86,20 @@ export class TaskApiService {
   }
 
 
-  updateTasksItemIdFinalized(instanceId, updateTask) {
+  // updateTasksItemIdFinalized(instanceId, updateTask) {
 
-    // this.loadingService.loader();
-    return this.http
-      .patch<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${instanceId}`,  JSON.stringify(updateTask),  {
-        headers: new HttpHeaders({
-          "content-type": "application/json",
-          Authorization: "Bearer " + environment.token,
-        })
-      })
-      .pipe()
-      .toPromise();
+  //   // this.loadingService.loader();
+  //   return this.http
+  //     .patch<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${instanceId}`,  JSON.stringify(updateTask),  {
+  //       headers: new HttpHeaders({
+  //         "content-type": "application/json",
+  //         Authorization: "Bearer " + environment.token,
+  //       })
+  //     })
+  //     .pipe()
+  //     .toPromise();
 
-  }
+  // }
 
 
 
@@ -108,7 +108,7 @@ export class TaskApiService {
 
     // this.loadingService.loader();
     return this.http
-      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}&CurrentStatusFilterMode=1&CurrentStatusId=00bba7ce-f90b-4ebb-9478-777376f78e93`, {
+      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}&CurrentStatusFilterMode=1&CurrentStatus=00bba7ce-f90b-4ebb-9478-777376f78e93`, {
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,
@@ -122,7 +122,7 @@ export class TaskApiService {
 
     // this.loadingService.loader();
     return this.http
-      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}&CurrentStatusFilterMode=1&CurrentStatusId=7d555330-4228-45b8-87a3-1f8c905284fe`, {
+      .get<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances?RoleId=${this.tasksService.roleId}&EntityId=${this.tasksService.entityId}&CurrentStatusFilterMode=1&CurrentStatus=7d555330-4228-45b8-87a3-1f8c905284fe`, {
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,
