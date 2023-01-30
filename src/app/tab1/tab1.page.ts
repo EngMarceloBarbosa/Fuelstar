@@ -511,7 +511,9 @@ console.log(res)
 
 
 
-
+    this.loadingController.dismiss().then(() => {
+      console.log('Loading spinner dismissed');
+    });
 
   }
 
@@ -551,7 +553,11 @@ console.log(res)
   }
 
 
-  selectedTask(test: any) {
+
+
+  async selectedTask(test: any) {
+    await  this.presentLoadingWithOptions();
+
     this.tasksService.msgWarningExecuted = false;
     this.tasksService.instanceId = test.id
     this.tasksService.selectedTask = test

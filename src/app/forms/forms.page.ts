@@ -8,6 +8,7 @@ import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { InstancePatch } from '../utils/models/tasks';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -96,7 +97,7 @@ export class FormsPage implements OnInit {
   // selectedImage: string;
   selectedImages = []
   rows: string[][] = [];
-  constructor(private router: Router, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera) {
+  constructor(private router: Router, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController) {
 
   }
 
@@ -116,7 +117,7 @@ export class FormsPage implements OnInit {
 
   selectImages() {
     const options: CameraOptions = {
-      quality: 100,
+      quality: 60,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
@@ -142,6 +143,17 @@ export class FormsPage implements OnInit {
       this.rows.push(this.selectedImages.slice(i, i + 3));
     }
   }
+
+  async presentSuccessToast() {
+    const toast = await this.toastController.create({
+      message: 'Executada com sucesso!',
+      duration: 2000,
+      position: 'top',
+      color: 'primary',
+    });
+    toast.present();
+  }
+
 
   drawComplete() {
     console.log('ENTROU AQUI')
@@ -476,6 +488,9 @@ export class FormsPage implements OnInit {
       this.router.navigate(["/tabs/tab1"]);
 
     }
+
+    this.presentSuccessToast();
+
   }
 
 

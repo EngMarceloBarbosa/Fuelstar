@@ -7,6 +7,7 @@ import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { Contacts, Entity, InstancePatch, Tasks } from '../utils/models/tasks';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { CallNumber } from 'capacitor-call-number';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-details-client',
@@ -40,7 +41,7 @@ export class DetailsClientPage implements OnInit {
   @ViewChild('search') myInput;
   showContent = true;
 
-  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService, public contactApiService: ContactsTaskService) {
+  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService, public contactApiService: ContactsTaskService , private toastController: ToastController, public loadingController: LoadingController) {
 
 
 
@@ -132,7 +133,9 @@ console.log(this.tasksService.selectedTask, 'TASK SELECIONADA')
 // this.tasksService.notesTasks1 =  this.tasksService.notesTask;
 console.log(this.tasksService.notesTasks , 'NOTAS TASK 1')
 
-
+this.loadingController.dismiss().then(() => {
+  console.log('Loading spinner dismissed');
+});
 
   }
 
@@ -549,6 +552,7 @@ console.log(this.tasksService.notesTasks , 'NOTAS TASK 1')
     console.log(this.tasksService.visiteToDo, 'pq0')
     this.tasksService.getColor(this.tasksService.selectedTask.id);
     this.tasksService.msgWarningExecuted = false;
+    this.presentSuccessToast();
     this.router.navigate(["/tabs/tab1"]);
 
 
@@ -579,6 +583,16 @@ console.log(this.tasksService.notesTasks , 'NOTAS TASK 1')
 
     this.tasksService.notes = "";
 
+  }
+
+  async presentSuccessToast() {
+    const toast = await this.toastController.create({
+      message: 'Executada com sucesso!',
+      duration: 2000,
+      position: 'top',
+      color: 'primary',
+    });
+    toast.present();
   }
 
   async buttonExecuted(){
@@ -670,6 +684,7 @@ console.log(this.tasksService.notesTasks , 'NOTAS TASK 1')
     console.log(this.tasksService.visiteToDo, 'pq0')
     this.tasksService.getColor(this.tasksService.selectedTask.id);
 
+    this.presentSuccessToast();
     this.router.navigate(["/tabs/tab1"]);
   // }
   // else {
@@ -775,7 +790,7 @@ async buttonResume(){
     console.log(this.tasksService.visiteToDo, 'pq0')
     this.tasksService.getColor(this.tasksService.selectedTask.id);
     this.tasksService.msgWarningExecuted = false;
-
+this.presentSuccessToast();
     this.router.navigate(["/tabs/tab1"]);
   // }
   // else {

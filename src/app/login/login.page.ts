@@ -131,7 +131,7 @@ export class LoginPage implements OnInit {
    */
   async signInClick() {
 
-    this.presentLoadingWithOptions();
+   await  this.presentLoadingWithOptions();
 
     const authentication = {
       username: this.email.value,
