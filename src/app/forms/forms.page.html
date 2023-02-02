@@ -43,7 +43,7 @@
 <ion-content>
   <div class="info-container-0">
     <div class="container-main">
-      <form [formGroup]="dateFormsStep1">
+      <form [formGroup]="formsFields.dateFormsStep1">
         <div class="container-step1" *ngIf="currentStep === 0">
           <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
             >Data da Tarefa</nc-text
@@ -67,7 +67,7 @@
             <ion-select
               formControlName="type"
               placeholder="Interna ou Externa"
-              [(ngModel)]="sureOption"
+              [(ngModel)]="typeOption"
               (ionChange)="onSelectChange2()"
             >
               <ion-select-option value="Interna">Interna</ion-select-option>
@@ -149,7 +149,7 @@
           </div>
         </div>
       </form>
-      <form [formGroup]="dateFormsStep3">
+      <form [formGroup]="formsFields.dateFormsStep3">
         <div class="container-step3" *ngIf="currentStep === 2">
           <div class="title-sub">
             <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
@@ -167,8 +167,8 @@
               [(ngModel)]="sureOption"
               (ionChange)="onSelectChange()"
             >
-              <ion-select-option value="yes">Sim</ion-select-option>
-              <ion-select-option value="no">Não</ion-select-option>
+              <ion-select-option value="true">Sim</ion-select-option>
+              <ion-select-option value="false">Não</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item *ngIf="showReason">
@@ -186,8 +186,8 @@
               [(ngModel)]="optionOVM"
               (ionChange)="onSelectChange1()"
             >
-              <ion-select-option value="yes">Sim</ion-select-option>
-              <ion-select-option value="no">Não</ion-select-option>
+              <ion-select-option value="true">Sim</ion-select-option>
+              <ion-select-option value="false">Não</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item *ngIf="showReasonOvm">
@@ -245,7 +245,7 @@
           </ion-grid>
         </div>
       </form>
-      <form [formGroup]="dateFormsStep2">
+      <form [formGroup]="formsFields.dateFormsStep2">
         <div class="container-step2" *ngIf="currentStep === 1">
           <div class="container-materials-1">
             <ion-label style="margin-bottom: 5px; font-weight: bold"
@@ -311,7 +311,7 @@
         </div>
         <!-- <ion-button (click)="onSubmit()" expand="block">Submit</ion-button> -->
       </form>
-      <form [formGroup]="dateFormsStep4">
+      <form [formGroup]="formsFields.dateFormsStep4">
         <div class="container-step4" *ngIf="currentStep === 3">
           <div class="container-materials">
             <ion-label

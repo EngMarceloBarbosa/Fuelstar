@@ -9,6 +9,7 @@ import { TaskApiService } from '../shared/http/task-api.service';
 import { InstancePatch } from '../utils/models/tasks';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ToastController } from '@ionic/angular';
+import { FormsService } from '../shared/services/forms.service';
 
 
 @Component({
@@ -34,50 +35,17 @@ export class FormsPage implements OnInit {
   notes1: any;
   notes2: any;
 
-  sureOption: string;
-  optionOVM: string;
+  sureOption: boolean;
+  optionOVM: boolean;
+  typeOption:string;
   showReason = false;
   showReasonOvm = false;
   showDeslocation = true;
 
-  dateFormsStep1 = new FormGroup({
-    startDate: new FormControl('', [Validators.required]),
-    endDate: new FormControl('', [Validators.required]),
-    dateOfTheDay: new FormControl('', [Validators.required]),
-    departure: new FormControl('', [Validators.required]),
-    destination: new FormControl('', [Validators.required]),
-    kilometers: new FormControl('', [Validators.required]),
-    type: new FormControl('', [Validators.required]),
-    registration: new FormControl('', [Validators.required]),
 
-  });
 
-  dateFormsStep2 = new FormGroup({
-    materials: new FormControl(''),
-    anomalias: new FormControl(''),
-    trabalho: new FormControl('')
-  });
 
-  dateFormsStep3 = new FormGroup({
-    sure: new FormControl('', [Validators.required]),
-    reason: new FormControl(''),
-    sureOVM: new FormControl(''),
-    reasonOVM: new FormControl(''),
-    initialDate: new FormControl(''),
-    finalDate: new FormControl(''),
-  });
 
-  dateFormsStep4 = new FormGroup({
-    signatures: new FormControl('')
-  });
-
-  finalForm = new FormGroup ({
-   dateFormsStep1 : this.dateFormsStep1,
-   dateFormsStep2 : this.dateFormsStep2,
-   dateFormsStep3 : this.dateFormsStep3,
-   dateFormsStep4 : this.dateFormsStep4,
-
-  })
 
   submitted = false;
   startDate = new Date().toISOString();
@@ -97,7 +65,7 @@ export class FormsPage implements OnInit {
   // selectedImage: string;
   selectedImages = []
   rows: string[][] = [];
-  constructor(private router: Router, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController) {
+  constructor(private router: Router, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController, public formsFields: FormsService) {
 
   }
 
@@ -117,7 +85,7 @@ export class FormsPage implements OnInit {
 
   selectImages() {
     const options: CameraOptions = {
-      quality: 60,
+      quality: 15,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
@@ -200,37 +168,160 @@ export class FormsPage implements OnInit {
   }
 
   onSelectChange() {
-    this.showReason = this.sureOption === 'no';
+
+    this.showReason = this.formsFields.dateFormsStep3.value.sure == "false"
+    console.log(    this.showReason)
+    // this.sureOption === 'no'
+
+
   }
   onSelectChange1() {
-    this.showReasonOvm = this.optionOVM === 'no';
+    this.showReason = this.formsFields.dateFormsStep3.value.sureOVM == "false"
+    // this.showReasonOvm =false;
+
+
   }
   onSelectChange2() {
-    this.showDeslocation = this.sureOption === 'Externa';
+    this.showDeslocation = this.typeOption === 'Externa';
     this.submitted = false;
   }
 
 
 
 
-  next() {
+  async next() {
+
+    console.log(this.formsFields.dateFormsStep1.value.dateOfTheDay)
+    console.log(this.formsFields.dateFormsStep1)
 
     this.submitted = false;
-    if (this.dateFormsStep1.valid || (this.sureOption === 'Interna' && this.dateFormsStep1.value.dateOfTheDay != "")) {
+    if (this.formsFields.dateFormsStep1.valid || (this.formsFields.dateFormsStep1.value.type === 'Interna' && this.formsFields.dateFormsStep1.value.dateOfTheDay != "")) {
       this.submitted = false;
-      console.log(this.dateFormsStep1.value);
-      if (this.dateFormsStep2.valid) {
+      console.log(this.formsFields.dateFormsStep1.value);
+      if (this.formsFields.dateFormsStep2.valid) {
 
-        console.log(this.dateFormsStep2.value);
-        if (this.dateFormsStep3.valid) {
-          console.log(this.dateFormsStep3.value)
+        console.log(this.formsFields.dateFormsStep2.value);
+        if (this.formsFields.dateFormsStep3.valid) {
+          console.log(this.formsFields.dateFormsStep3.value)
         }
         console.log(this.signatureImageClient)
-        console.log(this.finalForm.value, 'Formulário FINAL ')
+        console.log(this.formsFields.finalForm.value, 'Formulário FINAL ')
 
         if (this.currentStep === 3 && this.signatureImageClient != "" && this.signatureImageTecnic != "") {
           console.log('PASSOU PODE AVANÇAR ')
           console.log(this.signatureImageClient)
+
+          const forms = {
+            formId: "DB6F3078-8B55-4628-861A-81F56CF57D7D",
+            fields: {
+              dateFields : [
+                {
+                fieldId: "00000000-0000-0000-0000-000000000002",
+                value: this.formsFields.dateFormsStep1.value.dateOfTheDay
+
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000004",
+                  value : this.formsFields.dateFormsStep1.value.startDate
+
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000005",
+                  value : this.formsFields.dateFormsStep1.value.endDate
+
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000017",
+                  value : this.formsFields.dateFormsStep3.value.initialDate
+
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000018",
+                  value : this.formsFields.dateFormsStep3.value.finalDate
+
+                }
+
+
+              ],
+              booleanFields : [
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000015",
+                  value : this.formsFields.dateFormsStep3.value.sure
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000013",
+                  value : this.formsFields.dateFormsStep3.value.sureOVM
+                }
+              ],
+              fieldText : [
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000006",
+                  value : this.formsFields.dateFormsStep1.value.departure
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000007",
+                  value : this.formsFields.dateFormsStep1.value.destination
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000009",
+                  value : this.formsFields.dateFormsStep1.value.registration
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000014",
+                  value : this.formsFields.dateFormsStep3.value.reason
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000016",
+                  value : this.formsFields.dateFormsStep3.value.reason
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000010",
+                  value : this.formsFields.dateFormsStep2.value.materials
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000011",
+                  value : this.formsFields.dateFormsStep2.value.anomalias
+                },
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000012",
+                  value : this.formsFields.dateFormsStep2.value.trabalho
+                },
+
+              ],
+              selectFields: [
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000003",
+                  value : this.formsFields.dateFormsStep1.value.type
+                }
+              ],
+              numericFields: [
+                {
+                  fieldId: "00000000-0000-0000-0000-000000000008",
+                  value : parseFloat(this.formsFields.dateFormsStep1.value.kilometers)
+                }
+              ]
+
+            }
+
+          }
+
+
+          console.log(forms, 'O QUE FOI MANDADO')
+console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia ');
+          await this.formsFields.postForms(forms).then((res)=> {
+
+            this.tasksService.formsSave = res
+            this.formsFields.idForm = res.id
+
+            console.log(       this.formsFields.idForm)
+
+            console.log(res, 'FOI GRAVADO')
+           })
+
+           await this.formsFields.submitForms(this.formsFields.idForm).then((res)=> {
+            this.formsFields.formsSubmit = res;
+            console.log(this.formsFields.formsSubmit)
+           })
 
 
           const temp: ModalMessageModel = {
@@ -248,7 +339,7 @@ export class FormsPage implements OnInit {
             rightButtonTesterProperty: "clickLeaveApp",
             rightButtonColor: "c-scale-12",
             rightButtonCallback: () => {
-              this.buttonFinalized();
+              // this.buttonFinalized();
             },
           };
           this.alertService.open(temp);
@@ -268,16 +359,16 @@ export class FormsPage implements OnInit {
       this.submitted = true;
       console.log("form is invalid");
       // Check if any of the fields are empty
-      if (this.dateFormsStep1.get('startDate').value === '') {
+      if (this.formsFields.dateFormsStep1.get('startDate').value === '') {
         console.log('Start date is required');
       }
-      if (this.dateFormsStep1.get('endDate').value === '') {
+      if (this.formsFields.dateFormsStep1.get('endDate').value === '') {
         console.log('End date is required');
       }
-      if (this.dateFormsStep1.get('departure').value === '') {
+      if (this.formsFields.dateFormsStep1.get('departure').value === '') {
         console.log('Departure location is required');
       }
-      if (this.dateFormsStep1.get('destination').value === '') {
+      if (this.formsFields.dateFormsStep1.get('destination').value === '') {
         console.log('Destination location is required');
       }
     }
@@ -499,12 +590,12 @@ export class FormsPage implements OnInit {
 
   onSubmit() {
     this.submitted = false;
-    if (this.dateFormsStep1.valid) {
+    if (this.formsFields.dateFormsStep1.valid) {
       this.submitted = false;
-      console.log(this.dateFormsStep1.value);
-      if (this.dateFormsStep2.valid) {
+      console.log(this.formsFields.dateFormsStep1.value);
+      if (this.formsFields.dateFormsStep2.valid) {
 
-        console.log(this.dateFormsStep2.value);
+        console.log(this.formsFields.dateFormsStep2.value);
         if (this.signatureImageClient != "") {
           console.log('PASSOU PODE AVANÇAR ')
         } else {
@@ -516,16 +607,16 @@ export class FormsPage implements OnInit {
       this.submitted = true;
       console.log("form is invalid");
       // Check if any of the fields are empty
-      if (this.dateFormsStep1.get('startDate').value === '') {
+      if (this.formsFields.dateFormsStep1.get('startDate').value === '') {
         console.log('Start date is required');
       }
-      if (this.dateFormsStep1.get('endDate').value === '') {
+      if (this.formsFields.dateFormsStep1.get('endDate').value === '') {
         console.log('End date is required');
       }
-      if (this.dateFormsStep1.get('departure').value === '') {
+      if (this.formsFields.dateFormsStep1.get('departure').value === '') {
         console.log('Departure location is required');
       }
-      if (this.dateFormsStep1.get('destination').value === '') {
+      if (this.formsFields.dateFormsStep1.get('destination').value === '') {
         console.log('Destination location is required');
       }
     }

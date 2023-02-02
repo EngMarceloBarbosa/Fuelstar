@@ -770,7 +770,7 @@
 
     <div class="input-search">
       <div class="search-client">
-        <ion-textarea #search (ionChange)="modelChangeFn($event)"           (keydown.enter)="send($event)"  placeholder="Notas" autofocus="false" [autoGrow]="true" minlength="1" maxlength="344"
+        <ion-textarea #search (ionChange)="modelChangeFn($event)"         placeholder="Notas" autofocus="false" [autoGrow]="true" minlength="1" maxlength="344"
         value="{{ this.tasksService.selectedPost.note}}"  >
       </ion-textarea>
 

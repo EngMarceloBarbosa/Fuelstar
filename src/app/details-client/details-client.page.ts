@@ -1033,13 +1033,19 @@ this.presentSuccessToast();
 //   }
 // }
 
-send($event: KeyboardEvent){
-  console.log($event)
-  if ($event.key === 'Enter') {
-    this.save(this.tasksService.selectedTask)
-  }
-}
+// send($event: KeyboardEvent){
+//   console.log($event)
+//   if ($event.key === 'Enter') {
+//     this.save(this.tasksService.selectedTask)
+//   }
+// }
 
+
+modelChangeFn(e ){
+  this.tasksService.postNotes = e;
+    console.log(this.tasksService.postNotes);
+
+}
 
 
 

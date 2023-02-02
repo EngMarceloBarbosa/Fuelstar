@@ -11,6 +11,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { TasksService } from './shared/services/tasks.service';
 import { environment } from 'src/environments/environment';
+import { FormsService } from './shared/services/forms.service';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class AppComponent {
 
     public router: Router,
     private alertService: AlertController,
-    public tasksService:TasksService
+    public tasksService:TasksService,
+
   ) {
 
 

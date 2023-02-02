@@ -193,7 +193,7 @@ verifyNif(form: FormData){
   editNotesInstanceSheetsPut(taskMain1) {
     console.log('value', taskMain1);
     return this.http
-      .put<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${taskMain1.instanceId}/Tasks`,  (taskMain1), {
+      .put<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${taskMain1.id}/Tasks`,  (taskMain1), {
         headers: new HttpHeaders({
           Authorization: "Bearer " + environment.token,
           'Content-type': 'application/json',

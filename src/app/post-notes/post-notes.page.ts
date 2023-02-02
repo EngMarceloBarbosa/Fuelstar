@@ -47,7 +47,7 @@ export class PostNotesPage implements OnInit {
   }else {
     this.tasksService.timeHours();
     this.tasksService.putNotes();
-    this.tasksService.postNotes.detail.value = ""
+    // this.tasksService.postNotes.detail.value = ""
     console.log('PODE SER ')
     this.router.navigate(['/details-client'])
   }

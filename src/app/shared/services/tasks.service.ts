@@ -16,10 +16,10 @@ import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
-
-  searchDoc:any;
+  formsSave:any;
+  searchDoc: any;
   allDocumentsFilter: any;
-  allDocumentsFilter1:any;
+  allDocumentsFilter1: any;
   listsItems: any;
   contactNumber: any;
   idContact: any;
@@ -31,11 +31,11 @@ export class TasksService {
   listTasks1: Tasks[];
   listTasks2: Tasks[];
   listTasksFinalized: Instance[] = [];
-  listTasksFinalizedHistory : Instance[] = [];
+  listTasksFinalizedHistory: Instance[] = [];
   listTasksFinalizedHistory1: any;
   listTasksSuspended: Tasks[];
   listTasksCancelled: Tasks[];
-  listTasksItemId:any;
+  listTasksItemId: any;
   quantityTotal: any;
   listClients: Entity[] = [];
   listClients1: Classification[] = [];
@@ -66,7 +66,7 @@ export class TasksService {
   visiteEfected: any[] = [];
   visiteToDo: any[] = [];
   visiteToDo1: any[] = [];
-  test: any[]=[];
+  test: any[] = [];
   item: any;
   badge: number = 0;
   selectedItem: any = "";
@@ -78,66 +78,66 @@ export class TasksService {
   validatorEmail: boolean = false;
   isSubmitted = false;
   listClassifications: any;
-  selectedList:any[]=[1];
-  today:any
+  selectedList: any[] = [1];
+  today: any
   time: any;
-  totalTimeZ:any;
-  timeNew:any;
-  validatorNIF:boolean = false;
-  controlStep:boolean = false;
-  controlStep1:boolean = false;
-  controlStep2:boolean = false;
-  controlStep3:boolean = false;
-  controlStepCheck:boolean = false;
+  totalTimeZ: any;
+  timeNew: any;
+  validatorNIF: boolean = false;
+  controlStep: boolean = false;
+  controlStep1: boolean = false;
+  controlStep2: boolean = false;
+  controlStep3: boolean = false;
+  controlStepCheck: boolean = false;
   controlStepCheckk: boolean = false;
   controlStepCheckk1: boolean = false;
   controlStepCheckk2: boolean = false;
-  msgAlert:boolean = false;
-  controlStepCheck1:boolean = false;
-  controlStepCheck2:boolean = false;
-  controlStepCheck3:boolean = false;
+  msgAlert: boolean = false;
+  controlStepCheck1: boolean = false;
+  controlStepCheck2: boolean = false;
+  controlStepCheck3: boolean = false;
   // turnColor = false;
   turnColorOrange = false;
-  msgErrorNif:any= "Nif não Válido"
-    min = '1';
+  msgErrorNif: any = "Nif não Válido"
+  min = '1';
   max = '1000';
   random: any;
   msgAlertReceipt: boolean = false;
   turnFreeSale: boolean = false;
   valueReceipt: any;
-  documentMethods:any;
-  totalValueRequestPrice:any;
-  totalValueItemPrice:any;
+  documentMethods: any;
+  totalValueRequestPrice: any;
+  totalValueItemPrice: any;
   toDo: boolean = true;
   turnSearch: boolean = false;
   latitude: any;
-  longitude:any;
+  longitude: any;
   entityId: any;
   roleId: any;
-  entityName:any;
-  entityLastname:any;
-  operation:any ="Operation Type"
+  entityName: any;
+  entityLastname: any;
+  operation: any = "Operation Type"
   turnMsgAlertTask = false;
   turnMsgAlertTask1 = false;
-  msgAlertTasks:any;
-  msgAlertTasks1:any;
+  msgAlertTasks: any;
+  msgAlertTasks1: any;
   continue1: boolean = true;
   typesState: TypesState[];
-  typesStatesBullets:SubTypesState[];
+  typesStatesBullets: SubTypesState[];
   instanceId: any;
-  typesStateIntance:TypesState;
+  typesStateIntance: TypesState;
   turnColor = false;
   turnButton = false;
   turnButtonExecuted = false;
   finalized = false;
   selectedTask: any = [];
-  loginUser: any = "" ;
+  loginUser: any = "";
   notesTask: any = [];
   notesTasks: any = [];
 
   postNotes: any = "";
-  totalTime:any;
-  selectedPost:any;
+  totalTime: any;
+  selectedPost: any;
   turnMessageCreate = false;
   turnMessageCreateEdit = false;
   msgWarningExecuted = false;
@@ -145,14 +145,14 @@ export class TasksService {
   loginValues: any;
   listDateTest: any[];
   listDateTest1: any[];
-  valueDate:any;
-  updateTask : any = [];
-  turnButtonResume =  false;
-  dataSave :any = "";
+  valueDate: any;
+  updateTask: any = [];
+  turnButtonResume = false;
+  dataSave: any = "";
   dataSave1: any = "";
-turnTab3 = false;
-listEstimatedStart: any;
-listTasksFinalizedHistory3:any;
+  turnTab3 = false;
+  listEstimatedStart: any;
+  listTasksFinalizedHistory3: any;
   // turnCreatePost = false;
   // turnEditPost= false;
   //   newClientForm: FormGroup =  new FormGroup({
@@ -164,11 +164,12 @@ listTasksFinalizedHistory3:any;
   // }
   // )
 
-  constructor(private http: HttpClient, private contactApiService: ContactsTaskService, public itemApiService: ItemApiService,  public router: Router) {
+
+  constructor(private http: HttpClient, private contactApiService: ContactsTaskService, public itemApiService: ItemApiService, public router: Router) {
 
 
 
-   }
+  }
 
   // public listTasks(id: string) {
   //     return this.http
@@ -204,68 +205,68 @@ listTasksFinalizedHistory3:any;
   value$ = new BehaviorSubject<any>('');
   contact$ = new BehaviorSubject<any>('');
 
-timeHours(){
-  const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
+  timeHours() {
+    const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+      "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Decembro"
+    ];
 
-   this.today = new Date();
-   this.time = new Date();
-   this.totalTime = new Date();
-   this.totalTimeZ = new Date();
-   this.timeNew = new Date();
-  var dd = String(this.today.getDate()).padStart(2, '0');
-  var yyyy = this.today.getFullYear();
-  var hours = String(this.time.getHours()).padStart(2, '0')
-  var minutes = String(this.time.getMinutes()).padStart(2, '0');
-  var seconds = String(this.time.getSeconds()).padStart(2, '0');
-  var ms = String(this.time.getMilliseconds()).padStart(2, '0').substring(0,2);
-  var month = String(this.time.getMonth() + 1).padStart(2, '0') ;
+    this.today = new Date();
+    this.time = new Date();
+    this.totalTime = new Date();
+    this.totalTimeZ = new Date();
+    this.timeNew = new Date();
+    var dd = String(this.today.getDate()).padStart(2, '0');
+    var yyyy = this.today.getFullYear();
+    var hours = String(this.time.getHours()).padStart(2, '0')
+    var minutes = String(this.time.getMinutes()).padStart(2, '0');
+    var seconds = String(this.time.getSeconds()).padStart(2, '0');
+    var ms = String(this.time.getMilliseconds()).padStart(2, '0').substring(0, 2);
+    var month = String(this.time.getMonth() + 1).padStart(2, '0');
 
-  console.log(hours, 'horas')
+    console.log(hours, 'horas')
 
-  this.today = dd + '/' + monthNames[this.today.getMonth()] + '/' + yyyy;
-  this.time = hours + '-' + minutes + '-' + seconds;
-  this.timeNew = yyyy  + '-' + month  + '-' + dd
+    this.today = dd + '/' + monthNames[this.today.getMonth()] + '/' + yyyy;
+    this.time = hours + '-' + minutes + '-' + seconds;
+    this.timeNew = yyyy + '-' + month + '-' + dd
 
-   this.totalTime = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + ':'+ ms +'Z'
-   this.totalTimeZ = yyyy  + '-' + month  + '-' + dd+'T' + hours + ':' + minutes + ':' + seconds + ':'+ ms
-  console.log(this.today)
-  console.log(this.time)
-  console.log(this.timeNew)
-console.log(this.totalTimeZ)
+    this.totalTime = yyyy + '-' + month + '-' + dd + 'T' + hours + ':' + minutes + ':' + seconds + ':' + ms + 'Z'
+    this.totalTimeZ = yyyy + '-' + month + '-' + dd + 'T' + hours + ':' + minutes + ':' + seconds + ':' + ms
+    console.log(this.today)
+    console.log(this.time)
+    console.log(this.timeNew)
+    console.log(this.totalTimeZ)
 
-////// TESTES PARA SAIR E CONTINUAR A LOGAR ///////////////////////////////////7
-
-
-  // this.dataSave = localStorage.getItem('data');
-  // this.dataSave1 = localStorage.getItem('dataToday');
-  // console.log(this.dataSave, '21')
-  // console.log(this.dataSave1, '34')
+    ////// TESTES PARA SAIR E CONTINUAR A LOGAR ///////////////////////////////////7
 
 
-  // if(this.dataSave > this.dataSave1){
-  //   console.log('true')
-  //   console.log('entrou Menu')
-  //   this.router.navigate(["/tabs/tab1"])
-  // }else{
-  //   this.router.navigate(["/login"])
-  //   console.log('entrou LOGIN')
-
-  // }
+    // this.dataSave = localStorage.getItem('data');
+    // this.dataSave1 = localStorage.getItem('dataToday');
+    // console.log(this.dataSave, '21')
+    // console.log(this.dataSave1, '34')
 
 
+    // if(this.dataSave > this.dataSave1){
+    //   console.log('true')
+    //   console.log('entrou Menu')
+    //   this.router.navigate(["/tabs/tab1"])
+    // }else{
+    //   this.router.navigate(["/login"])
+    //   console.log('entrou LOGIN')
 
-
-  // console.log(this.dataSave.substring(0,10, '3'))
-  console.log(this.dataSave, '2');
-  console.log(this.dataSave1, '3')
+    // }
 
 
 
 
+    // console.log(this.dataSave.substring(0,10, '3'))
+    console.log(this.dataSave, '2');
+    console.log(this.dataSave1, '3')
 
-}
+
+
+
+
+  }
 
 
 
@@ -284,7 +285,7 @@ console.log(this.totalTimeZ)
     )
   }
 
-  putTaskExecuted(){
+  putTaskExecuted() {
 
     var task = {
       statusId: "23d91faf-d13d-42b0-902b-2de5d49a31ee",
@@ -294,55 +295,55 @@ console.log(this.totalTimeZ)
 
     console.log(task)
     this.contactApiService.putExecuted(task).then(() =>
-    console.log(task, 'em execução')
+      console.log(task, 'em execução')
     )
   }
 
 
 
 
-  putTaskSuspend(){
+  putTaskSuspend() {
 
-  var task = {
-    statusId: "00bba7ce-f90b-4ebb-9478-777376f78e93",
-    note: null,
-    instanceId: this.instanceId
+    var task = {
+      statusId: "00bba7ce-f90b-4ebb-9478-777376f78e93",
+      note: null,
+      instanceId: this.instanceId
+    }
+
+    console.log(task)
+    this.contactApiService.putSuspend(task).then(() =>
+      console.log(task, 'suspenso')
+    )
   }
 
-  console.log(task)
-  this.contactApiService.putSuspend(task).then(() =>
-  console.log(task, 'suspenso')
-  )
-}
 
+  async putTaskFinalize() {
 
-async  putTaskFinalize(){
+    var task = {
+      statusId: "e6875497-3ad4-4121-b3aa-4efde5d12fb1",
+      note: null,
+      instanceId: this.instanceId
+    }
 
-  var task = {
-    statusId: "e6875497-3ad4-4121-b3aa-4efde5d12fb1",
-    note: null,
-    instanceId: this.instanceId
+    console.log(task)
+    await this.contactApiService.putFinalized(task).then(() =>
+      console.log(task, 'finalizado')
+    )
   }
 
-  console.log(task)
-  await this.contactApiService.putFinalized(task).then(() =>
-  console.log(task,  'finalizado')
-  )
-}
+  putTaskCancelled() {
 
-putTaskCancelled(){
+    var task = {
+      statusId: "7d555330-4228-45b8-87a3-1f8c905284fe",
+      note: null,
+      instanceId: this.instanceId
+    }
 
-  var task = {
-    statusId: "7d555330-4228-45b8-87a3-1f8c905284fe",
-    note: null,
-    instanceId: this.instanceId
+    console.log(task)
+    this.contactApiService.putCancelled(task).then(() =>
+      console.log(task, 'Cancelado')
+    )
   }
-
-  console.log(task)
-  this.contactApiService.putCancelled(task).then(() =>
-  console.log(task,  'Cancelado')
-  )
-}
 
 
   getImageItems() {
@@ -369,8 +370,8 @@ putTaskCancelled(){
   async addNotes(task) {
 
     await this.contactApiService.getNotesInstance(this.selectedTask).then((res) =>
-    // console.log(res)
-    this.notesTask = res
+      // console.log(res)
+      this.notesTask = res
     )
 
     console.log(this.notesTask, 'NOTAS DOS POSTS')
@@ -379,10 +380,10 @@ putTaskCancelled(){
 
 
 
-   await  this.notesTask.tasks.map((res)=> {
-     this.notesTasks = res
-  })
-// con
+    await this.notesTask.tasks.map((res) => {
+      this.notesTasks = res
+    })
+    // con
 
     this.notesTask = new InstancePatch(this.selectedTask);
 
@@ -409,39 +410,38 @@ putTaskCancelled(){
     // const listTasksByIdNew = {
     //   note: this.notes.detail.value,
     //   date: "2022-12-27T11:08:28.098Z"
-      // ...data,
+    // ...data,
     // };
 
 
-console.log(this.selectedTask.id)
+    console.log(this.selectedTask.id)
 
 
 
-    const taskMain = {
-      note: this.notes.detail.value,
-      instanceId: this.selectedTask.id,
-      entityId: task.entity.id,
-      id:  task.id,
-      date: this.totalTime
-      // ...data,
-    };
+    // const taskMain = {
+    //   note: this.notes.detail.value,
+    //   instanceId: this.selectedTask.id,
+    //   entityId: task.entity.id,
+    //   id:  task.id,
+    //   date: this.totalTime
+    //   // ...data,
+    // };
 
     // PARA POR QUANDO A ROTA DO STAGING FOR ATUALIZADA -------------------------------
 
-    // const taskMain1 = {
-    //   entityId:  task.entity.id,
-    //   id: task.id,
-    //   startDate: task.estimatedStartDate,
-    //   endDate: this.totalTime,
-    //   note: this.notes.detail.value,
-    // };
-    // console.log(this.notes, 'NOTES A NULO ')
+    const taskMain1 = {
+      entityId: this.selectedTask.entity.id,
+      id: this.selectedTask.id,
+      startDate: this.selectedTask.estimatedStartDate,
+      endDate: this.totalTimeZ,
+      note: this.postNotes.detail.value
+    };
+    console.log(this.notes, 'NOTES A NULO ')
 
-    // await this.contactApiService.editNotesInstanceSheetsPut(taskMain1).then(() =>
-    //  this.selectedTask.note = taskMain1.note
-    //  )
-
-// ACABA AQUI ------------------------------------------------------------------------------
+    await this.contactApiService.editNotesInstanceSheetsPut(taskMain1).then(() =>
+      this.selectedTask.note = taskMain1.note
+    )
+    // ACABA AQUI ------------------------------------------------------------------------------
 
 
     // this.listTasksById.note = this.notes;
@@ -450,17 +450,17 @@ console.log(this.selectedTask.id)
     //   this.selectedTask.note = listTasksByIdNew.note
     // )
 
-   await this.contactApiService.editNotesInstanceSheets(taskMain).then(() =>
-    this.selectedTask.note = taskMain.note
-    )
+    //  await this.contactApiService.editNotesInstanceSheets(taskMain).then(() =>
+    //   this.selectedTask.note = taskMain.note
+    //   )
 
 
     console.log(this.notes);
 
 
     await this.contactApiService.getNotesInstance(this.selectedTask).then((res) =>
-    // console.log(res)
-    this.notesTask = res
+      // console.log(res)
+      this.notesTask = res
     )
 
     console.log(this.notesTask)
@@ -471,11 +471,11 @@ console.log(this.selectedTask.id)
 
 
 
-   await  this.notesTask.tasks.map((res)=> {
-     this.notesTasks = res
-  })
-// console.log.notesTasks.note)
-  console.log(this.notesTasks, 'Notas das TASKS' )
+    await this.notesTask.tasks.map((res) => {
+      this.notesTasks = res
+    })
+    // console.log.notesTasks.note)
+    console.log(this.notesTasks, 'Notas das TASKS')
 
     // console.log(listTasksByIdNew, ' LISTA NOVA');
   }
@@ -486,49 +486,49 @@ console.log(this.selectedTask.id)
 
     // PARA POR QUANDO A ROTA DO STAGING FOR ATUALIZADA -------------------------------
 
-    // const taskMain1 = {
-    //   entityId:  task.entity.id,
-    //   id: task.id,
-    //   startDate: task.estimatedStartDate,
-    //   endDate: this.totalTime,
-    //   note: this.notes.detail.value,
-    // };
-    // console.log(this.notes, 'NOTES A NULO ')
-
-    // await this.contactApiService.editNotesInstanceSheetsPut(taskMain1).then(() =>
-    //  this.selectedTask.note = taskMain1.note
-    //  )
-
-// ACABA AQUI ------------------------------------------------------------------------------
-
-
-    console.log(this.totalTime)
-
-    const taskMain = {
-      note: this.postNotes.detail.value,
-      instanceId: this.selectedTask.id,
+    const taskMain1 = {
       entityId: this.selectedTask.entity.id,
-      date: this.totalTime
-      // ...data,
+      id: this.selectedTask.id,
+      startDate: this.selectedTask.estimatedStartDate,
+      endDate: this.totalTimeZ,
+      note: this.postNotes.detail.value
     };
     console.log(this.notes, 'NOTES A NULO ')
 
-    await this.contactApiService.putNotesInstanceSheetsPost(taskMain).then(() =>
-    this.selectedTask.note = taskMain.note
+    await this.contactApiService.editNotesInstanceSheetsPut(taskMain1).then(() =>
+      this.selectedTask.note = taskMain1.note
     )
 
-    console.log(this.notes);
+    // ACABA AQUI ------------------------------------------------------------------------------
+
+
+    // console.log(this.totalTime)
+
+    // const taskMain = {
+    //   note: this.postNotes.detail.value,
+    //   instanceId: this.selectedTask.id,
+    //   entityId: this.selectedTask.entity.id,
+    //   date: this.totalTime
+    //   // ...data,
+    // };
+    // console.log(this.notes, 'NOTES A NULO ')
+
+    // await this.contactApiService.putNotesInstanceSheetsPost(taskMain).then(() =>
+    // this.selectedTask.note = taskMain.note
+    // )
+
+    // console.log(this.notes);
 
     await this.contactApiService.getNotesInstance(this.selectedTask).then((res) =>
-    // console.log(res)
-    this.notesTask = res
+      // console.log(res)
+      this.notesTask = res
     )
 
-   await  this.notesTask.tasks.map((res) => {
+    await this.notesTask.tasks.map((res) => {
       this.notesTasks = res
     })
-console.log(this.notesTasks)
-    console.log(    this.notesTask)
+    console.log(this.notesTasks)
+    console.log(this.notesTask)
 
 
   }
@@ -545,24 +545,24 @@ console.log(this.notesTasks)
     };
     if (nif.length !== 9) {
       console.log('NÃO PASSOU')
-this.validatorNIF = true;
-    };
-    if (!validationSets.one.includes(nif.substring(0, 1)) && !validationSets.two.includes(nif.substring(0, 2))){
       this.validatorNIF = true;
-    }else{
-    const nifNumbers = nif.split('').map(c => Number.parseInt(c))
-    const total = nifNumbers[0] * 9 +
-      nifNumbers[1] * 8 +
-      nifNumbers[2] * 7 +
-      nifNumbers[3] * 6 +
-      nifNumbers[4] * 5 +
-      nifNumbers[5] * 4 +
-      nifNumbers[6] * 3 +
-      nifNumbers[7] * 2;
-    const modulo11 = (Number(total) % 11);
-    const checkDigit = modulo11 < 2 ? 0 : 11 - modulo11;
-    this.validatorNIF = false;
-    return checkDigit === Number(nif[8]);
+    };
+    if (!validationSets.one.includes(nif.substring(0, 1)) && !validationSets.two.includes(nif.substring(0, 2))) {
+      this.validatorNIF = true;
+    } else {
+      const nifNumbers = nif.split('').map(c => Number.parseInt(c))
+      const total = nifNumbers[0] * 9 +
+        nifNumbers[1] * 8 +
+        nifNumbers[2] * 7 +
+        nifNumbers[3] * 6 +
+        nifNumbers[4] * 5 +
+        nifNumbers[5] * 4 +
+        nifNumbers[6] * 3 +
+        nifNumbers[7] * 2;
+      const modulo11 = (Number(total) % 11);
+      const checkDigit = modulo11 < 2 ? 0 : 11 - modulo11;
+      this.validatorNIF = false;
+      return checkDigit === Number(nif[8]);
     }
   }
 
