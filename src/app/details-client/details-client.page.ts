@@ -826,11 +826,16 @@ this.presentSuccessToast();
   }
 
   buttonFinalizedForms(){
+    if(this.tasksService.selectedTask.currentStatus.id == "00bba7ce-f90b-4ebb-9478-777376f78e93"){
+      this.tasksService.msgWarningExecuted = true;
+    }else {
     setTimeout(() => {
+      this.tasksService.msgWarningExecuted = false;
+
       this.router.navigate(["/forms"]);
     }, 200);
     setTimeout
-
+  }
   }
 
 

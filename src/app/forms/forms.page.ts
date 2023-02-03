@@ -34,7 +34,7 @@ export class FormsPage implements OnInit {
 
   notes1: any;
   notes2: any;
-
+idOption:any;
   sureOption: boolean;
   optionOVM: boolean;
   typeOption:string;
@@ -176,7 +176,7 @@ export class FormsPage implements OnInit {
 
   }
   onSelectChange1() {
-    this.showReason = this.formsFields.dateFormsStep3.value.sureOVM == "false"
+    this.showReasonOvm = this.formsFields.dateFormsStep3.value.sureOVM == "false"
     // this.showReasonOvm =false;
 
 
@@ -184,6 +184,13 @@ export class FormsPage implements OnInit {
   onSelectChange2() {
     this.showDeslocation = this.typeOption === 'Externa';
     this.submitted = false;
+
+    if(this.typeOption === 'Externa'){
+      this.idOption = "00000000-0000-0000-0003-000000000002"
+    }
+    if(this.typeOption === 'Interna'){
+      this.idOption = "00000000-0000-0000-0003-000000000001"
+    }
   }
 
 
@@ -253,7 +260,7 @@ export class FormsPage implements OnInit {
                   value : this.formsFields.dateFormsStep3.value.sureOVM
                 }
               ],
-              fieldText : [
+              textFields : [
                 {
                   fieldId: "00000000-0000-0000-0000-000000000006",
                   value : this.formsFields.dateFormsStep1.value.departure
@@ -288,16 +295,21 @@ export class FormsPage implements OnInit {
                 },
 
               ],
-              selectFields: [
+              optionFields: [
                 {
                   fieldId: "00000000-0000-0000-0000-000000000003",
-                  value : this.formsFields.dateFormsStep1.value.type
+                  values : [
+                    {
+                      id: this.idOption,
+                      name: this.formsFields.dateFormsStep1.value.type
+                    }
+                  ]
                 }
               ],
-              numericFields: [
+              decimalFields: [
                 {
                   fieldId: "00000000-0000-0000-0000-000000000008",
-                  value : parseFloat(this.formsFields.dateFormsStep1.value.kilometers)
+                  value : this.formsFields.dateFormsStep1.value.kilometers
                 }
               ]
 
@@ -315,12 +327,26 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
 
             console.log(       this.formsFields.idForm)
 
+
+
             console.log(res, 'FOI GRAVADO')
            })
 
            await this.formsFields.submitForms(this.formsFields.idForm).then((res)=> {
             this.formsFields.formsSubmit = res;
             console.log(this.formsFields.formsSubmit)
+           })
+           const formId = [
+
+            this.formsFields.idForm
+
+
+          ]
+          console.log(formId)
+           await this.formsFields.PostsubmitForms( formId, this.tasksService.selectedTask.id).then((res)=> {
+            console.log(res)
+
+            this.formsFields.postFormsAfterProcess = res;
            })
 
 
@@ -339,7 +365,7 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
             rightButtonTesterProperty: "clickLeaveApp",
             rightButtonColor: "c-scale-12",
             rightButtonCallback: () => {
-              // this.buttonFinalized();
+              this.buttonFinalized();
             },
           };
           this.alertService.open(temp);

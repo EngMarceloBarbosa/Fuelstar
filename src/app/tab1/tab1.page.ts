@@ -580,6 +580,7 @@ console.log(res)
         this.tasksService.turnButtonExecuted = false;
         this.tasksService.turnButtonResume = false;
         this.tasksService.finalized = true;
+
         // this.tasksService.turnCreatePost = true;
         // this.tasksService.turnEditPost = true;
 

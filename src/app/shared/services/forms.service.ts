@@ -13,9 +13,10 @@ import { TasksService } from "./tasks.service";
 export class FormsService {
 
 
-  idForm:any;
+  idForm:any
   formsSubmit:any;
   form: FormGroup;
+  postFormsAfterProcess:any;
 
   dateFormsStep1 = new FormGroup({
     startDate: new FormControl('', [Validators.required]),
@@ -179,7 +180,7 @@ ngOnit(){
 
     // this.loadingService.loader();
     return this.http
-      .post<any>(`${environment.api}/api/Thebox/Forms/FormInstances`, (form), {
+      .post<any>(`${environment.api}/api/Thebox/Forms/FormInstances`, JSON.stringify(form), {
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,
@@ -197,7 +198,7 @@ ngOnit(){
 
     // this.loadingService.loader();
     return this.http
-      .patch<any>(`${environment.api}/api/Thebox/Forms/FormInstances/${id}/Process`, {
+      .patch<any>(`${environment.api}/api/Thebox/Forms/FormInstances/${id}/Process`, null ,{
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,
@@ -208,11 +209,11 @@ ngOnit(){
 
   }
 
-  PostsubmitForms(id) {
+  PostsubmitForms(formId, instanceId) {
 
     // this.loadingService.loader();
     return this.http
-      .patch<any>(`${environment.api}/api/Thebox/Forms/FormInstances/${id}/FormInstances`, {
+      .post<any>(`${environment.api}/api/Thebox/Bullets/BulletInstances/${instanceId}/FormInstances`, (formId), {
         headers: new HttpHeaders({
           "content-type": "application/json",
           Authorization: "Bearer " + environment.token,
