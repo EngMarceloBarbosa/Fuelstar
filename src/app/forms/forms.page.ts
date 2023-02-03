@@ -176,7 +176,7 @@ idOption:any;
 
   }
   onSelectChange1() {
-    this.showReasonOvm = this.formsFields.dateFormsStep3.value.sureOVM == "false"
+    this.showReasonOvm = this.formsFields.dateFormsStep3.value.sureOVM == "true"
     // this.showReasonOvm =false;
 
 

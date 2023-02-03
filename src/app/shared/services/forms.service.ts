@@ -13,11 +13,12 @@ import { TasksService } from "./tasks.service";
 export class FormsService {
 
 
-  idForm:any
+  idForm:any = [];
   formsSubmit:any;
   form: FormGroup;
   postFormsAfterProcess:any;
-
+  turnForm: boolean = false;
+  formGetById:any;
   dateFormsStep1 = new FormGroup({
     startDate: new FormControl('', [Validators.required]),
     endDate: new FormControl('', [Validators.required]),
@@ -223,6 +224,22 @@ ngOnit(){
       .toPromise();
 
   }
+
+  getFormsbyId(formIdGenerated) {
+
+    // this.loadingService.loader();
+    return this.http
+      .get<any>(`${environment.api}/api/Thebox/Forms/FormInstances/${formIdGenerated}`,  {
+        headers: new HttpHeaders({
+          "content-type": "application/json",
+          Authorization: "Bearer " + environment.token,
+        })
+      })
+      .pipe()
+      .toPromise();
+
+  }
+
 
 
 

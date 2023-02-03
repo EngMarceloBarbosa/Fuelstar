@@ -8,6 +8,7 @@ import { SwiperComponent } from 'swiper/angular';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { clientsTab } from '../shared/models/clients-tab1';
+import { FormsService } from '../shared/services/forms.service';
 import { ProductService } from '../shared/services/product.service';
 import { TasksService } from '../shared/services/tasks.service';
 
@@ -78,6 +79,8 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     public contactsTaskService: ContactsTaskService,
     private element: ElementRef,
     public loadingController: LoadingController,
+    public formsField : FormsService,
+   public  contactApiService: ContactsTaskService
   ) {
 
 
@@ -140,7 +143,9 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
     await this.taskApiService.getTasksItemIdAtribuited().then(res => {
       // this.tasksService.listTasks1 = res;
-      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
+
+
+       this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10)== this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
 
       // this.tasksService.visiteToDo = this.tasksService.listTasks1
       // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
@@ -598,6 +603,29 @@ console.log(res)
       if (test.currentStatus.id == "e6875497-3ad4-4121-b3aa-4efde5d12fb1") {
         this.tasksService.turnButton = false;
         this.tasksService.finalized = false;
+        this.formsField.turnForm = true;
+
+        await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then((res) => {
+      // console.log(res)
+      this.tasksService.notesTask = res
+      console.log(this.tasksService.notesTask)
+      this.tasksService.notesTask.tasks
+      console.log(   this.tasksService.notesTask.tasks
+        )
+        console.log(this.tasksService.notesTask.formInstances[0].id)
+
+    })
+    // if (this.tasksService.notesTask.formInstances.length > 0) {
+    //   let firstFormInstance = this.tasksService.notesTask[0].formInstances[0].id;
+    //   console.log(firstFormInstance.id);
+    //   await this.formsField.getFormsbyId(firstFormInstance.id).then((res)=> {
+    //     this.formsField.formGetById = res
+    //     console.log(this.formsField.formGetById, 'FORMULARIOS CORREPONDENETE A ESSE FORMID')
+    //   })
+    // } else {
+    //   console.log("O array formInstances está vazio.");
+    // }
+
         // this.tasksService.turnCreatePost = false;
         // this.tasksService.turnEditPost = false;
       }

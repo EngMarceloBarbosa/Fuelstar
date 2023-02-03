@@ -8,6 +8,7 @@ import { Contacts, Entity, InstancePatch, Tasks } from '../utils/models/tasks';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { CallNumber } from 'capacitor-call-number';
 import { LoadingController, ToastController } from '@ionic/angular';
+import { FormsService } from '../shared/services/forms.service';
 
 @Component({
   selector: 'app-details-client',
@@ -41,7 +42,7 @@ export class DetailsClientPage implements OnInit {
   @ViewChild('search') myInput;
   showContent = true;
 
-  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService, public contactApiService: ContactsTaskService , private toastController: ToastController, public loadingController: LoadingController) {
+  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService, public contactApiService: ContactsTaskService , private toastController: ToastController, public loadingController: LoadingController, public formsField:FormsService) {
 
 
 
@@ -109,6 +110,9 @@ export class DetailsClientPage implements OnInit {
         )
 
     })
+
+
+
 
       // await this.tasksService.notesTask.map((res) => {
       //   this.tasksService.notesTasks = res

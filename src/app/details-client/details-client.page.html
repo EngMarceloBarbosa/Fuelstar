@@ -558,7 +558,9 @@
           </nc-text>
         </div>
       </div>
+
     </div>
+
     <div *ngIf="tasksService.msgWarningExecuted" class="msgWarning">
       <nc-text
         size="h7"
@@ -581,6 +583,18 @@
 
 
   </div>
+  <!-- <div  *ngIf="!tasksService.finalized" class="button-done" (click)="showForm()">
+    <div class="icon-option">
+      <nc-icon [size]="18" color="c-scale-1" hoverColor="c-scale-1"
+        >icon_check</nc-icon
+      >
+    </div>
+    <div class="text-option">
+      <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
+        Mostrar
+      </nc-text>
+    </div>
+  </div> -->
   <nc-action-sheet #action3  [typeASheet]="1" [showFooter]="false">
     <div class="action-sheet-body">
       <div class="content-options">
