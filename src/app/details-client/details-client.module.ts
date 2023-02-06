@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { IonicModule } from '@ionic/angular';
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DetailsClientPageRoutingModule } from './details-client-routing.module';
 
 import { DetailsClientPage } from './details-client.page';
@@ -14,7 +14,8 @@ import { DetailsClientPage } from './details-client.page';
     FormsModule,
     IonicModule,
     DetailsClientPageRoutingModule,
-    SharedModule
+    SharedModule,
+    PdfViewerModule
   ],
   declarations: [DetailsClientPage]
 })

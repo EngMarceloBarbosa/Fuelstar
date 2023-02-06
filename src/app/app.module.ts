@@ -15,6 +15,7 @@ import { SplashScreenPage } from './splash-screen/splash-screen.page';
 import { DetailsClientPage } from './details-client/details-client.page';
 import { NativeGeocoder} from '@awesome-cordova-plugins/native-geocoder/ngx'
 import { Camera } from '@ionic-native/camera/ngx';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,7 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SplashScreenStateService, DetailsClientPage, NativeGeocoder,Camera
+    SplashScreenStateService, DetailsClientPage, NativeGeocoder,Camera, PdfViewerModule
  ],
   bootstrap: [AppComponent],
 })

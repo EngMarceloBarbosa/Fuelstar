@@ -9,6 +9,10 @@ import { TaskApiService } from '../shared/http/task-api.service';
 import { CallNumber } from 'capacitor-call-number';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { FormsService } from '../shared/services/forms.service';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 @Component({
   selector: 'app-details-client',
@@ -16,12 +20,64 @@ import { FormsService } from '../shared/services/forms.service';
   styleUrls: ['./details-client.page.scss'],
 
 
+
 })
 export class DetailsClientPage implements OnInit {
 
+  formsFields = {
+    structure: {
+      optionFields: [
+        {
+          values: [
+            {
+              name: 'Tarefa 1'
+            }
+          ]
+        }
+      ],
+      booleanFields: [
+        {
+          value: 'Sim'
+        },
+        {
+          value: 'Não'
+        }
+      ],
+      textFields: [
+        {
+          value: 'Anomalias encontradas'
+        },
+        {
+          value: 'Pedido ao OVM - Porque'
+        },
+        {
+          value: 'Trabalho finalizado - Porque'
+        }
+      ],
+      dateFields: [
+        {
+          value: '2022-05-01T15:00:00'
+        },
+        {
+          value: '2022-05-02T10:00:00'
+        },
+        {
+          value: '2022-05-03T16:00:00'
+        },
+        {
+          value: '2022-05-04T08:00:00'
+        },
+        {
+          value: '2022-05-05T09:00:00'
+        }
+      ]
+    }
+  };
+
+
+
 
   @ViewChild('action3', { static: false }) action3
-
 
   globalMessagesTranslations: any;
   loginMessagesTranslations: any;
@@ -42,11 +98,15 @@ export class DetailsClientPage implements OnInit {
   @ViewChild('search') myInput;
   showContent = true;
 
+
+
   constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService, public contactApiService: ContactsTaskService , private toastController: ToastController, public loadingController: LoadingController, public formsField:FormsService) {
 
 
 
   }
+
+
 
   async ngOnInit() {
 
@@ -1055,6 +1115,109 @@ modelChangeFn(e ){
     console.log(this.tasksService.postNotes);
 
 }
+// async createPdf() {
+//   const docDefinition = {
+//     content: [
+//       { text: 'Ficha de Trabalho', style: 'header' },
+//       this.createTable(this.formsField.structureList)
+//     ],
+//     styles: {
+//       header: {
+//         fontSize: 18,
+//         bold: true
+//       },
+//       subheader: {
+//         fontSize: 14,
+//         bold: true,
+//         margin: [0, 15, 0, 0]
+//       },
+//       tableExample: {
+//         margin: [0, 5, 0, 15]
+//       },
+//       tableHeader: {
+//         bold: true,
+//         fontSize: 13,
+//         color: 'black'
+//       }
+//     }
+//   };
+//   pdfMake.createPdf(docDefinition).download();
+// }
+
+createTable(data) {
+  let table = [];
+  table.push([{ text: 'Título', style: 'tableHeader' }, { text: 'Valor', style: 'tableHeader' }]);
+  data.forEach(item => {
+    table.push([item.title, item.fieldName]);
+  });
+  return {
+    style: 'tableExample',
+    table: {
+      body: table
+    }
+  };
+}
+
+
+
+
+generatePdf() {
+  const docDefinition = {
+    content: [
+          { text: 'Ficha de Trabalho', style: 'header' },
+//       this.createTable(this.formsField.structureList)
+
+      {
+        table: {
+          headerRows: 1,
+          body: [
+            [{ text: 'Tipo da Tarefa', bold: true }, { text: this.formsField.structure.optionFields[0].values[0].name }],
+            [{ text: 'Pedido ao OVM ?', bold: true }, { text: this.formsField.structure.booleanFields[0].value }],
+            [{ text: 'Pedido ao OVM - Porque ?', bold: true }, { text: this.formsField.structure.textFields[5].value }],
+            [{ text: 'Trabalho Finalizado ?', bold: true }, { text: this.formsField.structure.booleanFields[1].value }],
+            [{ text: 'Trabalho finalizado - Porque ?', bold: true }, { text: this.formsField.structure.textFields[5].value }],
+            [{ text: 'Data da Tarefa', bold: true }, { text: this.formsField.structure.dateFields[0].value.substring(0,19).replace("T", " às ") }],
+            [{ text: 'Data de inicio da deslocação', bold: true }, { text: this.formsField.structure.dateFields[3].value.substring(0,19).replace("T", " às ") }],
+            [{ text: 'Data de fim da deslocação', bold: true }, { text: this.formsField.structure.dateFields[1].value.substring(0,19).replace("T", " às ") }],
+            [{ text: 'Data de inicio do trabalho', bold: true }, { text: this.formsField.structure.dateFields[4].value.substring(0,19).replace("T", " às ") }],
+            [{ text: 'Data de fim do trabalho', bold: true }, { text: this.formsField.structure.dateFields[2].value.substring(0,19).replace("T", " às ") }],
+            [{ text: 'Anomalias encontradas', bold: true }, { text: this.formsField.structure.textFields[0].value }],
+            [{ text: 'Materiais Aplicados', bold: true }, { text: this.formsField.structure.textFields[2].value }],
+            [{ text: 'Trabalho Efetuado', bold: true }, { text: this.formsField.structure.textFields[6].value }],
+            [{ text: 'Matricula', bold: true }, { text: this.formsField.structure.textFields[3].value }],
+            [{ text: 'kilometros', bold: true }, { text: this.formsField.structure.decimalFields[0].value }],
+            [{ text: 'Origem', bold: true }, { text: this.formsField.structure.textFields[4].value }],
+            [{ text: 'Destino', bold: true }, { text: this.formsField.structure.textFields[1].value }],
+          ]
+        }
+      }
+    ],
+    styles: {
+      header: {
+      fontSize: 18,
+      bold: true,
+      margin: [0, 0, 0, 10],
+      },
+      subheader: {
+      fontSize: 16,
+      bold: true,
+      margin: [0, 10, 0, 5],
+      },
+      tableExample: {
+      margin: [0, 5, 0, 15],
+      },
+      tableHeader: {
+      bold: true,
+      fontSize: 13,
+      color: 'black',
+      },
+      },
+      };
+      pdfMake.createPdf(docDefinition).open();
+
+
+      }
+
 
 
 
