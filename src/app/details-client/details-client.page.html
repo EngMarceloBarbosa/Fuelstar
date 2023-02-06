@@ -5,7 +5,11 @@
       <div class="card-tasks">
         <div class="box-task-header">
           <div class="left-icon">
-            <nc-icon [size]="26" color="c-scale-1" hoverColor="c-scale-1" (click)="cancel()"
+            <nc-icon
+              [size]="26"
+              color="c-scale-1"
+              hoverColor="c-scale-1"
+              (click)="cancel()"
               >arrow-left</nc-icon
             >
           </div>
@@ -16,9 +20,8 @@
               color="c-scale-10"
               weight="500"
               font="primary"
-              >{{clientDetails.entity.firstName |
-              prefix}} {{clientDetails.entity.lastName |
-                prefix}}</nc-text
+              >{{clientDetails.entity.firstName | prefix}}
+              {{clientDetails.entity.lastName | prefix}}</nc-text
             >
           </div>
           <div class="description-task">
@@ -38,7 +41,8 @@
       </div>
     </div>
   </div>
-  <div class="body-content">
+  <div class="body-content" >
+    <div class="body-content1" >
     <nc-tabs
       #tabs
       class="tabs"
@@ -101,7 +105,6 @@
                   ><a href="tel:1-562-867-5309">Click to Call!</a></nc-icon
                 >
               </div> -->
-
             </div>
             <div class="box-task">
               <div class="icon-name-user1">
@@ -125,7 +128,9 @@
                     color="c-scale-11"
                     weight="500"
                     font="primary"
-                    >{{tasksService.selectedTask.address.addressLine1}}, {{tasksService.selectedTask.address.cityName}}, {{tasksService.selectedTask.address.postalCode}}</nc-text
+                    >{{tasksService.selectedTask.address.addressLine1}},
+                    {{tasksService.selectedTask.address.cityName}},
+                    {{tasksService.selectedTask.address.postalCode}}</nc-text
                   >
                 </div>
               </div>
@@ -136,7 +141,7 @@
               </div>
             </div>
             <div class="box-task1">
-              <div class="icon-name-user1" >
+              <div class="icon-name-user1">
                 <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                   >icon_content</nc-icon
                 >
@@ -161,7 +166,7 @@
                   >
                 </div>
               </div>
-              <div class="arrow-info1" >
+              <div class="arrow-info1">
                 <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                   >icon_content</nc-icon
                 >
@@ -169,15 +174,24 @@
             </div>
             <div class="box-task1">
               <div class="container-post">
-              <div class="post">
-                <nc-text size="h8" color="c-scale-12" weight="500" font="primary">Criar</nc-text>
+                <div class="post">
+                  <nc-text
+                    size="h8"
+                    color="c-scale-12"
+                    weight="500"
+                    font="primary"
+                    >Criar</nc-text
+                  >
+                </div>
+                <div class="icon-name-user1" (click)="postNote()">
+                  <nc-icon
+                    [size]="18"
+                    color="c-scale-12"
+                    hoverColor="c-scale-12"
+                    >icon_content</nc-icon
+                  >
+                </div>
               </div>
-              <div class="icon-name-user1" (click)="postNote()">
-                <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
-                  >icon_content</nc-icon
-                >
-              </div>
-            </div>
               <div class="description-task2">
                 <div class="name-task-post">
                   <nc-text
@@ -188,18 +202,24 @@
                     >Ficha de Trabalho</nc-text
                   >
                 </div>
-                <div class="localization-task-post"  *ngFor="let task of this.tasksService.notesTask.tasks | slice:0:4">
-                  <span   id="text-note"
+                <div
+                  class="localization-task-post"
+                  *ngFor="let task of this.tasksService.notesTask.tasks | slice:0:4"
+                >
+                  <span
+                    id="text-note"
                     size="h7"
                     color="c-scale-11"
                     weight="500"
                     font="primary"
-
-                  >{{task.note}}</span
+                    >{{task.note}}</span
                   >
 
-                  <div class="arrow-info2"   (click)="editPost(task)" >
-                    <nc-icon [size]="14" color="c-scale-12" hoverColor="c-scale-12"
+                  <div class="arrow-info2" (click)="editPost(task)">
+                    <nc-icon
+                      [size]="14"
+                      color="c-scale-12"
+                      hoverColor="c-scale-12"
                       >icon_content</nc-icon
                     >
                   </div>
@@ -207,9 +227,9 @@
               </div>
             </div>
 
-                 <!-- INICIO EXAMPLES OF READ MORE ------------------------------------ -->
+            <!-- INICIO EXAMPLES OF READ MORE ------------------------------------ -->
 
-                <!-- <div class="container-new">
+            <!-- <div class="container-new">
                 <div class="new" [ngClass]="{ 'expanded': showContent }">
             BOAS ESTA TUDO BEM CNTG          BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG         BOAS ESTA TUDO BEM CNTG
                 </div>
@@ -224,15 +244,14 @@
                 ></div>
               </div> -->
 
+            <!-- FIM DO READ MORE EXEMPLO  ^--------------------------------------- -->
 
-              <!-- FIM DO READ MORE EXEMPLO  ^--------------------------------------- -->
-
-              <!-- <div class="container-post"> -->
-                <!-- <div class="post">
+            <!-- <div class="container-post"> -->
+            <!-- <div class="post">
                   <nc-text size="h8" color="c-scale-12" weight="500" font="primary">Editar</nc-text>
                 </div> -->
 
-              <!-- </div> -->
+            <!-- </div> -->
             <!-- <div class="box-task">
               <div class="icon-name-user1">
                 <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
@@ -455,7 +474,42 @@
           </div>
         </div>
         <div class="warning-documents" *ngIf="!turnDocuments">
-          <nc-text size="h6" color="c-scale-10" weight="bold" font="primary"> Não existem Documentos Associados</nc-text>
+          <div class="forms" *ngIf="formsField.turnForm">
+            <div class="container-form">
+              <div class="title-form"><h3 >Formulário de Trabalho</h3></div>
+              <!-- EXEMPLO -->
+              <ion-list *ngFor="let form of this.formsField.structureList">
+                <ng-container *ngIf="form.fieldName !== ''">
+                  <div class="subTitle-forms">
+                    <nc-text
+                      size="h7"
+                      color="c-scale-12"
+                      weight="bold"
+                      font="primary"
+                      >{{form.title}}</nc-text
+                    >
+                    <nc-text
+                      size="h7"
+                      color="c-scale-12"
+                      weight="500"
+                      font="primary"
+                      >{{form.fieldName}}</nc-text
+                    >
+                  </div>
+                </ng-container>
+
+              </ion-list>
+              <div class="footer-form">
+                <ion-button>Mandar para Mail</ion-button>
+              </div>
+            </div>
+          </div>
+          <div class="noDocuments" *ngIf="!formsField.turnForm">
+            <nc-text size="h6" color="c-scale-10" weight="bold" font="primary">
+              Não existem Documentos Associados</nc-text
+            >
+          </div>
+
         </div>
       </nc-tab-pane>
     </nc-tabs>
@@ -500,6 +554,7 @@
       </div>
     </div>
   </div>
+  </div>
 
   <div class="footer-client" *ngIf="tasksService.finalized">
     <div class="button-cancel" (click)="cancelTask()">
@@ -540,7 +595,7 @@
             >icon_plus</nc-icon
           >
         </div> -->
-        <div class="text-option" >
+        <div class="text-option">
           <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
             Retomar
           </nc-text>
@@ -558,7 +613,6 @@
           </nc-text>
         </div>
       </div>
-
     </div>
 
     <div *ngIf="tasksService.msgWarningExecuted" class="msgWarning">
@@ -571,17 +625,15 @@
         >Retome a Tarefa Primeiro para Finalizar
       </nc-text>
     </div>
-    <div class="buttons-inicial"  *ngIf="tasksService.turnButtonExecuted" >
+    <div class="buttons-inicial" *ngIf="tasksService.turnButtonExecuted">
       <div class="button-inicial" (click)="executed(clientDetails)">
         <div class="text-option">
           <nc-text size="h7" color="c-scale-1" weight="bold" font="primary">
-           INICIAR
+            INICIAR
           </nc-text>
         </div>
       </div>
     </div>
-
-
   </div>
   <!-- <div  *ngIf="!tasksService.finalized" class="button-done" (click)="showForm()">
     <div class="icon-option">
@@ -595,155 +647,98 @@
       </nc-text>
     </div>
   </div> -->
-  <nc-action-sheet #action3  [typeASheet]="1" [showFooter]="false">
+  <nc-action-sheet #action3 [typeASheet]="1" [showFooter]="false">
     <div class="action-sheet-body">
       <div class="content-options">
         <div class="container-options">
           <div class="description-options">
-            <nc-text
-              size="h8"
-              color="c-scale-10"
-              weight="500"
-              font="primary"
+            <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
               >ESCOLHA O TIPO DE OPERAÇÃO EU DESEJA REALIZAR</nc-text
             >
           </div>
         </div>
         <div class="type-actions">
           <div class="option">
-            <div class="icon-app" >
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
+            <div class="icon-app">
+              <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                 >icon_shop_car</nc-icon
               >
             </div>
             <div class="title-price">
-              <nc-text
-                size="h7"
-                color="c-scale-10"
-                weight="bold"
-                font="primary"
+              <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
                 >Venda</nc-text
               >
             </div>
             <div class="right-icon" (click)="freeSale()">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
+              <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                 >icon_big_arrow-right</nc-icon
               >
             </div>
           </div>
           <div class="option">
             <div class="icon-app">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
+              <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                 >icon_truck_orders</nc-icon
               >
             </div>
             <div class="title-price">
-              <nc-text
-                size="h7"
-                color="c-scale-10"
-                weight="bold"
-                font="primary"
+              <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
                 >Encomenda</nc-text
               >
             </div>
             <div class="right-icon">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
+              <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                 >icon_big_arrow-right</nc-icon
               >
             </div>
           </div>
           <div class="option">
             <div class="icon-app">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
-              >
+              <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12">
                 icon_order_return</nc-icon
               >
             </div>
             <div class="title-price">
-              <nc-text
-                size="h7"
-                color="c-scale-10"
-                weight="bold"
-                font="primary"
+              <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
                 >Levantamento</nc-text
               >
             </div>
             <div class="right-icon">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
+              <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                 >icon_big_arrow-right</nc-icon
               >
             </div>
           </div>
           <div class="option">
             <div class="icon-app">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
-              >
+              <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12">
                 icon_payment</nc-icon
               >
             </div>
             <div class="title-price">
-              <nc-text
-                size="h7"
-                color="c-scale-10"
-                weight="bold"
-                font="primary"
+              <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
                 >Recebimento</nc-text
               >
             </div>
             <div class="right-icon">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
+              <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                 >icon_big_arrow-right</nc-icon
               >
             </div>
           </div>
           <div class="option">
             <div class="icon-app">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
-              >
+              <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12">
                 icon_undo</nc-icon
               >
             </div>
             <div class="title-price">
-              <nc-text
-                size="h7"
-                color="c-scale-10"
-                weight="bold"
-                font="primary"
+              <nc-text size="h7" color="c-scale-10" weight="bold" font="primary"
                 >Devolução</nc-text
               >
             </div>
             <div class="right-icon">
-              <nc-icon
-                [size]="18"
-                color="c-scale-12"
-                hoverColor="c-scale-12"
+              <nc-icon [size]="18" color="c-scale-12" hoverColor="c-scale-12"
                 >icon_big_arrow-right</nc-icon
               >
             </div>
@@ -752,7 +747,7 @@
       </div>
     </div>
   </nc-action-sheet>
-  <!-- </div> -->
+
 </ion-content>
 
 <div class="notes" *ngIf="!onNotes">
@@ -784,9 +779,17 @@
 
     <div class="input-search">
       <div class="search-client">
-        <ion-textarea #search (ionChange)="modelChangeFn($event)"         placeholder="Notas" autofocus="false" [autoGrow]="true" minlength="1" maxlength="344"
-        value="{{ this.tasksService.selectedPost.note}}"  >
-      </ion-textarea>
+        <ion-textarea
+          #search
+          (ionChange)="modelChangeFn($event)"
+          placeholder="Notas"
+          autofocus="false"
+          [autoGrow]="true"
+          minlength="1"
+          maxlength="344"
+          value="{{ this.tasksService.selectedPost.note}}"
+        >
+        </ion-textarea>
 
         <!-- <nc-input
           [attr.tester]="'search-bar-current'"
@@ -804,7 +807,7 @@
   </div>
   <div class="body-container">
     <div class="footer">
-      <div class="button-footer" (click)="save(tasksService.selectedTask)" >
+      <div class="button-footer" (click)="save(tasksService.selectedTask)">
         <nc-text
           size="h7"
           hoverColor="c-scale-1"
@@ -814,7 +817,7 @@
           >Save</nc-text
         >
       </div>
-      <div *ngIf="tasksService.turnMessageCreateEdit"  class="msgWarning">
+      <div *ngIf="tasksService.turnMessageCreateEdit" class="msgWarning">
         <nc-text
           size="h7"
           color="error"

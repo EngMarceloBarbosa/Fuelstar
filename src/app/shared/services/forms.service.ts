@@ -12,10 +12,12 @@ import { TasksService } from "./tasks.service";
 @Injectable({ providedIn: 'root' })
 export class FormsService {
 
-
+  // turnNoForms : boolean = false;
+  structureList: any;
   idForm:any = [];
   formsSubmit:any;
   form: FormGroup;
+  structure: any;
   postFormsAfterProcess:any;
   turnForm: boolean = false;
   formGetById:any;

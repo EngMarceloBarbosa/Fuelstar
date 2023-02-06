@@ -575,6 +575,9 @@ console.log(res)
         this.tasksService.turnButton = false;
         this.tasksService.turnButtonResume = false;
         this.tasksService.finalized = true;
+        this.formsField.turnForm = false;
+
+        // this.formsField.turnNoForms = false;
         // this.tasksService.turnCreatePost = true;
         // this.tasksService.turnEditPost = true;
 
@@ -585,6 +588,10 @@ console.log(res)
         this.tasksService.turnButtonExecuted = false;
         this.tasksService.turnButtonResume = false;
         this.tasksService.finalized = true;
+        this.formsField.turnForm = false;
+
+        // this.formsField.turnNoForms = false;
+
 
         // this.tasksService.turnCreatePost = true;
         // this.tasksService.turnEditPost = true;
@@ -596,6 +603,8 @@ console.log(res)
         this.tasksService.turnButton = false;
         this.tasksService.turnButtonExecuted = false;
         this.tasksService.finalized = true;
+        this.formsField.turnForm = false;
+        // this.formsField.turnNoForms = false;
 
       }
 
@@ -605,26 +614,115 @@ console.log(res)
         this.tasksService.finalized = false;
         this.formsField.turnForm = true;
 
+
+        // this.formsField.turnNoForms = true;
+
         await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then((res) => {
       // console.log(res)
       this.tasksService.notesTask = res
       console.log(this.tasksService.notesTask)
       this.tasksService.notesTask.tasks
-      console.log(   this.tasksService.notesTask.tasks
-        )
-        console.log(this.tasksService.notesTask.formInstances[0].id)
+        console.log(this.tasksService.notesTask.formInstances[0])
 
     })
-    // if (this.tasksService.notesTask.formInstances.length > 0) {
-    //   let firstFormInstance = this.tasksService.notesTask[0].formInstances[0].id;
-    //   console.log(firstFormInstance.id);
-    //   await this.formsField.getFormsbyId(firstFormInstance.id).then((res)=> {
-    //     this.formsField.formGetById = res
-    //     console.log(this.formsField.formGetById, 'FORMULARIOS CORREPONDENETE A ESSE FORMID')
-    //   })
-    // } else {
-    //   console.log("O array formInstances está vazio.");
-    // }
+    if (this.tasksService.notesTask.formInstances.length > 0) {
+      let firstFormInstance = this.tasksService.notesTask.formInstances[0];
+      console.log(firstFormInstance);
+      await this.formsField.getFormsbyId(this.tasksService.notesTask.formInstances[0]).then((res)=> {
+        this.formsField.formGetById = res
+        if(this.formsField.formGetById.fields.booleanFields[0].value == false){
+          this.formsField.formGetById.fields.fieldsbooleanFields[0].value  = 'SIM'
+        }else {
+          this.formsField.formGetById.fields.booleanFields[0].value = "NÃO"
+        }
+        if(this.formsField.formGetById.fields.booleanFields[1].value == false){
+          this.formsField.formGetById.fields.booleanFields[1].value  = 'SIM'
+        }else {
+          this.formsField.formGetById.booleanFields[1].value = "NÃO"
+        }
+        this.formsField.structure = this.formsField.formGetById.fields
+        console.log(this.formsField.structure);
+         const strutureList = [
+          {
+            title: 'Tipo da Tarefa',
+            fieldName : this.formsField.structure.optionFields[0].values[0].name
+          },
+          {
+            title: 'Pedido ao OVM ?',
+            fieldName : this.formsField.structure.booleanFields[0].value
+          },
+          {
+            title: 'Pedido ao OVM - Porque ?',
+            fieldName : this.formsField.structure.textFields[5].value
+          },
+          {
+            title: 'Trabalho Finalizado ?',
+            fieldName : this.formsField.structure.booleanFields[1].value
+          },
+          {
+            title: 'Trabalho finalizado - Porque ?',
+            fieldName : this.formsField.structure.textFields[5].value
+          },
+          {
+            title: 'Data da Tarefa',
+            fieldName : this.formsField.structure.dateFields[0].value.substring(0,19).replace("T", " às ")
+          },
+          {
+            title: 'Data de inicio da deslocação',
+            fieldName : this.formsField.structure.dateFields[3].value.substring(0,19).replace("T", " às ")
+          },
+          {
+            title: 'Data de fim da deslocação',
+            fieldName : this.formsField.structure.dateFields[1].value.substring(0,19).replace("T", " às ")
+          },
+          {
+            title: 'Data de inicio do trabalho',
+            fieldName : this.formsField.structure.dateFields[4].value.substring(0,19).replace("T", " às ")
+          },
+          {
+            title: 'Data de fim do trabalho',
+            fieldName : this.formsField.structure.dateFields[2].value.substring(0,19).replace("T", " às ")
+          },
+          {
+            title: 'Origem da deslocação',
+            fieldName : this.formsField.structure.textFields[4].value
+          },
+          {
+            title: 'Destino da deslocação',
+            fieldName : this.formsField.structure.textFields[1].value
+          },
+          {
+            title: 'Matricula',
+            fieldName : this.formsField.structure.textFields[3].value
+          },
+          {
+            title: 'Kilometros',
+            fieldName : this.formsField.structure.decimalFields[0].value
+          },
+
+          {
+            title: 'Anomalias encontradas',
+            fieldName : this.formsField.structure.textFields[0].value
+          },
+          {
+            title: 'Materias Aplicados',
+            fieldName : this.formsField.structure.textFields[2].value
+          },
+          {
+            title: 'Trabalho efetuado',
+            fieldName : this.formsField.structure.textFields[6].value
+          }
+         ]
+
+       this.formsField.structureList = strutureList
+
+
+
+        console.log(this.formsField.formGetById, 'FORMULARIOS CORREPONDENETE A ESSE FORMID')
+      })
+    } else {
+      console.log("O array formInstances está vazio.");
+    }
 
         // this.tasksService.turnCreatePost = false;
         // this.tasksService.turnEditPost = false;

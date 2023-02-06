@@ -94,7 +94,7 @@ export class LoginPage implements OnInit {
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       spinner: 'circular',
-      duration: 8500,
+      duration: 12500,
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading'
