@@ -7,9 +7,40 @@
     "launchAutoHide": true,
     "launchShowDuration": 0
   },
+  "plugins": {
+    "Browser": {
+      "browserOptions": {
+        "inAppBrowserOptions": [
+          "clearcache",
+          "clearsessioncache",
+          "disallowoverscroll",
+          "hidden",
+          "enableViewportScale",
+          "mediaPlaybackRequiresUserAction",
+          "shouldPauseOnSuspend",
+          "closebuttoncaption",
+          "closebuttoncolor",
+          "toolbarcolor",
+          "toolbarheight",
+          "toolbarposition",
+          "location",
+          "fullscreen",
+          "zoom",
+          "useWideViewPort",
+          "shouldUseViewportMeta",
+          "allowsInlineMediaPlayback",
+          "presentationstyle",
+          "transitionstyle",
+          "toolbar",
+          "enableDefaultShare"
+        ]
+      }
+    }
+  },
   "cordova": {
     "preferences": {
       "LottieFullScreen": true
     }
   }
+
 }

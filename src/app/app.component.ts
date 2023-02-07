@@ -13,7 +13,8 @@ import { TasksService } from './shared/services/tasks.service';
 import { environment } from 'src/environments/environment';
 import { FormsService } from './shared/services/forms.service';
 
-
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+defineCustomElements(window);
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',

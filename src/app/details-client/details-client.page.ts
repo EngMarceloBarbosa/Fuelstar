@@ -7,10 +7,15 @@ import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { Contacts, Entity, InstancePatch, Tasks } from '../utils/models/tasks';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { CallNumber } from 'capacitor-call-number';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, Platform, ToastController } from '@ionic/angular';
 import { FormsService } from '../shared/services/forms.service';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import {File} from '@ionic-native/file/ngx'
+import { HttpClient } from '@angular/common/http';
+
+
+import { Camera } from '@ionic-native/camera/ngx';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -23,7 +28,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 })
 export class DetailsClientPage implements OnInit {
-
+  FilesystemDirectory:any;
   formsFields = {
     structure: {
       optionFields: [
@@ -74,7 +79,7 @@ export class DetailsClientPage implements OnInit {
     }
   };
 
-
+logoData = null;
 
 
   @ViewChild('action3', { static: false }) action3
@@ -93,14 +98,16 @@ export class DetailsClientPage implements OnInit {
   NewListTest: any;
   listAll: any;
   turnDocuments = false;
-
+  pdfObj: any;
+  pdfBase64:any;
 
   @ViewChild('search') myInput;
   showContent = true;
 
 
 
-  constructor(private translate: TranslateService, public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService, public contactApiService: ContactsTaskService , private toastController: ToastController, public loadingController: LoadingController, public formsField:FormsService) {
+
+  constructor(private translate: TranslateService, public file:File, public plataform: Platform,  public tasksService: TasksService, private router: Router, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, private alertService: AlertService, public contactApiService: ContactsTaskService , private toastController: ToastController, public loadingController: LoadingController, public formsField:FormsService , private http: HttpClient) {
 
 
 
@@ -111,7 +118,7 @@ export class DetailsClientPage implements OnInit {
   async ngOnInit() {
 
 
-
+this.loadLocalAssetToBase64();
 
     await this.tasksService.infoClient$
       .subscribe(client => {
@@ -202,6 +209,31 @@ this.loadingController.dismiss().then(() => {
 });
 
   }
+
+
+
+
+
+
+
+  // PARA GUARDAR IMAGEM FORMULARIO  BASE 64 DATA
+
+  loadLocalAssetToBase64(){
+    this.http.get('assets/img/logo_guimabombas.png', { responseType: 'blob'})
+    .subscribe(res => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.logoData = reader.result;
+      }
+      reader.readAsDataURL(res);
+    })
+  }
+
+
+
+
+
+
 
   notes() {
 
@@ -1162,9 +1194,22 @@ createTable(data) {
 
 
 generatePdf() {
+
   const docDefinition = {
+
+    header: [
+
+    ],
+
     content: [
+
+
+      { image: this.logoData, width: 200, style: 'headerMaster' },
+      {text:'Rua da Portela nº1005 -4805-546 Vermil- Guimarães\n Telefones 252 928 580/1/2 -252 997 100 - Faz 252 991 848 \n E-mail: geral@guimabombas.com' ,width:20 ,style:"textHeader"},
+
+
           { text: 'Ficha de Trabalho', style: 'header' },
+
 //       this.createTable(this.formsField.structureList)
 
       {
@@ -1211,12 +1256,44 @@ generatePdf() {
       fontSize: 13,
       color: 'black',
       },
+      headerMaster: {
+        fontSize: 18,
+        bold: true,
+        margin: [0, 0, 0, 40],
+      },
+      textHeader: {
+        fontSize: 8,
+        bold: false,
+        margin: [250, -80, 0, 40],
+        width: 20,
+      },
       },
       };
-      pdfMake.createPdf(docDefinition).open();
+
+if (this.plataform.is('capacitor') == true || this.plataform.is("pwa") == true) {
+  this.pdfObj = pdfMake.createPdf(docDefinition).open();
+
+}
+console.log( this.pdfObj )
+    }
 
 
-      }
+
+    saveToDevice(binarryArray : any, savefile:any){
+let self = this;
+self.file.writeFile(self.file.dataDirectory, savefile, binarryArray, {replace: true})
+.then((response)=> {
+  console.log('Funcionou!', response);
+})
+.catch((erro) => {
+console.log('ERRO', erro);
+});
+const toast = self.toastController.create ( {
+  message: 'Arquivo salvo',
+  duration: 3000,
+  position: 'top'
+});
+    }
 
 
 

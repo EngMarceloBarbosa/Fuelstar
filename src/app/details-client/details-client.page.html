@@ -501,6 +501,9 @@
               </ion-list>
               <div class="footer-form">
                 <ion-button (click)="generatePdf()">Gerar PDF</ion-button>
+
+                <pdf-viewer [src]="pdfSrc" style="display: block;"></pdf-viewer>
+
               </div>
             </div>
           </div>
