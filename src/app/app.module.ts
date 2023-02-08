@@ -19,6 +19,7 @@ import {FileOpener} from '@ionic-native/file-opener/ngx'
 import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
+import { File } from '@ionic-native/file/ngx';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -48,7 +49,7 @@ defineCustomElements(window);
 
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SplashScreenStateService, DetailsClientPage, NativeGeocoder,Camera, FileOpener,PDFGenerator
+    SplashScreenStateService, File, DetailsClientPage, NativeGeocoder,Camera, FileOpener,PDFGenerator,
  ],
   bootstrap: [AppComponent],
 })

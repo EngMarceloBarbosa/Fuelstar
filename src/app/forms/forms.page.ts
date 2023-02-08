@@ -50,6 +50,8 @@ idOption:any;
   submitted = false;
   startDate = new Date().toISOString();
   endDate = new Date().toISOString();
+  startDateJob = new Date().toISOString();
+  endDateJob = new Date().toISOString();
 
   today = new Date().toISOString();
   steps = [
