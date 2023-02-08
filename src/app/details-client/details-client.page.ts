@@ -14,7 +14,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import {File} from '@ionic-native/file/ngx'
 import { HttpClient } from '@angular/common/http';
 
-
+import { Plugins } from '@capacitor/core';
 import { Camera } from '@ionic-native/camera/ngx';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -29,6 +29,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class DetailsClientPage implements OnInit {
   FilesystemDirectory:any;
+
+  // pdfUrl = "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_1MB.pdf'
   formsFields = {
     structure: {
       optionFields: [
