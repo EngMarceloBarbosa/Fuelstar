@@ -478,8 +478,8 @@
             <div class="container-form">
               <div class="title-form"><h3 >Formulário de Trabalho</h3></div>
               <!-- EXEMPLO -->
-              <ion-list *ngFor="let form of this.formsField.structureList">
-                <ng-container *ngIf="form.fieldName !== ''">
+              <ng-container *ngFor="let form of this.formsField.structureList">
+                <ion-list *ngIf="form.fieldName != null && form.fieldName !== ''">
                   <div class="subTitle-forms">
                     <nc-text
                       size="h7"
@@ -496,9 +496,8 @@
                       >{{form.fieldName}}</nc-text
                     >
                   </div>
-                </ng-container>
-
-              </ion-list>
+                </ion-list>
+              </ng-container>
 
               <div class="footer-form">
                 <ion-button (click)="generatePdf()">Gerar PDF</ion-button>

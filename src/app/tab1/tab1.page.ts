@@ -630,8 +630,9 @@ console.log(res)
       console.log(firstFormInstance);
       await this.formsField.getFormsbyId(this.tasksService.notesTask.formInstances[0]).then((res)=> {
         this.formsField.formGetById = res
+        console.log(this.formsField.formGetById)
         if(this.formsField.formGetById.fields.booleanFields[0].value == false){
-          this.formsField.formGetById.fields.fieldsbooleanFields[0].value  = 'SIM'
+          this.formsField.formGetById.fields.booleanFields[0].value  = 'SIM'
         }else {
           this.formsField.formGetById.fields.booleanFields[0].value = "NÃO"
         }

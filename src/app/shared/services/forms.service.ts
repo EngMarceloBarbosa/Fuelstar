@@ -42,9 +42,9 @@ export class FormsService {
   });
 
   dateFormsStep3 = new FormGroup({
-    sure: new FormControl( [Validators.required]),
+    sure: new FormControl('', [Validators.required]),
     reason: new FormControl(''),
-    sureOVM: new FormControl(''),
+    sureOVM: new FormControl('',[Validators.required]),
     reasonOVM: new FormControl(''),
     initialDate: new FormControl(''),
     finalDate: new FormControl(''),

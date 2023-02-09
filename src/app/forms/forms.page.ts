@@ -48,6 +48,7 @@ idOption:any;
 
 
   submitted = false;
+  submitted3 = false;
   startDate = new Date().toISOString();
   endDate = new Date().toISOString();
   startDateJob = new Date().toISOString();
@@ -370,7 +371,7 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
               this.buttonFinalized();
             },
           };
-          this.alertService.open(temp);
+          this.alertService.open(temp);4
 
 
           this.tasksService.notes = "";
@@ -381,10 +382,46 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
           console.log('PREECNHA A ASSINATURA ')
         }
       }
-      this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
+      // if(this.currentStep == 0 ) {
+      // this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
+      // console.log(this.currentStep)
+      // }
+      //   if(this.currentStep == 1 && this.formsFields.dateFormsStep2.valid){
+      // this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
+      // console.log(this.currentStep)
+      //   }
+      //   if(this.currentStep == 2 && this.formsFields.dateFormsStep3.valid){
+      //     this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
+      //     console.log(this.currentStep)
+      //       }
+
+      if (this.currentStep == 0) {
+
+          this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
+          console.log(this.currentStep);
+
+      } else if (this.currentStep == 1) {
+        if (this.formsFields.dateFormsStep2.valid) {
+          this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
+          console.log(this.currentStep);
+        }
+      } else if (this.currentStep == 2) {
+        if (this.formsFields.dateFormsStep3.valid) {
+
+          this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
+          console.log(this.currentStep);
+          this.submitted3 = false;
+        }else{
+          this.submitted3 = true;
+        }
+      }
+
+
+      console.log(this.currentStep )
       // You can also send the form data to your server here
     } else {
       this.submitted = true;
+
       console.log("form is invalid");
       // Check if any of the fields are empty
       if (this.formsFields.dateFormsStep1.get('startDate').value === '') {
@@ -404,6 +441,7 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
 
   previous() {
     this.currentStep = Math.max(0, this.currentStep - 1);
+    console.log(this.currentStep)
   }
 
 

@@ -45,6 +45,9 @@
     <div class="container-main">
       <form [formGroup]="formsFields.dateFormsStep1">
         <div class="container-step1" *ngIf="currentStep === 0">
+          <div *ngIf="submitted">
+            <p style="color: red; margin-top: 0px;">Preencha os campos todos</p>
+          </div>
           <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
             >Data da Tarefa</nc-text
           >
@@ -144,13 +147,14 @@
               ></ion-input>
             </ion-item>
           </div>
-          <div *ngIf="submitted">
-            <p style="color: red">Preencha os campos todos</p>
-          </div>
+
         </div>
       </form>
       <form [formGroup]="formsFields.dateFormsStep3">
         <div class="container-step3" *ngIf="currentStep === 2">
+          <div *ngIf="submitted3">
+            <p style="color: red; margin-top: 0px;">Preencha os campos todos</p>
+          </div>
           <div class="title-sub">
             <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
               >Observações Finais</nc-text
@@ -197,6 +201,7 @@
               placeholder="justifique"
             ></ion-input>
           </ion-item>
+
           <div class="workSheet">
             <nc-text size="h6" color="c-scale-12" weight="bold" font="primary"
               >Trabalho</nc-text
@@ -258,7 +263,7 @@
                 formControlName="materials"
                 (ionChange)="modelChangeFn($event)"
                 placeholder="Insira os materias aplicados"
-                autofocus="false"
+                autofocus="true"
                 [autoGrow]="true"
                 value=""
                 minlength="1"
