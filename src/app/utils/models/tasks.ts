@@ -225,7 +225,7 @@ export interface Instance {
   tags: Tags[];
   tasks: Task[];
   statusHistory : StatusHistory[];
-
+  fileFields: FileFields[];
 }
 
 export class Task {
@@ -234,6 +234,12 @@ export class Task {
   startDate: string;
   endDate: string;
   entity: Entity;
+}
+
+export class FileFields {
+  fieldId: string;
+  fileId: string;
+  fileName : string;
 }
 
 

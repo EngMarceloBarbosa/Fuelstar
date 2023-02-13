@@ -186,8 +186,11 @@ export class LoginPage implements OnInit {
             rightButtonCallback: () => {
               this.router.navigate(['/login']);
             }
-          };
 
+          };
+          this.loadingController.dismiss().then(() => {
+            console.log('Loading spinner dismissed');
+          });
           this.alertService.open(temp);
           setTimeout(() => {
             // this.loading = 'SingIn';

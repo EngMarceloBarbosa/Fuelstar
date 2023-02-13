@@ -16,6 +16,9 @@ import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
+  positionSlide: any = 0;
+
+  change = false;
   formsSave:any;
   searchDoc: any;
   allDocumentsFilter: any;

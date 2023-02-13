@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonSlides, LoadingController, NavController, ToastController } from '@ionic/angular';
+import { IonSlides, LoadingController, NavController, Platform, ToastController } from '@ionic/angular';
 import { ActionSheetModel, ActionSheetService } from '@nc-angular/library-mobile.stg';
 import { SwiperComponent } from 'swiper/angular';
 import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
@@ -80,7 +80,9 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     private element: ElementRef,
     public loadingController: LoadingController,
     public formsField : FormsService,
-   public  contactApiService: ContactsTaskService
+   public  contactApiService: ContactsTaskService,
+   private platform: Platform,
+
   ) {
 
 
@@ -90,8 +92,11 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
   }
 
+
   handleRefresh(event) {
     setTimeout(async () => {
+
+      this.slideChanged();
       console.log(this.tasksService.time)
     console.log(this.tasksService.totalTime)
     this.tasksService.countVisits = this.tasksService.listTasksFinalized.length

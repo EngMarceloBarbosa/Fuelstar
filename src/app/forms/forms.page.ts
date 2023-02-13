@@ -31,7 +31,7 @@ export class FormsPage implements OnInit {
   public signatureImageClient: string = "";
   public signatureImageTecnic: string = "";
 
-
+  image4:any;
   notes1: any;
   notes2: any;
 idOption:any;
@@ -131,7 +131,8 @@ idOption:any;
     this.signatureImageClient = this.signaturePad.toDataURL();
     console.log(this.signatureImageClient)
   }
-  drawComplete1() {
+  drawComplete1(e) {
+console.log(e, 'aqui 3')
     console.log('ENTROU AQUI')
     this.signatureImageTecnic = this.signaturePad1.toDataURL();
     console.log(this.signatureImageTecnic)
@@ -663,6 +664,17 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
 
         console.log(this.formsFields.dateFormsStep2.value);
         if (this.signatureImageClient != "") {
+
+
+
+          //Form Data
+
+      //     let form = new FormData();
+
+      // form.append('FirstName', this.tasksService.valueFirstName);
+
+//VER ISTO
+          // this.formsFields.putImageForms(this.tasksService.selectedTask.id, )
           console.log('PASSOU PODE AVANÇAR ')
         } else {
           console.log('PREECNHA A ASSINATURA ')
@@ -703,5 +715,12 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
     console.log(this.notes2);
 
   }
+
+  modelChangeFn3(e){
+    this.image4 = e;
+    console.log(this.image4);
+  }
+
+
 
 }

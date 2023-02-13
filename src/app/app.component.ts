@@ -5,7 +5,7 @@ import { SplashScreenStateService } from './shared/services/splash-screen-state.
 import { BackButtonEvent } from '@ionic/core';
 import { Location } from '@angular/common';
 import { BackButtonService } from './shared/services/backButton.service';
-import { AlertController, IonRouterOutlet, Platform } from '@ionic/angular';
+import { AlertController, IonRouterOutlet, NavController, Platform } from '@ionic/angular';
 import { App } from '@capacitor/app';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -26,7 +26,7 @@ export class AppComponent {
 
   allow: boolean = false;
 
-  constructor(private globals: Globals, private translate: TranslateService, private splashScreenStateService: SplashScreenStateService, public backButtonService: BackButtonService, private platform: Platform, private location: Location,
+  constructor(private globals: Globals, private translate: TranslateService, private splashScreenStateService: SplashScreenStateService, public backButtonService: BackButtonService, private platform: Platform, private location: Location, public navContrl: NavController,
 
     public router: Router,
     private alertService: AlertController,
@@ -34,10 +34,29 @@ export class AppComponent {
 
   ) {
 
+    this.platform.backButton.subscribeWithPriority(0, () => {
+      if (this.platform.is('android') || this.platform.is('ios')) {
+        const path = this.location.prepareExternalUrl(this.location.path());
+        if (path === '/tabs/tab1') {
+          navigator['app'].exitApp();
+        } else {
+          history.go(-1);
+          // Permitir que o comportamento padrão do botão "back" seja executado
+
+        }
+      }
+    });
 
 
 
+    //     this.platform.backButton.subscribeWithPriority(-1, () => {
+    //   if (!this.routerOutlet.canGoBack()) {
+    //     if(this.routerOutlet)
+    //     // this.tasksService.handleBackButton();
+    //     App.exitApp();
+    //   }
 
+    // });
 
 
     // console.log(this.tasksService.dataSave, '2');
@@ -52,15 +71,46 @@ export class AppComponent {
 
     // }
 
+    // Configurar o button
 
-        this.platform.backButton.subscribeWithPriority(-1, () => {
+    // this.platform.backButton.subscribeWithPriority(0, () => {
+    //   // Verifica se a página atual é a HomePage
+    //   if (this.router.url === '/tabs/tab1') {
+    //     // Chama o método para sair da aplicação
+    //     navigator['app'].exitApp();
+    //   } else {
+    //     // Volta para a página anterior
+    //     this.navContrl.back();
+    //   }
+    // });
+
+
+    this.platform.backButton.subscribeWithPriority(-1, () => {
       if (!this.routerOutlet.canGoBack()) {
         if(this.routerOutlet)
+        if(this.router.url === '/tabs/tab1'){
         // this.tasksService.handleBackButton();
         App.exitApp();
-      }
+      }}
     });
 
+
+    // this.platform.backButton.subscribeWithPriority(0, () => {
+    //   // Verifica se a página atual é a TabsPage
+    //   if (this.routerOutlet && this.routerOutlet.canGoBack()) {
+    //     // Se a página atual for uma página interna das abas, volta para a página anterior
+    //     this.navContrl.back();
+    //   } else if (this.router.url === '/tabs/home') {
+    //     // Se a página atual for a página raiz das abas, verifica se há uma página anterior na pilha de navegação
+    //     if (this.navContrl.getViews().length > 1) {
+    //       // Se houver uma página anterior, volta para ela
+    //       this.navContrl.back();
+    //     } else {
+    //       // Se não houver uma página anterior, sai da aplicação
+    //       navigator['app'].exitApp();
+    //     }
+    //   }
+    // });
 
 
 

@@ -242,6 +242,22 @@ ngOnit(){
 
   }
 
+  //POR IMAGEM  NO FORMULARIO
+
+
+  putImageForms(instanceId, fieldId) {
+    console.log('tarefa SUSPENSA', );
+    return this.http
+      .put<any>(`${environment.api}/api/Thebox/Forms/FormInstances/${instanceId}/FileField/${fieldId}`, {
+        headers: new HttpHeaders({
+          Authorization: "Bearer " + environment.token,
+          'Content-type': 'application/json',
+          'accept': '*/*'
+        })
+      })
+      .pipe()
+      .toPromise();
+    }
 
 
 
