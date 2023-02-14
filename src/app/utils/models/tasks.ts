@@ -10,6 +10,7 @@ export interface Tasks {
   currentStatus:CurrentStatus[];
   estimatedEndDate: string;
   estimatedStartDate : string;
+  fileFields: FileFields;
 
 
 

@@ -31,13 +31,13 @@ export class FormsPage implements OnInit {
   public signatureImageClient: string = "";
   public signatureImageTecnic: string = "";
 
-  image4:any;
+  image4: any;
   notes1: any;
   notes2: any;
-idOption:any;
+  idOption: any;
   sureOption: boolean;
   optionOVM: boolean;
-  typeOption:string;
+  typeOption: string;
   showReason = false;
   showReasonOvm = false;
   showDeslocation = true;
@@ -132,7 +132,7 @@ idOption:any;
     console.log(this.signatureImageClient)
   }
   drawComplete1(e) {
-console.log(e, 'aqui 3')
+    console.log(e, 'aqui 3')
     console.log('ENTROU AQUI')
     this.signatureImageTecnic = this.signaturePad1.toDataURL();
     console.log(this.signatureImageTecnic)
@@ -174,7 +174,7 @@ console.log(e, 'aqui 3')
   onSelectChange() {
 
     this.showReason = this.formsFields.dateFormsStep3.value.sure == "false"
-    console.log(    this.showReason)
+    console.log(this.showReason)
     // this.sureOption === 'no'
 
 
@@ -189,15 +189,28 @@ console.log(e, 'aqui 3')
     this.showDeslocation = this.typeOption === 'Externa';
     this.submitted = false;
 
-    if(this.typeOption === 'Externa'){
+    if (this.typeOption === 'Externa') {
       this.idOption = "00000000-0000-0000-0003-000000000002"
     }
-    if(this.typeOption === 'Interna'){
+    if (this.typeOption === 'Interna') {
       this.idOption = "00000000-0000-0000-0003-000000000001"
     }
   }
 
+  dataURLtoFile(dataurl, filename) {
 
+    var arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  }
 
 
   async next() {
@@ -220,138 +233,12 @@ console.log(e, 'aqui 3')
 
         if (this.currentStep === 3 && this.signatureImageClient != "" && this.signatureImageTecnic != "") {
           console.log('PASSOU PODE AVANÇAR ')
-          console.log(this.signatureImageClient)
-
-          const forms = {
-            formId: "DB6F3078-8B55-4628-861A-81F56CF57D7D",
-            fields: {
-              dateFields : [
-                {
-                fieldId: "00000000-0000-0000-0000-000000000002",
-                value: this.formsFields.dateFormsStep1.value.dateOfTheDay
-
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000004",
-                  value : this.formsFields.dateFormsStep1.value.startDate
-
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000005",
-                  value : this.formsFields.dateFormsStep1.value.endDate
-
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000017",
-                  value : this.formsFields.dateFormsStep3.value.initialDate
-
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000018",
-                  value : this.formsFields.dateFormsStep3.value.finalDate
-
-                }
-
-
-              ],
-              booleanFields : [
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000015",
-                  value : this.formsFields.dateFormsStep3.value.sure
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000013",
-                  value : this.formsFields.dateFormsStep3.value.sureOVM
-                }
-              ],
-              textFields : [
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000006",
-                  value : this.formsFields.dateFormsStep1.value.departure
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000007",
-                  value : this.formsFields.dateFormsStep1.value.destination
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000009",
-                  value : this.formsFields.dateFormsStep1.value.registration
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000014",
-                  value : this.formsFields.dateFormsStep3.value.reason
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000016",
-                  value : this.formsFields.dateFormsStep3.value.reason
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000010",
-                  value : this.formsFields.dateFormsStep2.value.materials
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000011",
-                  value : this.formsFields.dateFormsStep2.value.anomalias
-                },
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000012",
-                  value : this.formsFields.dateFormsStep2.value.trabalho
-                },
-
-              ],
-              optionFields: [
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000003",
-                  values : [
-                    {
-                      id: this.idOption,
-                      name: this.formsFields.dateFormsStep1.value.type
-                    }
-                  ]
-                }
-              ],
-              decimalFields: [
-                {
-                  fieldId: "00000000-0000-0000-0000-000000000008",
-                  value : this.formsFields.dateFormsStep1.value.kilometers
-                }
-              ]
-
-            }
-
-          }
-
-
-          console.log(forms, 'O QUE FOI MANDADO')
-console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia ');
-          await this.formsFields.postForms(forms).then((res)=> {
-
-            this.tasksService.formsSave = res
-            this.formsFields.idForm = res.id
-
-            console.log(       this.formsFields.idForm)
 
 
 
-            console.log(res, 'FOI GRAVADO')
-           })
-
-           await this.formsFields.submitForms(this.formsFields.idForm).then((res)=> {
-            this.formsFields.formsSubmit = res;
-            console.log(this.formsFields.formsSubmit)
-           })
-           const formId = [
-
-            this.formsFields.idForm
 
 
-          ]
-          console.log(formId)
-           await this.formsFields.PostsubmitForms( formId, this.tasksService.selectedTask.id).then((res)=> {
-            console.log(res)
 
-            this.formsFields.postFormsAfterProcess = res;
-           })
 
 
           const temp: ModalMessageModel = {
@@ -372,7 +259,7 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
               this.buttonFinalized();
             },
           };
-          this.alertService.open(temp);4
+          this.alertService.open(temp); 4
 
 
           this.tasksService.notes = "";
@@ -398,8 +285,8 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
 
       if (this.currentStep == 0) {
 
-          this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
-          console.log(this.currentStep);
+        this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
+        console.log(this.currentStep);
 
       } else if (this.currentStep == 1) {
         if (this.formsFields.dateFormsStep2.valid) {
@@ -412,13 +299,13 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
           this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
           console.log(this.currentStep);
           this.submitted3 = false;
-        }else{
+        } else {
           this.submitted3 = true;
         }
       }
 
 
-      console.log(this.currentStep )
+      console.log(this.currentStep)
       // You can also send the form data to your server here
     } else {
       this.submitted = true;
@@ -455,7 +342,155 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
     if (this.tasksService.selectedTask.currentStatus.id == "00bba7ce-f90b-4ebb-9478-777376f78e93") {
       this.tasksService.msgWarningExecuted = true;
     } else {
+
+      const forms = {
+        formId: "DB6F3078-8B55-4628-861A-81F56CF57D7D",
+        fields: {
+          dateFields: [
+            {
+              fieldId: "00000000-0000-0000-0000-000000000002",
+              value: this.formsFields.dateFormsStep1.value.dateOfTheDay
+
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000004",
+              value: this.formsFields.dateFormsStep1.value.startDate
+
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000005",
+              value: this.formsFields.dateFormsStep1.value.endDate
+
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000017",
+              value: this.formsFields.dateFormsStep3.value.initialDate
+
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000018",
+              value: this.formsFields.dateFormsStep3.value.finalDate
+
+            }
+
+
+          ],
+          booleanFields: [
+            {
+              fieldId: "00000000-0000-0000-0000-000000000015",
+              value: this.formsFields.dateFormsStep3.value.sure
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000013",
+              value: this.formsFields.dateFormsStep3.value.sureOVM
+            }
+          ],
+          textFields: [
+            {
+              fieldId: "00000000-0000-0000-0000-000000000006",
+              value: this.formsFields.dateFormsStep1.value.departure
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000007",
+              value: this.formsFields.dateFormsStep1.value.destination
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000009",
+              value: this.formsFields.dateFormsStep1.value.registration
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000014",
+              value: this.formsFields.dateFormsStep3.value.reason
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000016",
+              value: this.formsFields.dateFormsStep3.value.reason
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000010",
+              value: this.formsFields.dateFormsStep2.value.materials
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000011",
+              value: this.formsFields.dateFormsStep2.value.anomalias
+            },
+            {
+              fieldId: "00000000-0000-0000-0000-000000000012",
+              value: this.formsFields.dateFormsStep2.value.trabalho
+            },
+
+          ],
+          optionFields: [
+            {
+              fieldId: "00000000-0000-0000-0000-000000000003",
+              values: [
+                {
+                  id: this.idOption,
+                  name: this.formsFields.dateFormsStep1.value.type
+                }
+              ]
+            }
+          ],
+          decimalFields: [
+            {
+              fieldId: "00000000-0000-0000-0000-000000000008",
+              value: this.formsFields.dateFormsStep1.value.kilometers
+            }
+          ]
+
+        }
+
+      }
+
+      console.log(forms, 'O QUE FOI MANDADO')
+      console.log(this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia ');
+      await this.formsFields.postForms(forms).then((res) => {
+
+        this.tasksService.formsSave = res
+        this.formsFields.idForm = res.id
+
+        console.log(this.formsFields.idForm)
+
+
+
+        console.log(res, 'FOI GRAVADO')
+      })
+
+      await this.formsFields.submitForms(this.formsFields.idForm).then((res) => {
+        this.formsFields.formsSubmit = res;
+        console.log(this.formsFields.formsSubmit)
+      })
+      const formId = [
+
+        this.formsFields.idForm
+
+
+      ]
+      console.log(formId)
+      await this.formsFields.PostsubmitForms(formId, this.tasksService.selectedTask.id).then((res) => {
+        console.log(res)
+
+        this.formsFields.postFormsAfterProcess = res;
+      })
+
       console.log(data, 'lista data')
+
+           // Form Data GRAVAR AS ASSINATURAS DO CLIENTE E TÉCNICO
+           const fileIdClient = "00000000-0000-0000-0000-000000000019";
+           const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
+           let file = this.dataURLtoFile(this.signatureImageClient, 'signature.png');
+           let file1 = this.dataURLtoFile(this.signatureImageTecnic, 'signature.png');
+           let form = new FormData();
+           form.append('file', file, file.name);
+let form1 = new FormData();
+form1.append('file', file1, file1.name);
+           // VER ISTO
+          await this.formsFields.putImageForms( this.formsFields.idForm, fileIdClient, form)
+
+          await this.formsFields.putImageForms( this.formsFields.idForm, fileIdTecnic, form1)
+
+           console.log(this.signatureImageClient)
+
 
       await this.tasksService.putTaskFinalize();
 
@@ -669,11 +704,11 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
 
           //Form Data
 
-      //     let form = new FormData();
+          //     let form = new FormData();
 
-      // form.append('FirstName', this.tasksService.valueFirstName);
+          // form.append('FirstName', this.tasksService.valueFirstName);
 
-//VER ISTO
+          //VER ISTO
           // this.formsFields.putImageForms(this.tasksService.selectedTask.id, )
           console.log('PASSOU PODE AVANÇAR ')
         } else {
@@ -716,7 +751,7 @@ console.log( this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia '
 
   }
 
-  modelChangeFn3(e){
+  modelChangeFn3(e) {
     this.image4 = e;
     console.log(this.image4);
   }

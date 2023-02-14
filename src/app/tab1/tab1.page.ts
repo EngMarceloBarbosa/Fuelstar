@@ -65,6 +65,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     initialSlide: 0,
     speed: 300
   };
+  formsService: any;
 
 
   constructor(
@@ -635,6 +636,8 @@ console.log(res)
       console.log(firstFormInstance);
       await this.formsField.getFormsbyId(this.tasksService.notesTask.formInstances[0]).then((res)=> {
         this.formsField.formGetById = res
+        this.formsField.fileIdClient = this.formsField.formGetById.fields.fileFields[0].fileId
+        this.formsField.fileIdTecnhic = this.formsField.formGetById.fields.fileFields[1].fileId
         console.log(this.formsField.formGetById)
         if(this.formsField.formGetById.fields.booleanFields[0].value == false){
           this.formsField.formGetById.fields.booleanFields[0].value  = 'SIM'
@@ -646,6 +649,9 @@ console.log(res)
         }else {
           this.formsField.formGetById.booleanFields[1].value = "NÃO"
         }
+
+
+
         this.formsField.structure = this.formsField.formGetById.fields
         console.log(this.formsField.structure);
          const strutureList = [
@@ -726,6 +732,21 @@ console.log(res)
 
         console.log(this.formsField.formGetById, 'FORMULARIOS CORREPONDENETE A ESSE FORMID')
       })
+
+      if( this.formsField.formGetById.fields.fileFields[0].fileId !== null &&  this.formsField.formGetById.fields.fileFields[1].fileId !== null) {
+
+      await this.formsField.getImageById(this.formsField.fileIdClient).then((res)=> {
+        this.formsField.imgClient = res.file
+        console.log(      this.formsField.imgClient, ' IMAGEM CLIENTE')
+      })
+      await this.formsField.getImageById(this.formsField.fileIdTecnhic).then((res)=> {
+        this.formsField.imgTecnhic = res.file
+        console.log(      this.formsField.imgTecnhic, ' IMAGEM TECNCO')
+      })
+
+      }else{
+        console.log('tem campos vazios ')
+      }
     } else {
       console.log("O array formInstances está vazio.");
     }

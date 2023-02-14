@@ -12,7 +12,12 @@ import { TasksService } from "./tasks.service";
 @Injectable({ providedIn: 'root' })
 export class FormsService {
 
+  logoData1: any;
   // turnNoForms : boolean = false;
+  imgTecnhic:any;
+  imgClient:any;
+  fileIdClient:any;
+  fileIdTecnhic:any;
   structureList: any;
   idForm:any = [];
   formsSubmit:any;
@@ -179,7 +184,7 @@ ngOnit(){
 
 
   postForms(form) {
-    console.log(environment.token)
+
 
     // this.loadingService.loader();
     return this.http
@@ -242,16 +247,31 @@ ngOnit(){
 
   }
 
+  getImageById(id) {
+
+    // this.loadingService.loader();
+    return this.http
+      .get<any>(`${environment.api}/api/Thebox/Files/TheboxFiles/${id}`,  {
+        headers: new HttpHeaders({
+          "content-type": "application/json",
+          Authorization: "Bearer " + environment.token,
+        })
+      })
+      .pipe()
+      .toPromise();
+
+  }
+
   //POR IMAGEM  NO FORMULARIO
 
 
-  putImageForms(instanceId, fieldId) {
+  putImageForms(instanceId, fieldId, binaryData) {
     console.log('tarefa SUSPENSA', );
+
     return this.http
-      .put<any>(`${environment.api}/api/Thebox/Forms/FormInstances/${instanceId}/FileField/${fieldId}`, {
+      .put<any>(`${environment.api}/api/Thebox/Forms/FormInstances/${instanceId}/FileField/${fieldId}`, (binaryData), {
         headers: new HttpHeaders({
           Authorization: "Bearer " + environment.token,
-          'Content-type': 'application/json',
           'accept': '*/*'
         })
       })

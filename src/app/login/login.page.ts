@@ -218,6 +218,9 @@ export class LoginPage implements OnInit {
               this.router.navigate(['/login']);
             }
           };
+          this.loadingController.dismiss().then(() => {
+            console.log('Loading spinner dismissed');
+          });
 
           this.alertService.open(temp);
           setTimeout(() => {
