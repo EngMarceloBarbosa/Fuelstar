@@ -244,7 +244,7 @@
           <ion-grid>
             <ion-row *ngFor="let row of rows; let i = index">
               <ion-col *ngFor="let image of row; let j = index">
-                <ion-img [src]="image"></ion-img>
+                <ion-img [src]="image" (touchstart)="onTouchStart(i, j)" (touchend)="onTouchEnd()" ></ion-img>
               </ion-col>
             </ion-row>
           </ion-grid>

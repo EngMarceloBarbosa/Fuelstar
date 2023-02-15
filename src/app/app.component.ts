@@ -34,29 +34,32 @@ export class AppComponent {
 
   ) {
 
-    this.platform.backButton.subscribeWithPriority(0, () => {
-      if (this.platform.is('android') || this.platform.is('ios')) {
-        const path = this.location.prepareExternalUrl(this.location.path());
-        if (path === '/tabs/tab1') {
-          navigator['app'].exitApp();
-        } else {
-          history.go(-1);
-          // Permitir que o comportamento padrão do botão "back" seja executado
-
-        }
-      }
-    });
+    //OUTRA FORMA DE BUTTON BACK SO QUE NAO FUNCIONA MT DIREITO TB
 
 
+    // this.platform.backButton.subscribeWithPriority(0, () => {
+    //   if (this.platform.is('android') || this.platform.is('ios')) {
+    //     const path = this.location.prepareExternalUrl(this.location.path());
+    //     if (path === '/tabs/tab1') {
+    //       navigator['app'].exitApp();
+    //     } else {
+    //       history.go(-1);
+    //       // Permitir que o comportamento padrão do botão "back" seja executado
 
-    //     this.platform.backButton.subscribeWithPriority(-1, () => {
-    //   if (!this.routerOutlet.canGoBack()) {
-    //     if(this.routerOutlet)
-    //     // this.tasksService.handleBackButton();
-    //     App.exitApp();
+    //     }
     //   }
-
     // });
+
+// A OUTRA FORMA MAS DESTA DA ERRO NAS IMAGENns
+
+        this.platform.backButton.subscribeWithPriority(-1, () => {
+      if (!this.routerOutlet.canGoBack()) {
+        if(this.routerOutlet)
+        // this.tasksService.handleBackButton();
+        App.exitApp();
+      }
+
+    });
 
 
     // console.log(this.tasksService.dataSave, '2');

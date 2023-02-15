@@ -11,8 +11,10 @@ import { TasksService } from "./tasks.service";
 
 @Injectable({ providedIn: 'root' })
 export class FormsService {
-
+  public signatureImageClient: string = "";
+  public signatureImageTecnic: string = "";
   logoData1: any;
+  selectedImages:any;
   // turnNoForms : boolean = false;
   imgTecnhic:any;
   imgClient:any;

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { TasksService } from '../shared/services/tasks.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -10,7 +10,8 @@ import { InstancePatch } from '../utils/models/tasks';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ToastController } from '@ionic/angular';
 import { FormsService } from '../shared/services/forms.service';
-
+import "hammerjs";
+import { HammerGestureConfig } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-forms',
@@ -19,18 +20,20 @@ import { FormsService } from '../shared/services/forms.service';
 })
 export class FormsPage implements OnInit {
 
+
   @ViewChild('signature1') public signaturePad: SignaturePad;
   @ViewChild('signature2') public signaturePad1: SignaturePad;
-
+  touchTimer: any;
+  touchRow: number;
+  touchCol: number;
   signaturePadOptions: Object = {
     'minWidth': 5,
     'canvasWidth': 210,
     'canvasHeight': 210
   };
 
-  public signatureImageClient: string = "";
-  public signatureImageTecnic: string = "";
 
+  imagesPerRow = 3;
   image4: any;
   notes1: any;
   notes2: any;
@@ -68,7 +71,7 @@ export class FormsPage implements OnInit {
   // selectedImage: string;
   selectedImages = []
   rows: string[][] = [];
-  constructor(private router: Router, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController, public formsFields: FormsService) {
+  constructor(private router: Router,private changeDetectorRef: ChangeDetectorRef, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController, public formsFields: FormsService) {
 
   }
 
@@ -101,7 +104,8 @@ export class FormsPage implements OnInit {
       // If it's base64 (DATA_URL):
 
       this.selectedImages.push('data:image/jpeg;base64,' + imageData);
-      console.log(this.selectedImages)
+      this.formsFields.selectedImages = this.selectedImages
+      console.log(  this.formsFields.selectedImages)
       this.groupImages();
     }, (err) => {
       console.log(err);
@@ -114,6 +118,57 @@ export class FormsPage implements OnInit {
       this.rows.push(this.selectedImages.slice(i, i + 3));
     }
   }
+
+  // async showConfirmation(i: number, j: number) {
+  //   console.log('entrou 1')
+  //   const toast = await this.toastController.create({
+
+  //     message: 'Are you sure you want to delete this image?',
+  //     position: 'top',
+  //     duration: 1000,
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel',
+  //       },
+  //       {
+  //         text: 'Delete',
+  //         handler: () => {
+  //   console.log('entrou 2')
+
+  //           this.deleteImage(i, j);
+  //         },
+  //       },
+  //     ],
+  //   });
+
+  //   await toast.present();
+  // }
+
+  deleteImage(i: number, j: number) {
+    console.log('entrou3')
+    // Remove the image from the selectedImages array
+    this.selectedImages.splice(i * this.imagesPerRow + j, 1);
+    this.groupImages();
+    console.log(    this.selectedImages)
+    this.formsFields.selectedImages = this.selectedImages;
+    this.changeDetectorRef.detectChanges();
+  }
+
+  onTouchStart(i: number, j: number) {
+    this.touchRow = i;
+    this.touchCol = j;
+    this.touchTimer = setTimeout(() => {
+      this.deleteImage(this.touchRow, this.touchCol);
+    }, 1020); // 2 segundos de atraso
+  }
+
+  onTouchEnd() {
+    if (this.touchTimer) {
+      clearTimeout(this.touchTimer);
+    }
+  }
+
 
   async presentSuccessToast() {
     const toast = await this.toastController.create({
@@ -128,23 +183,23 @@ export class FormsPage implements OnInit {
 
   drawComplete() {
     console.log('ENTROU AQUI')
-    this.signatureImageClient = this.signaturePad.toDataURL();
-    console.log(this.signatureImageClient)
+    this.formsFields.signatureImageClient = this.signaturePad.toDataURL();
+    console.log(this.formsFields.signatureImageClient)
   }
   drawComplete1(e) {
     console.log(e, 'aqui 3')
     console.log('ENTROU AQUI')
-    this.signatureImageTecnic = this.signaturePad1.toDataURL();
-    console.log(this.signatureImageTecnic)
+    this.formsFields.signatureImageTecnic = this.signaturePad1.toDataURL();
+    console.log(this.formsFields.signatureImageTecnic)
   }
 
   drawClear() {
     this.signaturePad.clear();
-    this.signatureImageClient = "";
+    this.formsFields.signatureImageClient = "";
   }
   drawClear1() {
     this.signaturePad1.clear();
-    this.signatureImageTecnic = "";
+    this.formsFields.signatureImageTecnic = "";
   }
 
 
@@ -228,10 +283,10 @@ export class FormsPage implements OnInit {
         if (this.formsFields.dateFormsStep3.valid) {
           console.log(this.formsFields.dateFormsStep3.value)
         }
-        console.log(this.signatureImageClient)
+        console.log(this.formsFields.signatureImageClient)
         console.log(this.formsFields.finalForm.value, 'Formulário FINAL ')
 
-        if (this.currentStep === 3 && this.signatureImageClient != "" && this.signatureImageTecnic != "") {
+        if (this.currentStep === 3 && this.formsFields.signatureImageClient != "" && this.formsFields.signatureImageTecnic != "") {
           console.log('PASSOU PODE AVANÇAR ')
 
 
@@ -475,21 +530,23 @@ export class FormsPage implements OnInit {
 
       console.log(data, 'lista data')
 
-           // Form Data GRAVAR AS ASSINATURAS DO CLIENTE E TÉCNICO
-           const fileIdClient = "00000000-0000-0000-0000-000000000019";
-           const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
-           let file = this.dataURLtoFile(this.signatureImageClient, 'signature.png');
-           let file1 = this.dataURLtoFile(this.signatureImageTecnic, 'signature.png');
-           let form = new FormData();
-           form.append('file', file, file.name);
-let form1 = new FormData();
-form1.append('file', file1, file1.name);
-           // VER ISTO
-          await this.formsFields.putImageForms( this.formsFields.idForm, fileIdClient, form)
+      // Form Data GRAVAR AS ASSINATURAS DO CLIENTE E TÉCNICO
+      const fileIdClient = "00000000-0000-0000-0000-000000000019";
+      const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
+      let file = this.dataURLtoFile(this.formsFields.signatureImageClient, 'signature.png');
+      let file1 = this.dataURLtoFile(this.formsFields.signatureImageTecnic, 'signature.png');
+      let form = new FormData();
+      form.append('file', file, file.name);
+      let form1 = new FormData();
+      form1.append('file', file1, file1.name);
+      // VER ISTO
+      await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form)
 
-          await this.formsFields.putImageForms( this.formsFields.idForm, fileIdTecnic, form1)
+      await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1)
 
-           console.log(this.signatureImageClient)
+      console.log(this.formsFields.signatureImageClient)
+
+      this.formsFields.finalForm.reset();
 
 
       await this.tasksService.putTaskFinalize();
@@ -682,6 +739,10 @@ form1.append('file', file1, file1.name);
 
     }
 
+    // this.formsFields.selectedImages.forEach(element => {
+    //    this.formsFields.putImageForms()
+    // });
+
     this.presentSuccessToast();
 
   }
@@ -698,7 +759,7 @@ form1.append('file', file1, file1.name);
       if (this.formsFields.dateFormsStep2.valid) {
 
         console.log(this.formsFields.dateFormsStep2.value);
-        if (this.signatureImageClient != "") {
+        if (this.formsFields.signatureImageClient != "") {
 
 
 

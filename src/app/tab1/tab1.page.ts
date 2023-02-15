@@ -738,9 +738,14 @@ console.log(res)
       await this.formsField.getImageById(this.formsField.fileIdClient).then((res)=> {
         this.formsField.imgClient = res.file
         console.log(      this.formsField.imgClient, ' IMAGEM CLIENTE')
+        this.formsField.imgClient = 'data:image/png;base64,'+ this.formsField.imgClient
+        console.log(this.formsField.imgClient)
+
       })
       await this.formsField.getImageById(this.formsField.fileIdTecnhic).then((res)=> {
         this.formsField.imgTecnhic = res.file
+        this.formsField.imgTecnhic = 'data:image/png;base64,'+ this.formsField.imgTecnhic
+
         console.log(      this.formsField.imgTecnhic, ' IMAGEM TECNCO')
       })
 
