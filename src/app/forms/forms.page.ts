@@ -561,22 +561,22 @@ export class FormsPage implements OnInit {
       console.log(data, 'lista data')
 
       // Form Data GRAVAR AS ASSINATURAS DO CLIENTE E TÉCNICO
-      const fileIdClient = "00000000-0000-0000-0000-000000000019";
-      const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
-      let file = this.dataURLtoFile(this.formsFields.signatureImageClient, 'signature.png');
-      let file1 = this.dataURLtoFile(this.formsFields.signatureImageTecnic, 'signature.png');
-      let form = new FormData();
-      form.append('file', file, file.name);
-      let form1 = new FormData();
-      form1.append('file', file1, file1.name);
-      // VER ISTO
-      await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form)
+      // const fileIdClient = "00000000-0000-0000-0000-000000000019";
+      // const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
+      // let file = this.dataURLtoFile(this.formsFields.signatureImageClient, 'signature.png');
+      // let file1 = this.dataURLtoFile(this.formsFields.signatureImageTecnic, 'signature.png');
+      // let form = new FormData();
+      // form.append('file', file, file.name);
+      // let form1 = new FormData();
+      // form1.append('file', file1, file1.name);
+      // // VER ISTO
+      // await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form)
 
-      await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1)
+      // await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1)
 
-      console.log(this.formsFields.signatureImageClient)
+      // console.log(this.formsFields.signatureImageClient)
 
-      this.formsFields.finalForm.reset();
+      // this.formsFields.finalForm.reset();
 
 
 
@@ -585,22 +585,22 @@ export class FormsPage implements OnInit {
             // Form Data GRAVAR AS ASSINATURAS DO CLIENTE E TÉCNICO  outra forma
 
 
-            // const fileIdClient = "00000000-0000-0000-0000-000000000019";
-            // const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
-            // let file = JSON.parse(JSON.stringify(this.dataURLtoBlob(this.formsFields.signatureImageClient)));
-            // let file1 = JSON.parse(JSON.stringify(this.dataURLtoBlob(this.formsFields.signatureImageTecnic) ));
-            // let imageFile = new File([file1], 'imagem.png', { type: file1.type });
-            // let imageFile1 = new File([file], 'imagem.png', { type: file.type });
-            // let form = new FormData();
-            // form.append('file', file);
-            // let form1 = new FormData();
-            // form1.append('file', file1);
-            // // VER ISTO
-            // await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form)
+            const fileIdClient = "00000000-0000-0000-0000-000000000019";
+            const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
+            let file = JSON.parse(JSON.stringify(this.dataURLtoBlob(this.formsFields.signatureImageClient)));
+            let file1 = JSON.parse(JSON.stringify(this.dataURLtoBlob(this.formsFields.signatureImageTecnic) ));
+            let imageFile = new File([file1], 'imagem.png', { type: file1.type });
+            let imageFile1 = new File([file], 'imagem.png', { type: file.type });
+            let form = new FormData();
+            form.append('file', file);
+            let form1 = new FormData();
+            form1.append('file', file1);
+            // VER ISTO
+            await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form)
 
-            // await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1)
+            await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1)
 
-            // console.log(this.formsFields.signatureImageClient)
+            console.log(this.formsFields.signatureImageClient)
 
 
 
