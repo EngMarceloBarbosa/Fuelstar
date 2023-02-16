@@ -71,7 +71,7 @@ export class FormsPage implements OnInit {
   // selectedImage: string;
   selectedImages = []
   rows: string[][] = [];
-  constructor(private router: Router,private changeDetectorRef: ChangeDetectorRef, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController, public formsFields: FormsService) {
+  constructor(private router: Router, private changeDetectorRef: ChangeDetectorRef, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController, public formsFields: FormsService) {
 
   }
 
@@ -105,7 +105,7 @@ export class FormsPage implements OnInit {
 
       this.selectedImages.push('data:image/jpeg;base64,' + imageData);
       this.formsFields.selectedImages = this.selectedImages
-      console.log(  this.formsFields.selectedImages)
+      console.log(this.formsFields.selectedImages)
       this.groupImages();
     }, (err) => {
       console.log(err);
@@ -150,7 +150,7 @@ export class FormsPage implements OnInit {
     // Remove the image from the selectedImages array
     this.selectedImages.splice(i * this.imagesPerRow + j, 1);
     this.groupImages();
-    console.log(    this.selectedImages)
+    console.log(this.selectedImages)
     this.formsFields.selectedImages = this.selectedImages;
     this.changeDetectorRef.detectChanges();
   }
@@ -351,6 +351,24 @@ export class FormsPage implements OnInit {
       } else if (this.currentStep == 2) {
         if (this.formsFields.dateFormsStep3.valid) {
 
+          const fieldsIds = [ '00000000-0000-0000-0000-000000000021', '00000000-0000-0000-0000-000000000022', '00000000-0000-0000-0000-000000000023', '00000000-0000-0000-0000-000000000024', '00000000-0000-0000-0000-000000000025']
+
+
+
+
+          for (let i = 0; i < this.selectedImages.length; i++) {
+            console.log(this.selectedImages[i], 'AQUI');
+            console.log(fieldsIds[i], 'AQII 3');
+            const image = this.selectedImages[i];
+            const fieldId = fieldsIds[i];
+            let imageBlob = this.dataURLtoBlob(image);
+            let imageFile = new File([imageBlob], 'imagem.png', { type: imageBlob.type });
+            let formImages = new FormData();
+            formImages.append('file', imageFile);
+            await this.formsFields.putImageForms(this.formsFields.idForm, fieldId, formImages);
+          }
+
+
           this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
           console.log(this.currentStep);
           this.submitted3 = false;
@@ -387,6 +405,18 @@ export class FormsPage implements OnInit {
     console.log(this.currentStep)
   }
 
+       dataURLtoBlob(dataURL) {
+  const byteString = atob(dataURL.split(',')[1]);
+  const mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  return new Blob([ab], { type: mimeString });
+}
 
 
   async buttonFinalized() {
@@ -548,6 +578,61 @@ export class FormsPage implements OnInit {
 
       this.formsFields.finalForm.reset();
 
+
+
+
+
+            // Form Data GRAVAR AS ASSINATURAS DO CLIENTE E TÉCNICO  outra forma
+
+
+            // const fileIdClient = "00000000-0000-0000-0000-000000000019";
+            // const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
+            // let file = JSON.parse(JSON.stringify(this.dataURLtoBlob(this.formsFields.signatureImageClient)));
+            // let file1 = JSON.parse(JSON.stringify(this.dataURLtoBlob(this.formsFields.signatureImageTecnic) ));
+            // let imageFile = new File([file1], 'imagem.png', { type: file1.type });
+            // let imageFile1 = new File([file], 'imagem.png', { type: file.type });
+            // let form = new FormData();
+            // form.append('file', file);
+            // let form1 = new FormData();
+            // form1.append('file', file1);
+            // // VER ISTO
+            // await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form)
+
+            // await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1)
+
+            // console.log(this.formsFields.signatureImageClient)
+
+
+
+
+
+
+        // GUARDAR AS IMAGENS ANEXADAS
+
+
+        // const fieldsIds = [ '00000000-0000-0000-0000-000000000021', '00000000-0000-0000-0000-000000000022', '00000000-0000-0000-0000-000000000023', '00000000-0000-0000-0000-000000000024', '00000000-0000-0000-0000-000000000025']
+
+
+
+
+        // for (let i = 0; i < this.selectedImages.length; i++) {
+        //   console.log(this.selectedImages[i], 'AQUI');
+        //   console.log(fieldsIds[i], 'AQII 3');
+        //   const image = this.selectedImages[i];
+        //   const fieldId = fieldsIds[i];
+        //   let imageBlob = this.dataURLtoBlob(image);
+        //   let imageFile = new File([imageBlob], 'imagem.jpeg', { type: imageBlob.type });
+        //   let formImages = new FormData();
+        //   formImages.append('file', imageFile, imageFile.name);
+        //   await this.formsFields.putImageForms(this.formsFields.idForm, fieldId, formImages);
+        // }
+
+
+
+
+
+
+// --------------------- ACABA AQUI ---------------------------------------------------
 
       await this.tasksService.putTaskFinalize();
 
@@ -739,9 +824,8 @@ export class FormsPage implements OnInit {
 
     }
 
-    // this.formsFields.selectedImages.forEach(element => {
-    //    this.formsFields.putImageForms()
-    // });
+
+
 
     this.presentSuccessToast();
 

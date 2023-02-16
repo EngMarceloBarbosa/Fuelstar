@@ -33,7 +33,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class DetailsClientPage implements OnInit {
   FilesystemDirectory:any;
   imgTecnhic1:any;
-
+  formNumberStart:any;
+  forNumbers:any;
   // pdfUrl = "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_1MB.pdf'
   formsFields = {
     structure: {
@@ -107,6 +108,7 @@ export class DetailsClientPage implements OnInit {
   pdfObj: any;
   pdfBase64:any;
 
+  imageBolean = true;
   @ViewChild('search') myInput;
   showContent = true;
   logoData ;
@@ -1242,12 +1244,15 @@ generatePdf() {
         table: {
           headerRows: 1,
           body: [
+            [{ text: 'Cliente', bold: true }, { text: this.clientDetails.entity.firstName }],
+            [{ text: 'Morada ', bold: true }, { text: this.tasksService.selectedTask.address.addressLine1 + this.tasksService.selectedTask.address.cityName + this.tasksService.selectedTask.address.postalCode }],
+            [{ text: 'Técnico', bold: true }, { text: this.tasksService.entityName }],
             [{ text: 'Tipo da Tarefa', bold: true }, { text: this.formsField.structure.optionFields[0].values[0].name }],
             [{ text: 'Pedido ao OVM ?', bold: true }, { text: this.formsField.structure.booleanFields[0].value }],
             [{ text: 'Pedido ao OVM - Porque ?', bold: true }, { text: this.formsField.structure.textFields[5].value }],
             [{ text: 'Trabalho Finalizado ?', bold: true }, { text: this.formsField.structure.booleanFields[1].value }],
             [{ text: 'Trabalho finalizado - Porque ?', bold: true }, { text: this.formsField.structure.textFields[5].value }],
-            [{ text: 'Data da Tarefa', bold: true }, { text: this.formsField.structure.dateFields[0].value.substring(0,19).replace("T", " às ") }],
+            [{ text: 'Data da Tarefa', bold: true }, { text: this.formsField.structure.dateFields[0].value.substring(0,10).replace("T", " às ") }],
             [{ text: 'Data de inicio da deslocação', bold: true }, { text: this.formsField.structure.dateFields[3].value.substring(0,19).replace("T", " às ") }],
             [{ text: 'Data de fim da deslocação', bold: true }, { text: this.formsField.structure.dateFields[1].value.substring(0,19).replace("T", " às ") }],
             [{ text: 'Data de inicio do trabalho', bold: true }, { text: this.formsField.structure.dateFields[4].value.substring(0,19).replace("T", " às ") }],
@@ -1274,12 +1279,12 @@ generatePdf() {
       header: {
       fontSize: 18,
       bold: true,
-      margin: [190, 30, 10, 30], // top-right-bottom-left
+      margin: [190, 0, 10, 0],
       },
       subheader: {
       fontSize: 16,
       bold: true,
-      margin: [0, 10, 0, 5],
+      margin: [0, 10, 0, 5], // left- top-right-bottom
       },
       tableExample: {
       margin: [0, 5, 0, 15],
@@ -1288,7 +1293,7 @@ generatePdf() {
       bold: true,
       fontSize: 13,
       color: 'black',
-      margin: [90, 0 , 0 , 50],
+      margin: [20, 20 , 20 , 30],
       },
       headerMaster: {
         fontSize: 18,
@@ -1304,11 +1309,11 @@ generatePdf() {
 
       textImage: {
         bold: true,
-        margin: [285, -115, 0, 0]
+        margin: [285, 0, 0, 0]
       },
       textImage1: {
         bold: true,
-        margin: [300, 0, 0, 0]
+        margin: [300, -115, 0, 0]
       },
       textClient:{
         bold: true,
@@ -1320,6 +1325,8 @@ generatePdf() {
       this.pdfObj = pdfMake.createPdf(docDefinition);
 
 
+    const formId = this.tasksService.selectedTask.id
+
         // pdfDocGenerator.getBasdownloadPdf() {
     if (this.plataform.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
@@ -1328,14 +1335,15 @@ generatePdf() {
         var blob = new Blob([binaryArray], { type: 'application/pdf' });
 
         // Save the PDF to the data Directory of our App
-        this.file.writeFile(this.file.dataDirectory, 'formulario.pdf', blob, { replace: true }).then(fileEntry => {
+        this.file.writeFile(this.file.dataDirectory, 'formulário'+ JSON.stringify(formId)+'.pdf', blob, { replace: true }).then(fileEntry => {
 
-           this.fileOpener.open(this.file.dataDirectory + 'formulario.pdf', 'application/pdf');
+           this.fileOpener.open(this.file.dataDirectory +  'formulário'+ JSON.stringify(formId)+'.pdf', 'application/pdf');
         })
       });
     } else {
       // On a browser simply use download!
-      this.pdfObj.download();
+      this.pdfObj.download('formulário'+ JSON.stringify(formId)+'.pdf');
+
     }
     }
 
