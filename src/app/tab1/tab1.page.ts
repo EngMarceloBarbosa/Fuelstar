@@ -726,6 +726,8 @@ console.log(res)
           }
          ]
 
+
+
        this.formsField.structureList = strutureList
 
 

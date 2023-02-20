@@ -12,6 +12,7 @@ import { ToastController } from '@ionic/angular';
 import { FormsService } from '../shared/services/forms.service';
 import "hammerjs";
 import { HammerGestureConfig } from "@angular/platform-browser";
+import { Filesystem, Directory } from '@capacitor/filesystem';
 
 @Component({
   selector: 'app-forms',
@@ -419,6 +420,8 @@ export class FormsPage implements OnInit {
 }
 
 
+
+
   async buttonFinalized() {
     console.log(JSON.parse(JSON.stringify(this.tasksService.notesTask)));
     let data: InstancePatch = new InstancePatch(this.tasksService.notesTask);
@@ -560,7 +563,8 @@ export class FormsPage implements OnInit {
 
       console.log(data, 'lista data')
 
-      // Form Data GRAVAR AS ASSINATURAS DO CLIENTE E TÉCNICO
+      // Form Data GRAVAR AS ASSINATURAS DO CLIENTE E TÉCNICO A DAR NO DESKTOP
+
       // const fileIdClient = "00000000-0000-0000-0000-000000000019";
       // const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
       // let file = this.dataURLtoFile(this.formsFields.signatureImageClient, 'signature.png');
@@ -570,6 +574,8 @@ export class FormsPage implements OnInit {
       // let form1 = new FormData();
       // form1.append('file', file1, file1.name);
       // // VER ISTO
+
+      // console.log(form1, 'AQUI')
       // await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form)
 
       // await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1)
@@ -578,33 +584,58 @@ export class FormsPage implements OnInit {
 
       // this.formsFields.finalForm.reset();
 
+// console.log(this.formsFields.signatureImageClient);
+
+
+// outras forma nao convertendo para file Enviando logo a base 64 , so que retorna string errada
 
 
 
+const fileIdClient = "00000000-0000-0000-0000-000000000019";
+const fileIdTecnic = "00000000-0000-0000-0000-000000000020";
 
-            // Form Data GRAVAR AS ASSINATURAS DO CLIENTE E TÉCNICO  outra forma
+const blobToFile = (blob, fileName) => {
+  blob.lastModifiedDate = new Date();
+  blob.name = fileName;
+  return blob;
+};
+
+// const blobToFile = (blob) => {
+//   const file = new File([blob], 'signature.png', { type: blob.type });
+//   return file;
+// };
+
+// convert signatureImageClient to file
+// const signatureClientBlob = this.dataURLtoBlob(this.formsFields.signatureImageClient);
+// const signatureClientFile = blobToFile(signatureClientBlob);
+
+// // convert signatureImageTecnic to file
+// const signatureTecnicBlob = this.dataURLtoBlob(this.formsFields.signatureImageTecnic);
+// const signatureTecnicFile = blobToFile(signatureTecnicBlob);
+
+const signatureClientBlob = this.dataURLtoBlob(this.formsFields.signatureImageClient);
+const signatureClientFile = blobToFile(signatureClientBlob, 'signatureClient.png');
+
+// convert signatureImageTecnic to file
+const signatureTecnicBlob = this.dataURLtoBlob(this.formsFields.signatureImageTecnic);
+const signatureTecnicFile = blobToFile(signatureTecnicBlob, 'signatureTecnic.png');
 
 
-            const fileIdClient = "00000000-0000-0000-0000-000000000019";
-            const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
-            let file = JSON.parse(JSON.stringify(this.dataURLtoBlob(this.formsFields.signatureImageClient)));
-            let file1 = JSON.parse(JSON.stringify(this.dataURLtoBlob(this.formsFields.signatureImageTecnic) ));
-            let imageFile = new File([file1], 'imagem.png', { type: file1.type });
-            let imageFile1 = new File([file], 'imagem.png', { type: file.type });
-            let form = new FormData();
-            form.append('file', file);
-            let form1 = new FormData();
-            form1.append('file', file1);
-            // VER ISTO
-            await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form)
+let form = new FormData();
+form.append('file', signatureClientFile, 'signature.png');
 
-            await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1)
+let form1 = new FormData();
+form1.append('file', signatureTecnicFile, 'signature.png');
+console.log(form1, 'AQUI');
 
-            console.log(this.formsFields.signatureImageClient)
+await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form);
+await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1);
 
+console.log(this.formsFields.signatureImageClient);
 
+this.formsFields.finalForm.reset();
 
-
+console.log(this.formsFields.signatureImageClient);
 
 
         // GUARDAR AS IMAGENS ANEXADAS
