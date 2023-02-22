@@ -1,5 +1,4 @@
 import { Location } from '@angular/common';
-import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonSlides, LoadingController, NavController, Platform, ToastController } from '@ionic/angular';
@@ -80,9 +79,10 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     public contactsTaskService: ContactsTaskService,
     private element: ElementRef,
     public loadingController: LoadingController,
-    public formsField : FormsService,
-   public  contactApiService: ContactsTaskService,
-   private platform: Platform,
+    public formsField: FormsService,
+    public contactApiService: ContactsTaskService,
+    private platform: Platform,
+    public formsFields: FormsService,
 
   ) {
 
@@ -99,206 +99,144 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
       console.log(this.tasksService.time)
-    console.log(this.tasksService.totalTime)
-    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
-
-    console.log(this.tasksService.countVisits)
-
-    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
-
-
-    // this.tasksService.handleBackButton();
-
-    console.log(this.positionSlide)
-
-
-
-    console.log(this.tasksService.toDo)
-    await this.contactsTaskService.getEntities().then(res => {
-      console.log(res)
-      this.tasksService.listClients = res;
-    })
-    this.tasksService.allDocumentsFilter = this.tasksService.listClients
-
-
-    await this.contactsTaskService.getEntitiesClients().then(res => {
-      console.log(res)
-      this.tasksService.listClients1 = res;
-      console.log(this.tasksService.listClients1)
-    })
-    this.tasksService.allDocumentsFilter = this.tasksService.listClients
-
-
-
-
-
-
-
-
-
-    // await this.taskApiService.getTasks().then(res => {
-    //   console.log(res)
-    //   this.tasksService.listTasks = res;
-    //   console.log(this.tasksService.visiteToDo)
-
-    //   this.tasksService.countVisits  = this.tasksService.visiteToDo.length
-    //   console.log(this.tasksService.countVisits)
-    //   this.tasksService.countsToDo =  this.tasksService.listTasks.length-this.tasksService.countVisits
-    // })
-
-
-    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
-      // this.tasksService.listTasks1 = res;
-
-
-       this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10)== this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
-
-      // this.tasksService.visiteToDo = this.tasksService.listTasks1
-      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
-      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
-      // console.log(      this.tasksService.visiteToDo)
-      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
-      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
-      // console.log(this.tasksService.countVisits)
-      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
-
-
-    })
-    // LISTA PARA BUSCAR OS DE ESTADO EM EXECUÇÃO
-
-    await this.taskApiService.getTasksItemIdExecuted().then(res => {
-      // this.tasksService.listTasks2 = res;
-      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
-
-      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
-
-
-    })
-
-    await this.taskApiService.getTasksItemIdSuspend().then(res => {
-
-      // this.tasksService.listTasksSuspended = res;
-      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
-
-      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
-
-
-    })
-
-    await this.taskApiService.getTasksItemIdCancelled().then(res => {
-
-      // this.tasksService.listTasksCancelled = res;
-      this.tasksService.listTasksCancelled = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
-
-      console.log(this.tasksService.listTasksCancelled, 'Tarefas canceladas')
-
-
-    })
-
-    await this.taskApiService.getTasksItemIdFinalized().then(res => {
-      console.log(res)
-      // this.tasksService.listTasksFinalized = res;
-
-      this.tasksService.listTasksFinalized = res.filter(res => res.endDate !==  null && res.endDate.substring(0,10) == this.tasksService.timeNew  )
-
-
-      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+      console.log(this.tasksService.totalTime)
       this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
-      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-    })
+      console.log(this.tasksService.countVisits)
+
+      this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+
+
+      // this.tasksService.handleBackButton();
+
+      console.log(this.positionSlide)
+
+
+
+      console.log(this.tasksService.toDo)
+      await this.contactsTaskService.getEntities().then(res => {
+        console.log(res)
+        this.tasksService.listClients = res;
+      })
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients
+
+
+      await this.contactsTaskService.getEntitiesClients().then(res => {
+        console.log(res)
+        this.tasksService.listClients1 = res;
+        console.log(this.tasksService.listClients1)
+      })
+      this.tasksService.allDocumentsFilter = this.tasksService.listClients
+
+
+
+      await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+
+
+
+        this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
+
+        console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+
+      })
+      // LISTA PARA BUSCAR OS DE ESTADO EM EXECUÇÃO
+
+      await this.taskApiService.getTasksItemIdExecuted().then(res => {
+
+        this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
+
+        console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+      })
+
+      await this.taskApiService.getTasksItemIdSuspend().then(res => {
+
+        this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
+
+        console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+      })
+
+      await this.taskApiService.getTasksItemIdCancelled().then(res => {
+
+
+        this.tasksService.listTasksCancelled = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
+
+        console.log(this.tasksService.listTasksCancelled, 'Tarefas canceladas')
+
+
+      })
+
+      await this.taskApiService.getTasksItemIdFinalized().then(res => {
+        console.log(res)
+
+        this.tasksService.listTasksFinalized = res.filter(res => res.endDate !== null && res.endDate.substring(0, 10) == this.tasksService.timeNew)
+
+
+        console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+        this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+        this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+        console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+      })
 
 
 
 
 
-    await this.taskApiService.getTypesStateTask().then(res => {
-      console.log(res)
-      this.tasksService.typesState = res;
-      // console.log(      this.tasksService.listTasks1)
-      // console.log(  this.tasksService.typesState[].initialStatusId, 'tyPESTATE')
-      //       this.tasksService.visiteToDo = this.tasksService.listTasks1.filter(res => res.currentStatus)
-      //       console.log(this.tasksService.visiteToDo, '1')
-      //       this.tasksService.visiteToDo = this.tasksService.visiteToDo.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
-      // console.log(  this.tasksService.visiteToDo , '2')
-      // this.tasksService.typesState  =  this.tasksService.listTasks1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
-      // this.tasksService.typesState = res;
-      // console.log(this.tasksService.typesState, 'Atribuido, typestate')
+      await this.taskApiService.getTypesStateTask().then(res => {
+        console.log(res)
+        this.tasksService.typesState = res;
+
+        console.log(this.tasksService.typesState)
+        console.log(this.tasksService.typesState, 'Tipos de estado')
+      })
+
+      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended)
+      console.log(this.tasksService.visiteToDo, 'lista final')
 
 
+      console.log(this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1)
+      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+      console.log(this.tasksService.countVisits)
+
+      this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+      console.log(this.tasksService.visiteToDo, 'pq0')
 
 
-      // console.log(this.tasksService.listTasksById)
-      // this.tasksService.typesState = this.tasksService.listTasksById.currentStatus.filter(res => res.id = "28b097a1-2834-4c9f-b1c6-6b2f316401af")
-      console.log(this.tasksService.typesState)
-      console.log(this.tasksService.typesState, 'Tipos de estado')
-    })
-
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended )
-    console.log(this.tasksService.visiteToDo, 'lista final')
+      this.randomNumber(1, 1000);
+      this.virtualScroller();
+      this.virtualScroller1();
+      this.registration();
 
 
-    console.log(this.tasksService.visiteToDo)
-    console.log(this.tasksService.listTasks1)
-    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+      if (this.tasksService.listTasksFinalized.length === 0) {
+        this.tasksService.turnMsgAlertTask1 = true;
+        this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
+      } else {
+        this.tasksService.turnMsgAlertTask1 = false;
+      }
 
-    console.log(this.tasksService.countVisits)
-
-    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
-    console.log(this.tasksService.visiteToDo, 'pq0')
-
-    // this.tasksService.test = this.tasksService.visiteToDo.map((res) => res.currentStatus)
-    // console.log(this.tasksService.test)
-    // this.tasksService.test = this.tasksService.test.map((res) => {
-    //   console.log(res.id)
-    //   if (res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af") {
-
-    //     // document.documentElement.style.setProperty('.light-bar', 'red')
-
-    //     // console.log('entrou')
-    //     // this.tasksService.turnColor = true;
-    //   }
-
-    //   if (res.id == "23d91faf-d13d-42b0-902b-2de5d49a31ee") {
-    //     // document.getElementById("myH2").style.color = "##6495ED"
-    //     // this.tasksService.turnColor = false;
-    //   }
-    // })
-
-
-    // console.log(this.tasksService.turnColor, 'atribudo')
-    // console.log(this.tasksService.turnColorOrange, 'execução ')
-
-    this.randomNumber(1, 1000);
-    this.virtualScroller();
-    this.virtualScroller1();
-    this.registration();
-
-
-    if (this.tasksService.listTasksFinalized.length === 0) {
-      this.tasksService.turnMsgAlertTask1 = true;
-      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
-    } else {
-      this.tasksService.turnMsgAlertTask1 = false;
-    }
-
-    if (this.tasksService.visiteToDo.length === 0) {
-      this.tasksService.turnMsgAlertTask = true;
-      this.tasksService.msgAlertTasks = "Não existe Tarefas"
-    } else {
-      this.tasksService.turnMsgAlertTask = false;
-    }
+      if (this.tasksService.visiteToDo.length === 0) {
+        this.tasksService.turnMsgAlertTask = true;
+        this.tasksService.msgAlertTasks = "Não existe Tarefas"
+      } else {
+        this.tasksService.turnMsgAlertTask = false;
+      }
 
 
 
 
 
-    console.log(this.tasksService.countVisits, 'visitas feitas')
-    console.log(this.tasksService.countsToDo, 'visitas por fazer ')
+      console.log(this.tasksService.countVisits, 'visitas feitas')
+      console.log(this.tasksService.countsToDo, 'visitas por fazer ')
 
-    console.log(this.tasksService.visiteToDo, 'pq')
-    console.log(this.tasksService.visiteEfected)
+      console.log(this.tasksService.visiteToDo, 'pq')
+      console.log(this.tasksService.visiteEfected)
 
 
 
@@ -306,7 +244,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     }, 2000);
   };
 
-  ionViewWillEnter() {}
+  ionViewWillEnter() { }
 
   ngAfterContentChecked(): void {
     if (this.swiper) {
@@ -353,52 +291,29 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
 
-
-
-
-
-    // await this.taskApiService.getTasks().then(res => {
-    //   console.log(res)
-    //   this.tasksService.listTasks = res;
-    //   console.log(this.tasksService.visiteToDo)
-
-    //   this.tasksService.countVisits  = this.tasksService.visiteToDo.length
-    //   console.log(this.tasksService.countVisits)
-    //   this.tasksService.countsToDo =  this.tasksService.listTasks.length-this.tasksService.countVisits
-    // })
-
-
     await this.taskApiService.getTasksItemIdAtribuited().then(res => {
       console.log(res)
-      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew )
-        console.log(this.tasksService.listTasks1)
+      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
+      console.log(this.tasksService.listTasks1)
 
-      // this.tasksService.listTasks1 = res;
-      // this.tasksService.visiteToDo = this.tasksService.listTasks1
-      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
-      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
-      // console.log(      this.tasksService.visiteToDo)
       console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
-      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
-      // console.log(this.tasksService.countVisits)
-      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
 
 
     })
     // LISTA PARA BUSCAR OS DE ESTADO EM EXECUÇÃO
 
     await this.taskApiService.getTasksItemIdExecuted().then(res => {
-      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
 
-      // this.tasksService.listTasks2 = res;
+
       console.log(this.tasksService.listTasks2, 'Tarefas em execução')
 
 
     })
 
     await this.taskApiService.getTasksItemIdSuspend().then(res => {
-      // this.tasksService.listTasksSuspended = res;
-      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
+
+      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
 
       console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
 
@@ -406,8 +321,8 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     })
 
     await this.taskApiService.getTasksItemIdCancelled().then(res => {
-      // this.tasksService.listTasksCancelled = res;
-      this.tasksService.listTasksCancelled = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0,10) < this.tasksService.timeNew)
+
+      this.tasksService.listTasksCancelled = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
       console.log(this.tasksService.listTasksCancelled, 'Tarefas canceladas')
 
 
@@ -417,10 +332,8 @@ export class Tab1Page implements OnInit, AfterContentChecked {
       this.tasksService.listTasksFinalized = res;
       console.log(this.tasksService.timeNew)
       console.log(this.tasksService.listTasksFinalized)
-      this.tasksService.listTasksFinalized = res.filter(res => res.endDate !==  null && res.endDate.substring(0,10) == this.tasksService.timeNew )
-console.log(res)
-      // this.tasksService.listTasksFinalized = res.filter(res => res.estimatedEndDate.substring(0,10) == this.tasksService.timeNew || res.estimatedEndDate != null )
-      // this.tasksService.listTasksFinalized = res.filter(res => res.estimatedStartDate.substring(0,10) == this.tasksService.timeNew || this.tasksService.notesTask.statusHistory.filter(res => res.statusStartDate == "this.tasksService.timeNew") )
+      this.tasksService.listTasksFinalized = res.filter(res => res.endDate !== null && res.endDate.substring(0, 10) == this.tasksService.timeNew)
+      console.log(res)
 
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
@@ -436,26 +349,14 @@ console.log(res)
     await this.taskApiService.getTypesStateTask().then(res => {
       console.log(res)
       this.tasksService.typesState = res;
-      // console.log(      this.tasksService.listTasks1)
-      // console.log(  this.tasksService.typesState[].initialStatusId, 'tyPESTATE')
-      //       this.tasksService.visiteToDo = this.tasksService.listTasks1.filter(res => res.currentStatus)
-      //       console.log(this.tasksService.visiteToDo, '1')
-      //       this.tasksService.visiteToDo = this.tasksService.visiteToDo.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
-      // console.log(  this.tasksService.visiteToDo , '2')
-      // this.tasksService.typesState  =  this.tasksService.listTasks1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
-      // this.tasksService.typesState = res;
-      // console.log(this.tasksService.typesState, 'Atribuido, typestate')
 
 
 
-
-      // console.log(this.tasksService.listTasksById)
-      // this.tasksService.typesState = this.tasksService.listTasksById.currentStatus.filter(res => res.id = "28b097a1-2834-4c9f-b1c6-6b2f316401af")
       console.log(this.tasksService.typesState)
       console.log(this.tasksService.typesState, 'Tipos de estado')
     })
 
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2,this.tasksService.listTasksSuspended )
+    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended)
     console.log(this.tasksService.visiteToDo, 'lista final')
 
 
@@ -468,27 +369,6 @@ console.log(res)
     this.tasksService.countsToDo = this.tasksService.visiteToDo.length
     console.log(this.tasksService.visiteToDo, 'pq0')
 
-    // this.tasksService.test = this.tasksService.visiteToDo.map((res) => res.currentStatus)
-    // console.log(this.tasksService.test)
-    // this.tasksService.test = this.tasksService.test.map((res) => {
-    //   console.log(res.id)
-    //   if (res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af") {
-
-    //     // document.documentElement.style.setProperty('.light-bar', 'red')
-
-    //     // console.log('entrou')
-    //     // this.tasksService.turnColor = true;
-    //   }
-
-    //   if (res.id == "23d91faf-d13d-42b0-902b-2de5d49a31ee") {
-    //     // document.getElementById("myH2").style.color = "##6495ED"
-    //     // this.tasksService.turnColor = false;
-    //   }
-    // })
-
-
-    // console.log(this.tasksService.turnColor, 'atribudo')
-    // console.log(this.tasksService.turnColorOrange, 'execução ')
 
     this.randomNumber(1, 1000);
     this.virtualScroller();
@@ -567,7 +447,7 @@ console.log(res)
 
 
   async selectedTask(test: any) {
-    await  this.presentLoadingWithOptions();
+    await this.presentLoadingWithOptions();
 
     this.tasksService.msgWarningExecuted = false;
     this.tasksService.instanceId = test.id
@@ -604,7 +484,7 @@ console.log(res)
 
       }
       // TAREFAS SUSPENSAS
-      if(test.currentStatus.id == "00bba7ce-f90b-4ebb-9478-777376f78e93") {
+      if (test.currentStatus.id == "00bba7ce-f90b-4ebb-9478-777376f78e93") {
         this.tasksService.turnButtonResume = true;
         this.tasksService.turnButton = false;
         this.tasksService.turnButtonExecuted = false;
@@ -619,144 +499,189 @@ console.log(res)
         this.tasksService.turnButton = false;
         this.tasksService.finalized = false;
         this.formsField.turnForm = true;
+        this.tasksService.turnTab3 = false;
+
 
 
         // this.formsField.turnNoForms = true;
 
         await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then((res) => {
-      // console.log(res)
-      this.tasksService.notesTask = res
-      console.log(this.tasksService.notesTask)
-      this.tasksService.notesTask.tasks
-        console.log(this.tasksService.notesTask.formInstances[0])
+          // console.log(res)
+          this.tasksService.notesTask = res
+          console.log(this.tasksService.notesTask)
+          this.tasksService.notesTask.tasks
+          console.log(this.tasksService.notesTask.formInstances[0])
 
-    })
-    if (this.tasksService.notesTask.formInstances.length > 0) {
-      let firstFormInstance = this.tasksService.notesTask.formInstances[0];
-      console.log(firstFormInstance);
-      await this.formsField.getFormsbyId(this.tasksService.notesTask.formInstances[0]).then((res)=> {
-        this.formsField.formGetById = res
-        this.formsField.fileIdClient = this.formsField.formGetById.fields.fileFields[0].fileId
-        this.formsField.fileIdTecnhic = this.formsField.formGetById.fields.fileFields[1].fileId
-        console.log(this.formsField.formGetById)
-        if(this.formsField.formGetById.fields.booleanFields[0].value == false){
-          this.formsField.formGetById.fields.booleanFields[0].value  = 'SIM'
-        }else {
-          this.formsField.formGetById.fields.booleanFields[0].value = "NÃO"
-        }
-        if(this.formsField.formGetById.fields.booleanFields[1].value == false){
-          this.formsField.formGetById.fields.booleanFields[1].value  = 'SIM'
-        }else {
-          this.formsField.formGetById.booleanFields[1].value = "NÃO"
-        }
+        })
+        if (this.tasksService.notesTask.formInstances.length > 0) {
+          let firstFormInstance = this.tasksService.notesTask.formInstances[0];
+          console.log(firstFormInstance);
+          await this.formsField.getFormsbyId(this.tasksService.notesTask.formInstances[0]).then((res) => {
+            this.formsField.formGetById = res
+            this.formsField.fileIdClient = this.formsField.formGetById.fields.fileFields[0].fileId
+            this.formsField.fileIdTecnhic = this.formsField.formGetById.fields.fileFields[1].fileId
+            console.log(this.formsField.formGetById)
+            if (this.formsField.formGetById.fields.booleanFields[0].value == false) {
+              this.formsField.formGetById.fields.booleanFields[0].value = 'SIM'
+            } else {
+              this.formsField.formGetById.fields.booleanFields[0].value = "NÃO"
+            }
+            if (this.formsField.formGetById.fields.booleanFields[1].value == false) {
+              this.formsField.formGetById.fields.booleanFields[1].value = 'SIM'
+            } else {
+              this.formsField.formGetById.booleanFields[1].value = "NÃO"
+            }
 
 
 
-        this.formsField.structure = this.formsField.formGetById.fields
-        console.log(this.formsField.structure);
-         const strutureList = [
-          {
-            title: 'Tipo da Tarefa',
-            fieldName : this.formsField.structure.optionFields[0].values[0].name
-          },
-          {
-            title: 'Pedido ao OVM ?',
-            fieldName : this.formsField.structure.booleanFields[0].value
-          },
-          {
-            title: 'Pedido ao OVM - Porque ?',
-            fieldName : this.formsField.structure.textFields[5].value
-          },
-          {
-            title: 'Trabalho Finalizado ?',
-            fieldName : this.formsField.structure.booleanFields[1].value
-          },
-          {
-            title: 'Trabalho finalizado - Porque ?',
-            fieldName : this.formsField.structure.textFields[5].value
-          },
-          {
-            title: 'Data da Tarefa',
-            fieldName : this.formsField.structure.dateFields[0].value.substring(0,19).replace("T", " às ")
-          },
-          {
-            title: 'Data de inicio da deslocação',
-            fieldName : this.formsField.structure.dateFields[3].value.substring(0,19).replace("T", " às ")
-          },
-          {
-            title: 'Data de fim da deslocação',
-            fieldName : this.formsField.structure.dateFields[1].value.substring(0,19).replace("T", " às ")
-          },
-          {
-            title: 'Data de inicio do trabalho',
-            fieldName : this.formsField.structure.dateFields[4].value.substring(0,19).replace("T", " às ")
-          },
-          {
-            title: 'Data de fim do trabalho',
-            fieldName : this.formsField.structure.dateFields[2].value.substring(0,19).replace("T", " às ")
-          },
-          {
-            title: 'Origem da deslocação',
-            fieldName : this.formsField.structure.textFields[4].value
-          },
-          {
-            title: 'Destino da deslocação',
-            fieldName : this.formsField.structure.textFields[1].value
-          },
-          {
-            title: 'Matricula',
-            fieldName : this.formsField.structure.textFields[3].value
-          },
-          {
-            title: 'Kilometros',
-            fieldName : this.formsField.structure.decimalFields[0].value
-          },
+            this.formsField.structure = this.formsField.formGetById.fields
+            console.log(this.formsField.structure);
+            const strutureList = [
+              {
+                title: 'Tipo da Tarefa',
+                fieldName: this.formsField.structure.optionFields[0].values[0].name
+              },
+              {
+                title: 'Pedido ao OVM ?',
+                fieldName: this.formsField.structure.booleanFields[0].value
+              },
+              {
+                title: 'Pedido ao OVM - Porque ?',
+                fieldName: this.formsField.structure.textFields[5].value
+              },
+              {
+                title: 'Trabalho Finalizado ?',
+                fieldName: this.formsField.structure.booleanFields[1].value
+              },
+              {
+                title: 'Trabalho finalizado - Porque ?',
+                fieldName: this.formsField.structure.textFields[5].value
+              },
+              {
+                title: 'Data da Tarefa',
+                fieldName: this.formsField.structure.dateFields[0].value.substring(0, 19).replace("T", " às ")
+              },
+              {
+                title: 'Data de inicio da deslocação',
+                fieldName: this.formsField.structure.dateFields[3].value.substring(0, 19).replace("T", " às ")
+              },
+              {
+                title: 'Data de fim da deslocação',
+                fieldName: this.formsField.structure.dateFields[1].value.substring(0, 19).replace("T", " às ")
+              },
+              {
+                title: 'Data de inicio do trabalho',
+                fieldName: this.formsField.structure.dateFields[4].value.substring(0, 19).replace("T", " às ")
+              },
+              {
+                title: 'Data de fim do trabalho',
+                fieldName: this.formsField.structure.dateFields[2].value.substring(0, 19).replace("T", " às ")
+              },
+              {
+                title: 'Origem da deslocação',
+                fieldName: this.formsField.structure.textFields[4].value
+              },
+              {
+                title: 'Destino da deslocação',
+                fieldName: this.formsField.structure.textFields[1].value
+              },
+              {
+                title: 'Matricula',
+                fieldName: this.formsField.structure.textFields[3].value
+              },
+              {
+                title: 'Kilometros',
+                fieldName: this.formsField.structure.decimalFields[0].value
+              },
 
-          {
-            title: 'Anomalias encontradas',
-            fieldName : this.formsField.structure.textFields[0].value
-          },
-          {
-            title: 'Materias Aplicados',
-            fieldName : this.formsField.structure.textFields[2].value
-          },
-          {
-            title: 'Trabalho efetuado',
-            fieldName : this.formsField.structure.textFields[6].value
+              {
+                title: 'Anomalias encontradas',
+                fieldName: this.formsField.structure.textFields[0].value
+              },
+              {
+                title: 'Materias Aplicados',
+                fieldName: this.formsField.structure.textFields[2].value
+              },
+              {
+                title: 'Trabalho efetuado',
+                fieldName: this.formsField.structure.textFields[6].value
+              }
+            ]
+
+
+
+            this.formsField.structureList = strutureList
+
+
+
+            console.log(this.formsField.formGetById, 'FORMULARIOS CORREPONDENETE A ESSE FORMID')
+          })
+
+          if (this.formsField.formGetById.fields.fileFields[0].fileId !== null && this.formsField.formGetById.fields.fileFields[1].fileId !== null) {
+
+
+
+            await this.formsField.getFormsbyId(this.tasksService.notesTask.formInstances[0]).then(async (res) => {
+              const formFields = res.fields.fileFields;
+              const fieldIds = {};
+              const fileValues = [];
+
+              formFields.forEach((field) => {
+                if (field.fieldId && field.fileId !== null) {
+                  fieldIds[field.fieldId] = field.fileId;
+                }
+              });
+
+              for (const fieldId in fieldIds) {
+                const fileId = fieldIds[fieldId];
+                await this.formsField.getImageById(fileId).then((res) => {
+                  if (res.file !== null) {
+                    fileValues.push(res.file);
+                  }
+                });
+              }
+
+              if (fileValues.length >= 2) {
+
+
+                this.formsField.image1 = 'data:image/png;base64,' + fileValues[2];
+                this.formsField.image2 = 'data:image/png;base64,' + fileValues[3];
+                this.formsField.image3 = 'data:image/png;base64,' + fileValues[4];
+                this.formsField.image4 = 'data:image/png;base64,' + fileValues[5];
+                this.formsField.image5 = 'data:image/png;base64,' + fileValues[6];
+              }
+
+              console.log(this.formsField.image1)
+              console.log(this.formsField.image2)
+              console.log(this.formsField.image3)
+            });
+
+            await this.formsField.getImageById(this.formsField.fileIdClient).then((res) => {
+              this.formsField.imgClient = res.file
+              console.log(this.formsField.imgClient, ' IMAGEM CLIENTE')
+              this.formsField.imgClient = 'data:image/png;base64,' + this.formsField.imgClient
+              console.log(this.formsField.imgClient)
+
+            })
+            await this.formsField.getImageById(this.formsField.fileIdTecnhic).then((res) => {
+              this.formsField.imgTecnhic = res.file
+              this.formsField.imgTecnhic = 'data:image/png;base64,' + this.formsField.imgTecnhic
+
+              console.log(this.formsField.imgTecnhic, ' IMAGEM TECNCO')
+            })
+
+
+
+
+
+
+
+          } else {
+            console.log('tem campos vazios ')
           }
-         ]
-
-
-
-       this.formsField.structureList = strutureList
-
-
-
-        console.log(this.formsField.formGetById, 'FORMULARIOS CORREPONDENETE A ESSE FORMID')
-      })
-
-      if( this.formsField.formGetById.fields.fileFields[0].fileId !== null &&  this.formsField.formGetById.fields.fileFields[1].fileId !== null) {
-
-      await this.formsField.getImageById(this.formsField.fileIdClient).then((res)=> {
-        this.formsField.imgClient = res.file
-        console.log(      this.formsField.imgClient, ' IMAGEM CLIENTE')
-        this.formsField.imgClient = 'data:image/png;base64,'+ this.formsField.imgClient
-        console.log(this.formsField.imgClient)
-
-      })
-      await this.formsField.getImageById(this.formsField.fileIdTecnhic).then((res)=> {
-        this.formsField.imgTecnhic = res.file
-        this.formsField.imgTecnhic = 'data:image/png;base64,'+ this.formsField.imgTecnhic
-
-        console.log(      this.formsField.imgTecnhic, ' IMAGEM TECNCO')
-      })
-
-      }else{
-        console.log('tem campos vazios ')
-      }
-    } else {
-      console.log("O array formInstances está vazio.");
-    }
+        } else {
+          console.log("O array formInstances está vazio.");
+        }
 
         // this.tasksService.turnCreatePost = false;
         // this.tasksService.turnEditPost = false;
@@ -770,7 +695,7 @@ console.log(res)
     }
 
     // this.presentLoadingWithOptions();
-    this.tasksService.turnTab3 = false;
+
     this.router.navigate(['/details-client'])
   }
 
@@ -953,29 +878,6 @@ console.log(res)
 
 
 
-
-
-
-
-
-  // slideChanged1(){
-
-  //   this.slides.nativeElement.getActiveIndex().then(index => {
-  //     console.log(index);
-  //  });
-
-
-
-  // }
-
-
-
-  // ionSlideTransitionStart(){
-  //   this.change = false;
-  // }
-
-
-
   virtualScroller1() {
     setTimeout(() => {
 
@@ -996,7 +898,7 @@ console.log(res)
 
   filter(id) {
     if (id == 1) {
-      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2,  this.tasksService.listTasksSuspended).filter(res => res.bulletName == "Entregas");
+      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended).filter(res => res.bulletName == "Entregas");
       console.log(this.tasksService.visiteToDo)
       this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.filter(res => res.bulletName == "Entregas");
       this.tasksService.countVisits = this.tasksService.visiteEfected.length
@@ -1024,7 +926,7 @@ console.log(res)
       console.log(this.tasksService.visiteToDo)
       console.log(this.tasksService.listTasks1)
       console.log(this.tasksService.listTasksFinalized)
-      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2,  this.tasksService.listTasksSuspended).filter(res => res.bulletName == "Incidências");
+      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended).filter(res => res.bulletName == "Incidências");
       this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.filter(res => res.bulletName == "Incidências");
       console.log(this.tasksService.visiteToDo)
       this.tasksService.operation = "Incidências"

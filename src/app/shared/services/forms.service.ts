@@ -14,7 +14,16 @@ export class FormsService {
   public signatureImageClient: string = "";
   public signatureImageTecnic: string = "";
   logoData1: any;
-  selectedImages:any;
+  selectedImages = [];
+  formGetByIdAll:any;
+  formGetByIdAll1:any;
+  image:any;
+  image1:any;
+  image2:any;
+  image3:any;
+  image4:any;
+  image5:any;
+
   // turnNoForms : boolean = false;
   imgTecnhic:any;
   imgClient:any;

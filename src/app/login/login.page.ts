@@ -36,8 +36,8 @@ export class LoginPage implements OnInit {
   toggleValue: any;
   checked: any;
   Datasave: any;
-  i: number ;
-  j:number ;
+  i: number;
+  j: number;
   constructor(private router: Router,
     private loginApiService: LoginApiService,
     private alertService: AlertService,
@@ -70,7 +70,7 @@ export class LoginPage implements OnInit {
         '',
         [
           Validators.required,
-          // Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}$|^[0-9]{16}$|^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,4}/[A-Za-zA-Z0-9]+$|^[0-9]{16}/[a-zA-Z0-9]+$')
+
         ]
       ],
       password: [
@@ -131,7 +131,7 @@ export class LoginPage implements OnInit {
    */
   async signInClick() {
 
-   await  this.presentLoadingWithOptions();
+    await this.presentLoadingWithOptions();
 
     const authentication = {
       username: this.email.value,
@@ -143,13 +143,13 @@ export class LoginPage implements OnInit {
     this.loginApiService.getLogin(authentication).then(res => {
       this.router.navigate(["/tabs/tab1"]);
       environment.token = res.accessToken;
-     console.log(res)
-     localStorage.setItem('data', res.expirationDate)
-     localStorage.setItem('dataToday', this.tasksService.timeNew )
-     this.tasksService.dataSave = localStorage.getItem('data');
-     this.tasksService.dataSave1 = localStorage.getItem('dataToday');
+      console.log(res)
+      localStorage.setItem('data', res.expirationDate)
+      localStorage.setItem('dataToday', this.tasksService.timeNew)
+      this.tasksService.dataSave = localStorage.getItem('data');
+      this.tasksService.dataSave1 = localStorage.getItem('dataToday');
 
-    //  this.tasksService.dataSave = this.tasksService.dataSave
+      //  this.tasksService.dataSave = this.tasksService.dataSave
 
 
       if (authentication.username === 'Admin') {
@@ -170,7 +170,7 @@ export class LoginPage implements OnInit {
         if (error.status === 401) {
           const temp: ModalMessageModel = {
             showTip: false,
-            title: 'Password Errada',
+            title: 'Password/Utilizador Errada ',
             description: '',
             state: 'error',
             leftButtonSize: 'small',
@@ -196,7 +196,8 @@ export class LoginPage implements OnInit {
             // this.loading = 'SingIn';
             // this.form.reset();
           });
-        } else {
+        }
+        else {
           console.log(error, 'ERRO')
           const temp: ModalMessageModel = {
 

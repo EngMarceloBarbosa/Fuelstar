@@ -9,8 +9,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetModel, ActionSheetService, AlertService, ModalMessageModel } from '@nc-angular/library-mobile.stg';
 import { FilterServiceService } from '../shared/filter-service.service';
+import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { clientsTab } from '../shared/models/clients-tab1';
+import { FormsService } from '../shared/services/forms.service';
 import { TasksService } from "../shared/services/tasks.service";
 import { Tasks } from '../utils/models/tab2';
 
@@ -50,7 +52,7 @@ tests = clientsTab
 
 
 
-constructor(private router: Router, private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService , public tasksService: TasksService, public taskApiService: TaskApiService ) {
+constructor(private router: Router, public  contactApiService: ContactsTaskService, public formsField: FormsService, private actionSheetService : ActionSheetService, public alertService: AlertService , public filterService: FilterServiceService , public tasksService: TasksService, public taskApiService: TaskApiService ) {
 }
 
 handleRefresh(event) {
@@ -270,7 +272,7 @@ console.log(  this.tasksService.listTasksFinalizedHistory1
 
 }
 
-selectedTask(test: any) {
+  async selectedTask(test: any) {
   this.tasksService.turnTab3 = true
   this.tasksService.msgWarningExecuted = false;
   this.tasksService.instanceId = test.id
@@ -311,22 +313,201 @@ selectedTask(test: any) {
     if (test.currentStatus.id == "e6875497-3ad4-4121-b3aa-4efde5d12fb1") {
       this.tasksService.turnButton = false;
       this.tasksService.finalized = false;
+      this.tasksService.turnTab3 = true;
+      this.formsField.turnForm = true;
       // this.tasksService.turnCreatePost = false;
       // this.tasksService.turnEditPost = false;
+      await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then((res) => {
+        // console.log(res)
+        this.tasksService.notesTask = res
+        console.log(this.tasksService.notesTask)
+        this.tasksService.notesTask.tasks
+          console.log(this.tasksService.notesTask.formInstances[0])
+
+      })
+      if (this.tasksService.notesTask.formInstances.length > 0) {
+        let firstFormInstance = this.tasksService.notesTask.formInstances[0];
+        console.log(firstFormInstance);
+        await this.formsField.getFormsbyId(this.tasksService.notesTask.formInstances[0]).then((res)=> {
+          this.formsField.formGetById = res
+          this.formsField.fileIdClient = this.formsField.formGetById.fields.fileFields[0].fileId
+          this.formsField.fileIdTecnhic = this.formsField.formGetById.fields.fileFields[1].fileId
+          console.log(this.formsField.formGetById)
+          if(this.formsField.formGetById.fields.booleanFields[0].value == false){
+            this.formsField.formGetById.fields.booleanFields[0].value  = 'SIM'
+          }else {
+            this.formsField.formGetById.fields.booleanFields[0].value = "NÃO"
+          }
+          if(this.formsField.formGetById.fields.booleanFields[1].value == false){
+            this.formsField.formGetById.fields.booleanFields[1].value  = 'SIM'
+          }else {
+            this.formsField.formGetById.booleanFields[1].value = "NÃO"
+          }
+
+
+
+          this.formsField.structure = this.formsField.formGetById.fields
+          console.log(this.formsField.structure);
+           const strutureList = [
+            {
+              title: 'Tipo da Tarefa',
+              fieldName : this.formsField.structure.optionFields[0].values[0].name
+            },
+            {
+              title: 'Pedido ao OVM ?',
+              fieldName : this.formsField.structure.booleanFields[0].value
+            },
+            {
+              title: 'Pedido ao OVM - Porque ?',
+              fieldName : this.formsField.structure.textFields[5].value
+            },
+            {
+              title: 'Trabalho Finalizado ?',
+              fieldName : this.formsField.structure.booleanFields[1].value
+            },
+            {
+              title: 'Trabalho finalizado - Porque ?',
+              fieldName : this.formsField.structure.textFields[5].value
+            },
+            {
+              title: 'Data da Tarefa',
+              fieldName : this.formsField.structure.dateFields[0].value.substring(0,19).replace("T", " às ")
+            },
+            {
+              title: 'Data de inicio da deslocação',
+              fieldName : this.formsField.structure.dateFields[3].value.substring(0,19).replace("T", " às ")
+            },
+            {
+              title: 'Data de fim da deslocação',
+              fieldName : this.formsField.structure.dateFields[1].value.substring(0,19).replace("T", " às ")
+            },
+            {
+              title: 'Data de inicio do trabalho',
+              fieldName : this.formsField.structure.dateFields[4].value.substring(0,19).replace("T", " às ")
+            },
+            {
+              title: 'Data de fim do trabalho',
+              fieldName : this.formsField.structure.dateFields[2].value.substring(0,19).replace("T", " às ")
+            },
+            {
+              title: 'Origem da deslocação',
+              fieldName : this.formsField.structure.textFields[4].value
+            },
+            {
+              title: 'Destino da deslocação',
+              fieldName : this.formsField.structure.textFields[1].value
+            },
+            {
+              title: 'Matricula',
+              fieldName : this.formsField.structure.textFields[3].value
+            },
+            {
+              title: 'Kilometros',
+              fieldName : this.formsField.structure.decimalFields[0].value
+            },
+
+            {
+              title: 'Anomalias encontradas',
+              fieldName : this.formsField.structure.textFields[0].value
+            },
+            {
+              title: 'Materias Aplicados',
+              fieldName : this.formsField.structure.textFields[2].value
+            },
+            {
+              title: 'Trabalho efetuado',
+              fieldName : this.formsField.structure.textFields[6].value
+            }
+           ]
+
+
+
+         this.formsField.structureList = strutureList
+
+
+
+          console.log(this.formsField.formGetById, 'FORMULARIOS CORREPONDENETE A ESSE FORMID')
+        })
+
+        if( this.formsField.formGetById.fields.fileFields[0].fileId !== null &&  this.formsField.formGetById.fields.fileFields[1].fileId !== null) {
+
+
+
+          await this.formsField.getFormsbyId(this.tasksService.notesTask.formInstances[0]).then(async (res) => {
+            const formFields = res.fields.fileFields;
+            const fieldIds = {};
+            const fileValues = [];
+
+            formFields.forEach((field) => {
+              if (field.fieldId && field.fileId !== null) {
+                fieldIds[field.fieldId] = field.fileId;
+              }
+            });
+
+            for (const fieldId in fieldIds) {
+              const fileId = fieldIds[fieldId];
+              await this.formsField.getImageById(fileId).then((res) => {
+                if (res.file !== null) {
+                  fileValues.push(res.file);
+                }
+              });
+            }
+
+            if (fileValues.length >= 2) {
+
+
+              this.formsField.image1 = 'data:image/png;base64,' +fileValues[2];
+              this.formsField.image2 = 'data:image/png;base64,'+fileValues[3];
+              this.formsField.image3 = 'data:image/png;base64,'+fileValues[4];
+              this.formsField.image4 = 'data:image/png;base64,'+fileValues[5];
+              this.formsField.image5 = 'data:image/png;base64,'+fileValues[6];
+            }
+
+            console.log(    this.formsField.image1 )
+            console.log(    this.formsField.image2)
+            console.log(    this.formsField.image3)
+          });
+
+        await this.formsField.getImageById(this.formsField.fileIdClient).then((res)=> {
+          this.formsField.imgClient = res.file
+          console.log(      this.formsField.imgClient, ' IMAGEM CLIENTE')
+          this.formsField.imgClient = 'data:image/png;base64,'+ this.formsField.imgClient
+          console.log(this.formsField.imgClient)
+
+        })
+        await this.formsField.getImageById(this.formsField.fileIdTecnhic).then((res)=> {
+          this.formsField.imgTecnhic = res.file
+          this.formsField.imgTecnhic = 'data:image/png;base64,'+ this.formsField.imgTecnhic
+
+          console.log(      this.formsField.imgTecnhic, ' IMAGEM TECNCO')
+        })
+
+
+
+
+
+
+
+        }else{
+          console.log('tem campos vazios ')
+        }
+      } else {
+        console.log("O array formInstances está vazio.");
+      }
+
+          // this.tasksService.turnCreatePost = false;
+          // this.tasksService.turnEditPost = false;
+        }
+        this.tasksService.infoClient$.next(test);
+        console.log(test);
+        console.log("1 entrou");
+      }
+      if (test.id == 2) {
+        console.log("2 entrou");
+      }
+
+      // this.presentLoadingWithOptions();
+
+      this.router.navigate(['/details-client'])
     }
-    this.tasksService.infoClient$.next(test);
-    console.log(test);
-    console.log("1 entrou");
-  }
-  if (test.id == 2) {
-    console.log("2 entrou");
-  }
-
-  // this.presentLoadingWithOptions();
-
-  this.router.navigate(['/details-client'])
-}
-
-
-
 }

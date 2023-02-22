@@ -8,7 +8,7 @@ import { ContactsTaskService } from '../shared/http/contactsTask-api.service';
 import { TaskApiService } from '../shared/http/task-api.service';
 import { InstancePatch } from '../utils/models/tasks';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { FormsService } from '../shared/services/forms.service';
 import "hammerjs";
 import { HammerGestureConfig } from "@angular/platform-browser";
@@ -72,7 +72,7 @@ export class FormsPage implements OnInit {
   // selectedImage: string;
   selectedImages = []
   rows: string[][] = [];
-  constructor(private router: Router, private changeDetectorRef: ChangeDetectorRef, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController, public formsFields: FormsService) {
+  constructor(private router: Router,public loadingController: LoadingController, private changeDetectorRef: ChangeDetectorRef, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController, public formsFields: FormsService) {
 
   }
 
@@ -115,11 +115,23 @@ export class FormsPage implements OnInit {
 
   groupImages() {
     this.rows = [];
-    for (let i = 0; i < this.selectedImages.length; i += 3) {
-      this.rows.push(this.selectedImages.slice(i, i + 3));
+    for (let i = 0; i < this.formsFields.selectedImages.length; i += 3) {
+      this.rows.push(this.formsFields.selectedImages.slice(i, i + 3));
     }
   }
 
+   async presentLoadingWithOptions() {
+      const loading = await this.loadingController.create({
+        spinner: 'circular',
+        duration: 125000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+
+      });
+
+      return await loading.present();
+    }
   // async showConfirmation(i: number, j: number) {
   //   console.log('entrou 1')
   //   const toast = await this.toastController.create({
@@ -352,22 +364,6 @@ export class FormsPage implements OnInit {
       } else if (this.currentStep == 2) {
         if (this.formsFields.dateFormsStep3.valid) {
 
-          const fieldsIds = [ '00000000-0000-0000-0000-000000000021', '00000000-0000-0000-0000-000000000022', '00000000-0000-0000-0000-000000000023', '00000000-0000-0000-0000-000000000024', '00000000-0000-0000-0000-000000000025']
-
-
-
-
-          for (let i = 0; i < this.selectedImages.length; i++) {
-            console.log(this.selectedImages[i], 'AQUI');
-            console.log(fieldsIds[i], 'AQII 3');
-            const image = this.selectedImages[i];
-            const fieldId = fieldsIds[i];
-            let imageBlob = this.dataURLtoBlob(image);
-            let imageFile = new File([imageBlob], 'imagem.png', { type: imageBlob.type });
-            let formImages = new FormData();
-            formImages.append('file', imageFile);
-            await this.formsFields.putImageForms(this.formsFields.idForm, fieldId, formImages);
-          }
 
 
           this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
@@ -423,6 +419,10 @@ export class FormsPage implements OnInit {
 
 
   async buttonFinalized() {
+
+    await  this.presentLoadingWithOptions();
+
+
     console.log(JSON.parse(JSON.stringify(this.tasksService.notesTask)));
     let data: InstancePatch = new InstancePatch(this.tasksService.notesTask);
     console.log(data, 'lista data')
@@ -641,25 +641,32 @@ console.log(this.formsFields.signatureImageClient);
         // GUARDAR AS IMAGENS ANEXADAS
 
 
-        // const fieldsIds = [ '00000000-0000-0000-0000-000000000021', '00000000-0000-0000-0000-000000000022', '00000000-0000-0000-0000-000000000023', '00000000-0000-0000-0000-000000000024', '00000000-0000-0000-0000-000000000025']
+        console.log(this.formsFields.selectedImages.length)
+
+
+        if(this.formsFields.selectedImages.length > 0) {
+        const fieldsIds = [ '00000000-0000-0000-0000-000000000021', '00000000-0000-0000-0000-000000000022', '00000000-0000-0000-0000-000000000023', '00000000-0000-0000-0000-000000000024', '00000000-0000-0000-0000-000000000025']
 
 
 
 
-        // for (let i = 0; i < this.selectedImages.length; i++) {
-        //   console.log(this.selectedImages[i], 'AQUI');
-        //   console.log(fieldsIds[i], 'AQII 3');
-        //   const image = this.selectedImages[i];
-        //   const fieldId = fieldsIds[i];
-        //   let imageBlob = this.dataURLtoBlob(image);
-        //   let imageFile = new File([imageBlob], 'imagem.jpeg', { type: imageBlob.type });
-        //   let formImages = new FormData();
-        //   formImages.append('file', imageFile, imageFile.name);
-        //   await this.formsFields.putImageForms(this.formsFields.idForm, fieldId, formImages);
-        // }
+            for (let i = 0; i < this.formsFields.selectedImages.length; i++) {
+              console.log(this.formsFields.selectedImages[i], 'AQUI');
+              console.log(fieldsIds[i], 'AQII 3');
+              const image = this.formsFields.selectedImages[i];
+              const fieldId = fieldsIds[i];
+              let imageBlob = this.dataURLtoBlob(image);
+              // let imageFile = new File([imageBlob], 'imagem.jpeg', { type: imageBlob.type });
+              const signatureClientFile = blobToFile(imageBlob, 'image.png');
+              let formImages = new FormData();
+              formImages.append('file', signatureClientFile, 'image.png');
+              await this.formsFields.putImageForms(this.formsFields.idForm, fieldId, formImages);
+            }
 
 
 
+
+          }
 
 
 
@@ -855,7 +862,9 @@ console.log(this.formsFields.signatureImageClient);
 
     }
 
-
+ this.loadingController.dismiss().then(() => {
+            console.log('Loading spinner dismissed');
+          });
 
 
     this.presentSuccessToast();

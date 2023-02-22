@@ -1,137 +1,143 @@
 <ion-content>
-<div class="container">
-
-  <div class="header-login">
-    <div class="logo-header">
-      <img src="/assets/img/logo-appsellers.svg" />
-    </div>
-    <div class="text-header">
-      <div class="title">
-        <nc-text size="h4" color="c-scale-1" weight="bold" font="primary">
-          {{'App.Login.titleLogin' | translate}}
-        </nc-text>
+  <div class="container">
+    <div class="header-login">
+      <div class="logo-header">
+        <img src="/assets/img/logo-appsellers.svg" />
       </div>
-      <div class="description">
-        <nc-text size="h7" color="c-scale-1" weight="100" font="primary">
-          {{'App.Login.descriptionLogin' | translate}}
-        </nc-text>
+      <div class="text-header">
+        <div class="title">
+          <nc-text size="h4" color="c-scale-1" weight="bold" font="primary">
+            {{'App.Login.titleLogin' | translate}}
+          </nc-text>
+        </div>
+        <div class="description">
+          <nc-text size="h7" color="c-scale-1" weight="100" font="primary">
+            {{'App.Login.descriptionLogin' | translate}}
+          </nc-text>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="wrapper">
-  <div class="body-login">
-    <div class="title-body">
-      <nc-text size="h5" color="c-scale-12" weight="bold" font="primary"
-        >{{'App.Login.login' | translate}}</nc-text
-      >
-    </div>
-    <div class="credentials-login">
-      <form [formGroup]="form" (ngSubmit)="signInClick()" class="login-form">
-        <div class="inputs">
-          <nc-form-field
-            name="email"
-            class="login--body__username"
-            label="{{ 'App.Login.labelInputUser' | translate }}"
-            src="icon_user"
-            large
-            hoverColor="c-scale-12"
-            [className]="{ success: (email.valid && email.touched)  , error: email.value && email.dirty && email.touched && !email.valid }"
+    <div class="wrapper">
+      <div class="body-login">
+        <div class="title-body">
+          <nc-text size="h5" color="c-scale-12" weight="bold" font="primary"
+            >{{'App.Login.login' | translate}}</nc-text
           >
-            <input
-              [attr.tester]="'input-email'"
-              required
-              autocomplete="false"
-              name="identification"
-              type="email"
-              placeholder="{{'App.Login.placeholderUser' | translate}}"
-              formControlName="email"
-              id="inputEmail"
-
-            />
-          </nc-form-field>
-          <span
-            class="form-error"
-            *ngIf="email.value && email.dirty && email.touched && !email.valid
+        </div>
+        <div class="credentials-login">
+          <form
+            [formGroup]="form"
+            (ngSubmit)="signInClick()"
+            class="login-form"
+          >
+            <div class="inputs">
+              <nc-form-field
+                name="email"
+                class="login--body__username"
+                label="{{ 'App.Login.labelInputUser' | translate }}"
+                src="icon_user"
+                large
+                hoverColor="c-scale-12"
+                [className]="{ success: (email.valid && email.touched)  , error: email.value && email.dirty && email.touched && !email.valid }"
+              >
+                <input
+                  [attr.tester]="'input-email'"
+                  required
+                  autocomplete="false"
+                  name="identification"
+                  type="email"
+                  placeholder="{{'App.Login.placeholderUser' | translate}}"
+                  formControlName="email"
+                  id="inputEmail"
+                />
+              </nc-form-field>
+              <span
+                class="form-error"
+                *ngIf="email.value && email.dirty && email.touched && !email.valid
         "
-            >Obrigatório</span
-          >
-          <br />
-          <nc-form-field
-            name="password"
-            class="login--body__username"
-            label="{{ 'App.Login.labelInputPassword' | translate}}"
-            src="icon_lock"
-            large
-            hoverColor="c-scale-12"
-            [className]=" {success: password.valid && password.touched, error: password.value && password.touched && !password.valid }"
-          >
-            <input
-              [attr.tester]="'input-password'"
-              required
-              autocomplete="false"
-              name="identification"
-              type="password"
-              placeholder="{{'App.Login.placeholderPassword' | translate}}"
-              id="password"
-              formControlName="password"
-              (keydown.enter)="send($event)"
-            />
-          </nc-form-field>
+                >Obrigatório</span
+              >
+              <br />
+              <nc-form-field
+                name="password"
+                class="login--body__username"
+                label="{{ 'App.Login.labelInputPassword' | translate}}"
+                src="icon_lock"
+                large
+                hoverColor="c-scale-12"
+                [className]=" {success: password.valid && password.touched, error: password.value && password.touched && !password.valid }"
+              >
+                <input
+                  [attr.tester]="'input-password'"
+                  required
+                  autocomplete="false"
+                  name="identification"
+                  type="password"
+                  placeholder="{{'App.Login.placeholderPassword' | translate}}"
+                  id="password"
+                  formControlName="password"
+                  (keydown.enter)="send($event)"
+                />
+              </nc-form-field>
+            </div>
+            <div class="login-switch" (click)="switch()">
+              <div class="text-login-switch">
+                <nc-text
+                  size="h7"
+                  color="c-scale-12"
+                  weight="500"
+                  font="primary"
+                  >{{'App.Login.openShift' | translate}}</nc-text
+                >
+                <nc-text
+                  size="h8"
+                  color="c-scale-10"
+                  weight="500"
+                  font="primary"
+                  >{{'App.Login.descriptionOpenShift' | translate}}</nc-text
+                >
+              </div>
+              <div class="icon-switch">
+                <nc-switch
+                  (onChange)="toggle($event)"
+                  [(ngModel)]="checked"
+                  [ngModelOptions]="{ standalone: true }"
+                  color="sucess"
+                  hoverColor="c-scale-1"
+                  >icon_switch</nc-switch
+                >
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="login-switch"(click)="switch()">
-          <div class="text-login-switch">
-            <nc-text size="h7" color="c-scale-12" weight="500" font="primary"
-              >{{'App.Login.openShift' | translate}}</nc-text
-            >
-            <nc-text size="h8" color="c-scale-10" weight="500" font="primary"
-              >{{'App.Login.descriptionOpenShift' | translate}}</nc-text
-            >
-          </div>
-          <div class="icon-switch" >
-            <nc-switch
-            (onChange)="toggle($event)"
-             [(ngModel)]="checked"
-
-            [ngModelOptions]="{ standalone: true }"
-              color="sucess"
-              hoverColor="c-scale-1"
-              >icon_switch</nc-switch
-            >
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="footer-login" >
-    <div class="button-footer">
-    <nc-button
-      [attr.tester]="'click-button-signIn'"
-      (onClick)="signInClick()"
-      [color]="'primary'"
-      type="submite"
-      [reverse]="true"
-      large
-      [disabled]="(form.invalid)"
-    >
-      <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
-        >{{'App.Login.buttonFooter' | translate}}</nc-text
-      >
-    </nc-button>
-  </div>
-    <div class="recover">
-      <div class="recover-text" >
-        <nc-text
-          size="h8"
-          color="c-scale-8"
-          weight="300"
-          font="primary"
-
-          >{{'App.Login.forgetPassword' | translate}}</nc-text
-        >
       </div>
-    </div>
-    <!-- PARA QD FOR NECESSARIO FAZER LINK PARA RECOVER PASSWORD  -->
-    <!-- <div class="recover">
+      <div class="footer-login">
+        <div class="button-footer">
+          <nc-button
+            [attr.tester]="'click-button-signIn'"
+            (onClick)="signInClick()"
+            [color]="'primary'"
+            type="submite"
+            [reverse]="true"
+            large
+            [disabled]="(form.invalid)"
+          >
+            <nc-text size="h7" color="c-scale-1" weight="500" font="primary"
+              >{{'App.Login.buttonFooter' | translate}}</nc-text
+            >
+          </nc-button>
+        </div>
+        <div class="recover">
+          <div class="recover-text">
+            <nc-text size="h8" color="c-scale-8" weight="300" font="primary"
+              >{{'App.Login.forgetPassword' | translate}}</nc-text
+            >
+          </div>
+        </div>
+
+        <!-- COMEÇA AQUI PARA QD FOR NECESSARIO FAZER LINK PARA RECOVER PASSWORD  -------------------------------->
+
+        <!-- <div class="recover">
       <div class="recover-text" >
         <nc-text
           size="h8"
@@ -142,8 +148,11 @@
           >{{'App.Login.forgetPassword' | translate}}</nc-text
         >
       </div>
-    </div> -->
+    </div>
+
+
+    ----------------------------------------------------------------------------------------------------------->
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </ion-content>

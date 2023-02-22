@@ -23,7 +23,7 @@ export class PostNotesPage implements OnInit {
   ngOnInit() {
   }
 
-  modelChangeFn(e){
+  modelChangeFn(e) {
     this.tasksService.postNotes = e;
     console.log(this.tasksService.postNotes);
   }
@@ -37,23 +37,23 @@ export class PostNotesPage implements OnInit {
 
 
 
-  save(task){
+  save(task) {
 
     console.log(task)
     console.log(task.currentStatus.id)
 
-  if(task.currentStatus.id == "e6875497-3ad4-4121-b3aa-4efde5d12fb1"){
-    return this.tasksService.turnMessageCreate = true;
-  }else {
-    this.tasksService.timeHours();
-    this.tasksService.putNotes();
-    // this.tasksService.postNotes.detail.value = ""
-    console.log('PODE SER ')
-    this.router.navigate(['/details-client'])
-  }
+    if (task.currentStatus.id == "e6875497-3ad4-4121-b3aa-4efde5d12fb1") {
+      return this.tasksService.turnMessageCreate = true;
+    } else {
+      this.tasksService.timeHours();
+      this.tasksService.putNotes();
+      // this.tasksService.postNotes.detail.value = ""
+      console.log('PODE SER ')
+      this.router.navigate(['/details-client'])
+    }
   }
 
-  send($event: KeyboardEvent){
+  send($event: KeyboardEvent) {
     console.log($event)
     if ($event.key === 'Enter') {
       this.save(this.tasksService.selectedTask)
