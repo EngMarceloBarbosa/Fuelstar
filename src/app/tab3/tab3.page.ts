@@ -76,10 +76,17 @@ handleRefresh(event) {
   })
 
 
-  this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory;
+  this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory.map((res) => {
+    return {
+      ...res,
+      endDate: res.endDate ? res.endDate.substring(0, 10) : "sem data"
+    };
+  });
+
 
 
   console.log(this.tasksService.listTasksFinalizedHistory1)
+  console.log(this.tasksService.listTasksFinalizedHistory2)
 
 
     event.target.complete();
@@ -108,11 +115,15 @@ async ngOnInit() {
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
     })
 
-
-    this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory;
-
+    this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory.map((res) => {
+      return {
+        ...res,
+        endDate: res.endDate ? res.endDate.substring(0, 10) : "Sem data"
+      };
+    });
 
     console.log(this.tasksService.listTasksFinalizedHistory1)
+    console.log(this.tasksService.listTasksFinalizedHistory2)
 }
 
   filterClick(){

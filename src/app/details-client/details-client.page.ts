@@ -942,7 +942,7 @@ export class DetailsClientPage implements OnInit {
                   [{ text: 'Matricula', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[3].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Origem', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[4].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Destino', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'kilometros', bold: true, fontSize: 14 }, { text: this.formsField.structure.decimalFields[0].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'kilometros', bold: true, fontSize: 14 }, { text: JSON.stringify(this.formsField.structure.decimalFields[0].value), fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Data de inicio do trabalho', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[4].value.substring(0, 19).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Data de fim do trabalho', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[2].value.substring(0, 19).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Anomalias encontradas', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[0].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
@@ -1035,17 +1035,17 @@ export class DetailsClientPage implements OnInit {
           bold: true,
           fontSize: 13,
           color: 'black',
-          margin: [20, 20, 20, 5],
+          margin: [20, 20, 20, 0],
         },
         headerMaster: {
           fontSize: 18,
           bold: true,
-          margin: [0, 0, 0, 35],
+          margin: [0, 0, 0, 20],
         },
         textHeader: {
           fontSize: 8,
           bold: false,
-          margin: [250, -80, 0, 40],
+          margin: [250, -70, 0, 30],
 
         },
 

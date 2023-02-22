@@ -36,6 +36,7 @@ export class TasksService {
   listTasksFinalized: Instance[] = [];
   listTasksFinalizedHistory: Instance[] = [];
   listTasksFinalizedHistory1: any;
+  listTasksFinalizedHistory2:any;
   listTasksSuspended: Tasks[];
   listTasksCancelled: Tasks[];
   listTasksItemId: any;
