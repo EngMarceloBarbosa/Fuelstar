@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
+  listTasksFinalizedGrouped:any;
   positionSlide: any = 0;
   sortedList:any;
   change = false;
@@ -30,6 +31,8 @@ export class TasksService {
   idEntityId: any;
   value: any;
   phoneContact: any;
+  visiteEfectedTest:any;
+  visiteToDo22:any;
   listTasks: Tasks[];
   listTasks1: Tasks[];
   listTasks2: Tasks[];
@@ -677,10 +680,10 @@ export class TasksService {
 
   sortedListHistoric(){
     const itemsWithData = this.listTasksFinalizedHistory1.filter(item => item.endDate !== 'Sem data')
-    .sort((a, b) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime());
+  .sort((a, b) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime());
 
-  const itemsWithoutData = this.listTasksFinalizedHistory1.filter(item => item.endDate === 'Sem data');
-  this.sortedList = itemsWithData.concat(itemsWithoutData);
+const itemsWithoutData = this.listTasksFinalizedHistory1.filter(item => item.endDate === 'Sem data');
+this.listTasksFinalizedHistory1 = itemsWithData.concat(itemsWithoutData);
   }
 
 

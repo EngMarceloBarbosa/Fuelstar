@@ -98,6 +98,9 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     setTimeout(async () => {
 
 
+
+
+
       console.log(this.tasksService.time)
       console.log(this.tasksService.totalTime)
       this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
@@ -176,7 +179,18 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
         console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-        this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+        this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+          const dateA = new Date(a.endDate);
+          const dateB = new Date(b.endDate);
+          if (dateA > dateB) {
+            return -1;
+          } else if (dateA < dateB) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        console.log(this.tasksService.visiteEfected, 'lista final');
         this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
         console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
@@ -194,8 +208,17 @@ export class Tab1Page implements OnInit, AfterContentChecked {
         console.log(this.tasksService.typesState, 'Tipos de estado')
       })
 
-      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended)
-      console.log(this.tasksService.visiteToDo, 'lista final')
+
+      //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
+
+      this.tasksService.visiteToDo = [
+        ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+        ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+        ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
+      ];
+      console.log(this.tasksService.visiteToDo, 'lista final');
+
+
 
 
       console.log(this.tasksService.visiteToDo)
@@ -337,8 +360,25 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+        const dateA = new Date(a.endDate);
+        const dateB = new Date(b.endDate);
+
+        console.log(dateA)
+        console.log(dateB)
+        if (dateA > dateB) {
+          return -1;
+        } else if (dateA < dateB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
       this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+
+console.log(this.tasksService.visiteEfectedTest);
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
     })
@@ -356,8 +396,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
       console.log(this.tasksService.typesState, 'Tipos de estado')
     })
 
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended)
-    console.log(this.tasksService.visiteToDo, 'lista final')
+
 
 
     console.log(this.tasksService.visiteToDo)
@@ -365,9 +404,24 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
     console.log(this.tasksService.countVisits)
+      //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
 
-    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
-    console.log(this.tasksService.visiteToDo, 'pq0')
+      this.tasksService.visiteToDo = [
+        ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+        ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+        ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
+      ];
+      console.log(this.tasksService.visiteToDo, 'lista final');
+
+      const nome = ['joao', 'miguel']
+
+const s = 'mig'
+      if(nome.includes(s)){
+     console.log(nome, 'esta')
+      }else{
+          console.log(nome, 'nao esta')
+      }
+
 
 
     this.randomNumber(1, 1000);
@@ -394,7 +448,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     // TRAZER O HISTORICO DAS TAREFAS FINALIZADAS PELO UTILIZADOR --------------------------------
 
 
-    await this.taskApiService.getTasksItemIdFinalized().then(res => {
+    await this.taskApiService.getTasksItemIdFinalized().then(async res => {
       this.tasksService.listTasksFinalizedHistory = res;
 
 
@@ -404,23 +458,26 @@ export class Tab1Page implements OnInit, AfterContentChecked {
       console.log(this.tasksService.listTasksFinalizedHistory, 'HISTÓRICO DAS TAREFAS')
 
 
-      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
-      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
-
-      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-    })
-
-    this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory.map((res) => {
-      return {
-        ...res,
-        endDate: res.endDate ? res.endDate.substring(0, 10) : "Sem data"
-      };
-    });
-
-    await this.tasksService.sortedListHistoric();
 
 
+      this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory.map((res) => {
+        return {
+          ...res,
+          endDate: res.endDate ? res.endDate.substring(0, 10) : "Sem data"
+        };
+      });
+
+      await this.tasksService.sortedListHistoric();
+
+
+  })
+
+
+  console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+  this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+  this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+  console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
     console.log(this.tasksService.listTasksFinalizedHistory1)
     console.log(this.tasksService.listTasksFinalizedHistory2)
 
@@ -930,9 +987,22 @@ export class Tab1Page implements OnInit, AfterContentChecked {
 
   filter(id) {
     if (id == 1) {
-      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended).filter(res => res.bulletName == "Entregas");
+      this.tasksService.visiteToDo =  [...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))].filter(res => res.bulletName == "Entregas");
       console.log(this.tasksService.visiteToDo)
-      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.filter(res => res.bulletName == "Entregas");
+
+      this.tasksService.visiteEfected = this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+        const dateA = new Date(a.endDate);
+        const dateB = new Date(b.endDate);
+        if (dateA > dateB) {
+          return -1;
+        } else if (dateA < dateB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }).filter(res => res.bulletName == "Entregas");
       this.tasksService.countVisits = this.tasksService.visiteEfected.length
       this.tasksService.countsToDo = this.tasksService.visiteToDo.length
       this.tasksService.operation = "Entregas"
@@ -958,8 +1028,21 @@ export class Tab1Page implements OnInit, AfterContentChecked {
       console.log(this.tasksService.visiteToDo)
       console.log(this.tasksService.listTasks1)
       console.log(this.tasksService.listTasksFinalized)
-      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended).filter(res => res.bulletName == "Incidências");
-      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.filter(res => res.bulletName == "Incidências");
+      this.tasksService.visiteToDo =  [...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+        ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+        ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))].filter(res => res.bulletName == "Incidências");
+        console.log(this.tasksService.visiteToDo)
+      this.tasksService.visiteEfected = this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+        const dateA = new Date(a.endDate);
+        const dateB = new Date(b.endDate);
+        if (dateA > dateB) {
+          return -1;
+        } else if (dateA < dateB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }).filter(res => res.bulletName == "Incidências");
       console.log(this.tasksService.visiteToDo)
       this.tasksService.operation = "Incidências"
       this.tasksService.countVisits = this.tasksService.listTasksFinalized.length

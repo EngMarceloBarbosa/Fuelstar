@@ -364,8 +364,15 @@ export class DetailsClientPage implements OnInit {
 
     })
 
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended)
-    console.log(this.tasksService.visiteToDo, 'lista final')
+    //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
+
+    this.tasksService.visiteToDo = [
+      ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
+    ];
+    console.log(this.tasksService.visiteToDo, 'lista final');
+
 
 
     console.log(this.tasksService.visiteToDo)
@@ -601,8 +608,14 @@ export class DetailsClientPage implements OnInit {
 
 
 
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended)
-    console.log(this.tasksService.visiteToDo, 'lista final')
+    //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
+
+    this.tasksService.visiteToDo = [
+      ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
+    ];
+    console.log(this.tasksService.visiteToDo, 'lista final');
 
 
     console.log(this.tasksService.visiteToDo)
@@ -724,8 +737,14 @@ export class DetailsClientPage implements OnInit {
 
     })
 
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended)
-    console.log(this.tasksService.visiteToDo, 'lista final')
+    //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
+
+    this.tasksService.visiteToDo = [
+      ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
+    ];
+    console.log(this.tasksService.visiteToDo, 'lista final');
 
 
     console.log(this.tasksService.visiteToDo)
@@ -818,8 +837,15 @@ export class DetailsClientPage implements OnInit {
 
     })
 
-    this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended)
-    console.log(this.tasksService.visiteToDo, 'lista final')
+    //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
+
+    this.tasksService.visiteToDo = [
+      ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
+    ];
+    console.log(this.tasksService.visiteToDo, 'lista final');
+
 
 
     console.log(this.tasksService.visiteToDo)
@@ -949,8 +975,14 @@ export class DetailsClientPage implements OnInit {
                   [{ text: 'Pedido ao OVM - Porque ?', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[5].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Trabalho Finalizado ?', bold: true, fontSize: 14 }, { text: this.formsField.structure.booleanFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Trabalho finalizado - Porque ?', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[5].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Data de inicio da deslocação', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[3]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Data de fim da deslocação', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[1]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [
+                    { text: 'Data de inicio da deslocação', bold: true, fontSize: 14 },
+                    { text: this.formsField.structure.dateFields[3]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false, margin: [0, 10, 0, 0] }
+                  ],
+                  [
+                    { text: 'Data de fim da deslocação', bold: true, fontSize: 14 },
+                    { text: this.formsField.structure.dateFields[1]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12,  verticalAlignment: 'middle', bold: false, margin: [0, 10, 0, 0]}
+                  ],
                   [{ text: 'Matricula', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[3].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Origem', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[4].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Destino', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
@@ -980,7 +1012,7 @@ export class DetailsClientPage implements OnInit {
         {
           stack: [
 
-            [{pageBreak: 'before', text: 'Imagens em ANEXO', width: 20, style: "header1" }],
+            [{ pageBreak: 'before', text: 'Imagens em ANEXO', width: 20, style: "header1" }],
 
             {
               columns: [
@@ -1071,7 +1103,7 @@ export class DetailsClientPage implements OnInit {
         textHeader: {
           fontSize: 8,
           bold: false,
-          margin: [250, -70, 0, 30],
+          margin: [250, -65, 0, 30],
 
         },
 

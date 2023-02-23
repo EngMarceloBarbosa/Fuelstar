@@ -799,7 +799,17 @@ console.log(this.formsFields.signatureImageClient);
 
 
         console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-        this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+        this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+          const dateA = new Date(a.endDate);
+          const dateB = new Date(b.endDate);
+          if (dateA > dateB) {
+            return -1;
+          } else if (dateA < dateB) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
         this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
         console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
@@ -865,7 +875,18 @@ console.log(this.formsFields.signatureImageClient);
         this.tasksService.listTasksFinalized = res.filter(res => res.endDate !== null && res.endDate.substring(0, 10) == this.tasksService.timeNew)
 
         console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-        this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+        this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+          const dateA = new Date(a.endDate);
+          const dateB = new Date(b.endDate);
+
+          if (dateA > dateB) {
+            return -1;
+          } else if (dateA < dateB) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
         this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
         console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
@@ -882,8 +903,15 @@ console.log(this.formsFields.signatureImageClient);
 
 
 
-      this.tasksService.visiteToDo = this.tasksService.listTasks1.concat(this.tasksService.listTasks2, this.tasksService.listTasksSuspended)
-      console.log(this.tasksService.visiteToDo, 'lista final')
+         //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
+
+         this.tasksService.visiteToDo = [
+          ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+          ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+          ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
+        ];
+        console.log(this.tasksService.visiteToDo, 'lista final');
+
 
 
       console.log(this.tasksService.visiteToDo)

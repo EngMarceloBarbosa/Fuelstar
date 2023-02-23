@@ -245,16 +245,16 @@ console.log(  this.tasksService.listTasksFinalizedHistory1
     });
     await this.tasksService.sortedListHistoric();
   } else {
-    this.tasksService.listTasksFinalizedHistory2 = this.tasksService.listTasksFinalizedHistory.map((res) => {
+    this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory.map((res) => {
       return {
         ...res,
         endDate: res.endDate ? res.endDate.substring(0, 10) : "Sem data"
       };
     });
-    await this.tasksService.sortedListHistoric();
-    // console.log(   this.tasksService.allDocumentsFilter)
-    // console.log(this.tasksService.listClients1)
-    this.tasksService.sortedList  = this.tasksService.listTasksFinalizedHistory2.filter(
+
+    console.log(   this.tasksService.allDocumentsFilter)
+    console.log(this.tasksService.listClients1)
+    this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory1.filter(
       doc =>
         doc.endDate?.trim().toLowerCase().includes($event.trim().toLowerCase()) ||
         doc.entity.firstName?.trim().toLowerCase().includes($event.trim().toLowerCase())

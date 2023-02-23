@@ -11,7 +11,7 @@ export interface Tasks {
   estimatedEndDate: string;
   estimatedStartDate : string;
   fileFields: FileFields;
-
+  order: number;
 
 
 
