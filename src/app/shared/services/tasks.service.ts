@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({ providedIn: 'root' })
 export class TasksService {
   positionSlide: any = 0;
-
+  sortedList:any;
   change = false;
   formsSave:any;
   searchDoc: any;
@@ -674,6 +674,14 @@ export class TasksService {
 
   //
 
+
+  sortedListHistoric(){
+    const itemsWithData = this.listTasksFinalizedHistory1.filter(item => item.endDate !== 'Sem data')
+    .sort((a, b) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime());
+
+  const itemsWithoutData = this.listTasksFinalizedHistory1.filter(item => item.endDate === 'Sem data');
+  this.sortedList = itemsWithData.concat(itemsWithoutData);
+  }
 
 
 

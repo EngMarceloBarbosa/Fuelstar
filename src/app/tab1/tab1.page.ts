@@ -391,8 +391,40 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     }
 
 
+    // TRAZER O HISTORICO DAS TAREFAS FINALIZADAS PELO UTILIZADOR --------------------------------
 
 
+    await this.taskApiService.getTasksItemIdFinalized().then(res => {
+      this.tasksService.listTasksFinalizedHistory = res;
+
+
+      // this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory;
+
+      // this.tasksService.listTasksFinalizedHistory
+      console.log(this.tasksService.listTasksFinalizedHistory, 'HISTÓRICO DAS TAREFAS')
+
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    })
+
+    this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory.map((res) => {
+      return {
+        ...res,
+        endDate: res.endDate ? res.endDate.substring(0, 10) : "Sem data"
+      };
+    });
+
+    await this.tasksService.sortedListHistoric();
+
+
+    console.log(this.tasksService.listTasksFinalizedHistory1)
+    console.log(this.tasksService.listTasksFinalizedHistory2)
+
+    // ----------------------------------------------------------------------------------------------------------------
 
     console.log(this.tasksService.countVisits, 'visitas feitas')
     console.log(this.tasksService.countsToDo, 'visitas por fazer ')
@@ -563,11 +595,11 @@ export class Tab1Page implements OnInit, AfterContentChecked {
               },
               {
                 title: 'Data de inicio da deslocação',
-                fieldName: this.formsField.structure.dateFields[3].value.substring(0, 19).replace("T", " às ")
+                fieldName: this.formsField.structure.dateFields[3]?.value?.substring(0, 19)?.replace("T", " às ")
               },
               {
                 title: 'Data de fim da deslocação',
-                fieldName: this.formsField.structure.dateFields[1].value.substring(0, 19).replace("T", " às ")
+                fieldName: this.formsField.structure.dateFields[1]?.value?.substring(0, 19)?.replace("T", " às ")
               },
               {
                 title: 'Data de inicio do trabalho',

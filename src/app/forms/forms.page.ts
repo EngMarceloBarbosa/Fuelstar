@@ -91,6 +91,12 @@ export class FormsPage implements OnInit {
   // }
 
   selectImages() {
+    if (this.selectedImages.length >= 5) {
+      // Maximum number of images reached, show error message to user
+      alert("Só podes selecionar no máximo 5 imagens");
+      return;
+    }
+
     const options: CameraOptions = {
       quality: 15,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -166,6 +172,7 @@ export class FormsPage implements OnInit {
     console.log(this.selectedImages)
     this.formsFields.selectedImages = this.selectedImages;
     this.changeDetectorRef.detectChanges();
+    this.presentSuccessToast1();
   }
 
   onTouchStart(i: number, j: number) {
@@ -194,16 +201,46 @@ export class FormsPage implements OnInit {
   }
 
 
+  async presentSuccessToast1() {
+    const toast = await this.toastController.create({
+      message: 'Foto apagagada!',
+      duration: 500,
+      position: 'top',
+      color: 'danger',
+    });
+    toast.present();
+  }
+  async presentSuccessToastSave() {
+    const toast = await this.toastController.create({
+      message: 'Gravado com sucesso!',
+      duration: 500,
+      position: 'top',
+      color: 'primary',
+    });
+    toast.present();
+  }
+  async presentSuccessToastImcomplete() {
+    const toast = await this.toastController.create({
+      message: 'Grave a assinatura!',
+      duration: 500,
+      position: 'top',
+      color: 'danger',
+    });
+    toast.present();
+  }
+
   drawComplete() {
     console.log('ENTROU AQUI')
     this.formsFields.signatureImageClient = this.signaturePad.toDataURL();
     console.log(this.formsFields.signatureImageClient)
+    this.presentSuccessToastSave();
   }
   drawComplete1(e) {
     console.log(e, 'aqui 3')
     console.log('ENTROU AQUI')
     this.formsFields.signatureImageTecnic = this.signaturePad1.toDataURL();
     console.log(this.formsFields.signatureImageTecnic)
+    this.presentSuccessToastSave();
   }
 
   drawClear() {
@@ -288,6 +325,15 @@ export class FormsPage implements OnInit {
 
     this.submitted = false;
     if (this.formsFields.dateFormsStep1.valid || (this.formsFields.dateFormsStep1.value.type === 'Interna' && this.formsFields.dateFormsStep1.value.dateOfTheDay != "")) {
+      if(this.formsFields.dateFormsStep1.value.type === 'Interna') {
+        this.formsFields.dateFormsStep1.value.registration = "";
+        this.formsFields.dateFormsStep1.value.kilometers = "";
+        this.formsFields.dateFormsStep1.value.departure = "";
+        this.formsFields.dateFormsStep1.value.destination = "";
+        this.formsFields.dateFormsStep1.value.startDate = "";
+        this.formsFields.dateFormsStep1.value.endDate = "";
+
+      }
       this.submitted = false;
       console.log(this.formsFields.dateFormsStep1.value);
       if (this.formsFields.dateFormsStep2.valid) {
@@ -335,6 +381,7 @@ export class FormsPage implements OnInit {
 
 
         } else {
+
           console.log('PREECNHA A ASSINATURA ')
         }
       }
@@ -369,9 +416,15 @@ export class FormsPage implements OnInit {
           this.currentStep = Math.min(this.steps.length - 1, this.currentStep + 1);
           console.log(this.currentStep);
           this.submitted3 = false;
-        } else {
+        }
+        else {
           this.submitted3 = true;
         }
+        }else if (this.currentStep == 3) {
+          console.log('entro aqui')
+          if (this.formsFields.signatureImageClient == "" || this.formsFields.signatureImageTecnic == "") {
+            this.presentSuccessToastImcomplete();
+          }
       }
 
 
@@ -399,6 +452,8 @@ export class FormsPage implements OnInit {
 
   previous() {
     this.currentStep = Math.max(0, this.currentStep - 1);
+    this.formsFields.signatureImageTecnic = "";
+    this.formsFields.signatureImageClient = "";
     console.log(this.currentStep)
   }
 

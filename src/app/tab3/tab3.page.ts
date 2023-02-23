@@ -59,53 +59,13 @@ handleRefresh(event) {
   setTimeout(async () => {
 
     await this.taskApiService.getTasksItemIdFinalized().then(res => {
-      this.tasksService.listTasksFinalizedHistory  = res;
+      this.tasksService.listTasksFinalizedHistory = res;
 
 
       // this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory;
 
-    // this.tasksService.listTasksFinalizedHistory
-    console.log(  this.tasksService.listTasksFinalizedHistory, 'HISTÓRICO DAS TAREFAS')
-
-
-    console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-    this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
-    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
-
-    console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-  })
-
-
-  this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory.map((res) => {
-    return {
-      ...res,
-      endDate: res.endDate ? res.endDate.substring(0, 10) : "sem data"
-    };
-  });
-
-
-
-  console.log(this.tasksService.listTasksFinalizedHistory1)
-  console.log(this.tasksService.listTasksFinalizedHistory2)
-
-
-    event.target.complete();
-  }, 2000);
-};
-
-
-async ngOnInit() {
-
-
-
-      await this.taskApiService.getTasksItemIdFinalized().then(res => {
-        this.tasksService.listTasksFinalizedHistory  = res;
-
-
-        // this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory;
-
       // this.tasksService.listTasksFinalizedHistory
-      console.log(  this.tasksService.listTasksFinalizedHistory, 'HISTÓRICO DAS TAREFAS')
+      console.log(this.tasksService.listTasksFinalizedHistory, 'HISTÓRICO DAS TAREFAS')
 
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
@@ -122,8 +82,21 @@ async ngOnInit() {
       };
     });
 
+    await this.tasksService.sortedListHistoric();
+
+
     console.log(this.tasksService.listTasksFinalizedHistory1)
     console.log(this.tasksService.listTasksFinalizedHistory2)
+
+
+    event.target.complete();
+  }, 2000);
+};
+
+
+async ngOnInit() {
+
+
 }
 
   filterClick(){
@@ -257,19 +230,31 @@ this.router.navigate(['/tabs/tab4'])
 }
 
 
-filterByData($event: string){
+  async filterByData($event: string){
 console.log(  this.tasksService.listTasksFinalizedHistory1
   )  // this.tasksService.turnSearch = true;
   // console.log( this.tasksService.allDocumentsFilter)
   console.log($event)
   this.searchTask = $event
   if ($event.length == 0) {
-   this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory;
+    this.tasksService.listTasksFinalizedHistory1 = this.tasksService.listTasksFinalizedHistory.map((res) => {
+      return {
+        ...res,
+        endDate: res.endDate ? res.endDate.substring(0, 10) : "Sem data"
+      };
+    });
+    await this.tasksService.sortedListHistoric();
   } else {
-    this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory;
+    this.tasksService.listTasksFinalizedHistory2 = this.tasksService.listTasksFinalizedHistory.map((res) => {
+      return {
+        ...res,
+        endDate: res.endDate ? res.endDate.substring(0, 10) : "Sem data"
+      };
+    });
+    await this.tasksService.sortedListHistoric();
     // console.log(   this.tasksService.allDocumentsFilter)
     // console.log(this.tasksService.listClients1)
-    this.tasksService.listTasksFinalizedHistory1  = this.tasksService.listTasksFinalizedHistory.filter(
+    this.tasksService.sortedList  = this.tasksService.listTasksFinalizedHistory2.filter(
       doc =>
         doc.endDate?.trim().toLowerCase().includes($event.trim().toLowerCase()) ||
         doc.entity.firstName?.trim().toLowerCase().includes($event.trim().toLowerCase())
@@ -386,11 +371,11 @@ console.log(  this.tasksService.listTasksFinalizedHistory1
             },
             {
               title: 'Data de inicio da deslocação',
-              fieldName : this.formsField.structure.dateFields[3].value.substring(0,19).replace("T", " às ")
+              fieldName: this.formsField.structure.dateFields[3]?.value?.substring(0, 19)?.replace("T", " às ")
             },
             {
               title: 'Data de fim da deslocação',
-              fieldName : this.formsField.structure.dateFields[1].value.substring(0,19).replace("T", " às ")
+              fieldName: this.formsField.structure.dateFields[1]?.value?.substring(0, 19)?.replace("T", " às ")
             },
             {
               title: 'Data de inicio do trabalho',

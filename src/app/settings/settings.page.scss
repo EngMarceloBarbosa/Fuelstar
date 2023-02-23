@@ -46,17 +46,18 @@
   }
   .button-change {
     @extend .flex-center;
-    width: tbu(px(136));
+    width: tbu(px(164));
     height: tbu(px(42));
     border: tbu(px(2)) solid #181818;
     border-radius: tbu(px(4));
     opacity: tbu(px(1));
     margin-top: tbu(px(15));
     .icon-change {
-      padding-right: tbu(px(5));
+      padding: tbu(px(5));
     }
     .text-change {
       display: flex;
+      padding: 10px;
     }
     // &.order{
     //   height: 32px;

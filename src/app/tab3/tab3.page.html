@@ -59,7 +59,7 @@
   <div class="toDO" >
     <nc-virtual-scroller
       #scroll
-      [items]="this.tasksService.listTasksFinalizedHistory1 "
+      [items]="this.tasksService.sortedList "
     >
     <div class="container-taskHistory" *ngFor="let task  of scroll.viewPortItems">
       <div class="date-history">

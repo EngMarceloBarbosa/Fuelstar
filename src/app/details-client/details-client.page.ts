@@ -308,7 +308,9 @@ export class DetailsClientPage implements OnInit {
       rightButtonTesterProperty: "clickLeaveApp",
       rightButtonColor: "c-scale-12",
       rightButtonCallback: () => {
-        this.buttonCancelled();
+        alert("Não tem permissão para Cancelar!");
+        return;
+        // this.buttonCancelled();
       },
     };
     this.alertService.open(temp);
@@ -316,6 +318,7 @@ export class DetailsClientPage implements OnInit {
 
     this.tasksService.notes = "";
   }
+
 
   async buttonCancelled() {
 
@@ -654,6 +657,15 @@ export class DetailsClientPage implements OnInit {
     });
     toast.present();
   }
+  async presentSuccessToastWarning() {
+    const toast = await this.toastController.create({
+      message: 'Nao tem permissão para Cancelar!',
+      duration: 2000,
+      position: 'top',
+      color: 'danger',
+    });
+    toast.present();
+  }
 
   async buttonExecuted() {
 
@@ -937,8 +949,8 @@ export class DetailsClientPage implements OnInit {
                   [{ text: 'Pedido ao OVM - Porque ?', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[5].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Trabalho Finalizado ?', bold: true, fontSize: 14 }, { text: this.formsField.structure.booleanFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Trabalho finalizado - Porque ?', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[5].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Data de inicio da deslocação', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[3].value.substring(0, 19).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Data de fim da deslocação', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[1].value.substring(0, 19).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Data de inicio da deslocação', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[3]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Data de fim da deslocação', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[1]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Matricula', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[3].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Origem', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[4].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Destino', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
@@ -948,7 +960,7 @@ export class DetailsClientPage implements OnInit {
                   [{ text: 'Anomalias encontradas', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[0].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Trabalho Efetuado', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[6].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Materiais Aplicados', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[2].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                ].filter(row => row[1].text && typeof row[1].text === 'string' && row[1].text.trim() !== ''),
+                ].filter(row => row[1].text && typeof row[1].text === 'string' && row[1].text.trim() !== '' && row[1].text !== 'null'),
               }
 
             },
@@ -967,12 +979,14 @@ export class DetailsClientPage implements OnInit {
         // OUTRA PAGINA
         {
           stack: [
-            [{ text: 'Imagens em ANEXO', width: 20, style: "header1" }],
+
+            [{pageBreak: 'before', text: 'Imagens em ANEXO', width: 20, style: "header1" }],
 
             {
               columns: [
                 {
-                  ul: [
+                  width: '*',
+                  stack: [
                     {
                       image: JSON.parse(JSON.stringify(this.formsField.image1)),
                       width: 200,
@@ -982,7 +996,13 @@ export class DetailsClientPage implements OnInit {
                       image: JSON.parse(JSON.stringify(this.formsField.image2)),
                       width: 200,
                       style: "imageAnex1"
-                    },
+                    }
+                  ]
+                    .filter(item => item.image !== 'data:image/png;base64,' + undefined)
+                },
+                {
+                  width: '*',
+                  stack: [
                     {
                       image: JSON.parse(JSON.stringify(this.formsField.image3)),
                       width: 200,
@@ -992,7 +1012,13 @@ export class DetailsClientPage implements OnInit {
                       image: JSON.parse(JSON.stringify(this.formsField.image4)),
                       width: 200,
                       style: "imageAnex1"
-                    },
+                    }
+                  ]
+                    .filter(item => item.image !== 'data:image/png;base64,' + undefined)
+                },
+                {
+                  width: '*',
+                  stack: [
                     {
                       image: JSON.parse(JSON.stringify(this.formsField.image5)),
                       width: 200,
@@ -1001,9 +1027,9 @@ export class DetailsClientPage implements OnInit {
                   ]
                     .filter(item => item.image !== 'data:image/png;base64,' + undefined)
                 }
-              ],
-
+              ]
             }
+
           ]
         }
       ],
@@ -1016,12 +1042,12 @@ export class DetailsClientPage implements OnInit {
         header: {
           fontSize: 18,
           bold: true,
-          margin: [190, 0, 10, 0],
+          margin: [190, 5, 10, 10],
         },
         header1: {
           fontSize: 18,
           bold: true,
-          margin: [190, 180, 10, 0],
+          margin: [190, 0, 10, 0],
         },
         subheader: {
           fontSize: 16,
@@ -1035,7 +1061,7 @@ export class DetailsClientPage implements OnInit {
           bold: true,
           fontSize: 13,
           color: 'black',
-          margin: [20, 20, 20, 0],
+          margin: [20, 20, 20, 20],
         },
         headerMaster: {
           fontSize: 18,
