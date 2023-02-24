@@ -251,6 +251,7 @@ console.log(  this.tasksService.listTasksFinalizedHistory1
         endDate: res.endDate ? res.endDate.substring(0, 10) : "Sem data"
       };
     });
+    await this.tasksService.sortedListHistoric();
 
     console.log(   this.tasksService.allDocumentsFilter)
     console.log(this.tasksService.listClients1)

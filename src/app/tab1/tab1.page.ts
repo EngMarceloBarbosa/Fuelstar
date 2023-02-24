@@ -413,16 +413,6 @@ console.log(this.tasksService.visiteEfectedTest);
       ];
       console.log(this.tasksService.visiteToDo, 'lista final');
 
-      const nome = ['joao', 'miguel']
-
-const s = 'mig'
-      if(nome.includes(s)){
-     console.log(nome, 'esta')
-      }else{
-          console.log(nome, 'nao esta')
-      }
-
-
 
     this.randomNumber(1, 1000);
     this.virtualScroller();
@@ -474,7 +464,21 @@ const s = 'mig'
 
 
   console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-  this.tasksService.visiteEfected = this.tasksService.listTasksFinalized
+ this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+        const dateA = new Date(a.endDate);
+        const dateB = new Date(b.endDate);
+
+        console.log(dateA)
+        console.log(dateB)
+        if (dateA > dateB) {
+          return -1;
+        } else if (dateA < dateB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
   this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
   console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
@@ -896,8 +900,8 @@ const s = 'mig'
 
       const virtualScroller = this.element.nativeElement.querySelector('.toDO nc-virtual-scroller')
       const scrollable = virtualScroller.querySelector('.scrollable-content')
-      this.cardHeight = this.tasksService.visiteToDo.length * 44;
-      this.cardHeight1 = this.tasksService.visiteToDo.length * 8.3;
+      // this.cardHeight = this.tasksService.visiteToDo.length * 44;
+      // this.cardHeight1 = this.tasksService.visiteToDo.length * 7;
       virtualScroller.style.height = `${43}vh`;
       scrollable.style.height = `${this.cardHeight}px`;
       console.log(scrollable.style.height)
@@ -972,8 +976,8 @@ const s = 'mig'
 
       const virtualScroller = this.element.nativeElement.querySelector('.toDO1 nc-virtual-scroller')
       const scrollable = virtualScroller.querySelector('.scrollable-content')
-      this.cardHeight = this.tasksService.listTasks1.length * 44;
-      this.cardHeight1 = this.tasksService.listTasks1.length * 8.3;
+      // this.cardHeight = this.tasksService.listTasks1.length * 44;
+      // this.cardHeight1 = this.tasksService.listTasks1.length * 7;
       virtualScroller.style.height = `${45}vh`;
       scrollable.style.height = `${this.cardHeight}px`;
 
@@ -992,7 +996,7 @@ const s = 'mig'
       ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))].filter(res => res.bulletName == "Entregas");
       console.log(this.tasksService.visiteToDo)
 
-      this.tasksService.visiteEfected = this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
         const dateA = new Date(a.endDate);
         const dateB = new Date(b.endDate);
         if (dateA > dateB) {

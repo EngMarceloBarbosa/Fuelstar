@@ -678,14 +678,24 @@ export class TasksService {
   //
 
 
-  sortedListHistoric(){
-    const itemsWithData = this.listTasksFinalizedHistory1.filter(item => item.endDate !== 'Sem data')
-  .sort((a, b) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime());
+  // HISTORICO DE TAREFAS FINALIADAS ORGANIZADAS PELA ULTIMA SEMANA E PELA DATA DE FINALIZAÇÃO
 
-const itemsWithoutData = this.listTasksFinalizedHistory1.filter(item => item.endDate === 'Sem data');
-this.listTasksFinalizedHistory1 = itemsWithData.concat(itemsWithoutData);
+  sortedListHistoric() {
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+    const itemsWithData = this.listTasksFinalizedHistory1.filter(item => {
+      if (item.endDate !== 'Sem data') {
+        const endDate = new Date(item.endDate);
+        return endDate >= oneWeekAgo;
+      } else {
+        return false;
+      }
+    }).sort((a, b) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime());
+
+    const itemsWithoutData = this.listTasksFinalizedHistory1.filter(item => item.endDate === 'Sem data');
+    this.listTasksFinalizedHistory1 = itemsWithData.concat(itemsWithoutData);
   }
-
 
 
   //
