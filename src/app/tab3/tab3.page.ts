@@ -458,11 +458,19 @@ console.log(  this.tasksService.listTasksFinalizedHistory1
               this.formsField.image3 = 'data:image/png;base64,'+fileValues[4];
               this.formsField.image4 = 'data:image/png;base64,'+fileValues[5];
               this.formsField.image5 = 'data:image/png;base64,'+fileValues[6];
+              this.formsField.image6 = 'data:image/png;base64,'+fileValues[7];
+              this.formsField.image7 = 'data:image/png;base64,'+fileValues[8];
+              this.formsField.image8 = 'data:image/png;base64,'+fileValues[9];
             }
 
-            console.log(    this.formsField.image1 )
-            console.log(    this.formsField.image2)
-            console.log(    this.formsField.image3)
+            console.log(    this.formsField.image1 ,'1')
+            console.log(    this.formsField.image2, '2')
+            console.log(    this.formsField.image3, '3')
+            console.log(this.formsField.image4, '4')
+            console.log(this.formsField.image5, '5')
+            console.log(this.formsField.image6, '6')
+            console.log(this.formsField.image7, '7')
+            console.log(this.formsField.image8, '8')
           });
 
         await this.formsField.getImageById(this.formsField.fileIdClient).then((res)=> {

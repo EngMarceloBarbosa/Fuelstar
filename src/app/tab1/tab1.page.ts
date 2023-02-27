@@ -98,6 +98,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
     setTimeout(async () => {
 
 
+      this.tasksService.timeHours();
 
 
 
@@ -278,10 +279,15 @@ export class Tab1Page implements OnInit, AfterContentChecked {
   async ngOnInit() {
 
 
+    this.tasksService.timeHours();
+
+
+
 
 
     console.log(this.tasksService.time)
     console.log(this.tasksService.totalTime)
+    console.log(this.tasksService.timeNew)
     this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
     console.log(this.tasksService.countVisits)
@@ -378,7 +384,7 @@ export class Tab1Page implements OnInit, AfterContentChecked {
       this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
 
-console.log(this.tasksService.visiteEfectedTest);
+      console.log(this.tasksService.visiteEfectedTest);
 
       console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
     })
@@ -404,14 +410,14 @@ console.log(this.tasksService.visiteEfectedTest);
     this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
     console.log(this.tasksService.countVisits)
-      //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
+    //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
 
-      this.tasksService.visiteToDo = [
-        ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
-        ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
-        ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
-      ];
-      console.log(this.tasksService.visiteToDo, 'lista final');
+    this.tasksService.visiteToDo = [
+      ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
+    ];
+    console.log(this.tasksService.visiteToDo, 'lista final');
 
 
     this.randomNumber(1, 1000);
@@ -460,28 +466,28 @@ console.log(this.tasksService.visiteEfectedTest);
       await this.tasksService.sortedListHistoric();
 
 
-  })
+    })
 
 
-  console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
- this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
-        const dateA = new Date(a.endDate);
-        const dateB = new Date(b.endDate);
+    console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+      const dateA = new Date(a.endDate);
+      const dateB = new Date(b.endDate);
 
-        console.log(dateA)
-        console.log(dateB)
-        if (dateA > dateB) {
-          return -1;
-        } else if (dateA < dateB) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
+      console.log(dateA)
+      console.log(dateB)
+      if (dateA > dateB) {
+        return -1;
+      } else if (dateA < dateB) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
 
-  this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
 
-  console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
     console.log(this.tasksService.listTasksFinalizedHistory1)
     console.log(this.tasksService.listTasksFinalizedHistory2)
 
@@ -736,17 +742,26 @@ console.log(this.tasksService.visiteEfectedTest);
 
               if (fileValues.length >= 2) {
 
+                console.log(fileValues);
 
                 this.formsField.image1 = 'data:image/png;base64,' + fileValues[2];
                 this.formsField.image2 = 'data:image/png;base64,' + fileValues[3];
                 this.formsField.image3 = 'data:image/png;base64,' + fileValues[4];
                 this.formsField.image4 = 'data:image/png;base64,' + fileValues[5];
                 this.formsField.image5 = 'data:image/png;base64,' + fileValues[6];
+                this.formsField.image6 = 'data:image/png;base64,' + fileValues[7];
+                this.formsField.image7 = 'data:image/png;base64,' + fileValues[8];
+                this.formsField.image8 = 'data:image/png;base64,' + fileValues[9];
               }
 
               console.log(this.formsField.image1)
               console.log(this.formsField.image2)
               console.log(this.formsField.image3)
+              console.log(this.formsField.image4)
+              console.log(this.formsField.image5)
+              console.log(this.formsField.image6)
+              console.log(this.formsField.image7)
+              console.log(this.formsField.image8)
             });
 
             await this.formsField.getImageById(this.formsField.fileIdClient).then((res) => {
@@ -902,7 +917,7 @@ console.log(this.tasksService.visiteEfectedTest);
       const scrollable = virtualScroller.querySelector('.scrollable-content')
       // this.cardHeight = this.tasksService.visiteToDo.length * 44;
       // this.cardHeight1 = this.tasksService.visiteToDo.length * 7;
-      virtualScroller.style.height = `${43}vh`;
+      virtualScroller.style.height = `${45}vh`;
       scrollable.style.height = `${this.cardHeight}px`;
       console.log(scrollable.style.height)
       console.log(virtualScroller.style.height)
@@ -991,7 +1006,7 @@ console.log(this.tasksService.visiteEfectedTest);
 
   filter(id) {
     if (id == 1) {
-      this.tasksService.visiteToDo =  [...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      this.tasksService.visiteToDo = [...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
       ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
       ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))].filter(res => res.bulletName == "Entregas");
       console.log(this.tasksService.visiteToDo)
@@ -1032,10 +1047,10 @@ console.log(this.tasksService.visiteEfectedTest);
       console.log(this.tasksService.visiteToDo)
       console.log(this.tasksService.listTasks1)
       console.log(this.tasksService.listTasksFinalized)
-      this.tasksService.visiteToDo =  [...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
-        ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
-        ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))].filter(res => res.bulletName == "Incidências");
-        console.log(this.tasksService.visiteToDo)
+      this.tasksService.visiteToDo = [...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))].filter(res => res.bulletName == "Incidências");
+      console.log(this.tasksService.visiteToDo)
       this.tasksService.visiteEfected = this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
         const dateA = new Date(a.endDate);
         const dateB = new Date(b.endDate);

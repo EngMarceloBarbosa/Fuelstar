@@ -14,6 +14,7 @@ import "hammerjs";
 import { HammerGestureConfig } from "@angular/platform-browser";
 import { Filesystem, Directory } from '@capacitor/filesystem';
 
+
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.page.html',
@@ -91,9 +92,9 @@ export class FormsPage implements OnInit {
   // }
 
   selectImages() {
-    if (this.selectedImages.length >= 5) {
+    if (this.selectedImages.length >= 8) {
       // Maximum number of images reached, show error message to user
-      alert("Só podes selecionar no máximo 5 imagens");
+      alert("Só podes selecionar no máximo 8 imagens");
       return;
     }
 
@@ -700,7 +701,7 @@ console.log(this.formsFields.signatureImageClient);
 
 
         if(this.formsFields.selectedImages.length > 0) {
-        const fieldsIds = [ '00000000-0000-0000-0000-000000000021', '00000000-0000-0000-0000-000000000022', '00000000-0000-0000-0000-000000000023', '00000000-0000-0000-0000-000000000024', '00000000-0000-0000-0000-000000000025']
+        const fieldsIds = [ '00000000-0000-0000-0000-000000000021', '00000000-0000-0000-0000-000000000022', '00000000-0000-0000-0000-000000000023', '00000000-0000-0000-0000-000000000024', '00000000-0000-0000-0000-000000000025', '00000000-0000-0000-0000-000000000026', '00000000-0000-0000-0000-000000000027', '00000000-0000-0000-0000-000000000028']
 
 
 
@@ -762,14 +763,18 @@ console.log(this.formsFields.signatureImageClient);
 
       // console.log(updateTask1)
 
+      const now = new Date(); // Cria um objeto Date com a data e hora atuais
+      const roundedMilliseconds = Math.round(now.getMilliseconds() / 10) * 10; // Arredonda os milissegundos para duas casas decimais
+      now.setMilliseconds(roundedMilliseconds); // Atualiza o objeto Date com os milissegundos arredondados
+      const formattedNow = now.toISOString(); // Converte para o formato "AAAA-MM-DDTHH:MM:SS.mmmZ"
+
       const updateTaskPatch = {
         // ...data,
-        endDate: this.tasksService.totalTimeZ,
+        endDate: formattedNow,
         estimatedStartDate: this.tasksService.notesTask.estimatedStartDate,
         startDate: this.tasksService.notesTask.estimatedStartDate,
         estimatedEndDate: this.tasksService.notesTask.estimatedEndDate
-      }
-
+      };
 
 
       // const updateTask = {

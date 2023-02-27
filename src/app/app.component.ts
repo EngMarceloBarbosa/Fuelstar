@@ -30,7 +30,7 @@ export class AppComponent {
 
     public router: Router,
     private alertService: AlertController,
-    public tasksService:TasksService,
+
 
   ) {
 

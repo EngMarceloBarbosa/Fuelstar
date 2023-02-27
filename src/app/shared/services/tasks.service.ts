@@ -240,7 +240,7 @@ export class TasksService {
     this.totalTimeZ = yyyy + '-' + month + '-' + dd + 'T' + hours + ':' + minutes + ':' + seconds + ':' + ms
     console.log(this.today)
     console.log(this.time)
-    console.log(this.timeNew)
+    console.log(this.timeNew, 'HORA QUE INTERESSA')
     console.log(this.totalTimeZ)
 
     ////// TESTES PARA SAIR E CONTINUAR A LOGAR ///////////////////////////////////7

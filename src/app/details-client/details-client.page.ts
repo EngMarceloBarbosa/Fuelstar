@@ -34,6 +34,7 @@ export class DetailsClientPage implements OnInit {
   FilesystemDirectory: any;
   imgTecnhic1: any;
   formNumberStart: any;
+  hasImages: any;
   forNumbers: any;
   // pdfUrl = "https://file-examples-com.github.io/uploads/2017/10/file-example_PDF_1MB.pdf'
   formsFields = {
@@ -125,6 +126,19 @@ export class DetailsClientPage implements OnInit {
 
   async ngOnInit() {
 
+    this.tasksService.timeHours(); // fazer reloading as horas para obter novas datas
+
+
+    // Este excerto de código é para validar se tem imagens , senao houver nenhuma imagem para mostrar para não mostrar a frase "IMAGES EM ANEXO"
+
+
+    if (this.formsField.image1 == 'data:image/png;base64,undefined' && this.formsField.image2 == 'data:image/png;base64,undefined' && this.formsField.image3 == 'data:image/png;base64,undefined' && this.formsField.image4 == 'data:image/png;base64,undefined' && this.formsField.image5 == 'data:image/png;base64,undefined' && this.formsField.image6 == 'data:image/png;base64,undefined' && this.formsField.image7 == 'data:image/png;base64,undefined' && this.formsField.image8 == 'data:image/png;base64,undefined') {
+      this.hasImages = false;
+    } else {
+      this.hasImages = true;
+
+    }
+    // -----------------------------------------------------------------------------------------------
 
     this.loadLocalAssetToBase64();
 
@@ -563,6 +577,10 @@ export class DetailsClientPage implements OnInit {
   }
 
 
+  goToSuspend(){
+    this.router.navigate(["/suspend"])
+  }
+
   async buttonSuspend() {
     await this.tasksService.putTaskSuspend();
     await this.taskApiService.getTypesStateTask();
@@ -966,53 +984,74 @@ export class DetailsClientPage implements OnInit {
               table: {
                 headerRows: 1,
                 body: [
-                  [{ text: 'Cliente', bold: true, fontSize: 14 }, { text: (typeof this.clientDetails.entity.firstName === 'string') ? this.clientDetails.entity.firstName.trim() : '', fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Morada ', bold: true, fontSize: 14, verticalAlignment: 'middle' }, { text: this.tasksService.selectedTask.address.addressLine1 + '-' + this.tasksService.selectedTask.address.cityName + '-' + this.tasksService.selectedTask.address.postalCode, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Técnico', bold: true, fontSize: 14 }, { text: this.tasksService.entityName, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Data da Tarefa', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[0].value.substring(0, 10).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Tipo da Tarefa', bold: true, fontSize: 14 }, { text: this.formsField.structure.optionFields[0].values[0].name, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Pedido ao OVM ?', bold: true, fontSize: 14 }, { text: this.formsField.structure.booleanFields[0].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Pedido ao OVM - Porque ?', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[5].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Trabalho Finalizado ?', bold: true, fontSize: 14 }, { text: this.formsField.structure.booleanFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Trabalho finalizado - Porque ?', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[5].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Cliente', bold: true, fontSize: 12, verticalAligment:'middle', width : 'auto' }, { text: (typeof this.clientDetails.entity.firstName === 'string') ? this.clientDetails.entity.firstName.trim() : '', fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Morada ', bold: true, fontSize: 12, verticalAlignment: 'middle' }, { text: this.tasksService.selectedTask.address.addressLine1 + '-' + this.tasksService.selectedTask.address.cityName + '-' + this.tasksService.selectedTask.address.postalCode, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Técnico', bold: true, fontSize: 12 }, { text: this.tasksService.entityName, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Data da Tarefa', bold: true, fontSize: 12 }, { text: this.formsField.structure.dateFields[0].value.substring(0, 10).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Tipo da Tarefa', bold: true, fontSize: 12 }, { text: this.formsField.structure.optionFields[0].values[0].name, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Pedido ao OVM ?', bold: true, fontSize: 12 }, { text: this.formsField.structure.booleanFields[0].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Pedido ao OVM - Porque ?', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[5].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Trabalho Finalizado ?', bold: true, fontSize: 12 }, { text: this.formsField.structure.booleanFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Trabalho finalizado - Porque ?', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[5].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [
-                    { text: 'Data de inicio da deslocação', bold: true, fontSize: 14 },
+                    { text: 'Data de inicio da deslocação', bold: true, fontSize: 12 },
                     { text: this.formsField.structure.dateFields[3]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false, margin: [0, 10, 0, 0] }
                   ],
                   [
-                    { text: 'Data de fim da deslocação', bold: true, fontSize: 14 },
-                    { text: this.formsField.structure.dateFields[1]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12,  verticalAlignment: 'middle', bold: false, margin: [0, 10, 0, 0]}
+                    { text: 'Data de fim da deslocação', bold: true, fontSize: 12 },
+                    { text: this.formsField.structure.dateFields[1]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false, margin: [0, 10, 0, 0] }
                   ],
-                  [{ text: 'Matricula', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[3].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Origem', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[4].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Destino', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'kilometros', bold: true, fontSize: 14 }, { text: JSON.stringify(this.formsField.structure.decimalFields[0].value), fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Data de inicio do trabalho', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[4].value.substring(0, 19).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Data de fim do trabalho', bold: true, fontSize: 14 }, { text: this.formsField.structure.dateFields[2].value.substring(0, 19).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Anomalias encontradas', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[0].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Trabalho Efetuado', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[6].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Materiais Aplicados', bold: true, fontSize: 14 }, { text: this.formsField.structure.textFields[2].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Matricula', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[3].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Origem', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[4].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Destino', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'kilometros', bold: true, fontSize: 12 }, { text: JSON.stringify(this.formsField.structure.decimalFields[0].value), fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Data de inicio do trabalho', bold: true, fontSize: 12 }, { text: this.formsField.structure.dateFields[4].value.substring(0, 19).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Data de fim do trabalho', bold: true, fontSize: 12 }, { text: this.formsField.structure.dateFields[2].value.substring(0, 19).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Anomalias encontradas', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[0].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Trabalho Efetuado', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[6].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Materiais Aplicados', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[2].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                 ].filter(row => row[1].text && typeof row[1].text === 'string' && row[1].text.trim() !== '' && row[1].text !== 'null'),
-              }
+              },
+
 
             },
-
-            [{ image: JSON.parse(JSON.stringify(this.formsField.imgClient)), width: 100, style: "textClient" }],
-            // console.log(JSON.parse(JSON.stringify(this.formsField.imgClient))),
-            { text: 'Assinatura do Cliente', width: 20, style: "textClient" },
-            [{ image: JSON.parse(JSON.stringify(this.formsField.imgTecnhic)), width: 100, style: 'textImage1' }],
-            // console.log(JSON.parse(JSON.stringify(this.formsField.imgTecnhic))),
 
             {
-              text: 'Assinatura do Técnico', width: 20, style: "textImage",
-            },
+              table: {
+                widths: ['*', '*'],
+                body: [
+                  [
+                    {
+                      stack: [
+                        { image: JSON.parse(JSON.stringify(this.formsField.imgClient)), width: 100, style: "textClient" },
+                        { text: 'Assinatura do Cliente', width: 20, style: "textClient" }
+                      ],
+                      border: [false, false, false, false],
+                      margin: [0, 0, 20, 0],
+                    },
+                    {
+                      stack: [
+                        { image: JSON.parse(JSON.stringify(this.formsField.imgTecnhic)), width: 100, style: 'textImage1' },
+                        { text: 'Assinatura do Técnico', width: 20, style: { bold: true, } }
+                      ],
+                      border: [false, false, false, false],
+                      margin: [20, 0, 0, 0],
+
+                    }
+                  ]
+                ]
+              }
+            }
+            ,
           ]
         },
         // OUTRA PAGINA
+
         {
           stack: [
 
-            [{ pageBreak: 'before', text: 'Imagens em ANEXO', width: 20, style: "header1" }],
+            ...(this.hasImages ? [{ pageBreak: 'before', text: 'Imagens em ANEXO', width: 20, style: "header1" }] : []),
+
 
             {
               columns: [
@@ -1028,13 +1067,7 @@ export class DetailsClientPage implements OnInit {
                       image: JSON.parse(JSON.stringify(this.formsField.image2)),
                       width: 200,
                       style: "imageAnex1"
-                    }
-                  ]
-                    .filter(item => item.image !== 'data:image/png;base64,' + undefined)
-                },
-                {
-                  width: '*',
-                  stack: [
+                    },
                     {
                       image: JSON.parse(JSON.stringify(this.formsField.image3)),
                       width: 200,
@@ -1055,10 +1088,28 @@ export class DetailsClientPage implements OnInit {
                       image: JSON.parse(JSON.stringify(this.formsField.image5)),
                       width: 200,
                       style: "imageAnex1"
+                    },
+                    {
+                      image: JSON.parse(JSON.stringify(this.formsField.image6)),
+                      width: 200,
+                      style: "imageAnex1"
+                    },
+                    {
+                      image: JSON.parse(JSON.stringify(this.formsField.image7)),
+                      width: 200,
+                      style: "imageAnex1"
+                    },
+                    {
+                      image: JSON.parse(JSON.stringify(this.formsField.image8)),
+                      width: 200,
+                      style: "imageAnex1"
                     }
+
                   ]
                     .filter(item => item.image !== 'data:image/png;base64,' + undefined)
-                }
+                },
+
+
               ]
             }
 
@@ -1072,8 +1123,8 @@ export class DetailsClientPage implements OnInit {
 
       styles: {
         header: {
-          fontSize: 18,
-          bold: true,
+          fontSize: 20,
+          bold: false,
           margin: [190, 5, 10, 10],
         },
         header1: {
@@ -1094,6 +1145,8 @@ export class DetailsClientPage implements OnInit {
           fontSize: 13,
           color: 'black',
           margin: [20, 20, 20, 20],
+          verticalAlignment: 'middle',
+
         },
         headerMaster: {
           fontSize: 18,
@@ -1107,14 +1160,14 @@ export class DetailsClientPage implements OnInit {
 
         },
 
-        textImage: {
-          bold: true,
-          margin: [285, 0, 0, 40]
-        },
-        textImage1: {
-          bold: true,
-          margin: [300, -115, 0, 0]
-        },
+        // textImage: {
+        //   bold: true,
+        //   margin: [285, 0, 0, 40]
+        // },
+        // textImage1: {
+        //   bold: true,
+        //   margin: [300, -115, 0, 0]
+        // },
         textClient: {
           bold: true,
           margin: [110, 0, 0, 0]

@@ -143,11 +143,11 @@ export class LoginPage implements OnInit {
     this.loginApiService.getLogin(authentication).then(res => {
       this.router.navigate(["/tabs/tab1"]);
       environment.token = res.accessToken;
-      console.log(res)
-      localStorage.setItem('data', res.expirationDate)
-      localStorage.setItem('dataToday', this.tasksService.timeNew)
-      this.tasksService.dataSave = localStorage.getItem('data');
-      this.tasksService.dataSave1 = localStorage.getItem('dataToday');
+      // console.log(res)
+      // localStorage.setItem('data', res.expirationDate)
+      // localStorage.setItem('dataToday', this.tasksService.timeNew)
+      // this.tasksService.dataSave = localStorage.getItem('data');
+      // this.tasksService.dataSave1 = localStorage.getItem('dataToday');
 
       //  this.tasksService.dataSave = this.tasksService.dataSave
 

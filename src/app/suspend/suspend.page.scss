@@ -1,0 +1,23 @@
+@import "./../../global.scss";
+
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 24px;
+
+}
+
+
+.container-main{
+  width: 100%;
+}
+.left-icon {
+  width: 10%;
+  margin-left: 20px;
+  @extend .align-center;
+}
+
+ion-title{
+  padding-left: 25px;
+}

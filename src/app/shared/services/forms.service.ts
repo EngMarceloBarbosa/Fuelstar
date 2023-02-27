@@ -23,6 +23,9 @@ export class FormsService {
   image3:any;
   image4:any;
   image5:any;
+  image6:any;
+  image7:any;
+  image8:any;
 
   // turnNoForms : boolean = false;
   imgTecnhic:any;

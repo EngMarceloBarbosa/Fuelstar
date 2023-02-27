@@ -18,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsPageRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    SignaturePadModule
+    SignaturePadModule,
+
 
   ],
   declarations: [FormsPage],

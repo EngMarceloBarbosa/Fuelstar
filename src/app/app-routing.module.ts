@@ -91,10 +91,15 @@ const routes: Routes = [
 
     pathMatch: 'full'
 
-  },  {
+  },
+  {
     path: 'forms',
     loadChildren: () => import('./forms/forms.module').then( m => m.FormsPageModule)
+  },  {
+    path: 'suspend',
+    loadChildren: () => import('./suspend/suspend.module').then( m => m.SuspendPageModule)
   },
+
 
 
 
