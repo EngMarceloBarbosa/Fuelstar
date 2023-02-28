@@ -567,7 +567,7 @@ export class DetailsClientPage implements OnInit {
       rightButtonTesterProperty: "clickLeaveApp",
       rightButtonColor: "c-scale-12",
       rightButtonCallback: () => {
-        this.buttonSuspend();
+        this.goToSuspend();
       },
     };
     this.alertService.open(temp);
@@ -581,77 +581,79 @@ export class DetailsClientPage implements OnInit {
     this.router.navigate(["/suspend"])
   }
 
-  async buttonSuspend() {
-    await this.tasksService.putTaskSuspend();
-    await this.taskApiService.getTypesStateTask();
+  // async buttonSuspend() {
+  //   await this.tasksService.putTaskSuspend();
+  //   await this.taskApiService.getTypesStateTask();
 
 
-    await this.taskApiService.getTasksItemIdSuspend().then(res => {
+  //   await this.taskApiService.getTasksItemIdSuspend().then(res => {
 
 
-      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
+  //     this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
 
-      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
-
-
-    })
+  //     console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
 
 
-    await this.taskApiService.getTasksItemIdExecuted().then(res => {
-      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
-
-      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+  //   })
 
 
-    })
+  //   await this.taskApiService.getTasksItemIdExecuted().then(res => {
+  //     this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
 
-    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
-
-      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
-
-
-      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+  //     console.log(this.tasksService.listTasks2, 'Tarefas em execução')
 
 
-    })
-    await this.taskApiService.getTasksItemIdSuspend().then(res => {
+  //   })
+
+  //   await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+
+  //     this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
 
 
-      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
-
-      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+  //     console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
 
 
-    })
+  //   })
+  //   await this.taskApiService.getTasksItemIdSuspend().then(res => {
 
 
+  //     this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
 
-    //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
-
-    this.tasksService.visiteToDo = [
-      ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
-      ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
-      ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
-    ];
-    console.log(this.tasksService.visiteToDo, 'lista final');
+  //     console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
 
 
-    console.log(this.tasksService.visiteToDo)
-    console.log(this.tasksService.listTasks1)
-    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
-
-    console.log(this.tasksService.countVisits)
-
-    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
-    console.log(this.tasksService.visiteToDo, 'pq0')
-    this.tasksService.getColor(this.tasksService.selectedTask.id);
-    this.tasksService.msgWarningExecuted = false;
-    this.presentSuccessToast();
-    this.router.navigate(["/tabs/tab1"]);
+  //   })
 
 
 
-  }
+  //   //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
+
+  //   this.tasksService.visiteToDo = [
+  //     ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+  //     ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+  //     ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
+  //   ];
+  //   console.log(this.tasksService.visiteToDo, 'lista final');
+
+
+  //   console.log(this.tasksService.visiteToDo)
+  //   console.log(this.tasksService.listTasks1)
+  //   this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+  //   console.log(this.tasksService.countVisits)
+
+  //   this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+  //   console.log(this.tasksService.visiteToDo, 'pq0')
+  //   this.tasksService.getColor(this.tasksService.selectedTask.id);
+  //   this.tasksService.msgWarningExecuted = false;
+  //   this.presentSuccessToast();
+  //   this.router.navigate(["/tabs/tab1"]);
+
+
+
+  // }
+
+
   async executed() {
 
     const temp: ModalMessageModel = {
@@ -1024,10 +1026,12 @@ export class DetailsClientPage implements OnInit {
                     {
                       stack: [
                         { image: JSON.parse(JSON.stringify(this.formsField.imgClient)), width: 100, style: "textClient" },
-                        { text: 'Assinatura do Cliente', width: 20, style: "textClient" }
+                        { text: 'Assinatura do Cliente', width: 20, style: "textClient" },
                       ],
                       border: [false, false, false, false],
                       margin: [0, 0, 20, 0],
+                 // sempre será quebrado após este stack
+                      keepTogether: true // não será quebrado entre páginas
                     },
                     {
                       stack: [
@@ -1036,11 +1040,12 @@ export class DetailsClientPage implements OnInit {
                       ],
                       border: [false, false, false, false],
                       margin: [20, 0, 0, 0],
-
+                      keepTogether: true // não será quebrado entre páginas
                     }
                   ]
                 ]
               }
+
             }
             ,
           ]
@@ -1064,17 +1069,17 @@ export class DetailsClientPage implements OnInit {
                       style: "imageAnex1"
                     },
                     {
-                      image: JSON.parse(JSON.stringify(this.formsField.image2)),
-                      width: 200,
-                      style: "imageAnex1"
-                    },
-                    {
                       image: JSON.parse(JSON.stringify(this.formsField.image3)),
                       width: 200,
                       style: "imageAnex1"
                     },
                     {
-                      image: JSON.parse(JSON.stringify(this.formsField.image4)),
+                      image: JSON.parse(JSON.stringify(this.formsField.image5)),
+                      width: 200,
+                      style: "imageAnex1"
+                    },
+                    {
+                      image: JSON.parse(JSON.stringify(this.formsField.image7)),
                       width: 200,
                       style: "imageAnex1"
                     }
@@ -1085,17 +1090,17 @@ export class DetailsClientPage implements OnInit {
                   width: '*',
                   stack: [
                     {
-                      image: JSON.parse(JSON.stringify(this.formsField.image5)),
+                      image: JSON.parse(JSON.stringify(this.formsField.image2)),
+                      width: 200,
+                      style: "imageAnex1"
+                    },
+                    {
+                      image: JSON.parse(JSON.stringify(this.formsField.image4)),
                       width: 200,
                       style: "imageAnex1"
                     },
                     {
                       image: JSON.parse(JSON.stringify(this.formsField.image6)),
-                      width: 200,
-                      style: "imageAnex1"
-                    },
-                    {
-                      image: JSON.parse(JSON.stringify(this.formsField.image7)),
                       width: 200,
                       style: "imageAnex1"
                     },

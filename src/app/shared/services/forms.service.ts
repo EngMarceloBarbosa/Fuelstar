@@ -17,6 +17,7 @@ export class FormsService {
   selectedImages = [];
   formGetByIdAll:any;
   formGetByIdAll1:any;
+  noteSuspend:any;
   image:any;
   image1:any;
   image2:any;

@@ -9,6 +9,7 @@ import { ItemApiService } from '../http/item-api.service';
 import { Router } from '@angular/router';
 import { TaskApiService } from '../http/task-api.service';
 import { environment } from 'src/environments/environment';
+import { FormsService } from './forms.service';
 
 
 
@@ -141,7 +142,7 @@ export class TasksService {
   loginUser: any = "";
   notesTask: any = [];
   notesTasks: any = [];
-
+noteSuspend:any = ""
   postNotes: any = "";
   totalTime: any;
   selectedPost: any;
@@ -313,7 +314,7 @@ export class TasksService {
 
     var task = {
       statusId: "00bba7ce-f90b-4ebb-9478-777376f78e93",
-      note: null,
+      note: this.noteSuspend.detail.value,
       instanceId: this.instanceId
     }
 
@@ -688,13 +689,11 @@ export class TasksService {
       if (item.endDate !== 'Sem data') {
         const endDate = new Date(item.endDate);
         return endDate >= oneWeekAgo;
-      } else {
-        return false;
       }
+      return false; // adicionado para excluir itens sem data
     }).sort((a, b) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime());
 
-    const itemsWithoutData = this.listTasksFinalizedHistory1.filter(item => item.endDate === 'Sem data');
-    this.listTasksFinalizedHistory1 = itemsWithData.concat(itemsWithoutData);
+    this.listTasksFinalizedHistory1 = itemsWithData;
   }
 
 
