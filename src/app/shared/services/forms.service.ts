@@ -14,6 +14,7 @@ export class FormsService {
   public signatureImageClient: string = "";
   public signatureImageTecnic: string = "";
   logoData1: any;
+  invertedArray:any = [];
   selectedImages = [];
   formGetByIdAll:any;
   formGetByIdAll1:any;
@@ -27,7 +28,7 @@ export class FormsService {
   image6:any;
   image7:any;
   image8:any;
-
+  idForm1:any;
   // turnNoForms : boolean = false;
   imgTecnhic:any;
   imgClient:any;
@@ -68,6 +69,7 @@ export class FormsService {
     reasonOVM: new FormControl(''),
     initialDate: new FormControl(''),
     finalDate: new FormControl(''),
+    // technic: new FormControl('')
   });
 
   dateFormsStep4 = new FormGroup({

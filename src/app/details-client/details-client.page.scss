@@ -487,12 +487,17 @@ nc-input {
 }
 
 .warning-documents {
-
+background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 82vh;
   padding: 20px;
+}
+
+nc-tabs{
+background-color: white;
+
 }
 
 .msgWarning {

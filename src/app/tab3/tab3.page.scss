@@ -50,6 +50,21 @@ background-color: var(--c-scale-1_bg);
   margin-bottom: tbu(px(10));
 }
 
+.date-input{
+  nc-input{
+    ::ng-deep {
+    .input-wrapper.medium.input-wrapper{
+      .input-wrapper--input{
+        input{
+          border-radius: 100px;
+        }
+      }
+      }
+    }
+
+  }
+}
+
 .title-header {
 }
 
@@ -286,7 +301,7 @@ margin-bottom: 10px;
   height: 72px;
  display: flex;
   flex-direction: column;
-  margin-top: tbu(px(12));
+  margin-top: tbu(px(8));
 }
 
 .date-history{

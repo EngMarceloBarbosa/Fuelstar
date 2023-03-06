@@ -19,6 +19,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx'
 // import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { Thumbs } from 'swiper';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -105,7 +106,7 @@ export class DetailsClientPage implements OnInit {
   listTasksAll: any;
   NewListTest: any;
   listAll: any;
-  turnDocuments = false;
+
   pdfObj: any;
   pdfBase64: any;
 
@@ -416,6 +417,7 @@ export class DetailsClientPage implements OnInit {
 
 
 
+
     this.router.navigate(['/tabs/tab1']);
 
 
@@ -577,7 +579,7 @@ export class DetailsClientPage implements OnInit {
   }
 
 
-  goToSuspend(){
+  goToSuspend() {
     this.router.navigate(["/suspend"])
   }
 
@@ -913,6 +915,7 @@ export class DetailsClientPage implements OnInit {
   buttonFinalizedForms() {
     if (this.tasksService.selectedTask.currentStatus.id == "00bba7ce-f90b-4ebb-9478-777376f78e93") {
       this.tasksService.msgWarningExecuted = true;
+
     } else {
       setTimeout(() => {
         this.tasksService.msgWarningExecuted = false;
@@ -957,6 +960,7 @@ export class DetailsClientPage implements OnInit {
 
 
 
+
     console.log(JSON.stringify(this.logoData))
 
     const docDefinition = {
@@ -977,31 +981,32 @@ export class DetailsClientPage implements OnInit {
             { text: 'Rua da Portela nº1005 -4805-546 Vermil- Guimarães\n Telefones 252 928 580/1/2 -252 997 100 - Faz 252 991 848 \n E-mail: geral@guimabombas.com', width: 20, style: "textHeader" },
 
 
-            { text: 'Ficha de Trabalho', style: 'header' },
+           [ { text: 'Ficha de Trabalho ' + this.formsField.formGetById.instanceNumber, style: 'header' }],
 
             //       this.createTable(this.formsField.structureList)
 
             {
               style: "tableHeader",
               table: {
+                widths: ['40%', '60%'],
                 headerRows: 1,
                 body: [
-                  [{ text: 'Cliente', bold: true, fontSize: 12, verticalAligment:'middle', width : 'auto' }, { text: (typeof this.clientDetails.entity.firstName === 'string') ? this.clientDetails.entity.firstName.trim() : '', fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Cliente', bold: true, fontSize: 12, verticalAligment: 'middle', width: 'auto' }, { text: (typeof this.clientDetails.entity.firstName === 'string') ? this.clientDetails.entity.firstName.trim() : '', fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Morada ', bold: true, fontSize: 12, verticalAlignment: 'middle' }, { text: this.tasksService.selectedTask.address.addressLine1 + '-' + this.tasksService.selectedTask.address.cityName + '-' + this.tasksService.selectedTask.address.postalCode, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Técnico', bold: true, fontSize: 12 }, { text: this.tasksService.entityName, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Data da Tarefa', bold: true, fontSize: 12 }, { text: this.formsField.structure.dateFields[0].value.substring(0, 10).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Tipo da Tarefa', bold: true, fontSize: 12 }, { text: this.formsField.structure.optionFields[0].values[0].name, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Pedido ao OVM ?', bold: true, fontSize: 12 }, { text: this.formsField.structure.booleanFields[0].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Pedido ao OVM ', bold: true, fontSize: 12 }, { text: this.formsField.structure.booleanFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Pedido ao OVM - Porque ?', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[5].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Trabalho Finalizado ?', bold: true, fontSize: 12 }, { text: this.formsField.structure.booleanFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'Trabalho finalizado - Porque ?', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[5].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Trabalho Finalizado ', bold: true, fontSize: 12 }, { text: this.formsField.structure.booleanFields[0].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Trabalho finalizado - Porque ?', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[7].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [
                     { text: 'Data de inicio da deslocação', bold: true, fontSize: 12 },
-                    { text: this.formsField.structure.dateFields[3]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false, margin: [0, 10, 0, 0] }
+                    { text: this.formsField.structure.dateFields[3]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false  }
                   ],
                   [
                     { text: 'Data de fim da deslocação', bold: true, fontSize: 12 },
-                    { text: this.formsField.structure.dateFields[1]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false, margin: [0, 10, 0, 0] }
+                    { text: this.formsField.structure.dateFields[1]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }
                   ],
                   [{ text: 'Matricula', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[3].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Origem', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[4].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
@@ -1030,7 +1035,7 @@ export class DetailsClientPage implements OnInit {
                       ],
                       border: [false, false, false, false],
                       margin: [0, 0, 20, 0],
-                 // sempre será quebrado após este stack
+                      // sempre será quebrado após este stack
                       keepTogether: true // não será quebrado entre páginas
                     },
                     {
@@ -1130,7 +1135,7 @@ export class DetailsClientPage implements OnInit {
         header: {
           fontSize: 20,
           bold: false,
-          margin: [190, 5, 10, 10],
+          margin: [100, 5, 10, 10],
         },
         header1: {
           fontSize: 18,
@@ -1190,9 +1195,27 @@ export class DetailsClientPage implements OnInit {
     this.pdfObj = pdfMake.createPdf(docDefinition);
 
 
-    const formId = this.tasksService.selectedTask.id
+
 
     // pdfDocGenerator.getBasdownloadPdf() {
+    // if (this.plataform.is('cordova')) {
+    //   this.pdfObj.getBuffer((buffer) => {
+    //     var utf8 = new Uint8Array(buffer);
+    //     var binaryArray = utf8.buffer;
+    //     var blob = new Blob([binaryArray], { type: 'application/pdf' });
+
+    //     // Save the PDF to the data Directory of our App
+    //     this.file.writeFile(this.file.dataDirectory, 'formulário' + JSON.stringify(formId) + '.pdf', blob, { replace: true }).then(fileEntry => {
+
+    //       this.fileOpener.open(this.file.dataDirectory + 'formulário' + JSON.stringify(formId) + '.pdf', 'application/pdf');
+    //     })
+    //   });
+    // } else {
+    //   // On a browser simply use download!
+    //   this.pdfObj.download('formulário' + JSON.stringify(formId) + '.pdf');
+
+    // }
+
     if (this.plataform.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
         var utf8 = new Uint8Array(buffer);
@@ -1200,15 +1223,19 @@ export class DetailsClientPage implements OnInit {
         var blob = new Blob([binaryArray], { type: 'application/pdf' });
 
         // Save the PDF to the data Directory of our App
-        this.file.writeFile(this.file.dataDirectory, 'formulário' + JSON.stringify(formId) + '.pdf', blob, { replace: true }).then(fileEntry => {
+        const fileName = this.formsField.formGetById.instanceNumber.replace("/", "_");
+        console.log('Generated file name:', fileName);
 
-          this.fileOpener.open(this.file.dataDirectory + 'formulário' + JSON.stringify(formId) + '.pdf', 'application/pdf');
-        })
+        this.file.writeFile(this.file.dataDirectory, fileName + '.pdf', blob, { replace: true }).then(fileEntry => {
+          console.log('File saved:', fileEntry.name, fileEntry.size, fileEntry.lastModifiedDate);
+          this.fileOpener.open(this.file.dataDirectory  + fileName  + '.pdf', 'application/pdf');
+        });
       });
+
+
     } else {
       // On a browser simply use download!
-      this.pdfObj.download('formulário' + JSON.stringify(formId) + '.pdf');
-
+      this.pdfObj.download('formulário' + this.formsField.formGetById.instanceNumber  + '.pdf');
     }
   }
 

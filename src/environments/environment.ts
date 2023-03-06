@@ -11,8 +11,8 @@ export const environment = {
   // api: 'http://192.168.1.6:9601',
   // api:'http://172.18.192.1:9601',
   // api: 'https://stgapi.fuelstarplus.com',
-  api: 'https://stg.fuelstarplus.com:10000',
-  // api: 'http://api.fuelstarplus.com',
+  api: 'https://stg.fuelstarplus.com:11000',
+  // api: 'https://api.fuelstarplus.com:11001',
   token: ''
 };
 
@@ -24,3 +24,20 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+
+
+// PERCORRER OS FORMS TODOS ASSOCIADOSA A CADA TAREFA ----------------------------------------------------
+
+// const formInstancesValues = [];
+
+// this.tasksService.notesTask.formInstances.forEach(async (instance) => {
+//   await this.formsField.getFormsbyId(instance).then((res) => {
+//     formInstancesValues.push(res); // armazena o objeto fields retornado em um novo array
+//   });
+// });
+
+// console.log(formInstancesValues); // imprime o novo array com os valores dos objetos
+
+
+// ----------------------------------------------//---------------------------------------------------

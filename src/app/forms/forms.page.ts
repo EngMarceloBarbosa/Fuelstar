@@ -73,7 +73,7 @@ export class FormsPage implements OnInit {
   // selectedImage: string;
   selectedImages = []
   rows: string[][] = [];
-  constructor(private router: Router,public loadingController: LoadingController, private changeDetectorRef: ChangeDetectorRef, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController, public formsFields: FormsService) {
+  constructor(private router: Router, public loadingController: LoadingController, private changeDetectorRef: ChangeDetectorRef, public tasksService: TasksService, private fb: FormBuilder, private alertService: AlertService, private actionSheetService: ActionSheetService, private contactsTaskService: ContactsTaskService, public taskApiService: TaskApiService, public contactApiService: ContactsTaskService, private camera: Camera, private toastController: ToastController, public formsFields: FormsService) {
 
   }
 
@@ -81,6 +81,26 @@ export class FormsPage implements OnInit {
 
 
   ngOnInit() {
+
+
+      const textArea = document.getElementById("myTextArea") as HTMLTextAreaElement;
+      const textAreaAnomaly = document.getElementById("myTextAreaAnomaly") as HTMLTextAreaElement;
+      const textAreaWork = document.getElementById("myTextAreaWork") as HTMLTextAreaElement;
+      if (textArea && textAreaAnomaly && textAreaWork) {
+        textArea.addEventListener("input", function() {
+          const lines = textArea.value.split("\n");
+          const linesAnomaly = textAreaAnomaly.value.split("\n");
+          const linesWork = textAreaWork.value.split("\n");
+          if (lines.length > 9) {
+            textArea.value = lines.slice(0, 10).join("\n");
+            textAreaAnomaly.value = lines.slice(0, 10).join("\n");
+            textAreaWork.value = lines.slice(0, 10).join("\n");
+          }
+        });
+      }
+
+
+
 
 
   }
@@ -127,18 +147,18 @@ export class FormsPage implements OnInit {
     }
   }
 
-   async presentLoadingWithOptions() {
-      const loading = await this.loadingController.create({
-        spinner: 'circular',
-        duration: 125000,
-        message: 'Please wait...',
-        translucent: true,
-        cssClass: 'custom-class custom-loading'
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'circular',
+      duration: 125000,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
 
-      });
+    });
 
-      return await loading.present();
-    }
+    return await loading.present();
+  }
   // async showConfirmation(i: number, j: number) {
   //   console.log('entrou 1')
   //   const toast = await this.toastController.create({
@@ -262,6 +282,7 @@ export class FormsPage implements OnInit {
   }
 
   drawStart() {
+
     console.log('begin drawing');
   }
 
@@ -326,7 +347,7 @@ export class FormsPage implements OnInit {
 
     this.submitted = false;
     if (this.formsFields.dateFormsStep1.valid || (this.formsFields.dateFormsStep1.value.type === 'Interna' && this.formsFields.dateFormsStep1.value.dateOfTheDay != "")) {
-      if(this.formsFields.dateFormsStep1.value.type === 'Interna') {
+      if (this.formsFields.dateFormsStep1.value.type === 'Interna') {
         this.formsFields.dateFormsStep1.value.registration = "";
         this.formsFields.dateFormsStep1.value.kilometers = "";
         this.formsFields.dateFormsStep1.value.departure = "";
@@ -421,11 +442,11 @@ export class FormsPage implements OnInit {
         else {
           this.submitted3 = true;
         }
-        }else if (this.currentStep == 3) {
-          console.log('entro aqui')
-          if (this.formsFields.signatureImageClient == "" || this.formsFields.signatureImageTecnic == "") {
-            this.presentSuccessToastImcomplete();
-          }
+      } else if (this.currentStep == 3) {
+        console.log('entro aqui')
+        if (this.formsFields.signatureImageClient == "" || this.formsFields.signatureImageTecnic == "") {
+          this.presentSuccessToastImcomplete();
+        }
       }
 
 
@@ -458,501 +479,506 @@ export class FormsPage implements OnInit {
     console.log(this.currentStep)
   }
 
-       dataURLtoBlob(dataURL) {
-  const byteString = atob(dataURL.split(',')[1]);
-  const mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
-  const ab = new ArrayBuffer(byteString.length);
-  const ia = new Uint8Array(ab);
+  dataURLtoBlob(dataURL) {
+    const byteString = atob(dataURL.split(',')[1]);
+    const mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
 
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ab], { type: mimeString });
   }
 
-  return new Blob([ab], { type: mimeString });
-}
 
+
+  // COMEÇA AQUI O PROCESSO DE FINALIZAR O FORUMLÁRIO
 
 
 
   async buttonFinalized() {
 
-    await  this.presentLoadingWithOptions();
+    await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then((res) =>
+      // console.log(res)
+      this.tasksService.notesTask = res
+    )
 
 
-    console.log(JSON.parse(JSON.stringify(this.tasksService.notesTask)));
+    await this.presentLoadingWithOptions();
+
+
+    console.log(JSON.parse(JSON.stringify(this.tasksService.notesTask.currentStatus.id)));
     let data: InstancePatch = new InstancePatch(this.tasksService.notesTask);
     console.log(data, 'lista data')
 
-    if (this.tasksService.selectedTask.currentStatus.id == "00bba7ce-f90b-4ebb-9478-777376f78e93") {
-      this.tasksService.msgWarningExecuted = true;
-    } else {
-
-      const forms = {
-        formId: "DB6F3078-8B55-4628-861A-81F56CF57D7D",
-        fields: {
-          dateFields: [
-            {
-              fieldId: "00000000-0000-0000-0000-000000000002",
-              value: this.formsFields.dateFormsStep1.value.dateOfTheDay
-
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000004",
-              value: this.formsFields.dateFormsStep1.value.startDate
-
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000005",
-              value: this.formsFields.dateFormsStep1.value.endDate
-
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000017",
-              value: this.formsFields.dateFormsStep3.value.initialDate
-
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000018",
-              value: this.formsFields.dateFormsStep3.value.finalDate
-
-            }
+    console.log(this.tasksService.selectedTask.currentStatus.id)
 
 
-          ],
-          booleanFields: [
-            {
-              fieldId: "00000000-0000-0000-0000-000000000015",
-              value: this.formsFields.dateFormsStep3.value.sure
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000013",
-              value: this.formsFields.dateFormsStep3.value.sureOVM
-            }
-          ],
-          textFields: [
-            {
-              fieldId: "00000000-0000-0000-0000-000000000006",
-              value: this.formsFields.dateFormsStep1.value.departure
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000007",
-              value: this.formsFields.dateFormsStep1.value.destination
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000009",
-              value: this.formsFields.dateFormsStep1.value.registration
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000014",
-              value: this.formsFields.dateFormsStep3.value.reason
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000016",
-              value: this.formsFields.dateFormsStep3.value.reason
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000010",
-              value: this.formsFields.dateFormsStep2.value.materials
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000011",
-              value: this.formsFields.dateFormsStep2.value.anomalias
-            },
-            {
-              fieldId: "00000000-0000-0000-0000-000000000012",
-              value: this.formsFields.dateFormsStep2.value.trabalho
-            },
-
-          ],
-          optionFields: [
-            {
-              fieldId: "00000000-0000-0000-0000-000000000003",
-              values: [
-                {
-                  id: this.idOption,
-                  name: this.formsFields.dateFormsStep1.value.type
-                }
-              ]
-            }
-          ],
-          decimalFields: [
-            {
-              fieldId: "00000000-0000-0000-0000-000000000008",
-              value: this.formsFields.dateFormsStep1.value.kilometers
-            }
-          ]
-
-        }
-
-      }
-
-      console.log(forms, 'O QUE FOI MANDADO')
-      console.log(this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia ');
-      await this.formsFields.postForms(forms).then((res) => {
-
-        this.tasksService.formsSave = res
-        this.formsFields.idForm = res.id
-
-        console.log(this.formsFields.idForm)
+    if (this.formsFields.dateFormsStep3.value.sureOVM == 'true') {
+      this.formsFields.dateFormsStep3.value.sureOVM = true
+    } if (this.formsFields.dateFormsStep3.value.sureOVM == 'false') {
+      this.formsFields.dateFormsStep3.value.sureOVM = false
+    }
+    if (this.formsFields.dateFormsStep3.value.sure == 'true') {
+      this.formsFields.dateFormsStep3.value.sure = true
+    } if (this.formsFields.dateFormsStep3.value.sure == 'false') {
+      this.formsFields.dateFormsStep3.value.sure = false
+    }
 
 
 
-        console.log(res, 'FOI GRAVADO')
-      })
+    const forms = {
+      formId: "DB6F3078-8B55-4628-861A-81F56CF57D7D",
+      fields: {
+        dateFields: [
+          {
+            fieldId: "00000000-0000-0000-0000-000000000002",
+            value: this.formsFields.dateFormsStep1.value.dateOfTheDay
 
-      await this.formsFields.submitForms(this.formsFields.idForm).then((res) => {
-        this.formsFields.formsSubmit = res;
-        console.log(this.formsFields.formsSubmit)
-      })
-      const formId = [
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000004",
+            value: this.formsFields.dateFormsStep1.value.startDate
 
-        this.formsFields.idForm
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000005",
+            value: this.formsFields.dateFormsStep1.value.endDate
 
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000017",
+            value: this.formsFields.dateFormsStep3.value.initialDate
 
-      ]
-      console.log(formId)
-      await this.formsFields.PostsubmitForms(formId, this.tasksService.selectedTask.id).then((res) => {
-        console.log(res)
-
-        this.formsFields.postFormsAfterProcess = res;
-      })
-
-      console.log(data, 'lista data')
-
-      // Form Data GRAVAR AS ASSINATURAS DO CLIENTE E TÉCNICO A DAR NO DESKTOP
-
-      // const fileIdClient = "00000000-0000-0000-0000-000000000019";
-      // const fileIdTecnic = "00000000-0000-0000-0000-000000000020"
-      // let file = this.dataURLtoFile(this.formsFields.signatureImageClient, 'signature.png');
-      // let file1 = this.dataURLtoFile(this.formsFields.signatureImageTecnic, 'signature.png');
-      // let form = new FormData();
-      // form.append('file', file, file.name);
-      // let form1 = new FormData();
-      // form1.append('file', file1, file1.name);
-      // // VER ISTO
-
-      // console.log(form1, 'AQUI')
-      // await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form)
-
-      // await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1)
-
-      // console.log(this.formsFields.signatureImageClient)
-
-      // this.formsFields.finalForm.reset();
-
-// console.log(this.formsFields.signatureImageClient);
-
-
-// outras forma nao convertendo para file Enviando logo a base 64 , so que retorna string errada
-
-
-
-const fileIdClient = "00000000-0000-0000-0000-000000000019";
-const fileIdTecnic = "00000000-0000-0000-0000-000000000020";
-
-const blobToFile = (blob, fileName) => {
-  blob.lastModifiedDate = new Date();
-  blob.name = fileName;
-  return blob;
-};
-
-// const blobToFile = (blob) => {
-//   const file = new File([blob], 'signature.png', { type: blob.type });
-//   return file;
-// };
-
-// convert signatureImageClient to file
-// const signatureClientBlob = this.dataURLtoBlob(this.formsFields.signatureImageClient);
-// const signatureClientFile = blobToFile(signatureClientBlob);
-
-// // convert signatureImageTecnic to file
-// const signatureTecnicBlob = this.dataURLtoBlob(this.formsFields.signatureImageTecnic);
-// const signatureTecnicFile = blobToFile(signatureTecnicBlob);
-
-const signatureClientBlob = this.dataURLtoBlob(this.formsFields.signatureImageClient);
-const signatureClientFile = blobToFile(signatureClientBlob, 'signatureClient.png');
-
-// convert signatureImageTecnic to file
-const signatureTecnicBlob = this.dataURLtoBlob(this.formsFields.signatureImageTecnic);
-const signatureTecnicFile = blobToFile(signatureTecnicBlob, 'signatureTecnic.png');
-
-
-let form = new FormData();
-form.append('file', signatureClientFile, 'signature.png');
-
-let form1 = new FormData();
-form1.append('file', signatureTecnicFile, 'signature.png');
-console.log(form1, 'AQUI');
-
-await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form);
-await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1);
-
-console.log(this.formsFields.signatureImageClient);
-
-this.formsFields.finalForm.reset();
-
-console.log(this.formsFields.signatureImageClient);
-
-
-        // GUARDAR AS IMAGENS ANEXADAS
-
-
-        console.log(this.formsFields.selectedImages.length)
-
-
-        if(this.formsFields.selectedImages.length > 0) {
-        const fieldsIds = [ '00000000-0000-0000-0000-000000000021', '00000000-0000-0000-0000-000000000022', '00000000-0000-0000-0000-000000000023', '00000000-0000-0000-0000-000000000024', '00000000-0000-0000-0000-000000000025', '00000000-0000-0000-0000-000000000026', '00000000-0000-0000-0000-000000000027', '00000000-0000-0000-0000-000000000028']
-
-
-
-
-            for (let i = 0; i < this.formsFields.selectedImages.length; i++) {
-              console.log(this.formsFields.selectedImages[i], 'AQUI');
-              console.log(fieldsIds[i], 'AQII 3');
-              const image = this.formsFields.selectedImages[i];
-              const fieldId = fieldsIds[i];
-              let imageBlob = this.dataURLtoBlob(image);
-              // let imageFile = new File([imageBlob], 'imagem.jpeg', { type: imageBlob.type });
-              const signatureClientFile = blobToFile(imageBlob, 'image.png');
-              let formImages = new FormData();
-              formImages.append('file', signatureClientFile, 'image.png');
-              await this.formsFields.putImageForms(this.formsFields.idForm, fieldId, formImages);
-            }
-
-
-
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000018",
+            value: this.formsFields.dateFormsStep3.value.finalDate
 
           }
 
 
-
-// --------------------- ACABA AQUI ---------------------------------------------------
-
-      await this.tasksService.putTaskFinalize();
-
-      // const updateTask2 = [{
-
-      //  entityRoleId: this.tasksService.notesTask.entityRoles[1].entityRoleId,
-      //   isParticipant: this.tasksService.notesTask.entityRoles[1].isParticipant,
-      //   isMain: this.tasksService.notesTask.entityRoles[1].isMain,
-      //   entityRoleName: this.tasksService.notesTask.entityRoles[1].entity.id,
-      // }]
-      // const updateTask3 = {
-      //   documentInstances1: this.tasksService.selectedTask.id,
-      //   documentType: '0'
-      // }
-
-      // const updateTask1 = {
-
-      //   name: this.tasksService.selectedTask.name,
-      //   description: this.tasksService.selectedTask.description,
-      //   note:this.tasksService.selectedTask.note,
-      //   isImportant: this.tasksService.selectedTask.isImportant,
-      //   projectId:this.tasksService.selectedTask.projectId,
-      //   itemId: this.tasksService.selectedTask.item,
-      //   address: this.tasksService.selectedTask.address,
-      //   documentInstances1: updateTask3,
-      //   entities: updateTask2,
-      //   tags:null,
-      //   estimatedStartDate: this.tasksService.selectedTask.estimatedStartDate,
-      //   startDate: this.tasksService.selectedTask.startDate,
-      //   estimatedEndDate: this.tasksService.totalTime,
-      //   endDate : this.tasksService.selectedTask.endDate,
-      //   formInstances: null
-      // }
-
-      // console.log(updateTask1)
-
-      const now = new Date(); // Cria um objeto Date com a data e hora atuais
-      const roundedMilliseconds = Math.round(now.getMilliseconds() / 10) * 10; // Arredonda os milissegundos para duas casas decimais
-      now.setMilliseconds(roundedMilliseconds); // Atualiza o objeto Date com os milissegundos arredondados
-      const formattedNow = now.toISOString(); // Converte para o formato "AAAA-MM-DDTHH:MM:SS.mmmZ"
-
-      const updateTaskPatch = {
-        // ...data,
-        endDate: formattedNow,
-        estimatedStartDate: this.tasksService.notesTask.estimatedStartDate,
-        startDate: this.tasksService.notesTask.estimatedStartDate,
-        estimatedEndDate: this.tasksService.notesTask.estimatedEndDate
-      };
-
-
-      // const updateTask = {
-
-      //   estimatedStartDate:this.tasksService.notesTask.estimatedStartDate,
-      //   startDate:this.tasksService.notesTask.estimatedStartDate,
-      //   endDate:this.tasksService.totalTime,
-      //   estimatedEndDate: this.tasksService.notesTask.estimatedEndDate
-      // }
-      console.log(this.tasksService.notesTask, 'COPIA DA LISTA')
-      console.log(updateTaskPatch, 'LISTA MANDADA ')
-      console.log(this.tasksService.notesTask.id, 'ID DA LISTA ')
-
-      await this.taskApiService.updateTasksItemIdFinalizedDates(this.tasksService.notesTask.id, updateTaskPatch).then(res => {
-        this.tasksService.updateTask = res;
-        console.log(this.tasksService.updateTask, 'UPDATE TASK SELECIONADA')
-      })
-
-      await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then(res => {
-        this.tasksService.notesTask = res;
-        console.log(this.tasksService.notesTask, 'versão atualizada')
-      })
-      await this.taskApiService.getTasksItemIdFinalized().then(res => {
-        this.tasksService.listTasksFinalized = res;
-        console.log(this.tasksService.listTasksFinalized)
-        this.tasksService.listTasksFinalized = res.filter(res => res.endDate !== null && res.endDate.substring(0, 10) == this.tasksService.timeNew)
-
-
-        console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-        this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
-          const dateA = new Date(a.endDate);
-          const dateB = new Date(b.endDate);
-          if (dateA > dateB) {
-            return -1;
-          } else if (dateA < dateB) {
-            return 1;
-          } else {
-            return 0;
+        ],
+        booleanFields: [
+          {
+            fieldId: "00000000-0000-0000-0000-000000000015",
+            value: this.formsFields.dateFormsStep3.value.sure
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000013",
+            value: this.formsFields.dateFormsStep3.value.sureOVM
           }
-        });
-        this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+        ],
+        textFields: [
+          {
+            fieldId: "00000000-0000-0000-0000-000000000006",
+            value: this.formsFields.dateFormsStep1.value.departure
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000007",
+            value: this.formsFields.dateFormsStep1.value.destination
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000009",
+            value: this.formsFields.dateFormsStep1.value.registration
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000014",
+            value: this.formsFields.dateFormsStep3.value.reason
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000016",
+            value: this.formsFields.dateFormsStep3.value.reasonOVM
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000010",
+            value: this.formsFields.dateFormsStep2.value.materials
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000011",
+            value: this.formsFields.dateFormsStep2.value.anomalias
+          },
+          {
+            fieldId: "00000000-0000-0000-0000-000000000012",
+            value: this.formsFields.dateFormsStep2.value.trabalho
+          },
 
-        console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-      })
-
-
-
-
-
-
-
-
-      await this.taskApiService.getTypesStateTask();
-
-
-      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
-
-      console.log(this.tasksService.countVisits)
-
-      this.tasksService.countsToDo = this.tasksService.visiteToDo.length
-
-
-
-
-
-      await this.taskApiService.getTasksItemIdExecuted().then(res => {
-        // this.tasksService.listTasks2 = res;
-        this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
-
-        console.log(this.tasksService.listTasks2, 'Tarefas em execução')
-
-
-      })
-
-      await this.taskApiService.getTasksItemIdAtribuited().then(res => {
-        // this.tasksService.listTasks1 = res;
-        this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
-
-        // this.tasksService.visiteToDo = this.tasksService.listTasks1
-        // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
-        // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
-        // console.log(      this.tasksService.visiteToDo)
-        console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
-        // this.tasksService.countVisits = this.tasksService.visiteToDo.length
-        // console.log(this.tasksService.countVisits)
-        // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
-
-
-      })
-      await this.taskApiService.getTasksItemIdSuspend().then(res => {
-
-        // this.tasksService.listTasksSuspended = res;
-        this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
-
-        console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
-
-
-      })
-
-      await this.taskApiService.getTasksItemIdFinalized().then(res => {
-        // this.tasksService.listTasksFinalized = res;
-        console.log(this.tasksService.listTasksFinalized)
-        this.tasksService.listTasksFinalized = res.filter(res => res.endDate !== null && res.endDate.substring(0, 10) == this.tasksService.timeNew)
-
-        console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-        this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
-          const dateA = new Date(a.endDate);
-          const dateB = new Date(b.endDate);
-
-          if (dateA > dateB) {
-            return -1;
-          } else if (dateA < dateB) {
-            return 1;
-          } else {
-            return 0;
+        ],
+        optionFields: [
+          {
+            fieldId: "00000000-0000-0000-0000-000000000003",
+            values: [
+              {
+                id: this.idOption,
+                name: this.formsFields.dateFormsStep1.value.type
+              }
+            ]
           }
-        });
-        this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+        ],
+        decimalFields: [
+          {
+            fieldId: "00000000-0000-0000-0000-000000000008",
+            value: this.formsFields.dateFormsStep1.value.kilometers
+          }
+        ]
 
-        console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
-      })
-
-      await this.taskApiService.getTasksItemIdExecuted().then(res => {
-        // this.tasksService.listTasks2 = res;
-        this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
-
-        console.log(this.tasksService.listTasks2, 'Tarefas em execução')
-
-
-      })
-
-
-
-         //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
-
-         this.tasksService.visiteToDo = [
-          ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
-          ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
-          ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
-        ];
-        console.log(this.tasksService.visiteToDo, 'lista final');
-
-
-
-      console.log(this.tasksService.visiteToDo)
-      console.log(this.tasksService.listTasks1)
-      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
-
-      console.log(this.tasksService.countVisits)
-
-      this.tasksService.countsToDo = this.tasksService.visiteToDo.length
-      console.log(this.tasksService.visiteToDo, 'pq0')
-      this.tasksService.getColor(this.tasksService.selectedTask.id);
-
-
-      if (this.tasksService.visiteToDo.length === 0) {
-        this.tasksService.turnMsgAlertTask = true;
-        this.tasksService.msgAlertTasks = "Não existe Tarefas"
-      } else {
-        this.tasksService.turnMsgAlertTask = false;
       }
-
-
-      if (this.tasksService.listTasksFinalized.length === 0) {
-        this.tasksService.turnMsgAlertTask1 = true;
-        this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
-      } else {
-        this.tasksService.turnMsgAlertTask1 = false;
-      }
-      this.tasksService.msgWarningExecuted = false;
-
-      this.router.navigate(["/tabs/tab1"]);
 
     }
 
- this.loadingController.dismiss().then(() => {
-            console.log('Loading spinner dismissed');
-          });
+    console.log(forms, 'O QUE FOI MANDADO')
+    console.log(this.formsFields.dateFormsStep1.value.dateOfTheDay, 'valor do dia ');
+    await this.formsFields.postForms(forms).then((res) => {
+
+      this.tasksService.formsSave = res
+      this.formsFields.idForm = res.id
+
+      console.log(this.formsFields.idForm)
+
+
+
+
+
+      console.log(res, 'FOI GRAVADO')
+    })
+
+
+
+    await this.formsFields.submitForms(this.formsFields.idForm).then((res) => {
+      this.formsFields.formsSubmit = res;
+      console.log(this.formsFields.formsSubmit)
+    })
+    const formId = [
+
+      this.formsFields.idForm
+
+
+    ]
+    console.log(formId)
+    await this.formsFields.PostsubmitForms(formId, this.tasksService.selectedTask.id).then((res) => {
+      console.log(res)
+
+      this.formsFields.postFormsAfterProcess = res;
+    })
+
+    console.log(data, 'lista data')
+
+
+
+    // outras forma nao convertendo para file Enviando logo a base 64 , so que retorna string errada
+
+
+
+    const fileIdClient = "00000000-0000-0000-0000-000000000019";
+    const fileIdTecnic = "00000000-0000-0000-0000-000000000020";
+
+    const blobToFile = (blob, fileName) => {
+      blob.lastModifiedDate = new Date();
+      blob.name = fileName;
+      return blob;
+    };
+
+    const signatureClientBlob = this.dataURLtoBlob(this.formsFields.signatureImageClient);
+    const signatureClientFile = blobToFile(signatureClientBlob, 'signatureClient.png');
+
+    // convert signatureImageTecnic to file
+    const signatureTecnicBlob = this.dataURLtoBlob(this.formsFields.signatureImageTecnic);
+    const signatureTecnicFile = blobToFile(signatureTecnicBlob, 'signatureTecnic.png');
+
+
+    let form = new FormData();
+    form.append('file', signatureClientFile, 'signature.png');
+
+    let form1 = new FormData();
+    form1.append('file', signatureTecnicFile, 'signature.png');
+    console.log(form1, 'AQUI');
+
+    await this.formsFields.putImageForms(this.formsFields.idForm, fileIdClient, form);
+    await this.formsFields.putImageForms(this.formsFields.idForm, fileIdTecnic, form1);
+
+    console.log(this.formsFields.signatureImageClient);
+
+    this.formsFields.finalForm.reset();
+
+    console.log(this.formsFields.signatureImageClient);
+
+
+    // GUARDAR AS IMAGENS ANEXADAS
+
+
+    console.log(this.formsFields.selectedImages.length)
+
+
+    if (this.formsFields.selectedImages.length > 0) {
+      const fieldsIds = ['00000000-0000-0000-0000-000000000021', '00000000-0000-0000-0000-000000000022', '00000000-0000-0000-0000-000000000023', '00000000-0000-0000-0000-000000000024', '00000000-0000-0000-0000-000000000025', '00000000-0000-0000-0000-000000000026', '00000000-0000-0000-0000-000000000027', '00000000-0000-0000-0000-000000000028']
+
+
+
+
+      for (let i = 0; i < this.formsFields.selectedImages.length; i++) {
+        console.log(this.formsFields.selectedImages[i], 'AQUI');
+        console.log(fieldsIds[i], 'AQII 3');
+        const image = this.formsFields.selectedImages[i];
+        const fieldId = fieldsIds[i];
+        let imageBlob = this.dataURLtoBlob(image);
+        // let imageFile = new File([imageBlob], 'imagem.jpeg', { type: imageBlob.type });
+        const signatureClientFile = blobToFile(imageBlob, 'image.png');
+        let formImages = new FormData();
+        formImages.append('file', signatureClientFile, 'image.png');
+        await this.formsFields.putImageForms(this.formsFields.idForm, fieldId, formImages);
+      }
+
+
+
+
+    }
+
+
+
+    // --------------------- ACABA AQUI ---------------------------------------------------
+
+    console.log(this.tasksService.selectedTask.currentStatus.id)
+
+    if (this.tasksService.notesTask.currentStatus.id == "23d91faf-d13d-42b0-902b-2de5d49a31ee") {
+      await this.tasksService.putTaskFinalize();
+    } else {
+
+    }
+
+    // const updateTask2 = [{
+
+    //  entityRoleId: this.tasksService.notesTask.entityRoles[1].entityRoleId,
+    //   isParticipant: this.tasksService.notesTask.entityRoles[1].isParticipant,
+    //   isMain: this.tasksService.notesTask.entityRoles[1].isMain,
+    //   entityRoleName: this.tasksService.notesTask.entityRoles[1].entity.id,
+    // }]
+    // const updateTask3 = {
+    //   documentInstances1: this.tasksService.selectedTask.id,
+    //   documentType: '0'
+    // }
+
+    // const updateTask1 = {
+
+    //   name: this.tasksService.selectedTask.name,
+    //   description: this.tasksService.selectedTask.description,
+    //   note:this.tasksService.selectedTask.note,
+    //   isImportant: this.tasksService.selectedTask.isImportant,
+    //   projectId:this.tasksService.selectedTask.projectId,
+    //   itemId: this.tasksService.selectedTask.item,
+    //   address: this.tasksService.selectedTask.address,
+    //   documentInstances1: updateTask3,
+    //   entities: updateTask2,
+    //   tags:null,
+    //   estimatedStartDate: this.tasksService.selectedTask.estimatedStartDate,
+    //   startDate: this.tasksService.selectedTask.startDate,
+    //   estimatedEndDate: this.tasksService.totalTime,
+    //   endDate : this.tasksService.selectedTask.endDate,
+    //   formInstances: null
+    // }
+
+    // console.log(updateTask1)
+
+    const now = new Date(); // Cria um objeto Date com a data e hora atuais
+    const roundedMilliseconds = Math.round(now.getMilliseconds() / 10) * 10; // Arredonda os milissegundos para duas casas decimais
+    now.setMilliseconds(roundedMilliseconds); // Atualiza o objeto Date com os milissegundos arredondados
+    const formattedNow = now.toISOString(); // Converte para o formato "AAAA-MM-DDTHH:MM:SS.mmmZ"
+
+    const updateTaskPatch = {
+      // ...data,
+      endDate: formattedNow,
+      estimatedStartDate: this.tasksService.notesTask.estimatedStartDate,
+      startDate: this.tasksService.notesTask.estimatedStartDate,
+      estimatedEndDate: this.tasksService.notesTask.estimatedEndDate
+    };
+
+
+    // const updateTask = {
+
+    //   estimatedStartDate:this.tasksService.notesTask.estimatedStartDate,
+    //   startDate:this.tasksService.notesTask.estimatedStartDate,
+    //   endDate:this.tasksService.totalTime,
+    //   estimatedEndDate: this.tasksService.notesTask.estimatedEndDate
+    // }
+    console.log(this.tasksService.notesTask, 'COPIA DA LISTA')
+    console.log(updateTaskPatch, 'LISTA MANDADA ')
+    console.log(this.tasksService.notesTask.id, 'ID DA LISTA ')
+
+    await this.taskApiService.updateTasksItemIdFinalizedDates(this.tasksService.notesTask.id, updateTaskPatch).then(res => {
+      this.tasksService.updateTask = res;
+      console.log(this.tasksService.updateTask, 'UPDATE TASK SELECIONADA')
+    })
+
+    await this.contactApiService.getNotesInstance(this.tasksService.selectedTask).then(res => {
+      this.tasksService.notesTask = res;
+      console.log(this.tasksService.notesTask, 'versão atualizada')
+    })
+    await this.taskApiService.getTasksItemIdFinalized().then(res => {
+      this.tasksService.listTasksFinalized = res;
+      console.log(this.tasksService.listTasksFinalized)
+      this.tasksService.listTasksFinalized = res.filter(res => res.endDate !== null && res.endDate.substring(0, 10) == this.tasksService.timeNew)
+
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+        const dateA = new Date(a.endDate);
+        const dateB = new Date(b.endDate);
+        if (dateA > dateB) {
+          return -1;
+        } else if (dateA < dateB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    })
+
+
+
+
+
+
+
+
+    await this.taskApiService.getTypesStateTask();
+
+
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+
+
+
+
+
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      // this.tasksService.listTasks2 = res;
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
+
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdAtribuited().then(res => {
+      // this.tasksService.listTasks1 = res;
+      this.tasksService.listTasks1 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
+
+      // this.tasksService.visiteToDo = this.tasksService.listTasks1
+      // this.tasksService.visiteToDo1 = this.tasksService.listTasks1.map(res => res.currentStatus)
+      // this.tasksService.visiteToDo = this.tasksService.visiteToDo1.filter(res => res.id == "28b097a1-2834-4c9f-b1c6-6b2f316401af")
+      // console.log(      this.tasksService.visiteToDo)
+      console.log(this.tasksService.listTasks1, 'Tarefas Atribuidas')
+      // this.tasksService.countVisits = this.tasksService.visiteToDo.length
+      // console.log(this.tasksService.countVisits)
+      // this.tasksService.countsToDo = this.tasksService.listTasks1.length - this.tasksService.countVisits
+
+
+    })
+    await this.taskApiService.getTasksItemIdSuspend().then(res => {
+
+      // this.tasksService.listTasksSuspended = res;
+      this.tasksService.listTasksSuspended = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
+
+      console.log(this.tasksService.listTasksSuspended, 'Tarefas Suspensas')
+
+
+    })
+
+    await this.taskApiService.getTasksItemIdFinalized().then(res => {
+      // this.tasksService.listTasksFinalized = res;
+      console.log(this.tasksService.listTasksFinalized)
+      this.tasksService.listTasksFinalized = res.filter(res => res.endDate !== null && res.endDate.substring(0, 10) == this.tasksService.timeNew)
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+      this.tasksService.visiteEfected = this.tasksService.listTasksFinalized.sort((a, b) => {
+        const dateA = new Date(a.endDate);
+        const dateB = new Date(b.endDate);
+
+        if (dateA > dateB) {
+          return -1;
+        } else if (dateA < dateB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+      console.log(this.tasksService.listTasksFinalized, 'Tarefas Finalizadas')
+    })
+
+    await this.taskApiService.getTasksItemIdExecuted().then(res => {
+      // this.tasksService.listTasks2 = res;
+      this.tasksService.listTasks2 = res.filter(res => res.estimatedStartDate.substring(0, 10) == this.tasksService.timeNew || res.estimatedStartDate.substring(0, 10) < this.tasksService.timeNew)
+
+      console.log(this.tasksService.listTasks2, 'Tarefas em execução')
+
+
+    })
+
+
+
+    //LISTA TODO QUE é para fazer primeiro por Ordem dos estados (exe - atri- Final ) e depois por ordem alfabética
+
+    this.tasksService.visiteToDo = [
+      ...this.tasksService.listTasks2.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasks1.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName)),
+      ...this.tasksService.listTasksSuspended.sort((a, b) => a.entity.firstName.localeCompare(b.entity.firstName))
+    ];
+    console.log(this.tasksService.visiteToDo, 'lista final');
+
+
+
+    console.log(this.tasksService.visiteToDo)
+    console.log(this.tasksService.listTasks1)
+    this.tasksService.countVisits = this.tasksService.listTasksFinalized.length
+
+    console.log(this.tasksService.countVisits)
+
+    this.tasksService.countsToDo = this.tasksService.visiteToDo.length
+    console.log(this.tasksService.visiteToDo, 'pq0')
+    this.tasksService.getColor(this.tasksService.selectedTask.id);
+
+
+    if (this.tasksService.visiteToDo.length === 0) {
+      this.tasksService.turnMsgAlertTask = true;
+      this.tasksService.msgAlertTasks = "Não existe Tarefas"
+    } else {
+      this.tasksService.turnMsgAlertTask = false;
+    }
+
+
+    if (this.tasksService.listTasksFinalized.length === 0) {
+      this.tasksService.turnMsgAlertTask1 = true;
+      this.tasksService.msgAlertTasks1 = "Ainda não se encontram tarefas concluídas"
+    } else {
+      this.tasksService.turnMsgAlertTask1 = false;
+    }
+    this.tasksService.msgWarningExecuted = false;
+
+
+    this.selectedImages = [];
+    this.formsFields.finalForm.reset();
+    this.formsFields.imgTecnhic = "";
+    this.formsFields.imgClient = "";
+    this.formsFields.signatureImageClient = "" ;
+    this.formsFields.signatureImageClient = "" ;
+
+    this.router.navigate(["/tabs/tab1"]);
+
+
+
+    this.loadingController.dismiss().then(() => {
+      console.log('Loading spinner dismissed');
+    });
+
 
 
     this.presentSuccessToast();

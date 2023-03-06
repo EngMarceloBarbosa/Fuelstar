@@ -171,8 +171,8 @@
               [(ngModel)]="sureOption"
               (ionChange)="onSelectChange()"
             >
-              <ion-select-option value="true">Sim</ion-select-option>
-              <ion-select-option value="false">Não</ion-select-option>
+              <ion-select-option value=true>Sim</ion-select-option>
+              <ion-select-option value=false>Não</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item *ngIf="showReason">
@@ -190,8 +190,8 @@
               [(ngModel)]="optionOVM"
               (ionChange)="onSelectChange1()"
             >
-              <ion-select-option value="true">Sim</ion-select-option>
-              <ion-select-option value="false">Não</ion-select-option>
+              <ion-select-option value=true>Sim</ion-select-option>
+              <ion-select-option value=false>Não</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item *ngIf="showReasonOvm">
@@ -237,6 +237,16 @@
               (click)="endPicker.open()"
             ></ion-icon>
           </ion-item>
+<!--
+          <ion-item>
+            <ion-label>Técnicos Extra</ion-label>
+            <ion-input
+              formControlName="technic"
+              class="registration-input"
+              type="text"
+              placeholder="Insira o Técnico extra"
+            ></ion-input>
+          </ion-item> -->
 
           <ion-button style="margin-top: 15px" (click)="selectImages()"
             >Anexar imagens</ion-button
@@ -268,6 +278,7 @@
                 value=""
                 minlength="1"
                 maxlength="230"
+                id="myTextArea"
               >
               </ion-textarea>
             </div>
@@ -289,6 +300,7 @@
                 value=""
                 minlength="1"
                 maxlength="230"
+                id="myTextAreaAnomaly"
               >
               </ion-textarea>
             </div>
@@ -309,6 +321,7 @@
                 value=""
                 minlength="1"
                 maxlength="230"
+                id="myTextAreaWork"
               >
               </ion-textarea>
             </div>

@@ -30,7 +30,7 @@ export class FreeSalePage implements OnInit {
   msgErroLastname: any;
   msgErroCheckLastName: boolean = true;
   msgErroFields: boolean = false;
-  msgErroFields1:any;
+  msgErroFields1: any;
   alertMessage: any = "NIF inválido"
   alertMessage1: boolean = false;
   turnDisabled1: boolean = true;
@@ -53,31 +53,31 @@ export class FreeSalePage implements OnInit {
     //   // this.tasksService.listTasks$.next(this.listTasks);
     // })
     // this.tasksService.allDocumentsFilter = this.tasksService.listClients
-this.tasksService.listClients1 = this.tasksService.listClients1.map((element) => {
-  if(element.id === '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61'){
-    return {
-      ...element,
-      iconCheck : true
-    }
-  }else {
-    return {
-      ...element
-    }
+    this.tasksService.listClients1 = this.tasksService.listClients1.map((element) => {
+      if (element.id === '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61') {
+        return {
+          ...element,
+          iconCheck: true
+        }
+      } else {
+        return {
+          ...element
+        }
 
-  }
-})
+      }
+    })
 
     this.tasksService.allDocumentsFilter = this.tasksService.listClients1.sort((a) => (a.id == '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61') ? -1 : 1);
     this.tasksService.allDocumentsFilter = this.tasksService.listClients1.map((element) => {
 
 
 
-      if(element.id === '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61'){
+      if (element.id === '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61') {
         return {
           ...element,
-          iconCheck : true
+          iconCheck: true
         }
-      }else {
+      } else {
         return {
           ...element
         }
@@ -86,12 +86,12 @@ this.tasksService.listClients1 = this.tasksService.listClients1.map((element) =>
     })
 
 
-console.log(  this.tasksService.allDocumentsFilter)
-console.log(this.tasksService.listClients)
+    console.log(this.tasksService.allDocumentsFilter)
+    console.log(this.tasksService.listClients)
 
-this.tasksService.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
-console.log(
-  this.tasksService.selectedItem)
+    this.tasksService.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
+    console.log(
+      this.tasksService.selectedItem)
   }
 
   selectedItemList(item: any) {
@@ -106,16 +106,16 @@ console.log(
     });
 
     this.tasksService.selectedItem = this.tasksService.allDocumentsFilter.filter(item => item.iconCheck == true);
-      if(item.iconCheck == true){
+    if (item.iconCheck == true) {
 
-     this.tasksService.selectedItem[0].iconCheck = false;
-     this.tasksService.selectedItem = [];
-    }else{
+      this.tasksService.selectedItem[0].iconCheck = false;
+      this.tasksService.selectedItem = [];
+    } else {
 
       this.turnOnWarning = false;
-    this.searchClients = '';
+      this.searchClients = '';
     }
-      console.log(this.searchClients)
+    console.log(this.searchClients)
     console.log(this.tasksService.selectedItem)
   }
 
@@ -132,7 +132,7 @@ console.log(
     this.tasksService.controlStepCheckk1 = false;
   }
 
-  close1(){
+  close1() {
     console.log('entrou')
     this.tasksService.turnSearch = false;
   }
@@ -189,10 +189,10 @@ console.log(
 
 
   continueButton() {
-console.log(this.tasksService.allDocumentsFilter)
+    console.log(this.tasksService.allDocumentsFilter)
     console.log('continuar 04')
-    if (this.tasksService.selectedItem.length == 0 || this.tasksService.selectedItem == "")  {
-        this.turnOnWarning = true;
+    if (this.tasksService.selectedItem.length == 0 || this.tasksService.selectedItem == "") {
+      this.turnOnWarning = true;
     } else {
 
       this.tasksService.continue1 = false;
@@ -213,12 +213,12 @@ console.log(this.tasksService.allDocumentsFilter)
   continueProcess() {
     this.tasksService.turnFreeSale = true;
     console.log('continuar 01')
-    if(this.tasksService.productList.length == 0 ){
+    if (this.tasksService.productList.length == 0) {
       this.tasksService.msgAlert = true;
       this.tasksService.turnFreeSale = true;
-    }else  {
-    this.router.navigate(['/orders-details']);
-    this.tasksService.msgAlert = false;
+    } else {
+      this.router.navigate(['/orders-details']);
+      this.tasksService.msgAlert = false;
     }
   }
 
@@ -284,28 +284,28 @@ console.log(this.tasksService.allDocumentsFilter)
 
   searchDocument($event: string) {
     this.tasksService.turnSearch = true;
-    console.log( this.tasksService.allDocumentsFilter)
+    console.log(this.tasksService.allDocumentsFilter)
     console.log($event)
     this.searchClients = $event
     if ($event.length == 0) {
       this.tasksService.allDocumentsFilter = this.tasksService.listClients1;
     } else {
       this.tasksService.allDocumentsFilter = this.tasksService.listClients1;
-      console.log(   this.tasksService.allDocumentsFilter)
+      console.log(this.tasksService.allDocumentsFilter)
       console.log(this.tasksService.listClients1)
       this.tasksService.allDocumentsFilter = this.tasksService.listClients1.filter(
         doc =>
           doc.firstName?.trim().toLowerCase().includes($event.trim().toLowerCase()) ||
           doc.lastName?.trim().toLowerCase().includes($event.trim().toLowerCase())
-          );
+      );
 
-        }
+    }
 
 
 
   }
 
-  search(){
+  search() {
     this.tasksService.turnSearch = true;
   }
 
@@ -313,18 +313,18 @@ console.log(this.tasksService.allDocumentsFilter)
 
 
     if (this.tasksService.client.invalid) {
-    this.tasksService.isSubmitted = true;
+      this.tasksService.isSubmitted = true;
     }
 
 
 
 
 
-console.log(this.tasksService.validateEmail(this.tasksService.valueEmail))
-  this.tasksService.validateEmail(this.tasksService.valueEmail);
+    console.log(this.tasksService.validateEmail(this.tasksService.valueEmail))
+    this.tasksService.validateEmail(this.tasksService.valueEmail);
 
-console.log(this.tasksService.validateNIF(this.tasksService.valueNif))
-this.tasksService.validateNIF(this.tasksService.valueNif);
+    console.log(this.tasksService.validateNIF(this.tasksService.valueNif))
+    this.tasksService.validateNIF(this.tasksService.valueNif);
 
 
 
@@ -334,60 +334,60 @@ this.tasksService.validateNIF(this.tasksService.valueNif);
     console.log(this.tasksService.valuePhoneNumber)
     console.log(this.tasksService.valueNif)
 
-    let arr:Array<any> = [
+    let arr: Array<any> = [
       {
-      firstName:this.tasksService.valueFirstName
+        firstName: this.tasksService.valueFirstName
       },
       {
-      lastName:this.tasksService.valueLastName
+        lastName: this.tasksService.valueLastName
       },
       {
-      email:this.tasksService.valueEmail
+        email: this.tasksService.valueEmail
       },
       {
-      phone:this.tasksService.valuePhoneNumber,
+        phone: this.tasksService.valuePhoneNumber,
       },
       {
-      nif: this.tasksService.valueNif
+        nif: this.tasksService.valueNif
       }
 
 
 
 
-  ]
+    ]
 
 
-console.log(arr)
+    console.log(arr)
 
 
-// console.log(arr)
-//     arr.map((ele)=> {
+    // console.log(arr)
+    //     arr.map((ele)=> {
 
-// const array = {...ele , msgErroFields1: false}
-//       console.log(ele, '230')
-//       if(ele.length === 0){
-//         ele.msgErroFields1 = true;
-//         this.msgErroLastname = "Campo Obrigatório"
-//       }else {
-//         ele.msgErroFields1 = false;
-//       }
-//     })
-
-
-
+    // const array = {...ele , msgErroFields1: false}
+    //       console.log(ele, '230')
+    //       if(ele.length === 0){
+    //         ele.msgErroFields1 = true;
+    //         this.msgErroLastname = "Campo Obrigatório"
+    //       }else {
+    //         ele.msgErroFields1 = false;
+    //       }
+    //     })
 
 
 
-console.log(this.tasksService.validatorNIF)
+
+
+
+    console.log(this.tasksService.validatorNIF)
 
 
     if (this.tasksService.valueFirstName == "" || this.tasksService.valueEmail == "" || this.tasksService.valueLastName == "" || this.tasksService.valueNif == "" || this.tasksService.valuePhoneNumber == "" || this.tasksService.validatorEmail == true || this.tasksService.validateNIF(this.tasksService.valueNif) == false || this.tasksService.client.invalid) {
-      if( this.tasksService.validateNIF(this.tasksService.valueNif) == false){
+      if (this.tasksService.validateNIF(this.tasksService.valueNif) == false) {
         this.tasksService.validatorNIF = true;
         this.tasksService.msgErrorNif = "Nif não válido"
         console.log(this.tasksService.msgErrorNif)
         console.log(this.tasksService.validatorNIF)
-      }else{
+      } else {
         this.tasksService.validatorNIF = false;
       }
       return;
@@ -423,9 +423,9 @@ console.log(this.tasksService.validatorNIF)
 
       await this.contactsTaskService.verifyNif(form).then(res => {
         this.tasksService.verifyEntity = res;
-        if(this.tasksService.verifyEntity.length == 0){
+        if (this.tasksService.verifyEntity.length == 0) {
           this.tasksService.validatorNIF = false;
-        }else {
+        } else {
           this.tasksService.validatorNIF = true;
           this.tasksService.msgErrorNif = "Nif já utilizado"
         }
@@ -440,12 +440,12 @@ console.log(this.tasksService.validatorNIF)
           // this.tasksService.listClients = res;
 
 
-           this.contactsTaskService.getEntitiesClients().then(res => {
+          this.contactsTaskService.getEntitiesClients().then(res => {
             console.log(res)
             this.tasksService.listClients1 = res;
 
-    this.tasksService.allDocumentsFilter = this.tasksService.listClients1.sort((a) => (a.firstName == '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61') ? -1 : 1);
-    console.log(    this.tasksService.listClients1)
+            this.tasksService.allDocumentsFilter = this.tasksService.listClients1.sort((a) => (a.firstName == '9a4df4e0-9822-498c-bc1d-d98fa9cd4b61') ? -1 : 1);
+            console.log(this.tasksService.listClients1)
 
             // this.tasksService.listTasks$.next(this.listTasks);
             this.tasksService.allDocumentsFilter = this.tasksService.listClients1;
@@ -459,12 +459,12 @@ console.log(this.tasksService.validatorNIF)
             valueFirstName: '',
             valueLastName: '',
             valueNif: '',
-            valueEmail:  '',
+            valueEmail: '',
             valuePhoneNumber: '',
             title: '',
             roleId: '',
 
-        });
+          });
         })
 
       } else {
@@ -516,8 +516,8 @@ console.log(this.tasksService.validatorNIF)
   }
 
   gotoNextField(nextElement) {
-  nextElement.focus();
-}
+    nextElement.focus();
+  }
 
 
 

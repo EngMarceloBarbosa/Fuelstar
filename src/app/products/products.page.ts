@@ -87,12 +87,12 @@ export class ProductsPage implements OnInit {
 
 
   close() {
-    if(this.tasksService.turnFreeSale == false ) {
-    this.router.navigate(['orders'])
-  }else {
-    this.router.navigate(['free-sale'])
+    if (this.tasksService.turnFreeSale == false) {
+      this.router.navigate(['orders'])
+    } else {
+      this.router.navigate(['free-sale'])
+    }
   }
-}
   products() {
     this.active = false;
     this.activeTest = true;
@@ -110,12 +110,12 @@ export class ProductsPage implements OnInit {
 
   async subFamily(child) {
 
-    if(child.id.length == 0){
+    if (child.id.length == 0) {
       return false;
     }
-    if(child.id){
+    if (child.id) {
       this.router.navigate(['products-family']);
-      this.itemApiService.getItems(child.id).then( async res => {
+      this.itemApiService.getItems(child.id).then(async res => {
         this.tasksService.listItemsByType = res;
         this.tasksService.listsItems = this.tasksService.listItemsByType.map((elem) => {
           return {
@@ -130,15 +130,15 @@ export class ProductsPage implements OnInit {
         this.tasksService.listItemsByType = this.tasksService.listsItems
         this.tasksService.listsItems = this.tasksService.listItemsByType
         console.log(this.tasksService.listItemsByType)
-console.log(  this.tasksService.listsItems )
-    for await ( let item of this.tasksService.listItemsByType) {
+        console.log(this.tasksService.listsItems)
+        for await (let item of this.tasksService.listItemsByType) {
 
-        this.itemApiService.getImageItem(item.id).then(res => {
+          this.itemApiService.getImageItem(item.id).then(res => {
 
-          item.image = "data:image/png;base64," + res.file
-        })
-      }
-        })
+            item.image = "data:image/png;base64," + res.file
+          })
+        }
+      })
 
       console.log(child)
 

@@ -1,15 +1,13 @@
 @import "./../../global.scss";
 
-.container{
+.container {
   width: 100%;
   display: flex;
   flex-direction: row;
   margin-left: 24px;
-
 }
 
-
-.container-main{
+.container-main {
   width: 100%;
 }
 .left-icon {
@@ -18,10 +16,9 @@
   @extend .align-center;
 }
 
-ion-title{
+ion-title {
   padding-left: 25px;
 }
-
 
 .stepper-container {
   display: flex;
@@ -134,23 +131,22 @@ ion-title{
   }
 }
 
-.title-sub{
- margin-top: 10px;
+.title-sub {
+  margin-top: 10px;
 }
 
-
-.deslocation{
+.deslocation {
   margin-top: 15px;
 }
 
-.container-materials{
+.container-materials {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 48px;
 }
 
-.container-materials-1{
+.container-materials-1 {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -170,34 +166,22 @@ ion-textarea {
   border-color: var(--c-scale-8);
 }
 
-.workSheet{
+.workSheet {
   margin-top: 10px;
 }
 
-.signPad{
+.signPad {
   border: 1px dashed;
   margin: auto;
   margin-top: 5px;
 }
-
 
 canvas {
   border: 3px dashed gray;
   width: 100%;
 }
 
-.button-1{
-  width:  84px;
-  height: 25px;
-  background-color: red;
-  color: white;
-  border-radius: 5px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.button-2{
+.button-1 {
   width: 84px;
   height: 25px;
   background-color: red;
@@ -208,7 +192,18 @@ canvas {
   justify-content: center;
   align-items: center;
 }
-.button-3{
+.button-2 {
+  width: 84px;
+  height: 25px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-3 {
   width: 84px;
   height: 25px;
   background-color: green;
@@ -223,11 +218,10 @@ canvas {
 .button-3.disabled {
   cursor: default;
   background-color: gray;
-
 }
 
 .button-3:active {
-    transform: scale(1.1);
+  transform: scale(1.1);
   // box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
 }
 
@@ -235,11 +229,20 @@ canvas {
   background-color: white;
 }
 
-
-.container-main-stepper{
+.container-main-stepper {
   background-color: white;
 }
 
-.container-footer{
+.container-footer {
   background-color: white;
+}
+
+#myTextArea {
+  max-height: 170px;
+}
+#myTextAreaAnomaly {
+  max-height: 170px;
+}
+#myTextAreaWork {
+  max-height: 170px;
 }

@@ -17,6 +17,7 @@ import { FormsService } from './forms.service';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
+  turnDocuments = false;
   listTasksFinalizedGrouped:any;
   positionSlide: any = 0;
   sortedList:any;

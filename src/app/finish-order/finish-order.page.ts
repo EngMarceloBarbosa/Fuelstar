@@ -13,24 +13,24 @@ import { TasksService } from '../shared/services/tasks.service';
 export class FinishOrderPage implements OnInit {
 
   listProducts: any[] = [];
-  listValue1:any;
-  listProducts1:any;
+  listValue1: any;
+  listProducts1: any;
 
-  constructor(  public tasksService: TasksService,     public toastController: ToastController, public router:Router, public classificationApi:ClassificationApiService, public paymentMethodsApiService:PaymentMethodApiService) { }
+  constructor(public tasksService: TasksService, public toastController: ToastController, public router: Router, public classificationApi: ClassificationApiService, public paymentMethodsApiService: PaymentMethodApiService) { }
 
-  ngOnInit( ) {
+  ngOnInit() {
 
-this.classificationApi.getClassification().then((res)=> {
-  this.tasksService.listClassifications = res;
-  console.log(  this.tasksService.listClassifications)
-})
-this.paymentMethodsApiService.getDocumentMethod().then(res => {
-  this.tasksService.documentMethods = res;
-  console.log(this.tasksService.documentMethods)
-  })
-}
+    this.classificationApi.getClassification().then((res) => {
+      this.tasksService.listClassifications = res;
+      console.log(this.tasksService.listClassifications)
+    })
+    this.paymentMethodsApiService.getDocumentMethod().then(res => {
+      this.tasksService.documentMethods = res;
+      console.log(this.tasksService.documentMethods)
+    })
+  }
 
-   async finish(){
+  async finish() {
     this.tasksService.productList = [];
     this.tasksService.quantity1 = 1;
     this.tasksService.quantity2 = 1;
@@ -61,14 +61,14 @@ this.paymentMethodsApiService.getDocumentMethod().then(res => {
     });
     await toast.present();
 
-  this.router.navigate(['/tabs/tab1'])
+    this.router.navigate(['/tabs/tab1'])
   }
 
-  clear(){
+  clear() {
 
   }
 
-  close(){
+  close() {
 
   }
 }

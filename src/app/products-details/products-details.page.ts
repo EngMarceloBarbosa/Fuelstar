@@ -18,12 +18,12 @@ export class ProductsDetailsPage implements OnInit {
   active: boolean = true;
 
   item: any;
-  globalMessagesTranslations:any;
-  loginMessagesTranslations:any;
-  productsMessagesTranslations:any;
+  globalMessagesTranslations: any;
+  loginMessagesTranslations: any;
+  productsMessagesTranslations: any;
   badgeNew: number;
-  ammount:any;
-  ammountNew:any;
+  ammount: any;
+  ammountNew: any;
 
 
   constructor(
@@ -37,7 +37,7 @@ export class ProductsDetailsPage implements OnInit {
 
   ngOnInit() {
 
-this.ammount = this.tasksService.quantity2
+    this.ammount = this.tasksService.quantity2
 
 
     this.translate.get('App').subscribe(res => {
@@ -47,13 +47,13 @@ this.ammount = this.tasksService.quantity2
 
     });
     this.tasksService.badgeEmpty$
-    .subscribe(testTask1 => {
-      this.badgeNew = testTask1;
-    }),
-    this.tasksService.ammountNew$
-    .subscribe(testTask1 => {
-      this.ammountNew = testTask1;
-    })
+      .subscribe(testTask1 => {
+        this.badgeNew = testTask1;
+      }),
+      this.tasksService.ammountNew$
+        .subscribe(testTask1 => {
+          this.ammountNew = testTask1;
+        })
 
 
     // this.tasksService.chooseProduct$
@@ -61,11 +61,11 @@ this.ammount = this.tasksService.quantity2
     //     this.tasksService.itemSelected = testTask1;
 
     //   }),
-      // this.tasksService.valueTotal$
-      // .subscribe(testTask4 => {
-      //   this.listValue = testTask4;
-      //   console.log(this.listValue, "ENTROU")
-      // })
+    // this.tasksService.valueTotal$
+    // .subscribe(testTask4 => {
+    //   this.listValue = testTask4;
+    //   console.log(this.listValue, "ENTROU")
+    // })
   }
 
   async presentToast() {
@@ -80,18 +80,18 @@ this.ammount = this.tasksService.quantity2
 
     console.log(this.tasksService.quantity2)
 
-    if(this.tasksService.quantity2 > 0 ){
+    if (this.tasksService.quantity2 > 0) {
       this.tasksService.controlBadge = true;
     }
     this.tasksService.badge = ++this.tasksService.badge;
     console.log(this.tasksService.quantity1)
     this.tasksService.controlBadge = false;
-    this.productService.addValueProduct(product,this.ammount);
+    this.productService.addValueProduct(product, this.ammount);
     this.productService.totalValueOrder()
 
     const toast = await this.toastController.create({
-      header: 'Adicionado '  +  this.tasksService.quantity2  +  ' produtos ao Carrinho',
-      message: 'Total : ' + this.tasksService.quantity1   +   ' produtos' ,
+      header: 'Adicionado ' + this.tasksService.quantity2 + ' produtos ao Carrinho',
+      message: 'Total : ' + this.tasksService.quantity1 + ' produtos',
       position: 'top',
       color: 'light',
       duration: 1000
@@ -106,19 +106,19 @@ this.ammount = this.tasksService.quantity2
 
 
   back() {
-    console.log(   this.tasksService.searchDoc)
-   this.tasksService.searchDoc = "";
-   console.log(   this.tasksService.searchDoc)
-   this.tasksService.listsItems = this.tasksService.listItemsByType;
+    console.log(this.tasksService.searchDoc)
+    this.tasksService.searchDoc = "";
+    console.log(this.tasksService.searchDoc)
+    this.tasksService.listsItems = this.tasksService.listItemsByType;
     this.router.navigate(['products-family']);
 
 
 
 
 
-  // if(this.tasksService.quantity2 == 0) {
-  //   this.tasksService.controlBadge = true;
-  // }
+    // if(this.tasksService.quantity2 == 0) {
+    //   this.tasksService.controlBadge = true;
+    // }
   }
 
   add() {
@@ -162,7 +162,7 @@ this.ammount = this.tasksService.quantity2
   showCart(badge: any, item) {
 
     console.log(item)
-    if (this.tasksService.controlBadge == true ) {
+    if (this.tasksService.controlBadge == true) {
 
     } else {
 
@@ -194,13 +194,13 @@ this.ammount = this.tasksService.quantity2
     }
   }
 
-  show(value1){
+  show(value1) {
     this.tasksService.controlBadge = true;
     this.tasksService.quantity2 = value1
-console.log(value1);
+    console.log(value1);
   }
 
-  send(){
+  send() {
 
   }
 }

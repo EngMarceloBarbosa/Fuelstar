@@ -54,7 +54,7 @@ export class OrdersDetailsPage implements OnInit {
   ammountNew1: any;
   ammountId: any;
   stateMessageErrorState: boolean = false;
-  stateMessageError:any;
+  stateMessageError: any;
 
 
 
@@ -119,20 +119,20 @@ export class OrdersDetailsPage implements OnInit {
   continueButton() {
     console.log('CONTINNNNUAE')
 
-    if(this.tasksService.turnFreeSale == false) {
-    this.onAdressNew = true;
-    this.onAdress = false
-    this.deleteStateNext = true;
-    this.deleteState = false;
-    this.tasksService.controlStep = true;
-    this.tasksService.controlStep1 = true;
-    this.tasksService.controlStep2 = true;
-    this.tasksService.controlStep3 = false;
-    this.tasksService.controlStepCheck = true;
-    this.tasksService.controlStepCheckk = true;
-    this.tasksService.controlStepCheck1 = true;
-    this.tasksService.controlStepCheckk1 = true;
-    }else {
+    if (this.tasksService.turnFreeSale == false) {
+      this.onAdressNew = true;
+      this.onAdress = false
+      this.deleteStateNext = true;
+      this.deleteState = false;
+      this.tasksService.controlStep = true;
+      this.tasksService.controlStep1 = true;
+      this.tasksService.controlStep2 = true;
+      this.tasksService.controlStep3 = false;
+      this.tasksService.controlStepCheck = true;
+      this.tasksService.controlStepCheckk = true;
+      this.tasksService.controlStepCheck1 = true;
+      this.tasksService.controlStepCheckk1 = true;
+    } else {
       this.onAdress = false
       this.deleteState = false;
 
@@ -335,51 +335,51 @@ export class OrdersDetailsPage implements OnInit {
 
   clearAllButton() {
 
-    if(this.tasksService.turnFreeSale == false){
-    console.log(this.tasksService.selectedList)
+    if (this.tasksService.turnFreeSale == false) {
+      console.log(this.tasksService.selectedList)
 
 
 
-    // this.list = this.tasksService.selectedList;
+      // this.list = this.tasksService.selectedList;
 
-    this.tasksService.selectedList.map(element => {
-      this.tasksService.productList = this.tasksService.productList.filter(item => item.id !== element.id)
+      this.tasksService.selectedList.map(element => {
+        this.tasksService.productList = this.tasksService.productList.filter(item => item.id !== element.id)
 
-    })
+      })
 
-    if(this.tasksService.productList.length === 0){
-      this.router.navigate(['/orders'])
-      this.tasksService.productList = [];
-      this.tasksService.quantity2 = "";
-      this.tasksService.selectedList = []
-      // this.tasksService.quantity2 = "";
-      this.tasksService.quantity2 = 1;
-      this.tasksService.quantity1 = 1;
-      this.tasksService.controlBadge = true;
+      if (this.tasksService.productList.length === 0) {
+        this.router.navigate(['/orders'])
+        this.tasksService.productList = [];
+        this.tasksService.quantity2 = "";
+        this.tasksService.selectedList = []
+        // this.tasksService.quantity2 = "";
+        this.tasksService.quantity2 = 1;
+        this.tasksService.quantity1 = 1;
+        this.tasksService.controlBadge = true;
+      }
+
+
+
+
+
+      console.log(this.tasksService.productList)
+    } else {
+
+      this.tasksService.selectedList.map(element => {
+        this.tasksService.productList = this.tasksService.productList.filter(item => item.id !== element.id)
+
+      })
+      if (this.tasksService.productList.length === 0) {
+        this.router.navigate(['/free-sale'])
+        this.tasksService.productList = [];
+        this.tasksService.quantity2 = "";
+        this.tasksService.selectedList = []
+        // this.tasksService.quantity2 = "";
+        this.tasksService.quantity2 = 1;
+        this.tasksService.quantity1 = 1;
+        this.tasksService.controlBadge = true;
+      }
     }
-
-
-
-
-
-    console.log(this.tasksService.productList)
-  }else {
-
-    this.tasksService.selectedList.map(element => {
-      this.tasksService.productList = this.tasksService.productList.filter(item => item.id !== element.id)
-
-    })
-    if(this.tasksService.productList.length === 0){
-    this.router.navigate(['/free-sale'])
-    this.tasksService.productList = [];
-      this.tasksService.quantity2 = "";
-      this.tasksService.selectedList = []
-      // this.tasksService.quantity2 = "";
-      this.tasksService.quantity2 = 1;
-      this.tasksService.quantity1 = 1;
-      this.tasksService.controlBadge = true;
-  }
-}
 
   }
 
@@ -445,37 +445,37 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   finishButton() {
-    console.log(this.tasksService.selectedMethod )
-    if(this.tasksService.selectedMethod.length === 0) {
+    console.log(this.tasksService.selectedMethod)
+    if (this.tasksService.selectedMethod.length === 0) {
       this.stateMessageErrorState = true;
       this.stateMessageError = "Selecione um Meio de Pagamento"
-    }else {
-    console.log('CONTINUAR DO ORDERS')
-    this.tasksService.controlStep = true;
-    this.tasksService.controlStep1 = false;
-    this.tasksService.controlStep2 = false;
-    this.tasksService.controlStep3 = false;
-    this.tasksService.controlStepCheck = false;
-    this.tasksService.controlStepCheckk = false;
-    this.tasksService.controlStepCheck1 = false;
-    this.tasksService.controlStepCheckk1 = false;
-    this.tasksService.controlStepCheck2 = false;
-    this.tasksService.controlStepCheckk2 = false;
-    this.stateMessageErrorState = false;
+    } else {
+      console.log('CONTINUAR DO ORDERS')
+      this.tasksService.controlStep = true;
+      this.tasksService.controlStep1 = false;
+      this.tasksService.controlStep2 = false;
+      this.tasksService.controlStep3 = false;
+      this.tasksService.controlStepCheck = false;
+      this.tasksService.controlStepCheckk = false;
+      this.tasksService.controlStepCheck1 = false;
+      this.tasksService.controlStepCheckk1 = false;
+      this.tasksService.controlStepCheck2 = false;
+      this.tasksService.controlStepCheckk2 = false;
+      this.stateMessageErrorState = false;
 
-    // this.tasksService.paymentMethods.map(ele => this.tasksService.checkedMethod.id == ele.id)
-    //   this.tasksService.checkedMethod
+      // this.tasksService.paymentMethods.map(ele => this.tasksService.checkedMethod.id == ele.id)
+      //   this.tasksService.checkedMethod
 
 
-    // let array = this.tasksService.paymentMethods.map(ele => {
-    //   return {
-    //     ...ele,
-    //     checked: this.name
-    //   }
+      // let array = this.tasksService.paymentMethods.map(ele => {
+      //   return {
+      //     ...ele,
+      //     checked: this.name
+      //   }
 
-    // })
-    // console.log(array)
-    this.router.navigate(['/finish-order']);
+      // })
+      // console.log(array)
+      this.router.navigate(['/finish-order']);
     }
   }
 
@@ -534,66 +534,66 @@ export class OrdersDetailsPage implements OnInit {
   }
 
   back() {
-    if(this.tasksService.turnFreeSale == false){
-    console.log("PORTUGAL")
-    this.router.navigate(['orders']);
-    // this.badges = ""
-    // this.tasksService.badgeEmpty$.next(this.badges);
-    this.tasksService.controlStep = true;
-    this.tasksService.controlStep1 = true;
-    this.tasksService.controlStep2 = false;
-    this.tasksService.controlStep3 = false;
+    if (this.tasksService.turnFreeSale == false) {
+      console.log("PORTUGAL")
+      this.router.navigate(['orders']);
+      // this.badges = ""
+      // this.tasksService.badgeEmpty$.next(this.badges);
+      this.tasksService.controlStep = true;
+      this.tasksService.controlStep1 = true;
+      this.tasksService.controlStep2 = false;
+      this.tasksService.controlStep3 = false;
 
-    }else{
+    } else {
       this.router.navigate(['free-sale']);
     }
     this.productService.totalValueOrder();
   }
   backToProducts() {
-    if(this.tasksService.turnFreeSale == false){
-    console.log("PORTUGAL-PORTO")
-    // this.tasksService.productList = [];
-    console.log(this.tasksService.productList)
-    this.router.navigate(['products-family']);
-    this.deleteState = true;
-    this.clearState = false;
-    this.productService.totalValueOrder()
-  }else {
-    console.log("PORTUGAL-PORTO")
-    // this.tasksService.productList = [];
-    console.log(this.tasksService.productList)
-    this.router.navigate(['products-family']);
-    this.deleteState = true;
-    this.clearState = false;
-    this.productService.totalValueOrder()
+    if (this.tasksService.turnFreeSale == false) {
+      console.log("PORTUGAL-PORTO")
+      // this.tasksService.productList = [];
+      console.log(this.tasksService.productList)
+      this.router.navigate(['products-family']);
+      this.deleteState = true;
+      this.clearState = false;
+      this.productService.totalValueOrder()
+    } else {
+      console.log("PORTUGAL-PORTO")
+      // this.tasksService.productList = [];
+      console.log(this.tasksService.productList)
+      this.router.navigate(['products-family']);
+      this.deleteState = true;
+      this.clearState = false;
+      this.productService.totalValueOrder()
+    }
   }
-}
 
   backOrders() {
-    if(this.tasksService.turnFreeSale == false) {
-    console.log("PORTO")
-    this.onAdressNew = true;
-    this.onPayment = false;
-    this.deleteStateNext = true;
-    this.finishstate = false;
-    this.tasksService.controlStep = true;
-    this.tasksService.controlStep1 = true;
-    this.tasksService.controlStep2 = true;
-    this.tasksService.controlStep3 = false;
-    this.tasksService.controlStepCheck2 = false;
-    this.tasksService.controlStepCheckk2 = false;
+    if (this.tasksService.turnFreeSale == false) {
+      console.log("PORTO")
+      this.onAdressNew = true;
+      this.onPayment = false;
+      this.deleteStateNext = true;
+      this.finishstate = false;
+      this.tasksService.controlStep = true;
+      this.tasksService.controlStep1 = true;
+      this.tasksService.controlStep2 = true;
+      this.tasksService.controlStep3 = false;
+      this.tasksService.controlStepCheck2 = false;
+      this.tasksService.controlStepCheckk2 = false;
 
-    // this.tasksService.controlStep1 = true;
-    // this.tasksService.controlStep2 = true;
-    // this.tasksService.controlStep3 = false;
-    // this.tasksService.controlStepCheck = true;
-    // this.tasksService.controlStepCheckk = true;
-    // this.tasksService.controlStepCheck1 = true;
-    // this.tasksService.controlStepCheckk1 = true;
-    }else {
+      // this.tasksService.controlStep1 = true;
+      // this.tasksService.controlStep2 = true;
+      // this.tasksService.controlStep3 = false;
+      // this.tasksService.controlStepCheck = true;
+      // this.tasksService.controlStepCheckk = true;
+      // this.tasksService.controlStepCheck1 = true;
+      // this.tasksService.controlStepCheckk1 = true;
+    } else {
       this.onPayment = false;
       this.finishstate = false;
-      this.onAdress  = true;
+      this.onAdress = true;
       this.deleteState = true;
       this.tasksService.controlStepCheck1 = false;
       this.tasksService.controlStepCheckk1 = false;
@@ -607,8 +607,8 @@ export class OrdersDetailsPage implements OnInit {
     }
   }
 
-  backProducts(){
-    this.onAdress  = true;
+  backProducts() {
+    this.onAdress = true;
     this.deleteState = true;
     this.deleteStateNext = false;
     this.onAdressNew = false;
