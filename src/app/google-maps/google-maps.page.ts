@@ -79,7 +79,7 @@ export class GoogleMapsPage implements OnInit {
               lat: this.tasksService.latitude,
               lng: this.tasksService.longitude,
             },
-            zoom: 4, // The initial zoom level to be rendered by the map
+            zoom: 6, // The initial zoom level to be rendered by the map
           },
         });
         this.addMarkers();
