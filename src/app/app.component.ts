@@ -52,14 +52,14 @@ export class AppComponent {
 
 // A OUTRA FORMA MAS DESTA DA ERRO NAS IMAGENns
 
-        this.platform.backButton.subscribeWithPriority(-1, () => {
-      if (!this.routerOutlet.canGoBack()) {
-        if(this.routerOutlet)
-        // this.tasksService.handleBackButton();
-        App.exitApp();
-      }
+    //     this.platform.backButton.subscribeWithPriority(-1, () => {
+    //   if (!this.routerOutlet.canGoBack()) {
+    //     if(this.routerOutlet)
+    //     // this.tasksService.handleBackButton();
+    //     App.exitApp();
+    //   }
 
-    });
+    // });
 
 
     // console.log(this.tasksService.dataSave, '2');
@@ -88,14 +88,14 @@ export class AppComponent {
     // });
 
 
-    this.platform.backButton.subscribeWithPriority(-1, () => {
-      if (!this.routerOutlet.canGoBack()) {
-        if(this.routerOutlet)
-        if(this.router.url === '/tabs/tab1'){
-        // this.tasksService.handleBackButton();
-        App.exitApp();
-      }}
-    });
+    // this.platform.backButton.subscribeWithPriority(-1, () => {
+    //   if (!this.routerOutlet.canGoBack()) {
+    //     if(this.routerOutlet)
+    //     if(this.router.url === '/tabs/tab1'){
+    //     // this.tasksService.handleBackButton();
+    //     App.exitApp();
+    //   }}
+    // });
 
 
     // this.platform.backButton.subscribeWithPriority(0, () => {
@@ -172,12 +172,12 @@ export class AppComponent {
       this.splashScreenStateService.stop();
     }, 4000);
 
-    // this.platform.backButton.subscribeWithPriority(-1, () => {
-    //   if (!this.routerOutlet.canGoBack()) {
-    //     // this.tasksService.handleBackButton();
-    //     App.exitApp();
-    //   }
-    // });
+    this.platform.backButton.subscribeWithPriority(-1, () => {
+      if (!this.routerOutlet.canGoBack()) {
+        // this.tasksService.handleBackButton();
+        App.exitApp();
+      }
+    });
 
 
 

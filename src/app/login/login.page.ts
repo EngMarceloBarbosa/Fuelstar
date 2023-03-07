@@ -251,12 +251,16 @@ export class LoginPage implements OnInit {
       rightButtonCallback: () => {
         console.log('BOAS')
         this.checked = true;
+        environment.api = "https://api.fuelstarplus.com:11001"
+        console.log( environment.api)
         console.log(this.checked)
       },
       leftButtonCallback: () => {
         console.log('BOAS')
         this.checked = false;
         console.log(this.checked);
+                environment.api = "https://stg.fuelstarplus.com:11000"
+                console.log( environment.api)
       }
     };
     this.alertService.open(temp);
@@ -266,6 +270,8 @@ export class LoginPage implements OnInit {
   toggle($event) {
     console.log($event)
     this.checked = $event
+
+
 
   }
 

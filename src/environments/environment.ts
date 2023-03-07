@@ -13,8 +13,12 @@ export const environment = {
   // api: 'https://stgapi.fuelstarplus.com',
   api: 'https://stg.fuelstarplus.com:11000',
   // api: 'https://api.fuelstarplus.com:11001',
+
   token: ''
 };
+
+
+const api  = "https://stg.fuelstarplus.com:11000"
 
 /*
  * For easier debugging in development mode, you can import the following file

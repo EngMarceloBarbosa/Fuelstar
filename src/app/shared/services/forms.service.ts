@@ -13,6 +13,7 @@ import { TasksService } from "./tasks.service";
 export class FormsService {
   public signatureImageClient: string = "";
   public signatureImageTecnic: string = "";
+  apiKey: string ="https://api.fuelstarplus.com:11001";
   logoData1: any;
   invertedArray:any = [];
   selectedImages = [];
@@ -283,6 +284,7 @@ ngOnit(){
 
 
   putImageForms(instanceId, fieldId, binaryData) {
+
     console.log('tarefa SUSPENSA', );
 
     return this.http

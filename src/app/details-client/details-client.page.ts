@@ -501,8 +501,53 @@ export class DetailsClientPage implements OnInit {
   }
 
   postNote() {
-    this.router.navigate(["/post-notes"])
+    if (this.tasksService.notesTask.tasks.length == 0 && this.tasksService.notesTask.currentStatus.id != "e6875497-3ad4-4121-b3aa-4efde5d12fb1" ) {
+      this.router.navigate(["/post-notes"])
+    } else {
+      const temp: ModalMessageModel = {
+        showTip: false,
+        title: "Já foi criado um Post, se quiser atualizar carregue no icon ao lado do post que inseriu!",
+        description: "",
+        state: "warning",
+        leftButtonSize: "small",
+        leftButtonType: "text",
+        leftButtonText: "Voltar",
+        showMiddleButton: false,
+        rightButtonSize: "small",
+        rightButtonType: "text",
+        rightButtonText: "",
+        rightButtonTesterProperty: "clickLeaveApp",
+        rightButtonColor: "c-scale-12",
 
+      };
+      this.alertService.open(temp);
+
+
+
+    }
+    if (this.tasksService.notesTask.currentStatus.id == "e6875497-3ad4-4121-b3aa-4efde5d12fb1") {
+
+      const temp: ModalMessageModel = {
+        showTip: false,
+        title: "Já finalizou a tarefa, não é mais possivel! ",
+        description: "",
+        state: "warning",
+        leftButtonSize: "small",
+        leftButtonType: "text",
+        leftButtonText: "Voltar",
+        showMiddleButton: false,
+        rightButtonSize: "small",
+        rightButtonType: "text",
+        rightButtonText: "",
+        rightButtonTesterProperty: "clickLeaveApp",
+        rightButtonColor: "c-scale-12",
+
+      };
+      this.alertService.open(temp);
+
+
+
+    }
   }
 
   editPost(task) {
@@ -981,7 +1026,7 @@ export class DetailsClientPage implements OnInit {
             { text: 'Rua da Portela nº1005 -4805-546 Vermil- Guimarães\n Telefones 252 928 580/1/2 -252 997 100 - Faz 252 991 848 \n E-mail: geral@guimabombas.com', width: 20, style: "textHeader" },
 
 
-           [ { text: 'Ficha de Trabalho ' + this.formsField.formGetById.instanceNumber, style: 'header' }],
+            [{ text: 'Ficha de Trabalho ' + this.formsField.formGetById.instanceNumber, style: 'header' }],
 
             //       this.createTable(this.formsField.structureList)
 
@@ -1002,7 +1047,7 @@ export class DetailsClientPage implements OnInit {
                   [{ text: 'Trabalho finalizado - Porque ?', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[7].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [
                     { text: 'Data de inicio da deslocação', bold: true, fontSize: 12 },
-                    { text: this.formsField.structure.dateFields[3]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false  }
+                    { text: this.formsField.structure.dateFields[3]?.value?.substring(0, 19)?.replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }
                   ],
                   [
                     { text: 'Data de fim da deslocação', bold: true, fontSize: 12 },
@@ -1011,7 +1056,7 @@ export class DetailsClientPage implements OnInit {
                   [{ text: 'Matricula', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[3].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Origem', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[4].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Destino', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[1].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
-                  [{ text: 'kilometros', bold: true, fontSize: 12 }, { text: JSON.stringify(this.formsField.structure.decimalFields[0].value), fontSize: 12, verticalAlignment: 'middle', bold: false }],
+                  [{ text: 'Kilometros', bold: true, fontSize: 12 }, { text: JSON.stringify(this.formsField.structure.decimalFields[0].value), fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Data de inicio do trabalho', bold: true, fontSize: 12 }, { text: this.formsField.structure.dateFields[4].value.substring(0, 19).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Data de fim do trabalho', bold: true, fontSize: 12 }, { text: this.formsField.structure.dateFields[2].value.substring(0, 19).replace("T", " às "), fontSize: 12, verticalAlignment: 'middle', bold: false }],
                   [{ text: 'Anomalias encontradas', bold: true, fontSize: 12 }, { text: this.formsField.structure.textFields[0].value, fontSize: 12, verticalAlignment: 'middle', bold: false }],
@@ -1228,14 +1273,14 @@ export class DetailsClientPage implements OnInit {
 
         this.file.writeFile(this.file.dataDirectory, fileName + '.pdf', blob, { replace: true }).then(fileEntry => {
           console.log('File saved:', fileEntry.name, fileEntry.size, fileEntry.lastModifiedDate);
-          this.fileOpener.open(this.file.dataDirectory  + fileName  + '.pdf', 'application/pdf');
+          this.fileOpener.open(this.file.dataDirectory + fileName + '.pdf', 'application/pdf');
         });
       });
 
 
     } else {
       // On a browser simply use download!
-      this.pdfObj.download('formulário' + this.formsField.formGetById.instanceNumber  + '.pdf');
+      this.pdfObj.download('formulário' + this.formsField.formGetById.instanceNumber + '.pdf');
     }
   }
 
